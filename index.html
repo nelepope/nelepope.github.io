@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nele Pope — Freelance Copywriter & Essayist, London</title>
+<meta name="description" content="Freelance copywriter and essayist based in London. Science, culture, and commercial content. Available for SEO articles, web copy, and long-form writing.">
+<meta property="og:title" content="Nele Pope — Freelance Copywriter & Essayist">
+<meta property="og:description" content="Writing rooted in curiosity and precision. From B2B aviation copy to essays on ultramarine and quantum logic.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1814;
+    --ink-mid: #5a5751;
+    --ink-light: #9a9690;
+    --paper: #faf8f4;
+    --paper-warm: #f3f0e8;
+    --rule: rgba(26,24,20,0.12);
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Jost', sans-serif;
+  }
+
+  html { font-size: 16px; scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 2rem 4rem;
+    border-bottom: 0.5px solid var(--rule);
+    position: sticky;
+    top: 0;
+    background: var(--paper);
+    z-index: 100;
+  }
+
+  .nav-name {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--ink); }
+
+  /* HERO */
+  .hero {
+    padding: 7rem 4rem 5rem;
+    max-width: 900px;
+  }
+
+  .hero-kicker {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-headline {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 2rem;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-headline em {
+    font-style: italic;
+    color: var(--ink-mid);
+  }
+
+  .hero-sub {
+    font-size: 0.95rem;
+    color: var(--ink-mid);
+    max-width: 480px;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 2px;
+    transition: opacity 0.2s;
+  }
+
+  .hero-cta:hover { opacity: 0.5; }
+
+  /* DIVIDER */
+  .rule {
+    border: none;
+    border-top: 0.5px solid var(--rule);
+    margin: 0 4rem;
+  }
+
+  /* WRITING SECTION */
+  section {
+    padding: 5rem 4rem;
+  }
+
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 3rem;
+  }
+
+  /* ESSAYS */
+  .essays-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .essay-item {
+    padding: 2.5rem 0;
+    border-bottom: 0.5px solid var(--rule);
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .essay-item:nth-child(odd) { padding-right: 3rem; border-right: 0.5px solid var(--rule); }
+  .essay-item:nth-child(even) { padding-left: 3rem; }
+  .essay-item:hover { opacity: 0.6; }
+
+  .essay-tag {
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 0.75rem;
+  }
+
+  .essay-title {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--ink);
+    margin-bottom: 0.75rem;
+  }
+
+  .essay-desc {
+    font-size: 0.85rem;
+    color: var(--ink-mid);
+    line-height: 1.7;
+  }
+
+  /* COMMERCIAL */
+  .commercial-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 0.5px solid var(--rule);
+  }
+
+  .commercial-item {
+    padding: 2rem 2rem 2rem 0;
+    border-right: 0.5px solid var(--rule);
+  }
+
+  .commercial-item:last-child { border-right: none; padding-right: 0; padding-left: 2rem; }
+  .commercial-item:nth-child(2) { padding-left: 2rem; }
+
+  .commercial-client {
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .commercial-title {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .commercial-type {
+    font-size: 0.78rem;
+    color: var(--ink-mid);
+  }
+
+  /* ABOUT STRIP */
+  .about-strip {
+    background: var(--paper-warm);
+    padding: 5rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .about-strip h2 {
+    font-family: var(--serif);
+    font-size: 2.5rem;
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+
+  .about-strip h2 em { font-style: italic; }
+
+  .about-body {
+    font-size: 0.9rem;
+    color: var(--ink-mid);
+    line-height: 1.9;
+  }
+
+  .about-body p + p { margin-top: 1em; }
+
+  .about-details {
+    margin-top: 2rem;
+    display: flex;
+    gap: 3rem;
+  }
+
+  .detail-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 0.25rem;
+  }
+
+  .detail-value {
+    font-size: 0.85rem;
+    color: var(--ink);
+  }
+
+  /* CONTACT */
+  .contact-section {
+    padding: 6rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .contact-left h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-left h2 em { font-style: italic; color: var(--ink-mid); }
+
+  .contact-left p {
+    font-size: 0.88rem;
+    color: var(--ink-mid);
+    line-height: 1.8;
+    max-width: 360px;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .form-group label {
+    font-size: 0.6rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    background: transparent;
+    border: none;
+    border-bottom: 0.5px solid var(--rule);
+    padding: 0.6rem 0;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-bottom-color: var(--ink);
+  }
+
+  .form-group textarea { resize: none; min-height: 80px; }
+  .form-group select { cursor: pointer; }
+
+  .form-submit {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 2px;
+    font-family: var(--sans);
+    transition: opacity 0.2s;
+    align-self: flex-start;
+  }
+
+  .form-submit:hover { opacity: 0.5; }
+
+  /* FOOTER */
+  footer {
+    border-top: 0.5px solid var(--rule);
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer p {
+    font-size: 0.72rem;
+    color: var(--ink-light);
+    letter-spacing: 0.06em;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--ink); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-kicker { animation: fadeUp 0.6s ease both; }
+  .hero-headline { animation: fadeUp 0.7s 0.1s ease both; }
+  .hero-sub { animation: fadeUp 0.7s 0.2s ease both; }
+  .hero-cta { animation: fadeUp 0.7s 0.3s ease both; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1.5rem 2rem; }
+    .nav-links { gap: 1.5rem; }
+    .hero { padding: 4rem 2rem 3rem; }
+    .rule { margin: 0 2rem; }
+    section { padding: 3rem 2rem; }
+    .essays-grid { grid-template-columns: 1fr; }
+    .essay-item:nth-child(odd) { padding-right: 0; border-right: none; }
+    .essay-item:nth-child(even) { padding-left: 0; }
+    .commercial-list { grid-template-columns: 1fr; }
+    .commercial-item { padding: 1.5rem 0; border-right: none; border-bottom: 0.5px solid var(--rule); }
+    .commercial-item:last-child { padding-left: 0; }
+    .commercial-item:nth-child(2) { padding-left: 0; }
+    .about-strip { padding: 3rem 2rem; grid-template-columns: 1fr; gap: 2rem; }
+    .about-details { flex-wrap: wrap; gap: 1.5rem; }
+    .contact-section { padding: 3rem 2rem; grid-template-columns: 1fr; gap: 2rem; }
+    footer { padding: 1.5rem 2rem; flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-name">Nele Pope</a>
+  <ul class="nav-links">
+    <li><a href="#writing">Writing</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://nelepope.substack.com" target="_blank">Substack</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <p class="hero-kicker">Copywriter &amp; Essayist &nbsp;—&nbsp; London</p>
+  <h1 class="hero-headline">Words that<br><em>earn their place</em><br>on the page.</h1>
+  <p class="hero-sub">Science, culture, and commerce. From B2B aviation copy to essays on ultramarine and quantum logic — writing rooted in curiosity and precision.</p>
+  <a href="#writing" class="hero-cta">Read the work</a>
+</div>
+
+<hr class="rule">
+
+<section id="writing">
+  <p class="section-label">Essays &amp; Long-form</p>
+  <div class="essays-grid">
+    <div class="essay-item">
+      <p class="essay-tag">Science &amp; Philosophy</p>
+      <h2 class="essay-title">God Does Not Play Dice</h2>
+      <p class="essay-desc">Einstein, determinism, and Bell's theorem — on what it means to refuse a universe built on chance.</p>
+    </div>
+    <div class="essay-item">
+      <p class="essay-tag">Art &amp; History</p>
+      <h2 class="essay-title">The Colour That Could Not Be Owned</h2>
+      <p class="essay-desc">Yves Klein, International Klein Blue, and the five-hundred-year obsession with ultramarine.</p>
+    </div>
+    <div class="essay-item">
+      <p class="essay-tag">Substack — Pen</p>
+      <h2 class="essay-title">Selected Essays</h2>
+      <p class="essay-desc">Writing on craft, science, and the long, strange work of making something true.</p>
+    </div>
+    <div class="essay-item">
+      <p class="essay-tag">In progress</p>
+      <h2 class="essay-title">Book Manuscript</h2>
+      <p class="essay-desc">80,000 words and counting. A long-form work at the intersection of physics, memory, and making.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section>
+  <p class="section-label">Commercial &amp; Copy</p>
+  <div class="commercial-list">
+    <div class="commercial-item">
+      <p class="commercial-client">Alglas</p>
+      <p class="commercial-title">B2B Aviation &amp; MRO Content</p>
+      <p class="commercial-type">Long-form articles, technical SEO, product copy</p>
+    </div>
+    <div class="commercial-item">
+      <p class="commercial-client">Eat This Much</p>
+      <p class="commercial-title">Meal Planning Platform</p>
+      <p class="commercial-type">Web copy, landing pages, diet plan content</p>
+    </div>
+    <div class="commercial-item">
+      <p class="commercial-client">Goldilocks Coffee</p>
+      <p class="commercial-title">Brand Strategy &amp; Voice</p>
+      <p class="commercial-type">Brand foundation, positioning, copy direction</p>
+    </div>
+  </div>
+</section>
+
+<div class="about-strip" id="about">
+  <h2>Precise<br>by<br><em>nature.</em></h2>
+  <div class="about-body">
+    <p>I'm a freelance copywriter and essayist with a first-class degree in physics. I write for brands that need depth and clarity in equal measure — and for anyone who believes that good copy starts with genuine understanding.</p>
+    <p>My work spans SEO and long-form commercial content, brand strategy, and independent essays published on Substack and pitched to magazines. I co-host a weekly writers group in Primrose Hill and run a bespoke jewellery and body casting studio in Camden.</p>
+    <div class="about-details">
+      <div class="detail-item">
+        <p class="detail-label">Based</p>
+        <p class="detail-value">London</p>
+      </div>
+      <div class="detail-item">
+        <p class="detail-label">Available for</p>
+        <p class="detail-value">Freelance &amp; contracts</p>
+      </div>
+      <div class="detail-item">
+        <p class="detail-label">Substack</p>
+        <p class="detail-value"><a href="https://nelepope.substack.com" target="_blank" style="color:var(--ink); text-decoration: underline; text-underline-offset: 3px;">Pen</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="contact-section" id="contact">
+  <div class="contact-left">
+    <h2>Let's work<br><em>together.</em></h2>
+    <p>Whether you need long-form content, web copy, brand writing, or something in between — get in touch. I'm currently taking on new clients.</p>
+  </div>
+  <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Your name" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="your@email.com" required>
+    </div>
+    <div class="form-group">
+      <label for="project">Project type</label>
+      <select id="project" name="project">
+        <option value="" disabled selected>Select one</option>
+        <option>SEO &amp; long-form content</option>
+        <option>Web copy &amp; landing pages</option>
+        <option>Brand strategy &amp; voice</option>
+        <option>Essay or editorial</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="message">Message</label>
+      <textarea id="message" name="message" placeholder="Tell me about your project"></textarea>
+    </div>
+    <button type="submit" class="form-submit">Send enquiry</button>
+  </form>
+</section>
+
+<footer>
+  <p>&copy; 2026 Nele Pope</p>
+  <ul class="footer-links">
+    <li><a href="https://nelepope.substack.com" target="_blank">Substack</a></li>
+    <li><a href="https://linkedin.com/in/YOUR_LINKEDIN" target="_blank">LinkedIn</a></li>
+    <li><a href="https://www.upwork.com/freelancers/YOUR_UPWORK" target="_blank">Upwork</a></li>
+  </ul>
+</footer>
+
+</body>
+</html>
