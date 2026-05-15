@@ -526,26 +526,18 @@
   /* COMMERCIAL */
   .commercial-list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
     gap: 0;
     border-top: 0.5px solid var(--rule);
+    max-width: 640px;
   }
 
   .commercial-item {
-    padding: 2.5rem 2.5rem 2.5rem 0;
-    border-right: 0.5px solid var(--rule);
+    padding: 2.5rem 0;
     transition: background 0.3s;
   }
 
   .commercial-item:hover { background: var(--paper-warm); }
-
-  .commercial-item:last-child {
-    border-right: none;
-    padding-right: 0;
-    padding-left: 2.5rem;
-  }
-
-  .commercial-item:nth-child(2) { padding-left: 2.5rem; }
 
   .commercial-number {
     font-family: var(--serif);
@@ -970,18 +962,6 @@
       <p class="commercial-client">Alglas</p>
       <p class="commercial-title">B2B Aviation &amp; MRO Content</p>
       <p class="commercial-type">Long-form articles, technical SEO, product copy</p>
-    </div>
-    <div class="commercial-item reveal reveal-delay-2">
-      <p class="commercial-number">02</p>
-      <p class="commercial-client">Eat This Much</p>
-      <p class="commercial-title">Meal Planning Platform</p>
-      <p class="commercial-type">Web copy, landing pages, diet plan content</p>
-    </div>
-    <div class="commercial-item reveal reveal-delay-3">
-      <p class="commercial-number">03</p>
-      <p class="commercial-client">Goldilocks Coffee</p>
-      <p class="commercial-title">Brand Strategy &amp; Voice</p>
-      <p class="commercial-type">Brand foundation, positioning, copy direction</p>
     </div>
   </div>
 </section>
