@@ -5,12 +5,99 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nele Pope — Freelance Copywriter & Essayist, London</title>
 <meta name="description" content="Freelance copywriter and essayist based in London. Science, culture, and commercial content. Available for SEO articles, web copy, and long-form writing.">
+<meta name="author" content="Nele Pope">
+<meta name="keywords" content="freelance copywriter, essayist, London, SEO copywriter, long-form writer, brand strategist, science writer, B2B copywriter">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#faf8f4">
+
+<link rel="canonical" href="https://nelepope.com/">
+
+<!-- Open Graph -->
 <meta property="og:title" content="Nele Pope — Freelance Copywriter & Essayist">
 <meta property="og:description" content="Writing rooted in curiosity and precision. From B2B aviation copy to essays on ultramarine and quantum logic.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://nelepope.com/">
+<meta property="og:image" content="https://nelepope.com/portrait.jpg">
+<meta property="og:image:alt" content="Portrait of Nele Pope">
+<meta property="og:site_name" content="Nele Pope">
+<meta property="og:locale" content="en_GB">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nele Pope — Freelance Copywriter & Essayist">
+<meta name="twitter:description" content="Writing rooted in curiosity and precision. From B2B aviation copy to essays on ultramarine and quantum logic.">
+<meta name="twitter:image" content="https://nelepope.com/portrait.jpg">
+
+<!-- Favicons & manifest -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+
+<!-- Structured data: Person -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Nele Pope",
+  "url": "https://nelepope.com/",
+  "image": "https://nelepope.com/portrait.jpg",
+  "jobTitle": "Freelance Copywriter & Essayist",
+  "description": "Freelance copywriter and essayist based in London. Science, culture, and commercial content.",
+  "email": "mailto:hello@nelepope.com",
+  "address": {
+    "@type": "PostalPlace",
+    "addressLocality": "London",
+    "addressCountry": "GB"
+  },
+  "knowsAbout": ["Copywriting", "Essay writing", "Brand strategy", "SEO content", "Science writing", "Physics"],
+  "alumniOf": {
+    "@type": "EducationalOrganization",
+    "name": "Physics, First-class degree"
+  },
+  "sameAs": [
+    "https://nelepope.substack.com",
+    "https://linkedin.com/in/YOUR_LINKEDIN",
+    "https://www.upwork.com/freelancers/YOUR_UPWORK"
+  ]
+}
+</script>
+
+<!-- Structured data: WebSite + ProfessionalService -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "url": "https://nelepope.com/",
+  "name": "Nele Pope",
+  "description": "Freelance copywriter and essayist based in London.",
+  "inLanguage": "en-GB",
+  "author": { "@type": "Person", "name": "Nele Pope" }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Nele Pope — Copywriting & Editorial",
+  "url": "https://nelepope.com/",
+  "image": "https://nelepope.com/portrait.jpg",
+  "priceRange": "££",
+  "areaServed": "Worldwide",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "London",
+    "addressCountry": "GB"
+  },
+  "provider": { "@type": "Person", "name": "Nele Pope" },
+  "serviceType": ["SEO content", "Long-form writing", "Web copy", "Brand strategy", "Editorial essays"]
+}
+</script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -20,9 +107,12 @@
     --ink-light: #9a9690;
     --paper: #faf8f4;
     --paper-warm: #f3f0e8;
-    --rule: rgba(26,24,20,0.12);
+    --paper-deep: #ece9e0;
+    --rule: rgba(26,24,20,0.1);
+    --accent: #8b6f47;
     --serif: 'Cormorant Garamond', Georgia, serif;
     --sans: 'Jost', sans-serif;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   html { font-size: 16px; scroll-behavior: smooth; }
@@ -34,19 +124,56 @@
     font-weight: 300;
     line-height: 1.7;
     min-height: 100vh;
+    cursor: none;
   }
+
+  /* CUSTOM CURSOR */
+  .cursor {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: var(--ink);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s var(--ease-out), width 0.3s var(--ease-out), height 0.3s var(--ease-out), background 0.3s;
+    mix-blend-mode: multiply;
+  }
+
+  .cursor-ring {
+    position: fixed;
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(26,24,20,0.3);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.45s var(--ease-out), width 0.4s var(--ease-out), height 0.4s var(--ease-out), opacity 0.3s;
+  }
+
+  body.cursor-hover .cursor { width: 12px; height: 12px; }
+  body.cursor-hover .cursor-ring { width: 52px; height: 52px; opacity: 0.5; }
 
   /* NAV */
   nav {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    padding: 2rem 4rem;
+    padding: 1.75rem 4rem;
     border-bottom: 0.5px solid var(--rule);
     position: sticky;
     top: 0;
-    background: var(--paper);
+    background: rgba(250,248,244,0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     z-index: 100;
+    transition: box-shadow 0.3s;
+  }
+
+  nav.scrolled {
+    box-shadow: 0 1px 0 var(--rule), 0 8px 24px rgba(26,24,20,0.04);
   }
 
   .nav-name {
@@ -62,41 +189,137 @@
     display: flex;
     gap: 2.5rem;
     list-style: none;
+    align-items: center;
   }
 
   .nav-links a {
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--ink-mid);
     text-decoration: none;
     transition: color 0.2s;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 0.5px;
+    background: var(--ink);
+    transition: width 0.3s var(--ease-out);
   }
 
   .nav-links a:hover { color: var(--ink); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-available {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .available-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
 
   /* HERO */
   .hero {
-    padding: 7rem 4rem 5rem;
-    max-width: 900px;
+    padding: 6rem 4rem 5rem;
+    max-width: 1400px;
+    position: relative;
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0.4;
+  }
+
+  .hero-text { min-width: 0; }
+
+  .hero-portrait {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: var(--paper-deep);
+    animation: fadeUp 0.9s 0.4s var(--ease-out) both;
+  }
+
+  .hero-portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(0.15) contrast(1.02);
+    transition: filter 0.6s var(--ease-out), transform 1.2s var(--ease-out);
+  }
+
+  .hero-portrait:hover img {
+    filter: grayscale(0) contrast(1);
+    transform: scale(1.03);
+  }
+
+  .hero-portrait::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 0.5px solid var(--rule);
+    pointer-events: none;
   }
 
   .hero-kicker {
     font-size: 0.65rem;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--ink-light);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.75rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hero-kicker::before {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 0.5px;
+    background: var(--ink-light);
   }
 
   .hero-headline {
     font-family: var(--serif);
-    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-size: clamp(3.2rem, 6.5vw, 6rem);
     font-weight: 300;
-    line-height: 1.1;
+    line-height: 1.08;
     color: var(--ink);
-    margin-bottom: 2rem;
-    letter-spacing: -0.01em;
+    margin-bottom: 2.25rem;
+    letter-spacing: -0.015em;
   }
 
   .hero-headline em {
@@ -107,43 +330,113 @@
   .hero-sub {
     font-size: 0.95rem;
     color: var(--ink-mid);
-    max-width: 480px;
-    line-height: 1.8;
-    margin-bottom: 3rem;
+    max-width: 460px;
+    line-height: 1.85;
+    margin-bottom: 3.25rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
   }
 
   .hero-cta {
     display: inline-block;
-    font-size: 0.7rem;
-    letter-spacing: 0.16em;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--ink);
     text-decoration: none;
-    border-bottom: 1px solid var(--ink);
-    padding-bottom: 2px;
-    transition: opacity 0.2s;
+    border-bottom: 0.5px solid var(--ink);
+    padding-bottom: 3px;
+    transition: opacity 0.2s, letter-spacing 0.3s var(--ease-out);
   }
 
-  .hero-cta:hover { opacity: 0.5; }
+  .hero-cta:hover {
+    opacity: 0.5;
+    letter-spacing: 0.22em;
+  }
 
-  /* DIVIDER */
-  .rule {
-    border: none;
-    border-top: 0.5px solid var(--rule);
+  .hero-secondary {
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .hero-secondary:hover { color: var(--ink-mid); }
+
+  /* ORNAMENT */
+  .ornament {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
     margin: 0 4rem;
+    padding: 0;
   }
 
-  /* WRITING SECTION */
+  .ornament::before,
+  .ornament::after {
+    content: '';
+    flex: 1;
+    height: 0.5px;
+    background: var(--rule);
+  }
+
+  .ornament-glyph {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    color: var(--ink-light);
+    line-height: 1;
+    font-weight: 300;
+    opacity: 0.5;
+    letter-spacing: 0.1em;
+  }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* SECTION */
   section {
-    padding: 5rem 4rem;
+    padding: 5.5rem 4rem;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 3.5rem;
   }
 
   .section-label {
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--ink-light);
-    margin-bottom: 3rem;
+  }
+
+  .section-count {
+    font-family: var(--serif);
+    font-size: 0.85rem;
+    color: var(--ink-light);
+    font-style: italic;
   }
 
   /* ESSAYS */
@@ -154,37 +447,80 @@
   }
 
   .essay-item {
-    padding: 2.5rem 0;
+    padding: 2.75rem 0;
     border-bottom: 0.5px solid var(--rule);
-    cursor: pointer;
-    transition: opacity 0.2s;
+    cursor: none;
+    transition: background 0.4s var(--ease-out);
+    position: relative;
+    overflow: hidden;
+    display: block;
+    color: inherit;
+    text-decoration: none;
   }
 
-  .essay-item:nth-child(odd) { padding-right: 3rem; border-right: 0.5px solid var(--rule); }
-  .essay-item:nth-child(even) { padding-left: 3rem; }
-  .essay-item:hover { opacity: 0.6; }
+  .essay-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--paper-warm);
+    opacity: 0;
+    transition: opacity 0.4s var(--ease-out);
+    z-index: 0;
+  }
+
+  .essay-item:hover::after { opacity: 1; }
+
+  .essay-item > * { position: relative; z-index: 1; }
+
+  .essay-item:nth-child(odd) {
+    padding-right: 3.5rem;
+    border-right: 0.5px solid var(--rule);
+  }
+
+  .essay-item:nth-child(even) { padding-left: 3.5rem; }
 
   .essay-tag {
-    font-size: 0.6rem;
-    letter-spacing: 0.18em;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--ink-light);
-    margin-bottom: 0.75rem;
+    color: var(--accent);
+    margin-bottom: 0.9rem;
+    opacity: 0.8;
   }
 
   .essay-title {
     font-family: var(--serif);
-    font-size: 1.6rem;
+    font-size: 1.7rem;
     font-weight: 400;
-    line-height: 1.25;
+    line-height: 1.2;
     color: var(--ink);
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.85rem;
+    transition: font-style 0.2s;
   }
 
+  .essay-item:hover .essay-title { font-style: italic; }
+
   .essay-desc {
-    font-size: 0.85rem;
+    font-size: 0.84rem;
     color: var(--ink-mid);
-    line-height: 1.7;
+    line-height: 1.75;
+  }
+
+  .essay-arrow {
+    display: inline-block;
+    margin-top: 1.25rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: opacity 0.3s, transform 0.3s var(--ease-out);
+  }
+
+  .essay-item:hover .essay-arrow {
+    opacity: 1;
+    transform: translateX(0);
   }
 
   /* COMMERCIAL */
@@ -196,75 +532,151 @@
   }
 
   .commercial-item {
-    padding: 2rem 2rem 2rem 0;
+    padding: 2.5rem 2.5rem 2.5rem 0;
     border-right: 0.5px solid var(--rule);
+    transition: background 0.3s;
   }
 
-  .commercial-item:last-child { border-right: none; padding-right: 0; padding-left: 2rem; }
-  .commercial-item:nth-child(2) { padding-left: 2rem; }
+  .commercial-item:hover { background: var(--paper-warm); }
+
+  .commercial-item:last-child {
+    border-right: none;
+    padding-right: 0;
+    padding-left: 2.5rem;
+  }
+
+  .commercial-item:nth-child(2) { padding-left: 2.5rem; }
+
+  .commercial-number {
+    font-family: var(--serif);
+    font-size: 0.75rem;
+    color: var(--ink-light);
+    margin-bottom: 1.25rem;
+    font-style: italic;
+    opacity: 0.6;
+  }
 
   .commercial-client {
-    font-size: 0.6rem;
-    letter-spacing: 0.18em;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--ink-light);
+    color: var(--accent);
     margin-bottom: 0.5rem;
+    opacity: 0.8;
   }
 
   .commercial-title {
     font-family: var(--serif);
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     font-weight: 400;
     color: var(--ink);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.6rem;
     line-height: 1.3;
   }
 
   .commercial-type {
     font-size: 0.78rem;
     color: var(--ink-mid);
+    line-height: 1.6;
   }
 
   /* ABOUT STRIP */
   .about-strip {
     background: var(--paper-warm);
-    padding: 5rem 4rem;
+    padding: 6rem 4rem;
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 4rem;
+    grid-template-columns: 5fr 8fr;
+    gap: 5rem;
     align-items: start;
+    position: relative;
+    overflow: hidden;
   }
 
-  .about-strip h2 {
+  .about-strip::before {
+    content: '"';
+    position: absolute;
+    top: -1rem;
+    right: 3rem;
     font-family: var(--serif);
-    font-size: 2.5rem;
+    font-size: 18rem;
+    color: var(--paper-deep);
+    line-height: 1;
+    pointer-events: none;
     font-weight: 300;
-    line-height: 1.2;
+  }
+
+  .about-portrait {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: var(--paper-deep);
+  }
+
+  .about-portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(0.15) contrast(1.02);
+    transition: filter 0.6s var(--ease-out), transform 0.8s var(--ease-out);
+  }
+
+  .about-portrait:hover img {
+    filter: grayscale(0) contrast(1);
+    transform: scale(1.02);
+  }
+
+  .about-portrait::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 0.5px solid var(--rule);
+    pointer-events: none;
+  }
+
+  .portrait-caption {
+    margin-top: 0.85rem;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.78rem;
+    color: var(--ink-light);
+    letter-spacing: 0.02em;
+  }
+
+  .about-headline {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.15;
     color: var(--ink);
   }
 
-  .about-strip h2 em { font-style: italic; }
+  .about-headline em { font-style: italic; }
 
   .about-body {
     font-size: 0.9rem;
     color: var(--ink-mid);
-    line-height: 1.9;
+    line-height: 1.95;
+    position: relative;
+    z-index: 1;
   }
 
-  .about-body p + p { margin-top: 1em; }
+  .about-body p + p { margin-top: 1.25em; }
 
   .about-details {
-    margin-top: 2rem;
+    margin-top: 2.5rem;
     display: flex;
     gap: 3rem;
+    padding-top: 2rem;
+    border-top: 0.5px solid var(--rule);
   }
 
   .detail-label {
-    font-size: 0.6rem;
-    letter-spacing: 0.16em;
+    font-size: 0.58rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--ink-light);
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.35rem;
   }
 
   .detail-value {
@@ -274,19 +686,19 @@
 
   /* CONTACT */
   .contact-section {
-    padding: 6rem 4rem;
+    padding: 7rem 4rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    gap: 5rem;
     align-items: start;
   }
 
   .contact-left h2 {
     font-family: var(--serif);
-    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-size: clamp(2.2rem, 4vw, 3.75rem);
     font-weight: 300;
-    line-height: 1.15;
-    margin-bottom: 1.5rem;
+    line-height: 1.12;
+    margin-bottom: 1.75rem;
   }
 
   .contact-left h2 em { font-style: italic; color: var(--ink-mid); }
@@ -294,25 +706,43 @@
   .contact-left p {
     font-size: 0.88rem;
     color: var(--ink-mid);
-    line-height: 1.8;
-    max-width: 360px;
+    line-height: 1.85;
+    max-width: 340px;
+  }
+
+  .contact-direct {
+    margin-top: 2rem;
+    font-size: 0.78rem;
+    color: var(--ink-mid);
+  }
+
+  .contact-direct a {
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--rule);
+    transition: text-decoration-color 0.2s;
+  }
+
+  .contact-direct a:hover {
+    text-decoration-color: var(--ink);
   }
 
   .contact-form {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.75rem;
   }
 
   .form-group {
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
+    gap: 0.5rem;
   }
 
   .form-group label {
-    font-size: 0.6rem;
-    letter-spacing: 0.16em;
+    font-size: 0.58rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--ink-light);
   }
@@ -323,17 +753,20 @@
     background: transparent;
     border: none;
     border-bottom: 0.5px solid var(--rule);
-    padding: 0.6rem 0;
+    padding: 0.65rem 0;
     font-family: var(--sans);
     font-size: 0.9rem;
     font-weight: 300;
     color: var(--ink);
     outline: none;
-    transition: border-color 0.2s;
+    transition: border-color 0.3s;
     width: 100%;
     appearance: none;
     -webkit-appearance: none;
   }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: var(--ink-light); font-size: 0.85rem; }
 
   .form-group input:focus,
   .form-group textarea:focus,
@@ -341,156 +774,211 @@
     border-bottom-color: var(--ink);
   }
 
-  .form-group textarea { resize: none; min-height: 80px; }
-  .form-group select { cursor: pointer; }
+  .form-group textarea { resize: none; min-height: 90px; }
+  .form-group select { cursor: none; }
 
   .form-submit {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
     margin-top: 0.5rem;
-    font-size: 0.7rem;
-    letter-spacing: 0.16em;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--ink);
     background: none;
     border: none;
-    cursor: pointer;
+    cursor: none;
     padding: 0;
-    border-bottom: 1px solid var(--ink);
-    padding-bottom: 2px;
     font-family: var(--sans);
-    transition: opacity 0.2s;
+    transition: opacity 0.2s, gap 0.3s var(--ease-out);
     align-self: flex-start;
   }
 
-  .form-submit:hover { opacity: 0.5; }
+  .form-submit::after {
+    content: '→';
+    font-size: 1rem;
+    font-weight: 300;
+    transition: transform 0.3s var(--ease-out);
+  }
+
+  .form-submit:hover {
+    opacity: 0.6;
+    gap: 1.25rem;
+  }
+
+  .form-submit:hover::after { transform: translateX(3px); }
 
   /* FOOTER */
   footer {
     border-top: 0.5px solid var(--rule);
-    padding: 2rem 4rem;
+    padding: 2.25rem 4rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
   footer p {
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     color: var(--ink-light);
-    letter-spacing: 0.06em;
+    letter-spacing: 0.08em;
   }
 
   .footer-links {
     display: flex;
-    gap: 2rem;
+    gap: 2.25rem;
     list-style: none;
   }
 
   .footer-links a {
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
+    font-size: 0.63rem;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--ink-light);
     text-decoration: none;
     transition: color 0.2s;
   }
 
-  .footer-links a:hover { color: var(--ink); }
+  .footer-links a:hover { color: var(--ink-mid); }
 
-  /* ANIMATIONS */
+  /* HERO ANIMATIONS */
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(18px); }
+    from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
-  .hero-kicker { animation: fadeUp 0.6s ease both; }
-  .hero-headline { animation: fadeUp 0.7s 0.1s ease both; }
-  .hero-sub { animation: fadeUp 0.7s 0.2s ease both; }
-  .hero-cta { animation: fadeUp 0.7s 0.3s ease both; }
+  .hero-kicker  { animation: fadeUp 0.7s 0.1s var(--ease-out) both; }
+  .hero-headline { animation: fadeUp 0.8s 0.2s var(--ease-out) both; }
+  .hero-sub     { animation: fadeUp 0.8s 0.35s var(--ease-out) both; }
+  .hero-actions { animation: fadeUp 0.8s 0.5s var(--ease-out) both; }
 
   /* RESPONSIVE */
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     nav { padding: 1.5rem 2rem; }
-    .nav-links { gap: 1.5rem; }
-    .hero { padding: 4rem 2rem 3rem; }
-    .rule { margin: 0 2rem; }
-    section { padding: 3rem 2rem; }
+    .nav-available { display: none; }
+    .hero {
+      padding: 3.5rem 2rem 3rem;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .hero-portrait { max-width: 360px; margin: 0 auto; width: 100%; }
+    .ornament { margin: 0 2rem; }
+    section { padding: 3.5rem 2rem; }
     .essays-grid { grid-template-columns: 1fr; }
     .essay-item:nth-child(odd) { padding-right: 0; border-right: none; }
     .essay-item:nth-child(even) { padding-left: 0; }
     .commercial-list { grid-template-columns: 1fr; }
-    .commercial-item { padding: 1.5rem 0; border-right: none; border-bottom: 0.5px solid var(--rule); }
+    .commercial-item { padding: 1.75rem 0; border-right: none; border-bottom: 0.5px solid var(--rule); }
     .commercial-item:last-child { padding-left: 0; }
     .commercial-item:nth-child(2) { padding-left: 0; }
-    .about-strip { padding: 3rem 2rem; grid-template-columns: 1fr; gap: 2rem; }
-    .about-details { flex-wrap: wrap; gap: 1.5rem; }
-    .contact-section { padding: 3rem 2rem; grid-template-columns: 1fr; gap: 2rem; }
-    footer { padding: 1.5rem 2rem; flex-direction: column; gap: 1rem; text-align: center; }
+    .about-strip { padding: 4rem 2rem; grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-portrait { max-width: 320px; }
+    .about-details { flex-wrap: wrap; gap: 1.75rem; }
+    .contact-section { padding: 4rem 2rem; grid-template-columns: 1fr; gap: 3rem; }
+    footer { padding: 1.75rem 2rem; flex-direction: column; gap: 1.25rem; text-align: center; }
+  }
+
+  @media (hover: none) {
+    body { cursor: auto; }
+    .cursor, .cursor-ring { display: none; }
   }
 </style>
 </head>
 <body>
 
-<nav>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav id="mainNav">
   <a href="#" class="nav-name">Nele Pope</a>
   <ul class="nav-links">
     <li><a href="#writing">Writing</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="https://nelepope.substack.com" target="_blank">Substack</a></li>
+    <li><a href="https://nelepope.substack.com" target="_blank" rel="noopener">Substack</a></li>
   </ul>
+  <div class="nav-available">
+    <span class="available-dot"></span>
+    Available
+  </div>
 </nav>
 
 <div class="hero">
-  <p class="hero-kicker">Copywriter &amp; Essayist &nbsp;—&nbsp; London</p>
-  <h1 class="hero-headline">Words that<br><em>earn their place</em><br>on the page.</h1>
-  <p class="hero-sub">Science, culture, and commerce. From B2B aviation copy to essays on ultramarine and quantum logic — writing rooted in curiosity and precision.</p>
-  <a href="#writing" class="hero-cta">Read the work</a>
+  <div class="hero-text">
+    <p class="hero-kicker">Penelope Richmond</p>
+    <h1 class="hero-headline">Copywriter<br><em>and</em><br>essayist.</h1>
+    <p class="hero-sub">Science, culture, and commerce. From B2B aviation copy to essays on ultramarine and quantum logic — writing rooted in curiosity and precision.</p>
+    <div class="hero-actions">
+      <a href="#writing" class="hero-cta">Read the work</a>
+      <a href="#contact" class="hero-secondary">Get in touch</a>
+    </div>
+  </div>
+  <figure class="hero-portrait">
+    <img src="portrait.jpg" alt="Portrait of Penelope Richmond, freelance copywriter and essayist based in London" width="800" height="1000">
+  </figure>
 </div>
 
-<hr class="rule">
+<div class="ornament">
+  <span class="ornament-glyph">✦</span>
+</div>
 
 <section id="writing">
-  <p class="section-label">Essays &amp; Long-form</p>
+  <div class="section-header reveal">
+    <p class="section-label">Essays &amp; Long-form</p>
+    <span class="section-count">Four pieces</span>
+  </div>
   <div class="essays-grid">
-    <div class="essay-item">
+    <a href="god-does-not-play-dice.html" class="essay-item reveal reveal-delay-1">
       <p class="essay-tag">Science &amp; Philosophy</p>
       <h2 class="essay-title">God Does Not Play Dice</h2>
       <p class="essay-desc">Einstein, determinism, and Bell's theorem — on what it means to refuse a universe built on chance.</p>
-    </div>
-    <div class="essay-item">
+      <span class="essay-arrow">Read →</span>
+    </a>
+    <a href="the-blue-epoch.html" class="essay-item reveal reveal-delay-2">
       <p class="essay-tag">Art &amp; History</p>
-      <h2 class="essay-title">The Colour That Could Not Be Owned</h2>
+      <h2 class="essay-title">The Blue Epoch</h2>
       <p class="essay-desc">Yves Klein, International Klein Blue, and the five-hundred-year obsession with ultramarine.</p>
-    </div>
-    <div class="essay-item">
+      <span class="essay-arrow">Read →</span>
+    </a>
+    <div class="essay-item reveal reveal-delay-3">
       <p class="essay-tag">Substack — Pen</p>
       <h2 class="essay-title">Selected Essays</h2>
       <p class="essay-desc">Writing on craft, science, and the long, strange work of making something true.</p>
+      <span class="essay-arrow">Read →</span>
     </div>
-    <div class="essay-item">
+    <div class="essay-item reveal reveal-delay-4">
       <p class="essay-tag">In progress</p>
       <h2 class="essay-title">Book Manuscript</h2>
       <p class="essay-desc">80,000 words and counting. A long-form work at the intersection of physics, memory, and making.</p>
+      <span class="essay-arrow">In progress</span>
     </div>
   </div>
 </section>
 
-<hr class="rule">
+<div class="ornament reveal">
+  <span class="ornament-glyph">✦</span>
+</div>
 
-<section>
-  <p class="section-label">Commercial &amp; Copy</p>
+<section class="reveal">
+  <div class="section-header">
+    <p class="section-label">Commercial &amp; Copy</p>
+    <span class="section-count">Selected clients</span>
+  </div>
   <div class="commercial-list">
-    <div class="commercial-item">
+    <div class="commercial-item reveal reveal-delay-1">
+      <p class="commercial-number">01</p>
       <p class="commercial-client">Alglas</p>
       <p class="commercial-title">B2B Aviation &amp; MRO Content</p>
       <p class="commercial-type">Long-form articles, technical SEO, product copy</p>
     </div>
-    <div class="commercial-item">
+    <div class="commercial-item reveal reveal-delay-2">
+      <p class="commercial-number">02</p>
       <p class="commercial-client">Eat This Much</p>
       <p class="commercial-title">Meal Planning Platform</p>
       <p class="commercial-type">Web copy, landing pages, diet plan content</p>
     </div>
-    <div class="commercial-item">
+    <div class="commercial-item reveal reveal-delay-3">
+      <p class="commercial-number">03</p>
       <p class="commercial-client">Goldilocks Coffee</p>
       <p class="commercial-title">Brand Strategy &amp; Voice</p>
       <p class="commercial-type">Brand foundation, positioning, copy direction</p>
@@ -499,7 +987,7 @@
 </section>
 
 <div class="about-strip" id="about">
-  <h2>Precise<br>by<br><em>nature.</em></h2>
+  <h2 class="about-headline">Precise<br>by<br><em>nature.</em></h2>
   <div class="about-body">
     <p>I'm a freelance copywriter and essayist with a first-class degree in physics. I write for brands that need depth and clarity in equal measure — and for anyone who believes that good copy starts with genuine understanding.</p>
     <p>My work spans SEO and long-form commercial content, brand strategy, and independent essays published on Substack and pitched to magazines. I co-host a weekly writers group in Primrose Hill and run a bespoke jewellery and body casting studio in Camden.</p>
@@ -514,27 +1002,28 @@
       </div>
       <div class="detail-item">
         <p class="detail-label">Substack</p>
-        <p class="detail-value"><a href="https://nelepope.substack.com" target="_blank" style="color:var(--ink); text-decoration: underline; text-underline-offset: 3px;">Pen</a></p>
+        <p class="detail-value"><a href="https://nelepope.substack.com" target="_blank" rel="noopener" style="color:var(--ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--rule);">Pen</a></p>
       </div>
     </div>
   </div>
 </div>
 
-<section class="contact-section" id="contact">
+<section class="contact-section reveal" id="contact">
   <div class="contact-left">
     <h2>Let's work<br><em>together.</em></h2>
     <p>Whether you need long-form content, web copy, brand writing, or something in between — get in touch. I'm currently taking on new clients.</p>
+    <p class="contact-direct">Or email directly: <a href="mailto:hello@nelepope.com">hello@nelepope.com</a></p>
   </div>
   <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-    <div class="form-group">
+    <div class="form-group reveal reveal-delay-1">
       <label for="name">Name</label>
       <input type="text" id="name" name="name" placeholder="Your name" required>
     </div>
-    <div class="form-group">
+    <div class="form-group reveal reveal-delay-2">
       <label for="email">Email</label>
       <input type="email" id="email" name="email" placeholder="your@email.com" required>
     </div>
-    <div class="form-group">
+    <div class="form-group reveal reveal-delay-3">
       <label for="project">Project type</label>
       <select id="project" name="project">
         <option value="" disabled selected>Select one</option>
@@ -545,7 +1034,7 @@
         <option>Other</option>
       </select>
     </div>
-    <div class="form-group">
+    <div class="form-group reveal reveal-delay-4">
       <label for="message">Message</label>
       <textarea id="message" name="message" placeholder="Tell me about your project"></textarea>
     </div>
@@ -556,11 +1045,55 @@
 <footer>
   <p>&copy; 2026 Nele Pope</p>
   <ul class="footer-links">
-    <li><a href="https://nelepope.substack.com" target="_blank">Substack</a></li>
-    <li><a href="https://linkedin.com/in/YOUR_LINKEDIN" target="_blank">LinkedIn</a></li>
-    <li><a href="https://www.upwork.com/freelancers/YOUR_UPWORK" target="_blank">Upwork</a></li>
+    <li><a href="https://nelepope.substack.com" target="_blank" rel="noopener">Substack</a></li>
+    <li><a href="https://linkedin.com/in/YOUR_LINKEDIN" target="_blank" rel="noopener">LinkedIn</a></li>
+    <li><a href="https://www.upwork.com/freelancers/YOUR_UPWORK" target="_blank" rel="noopener">Upwork</a></li>
   </ul>
 </footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let cx = 0, cy = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    cx = e.clientX; cy = e.clientY;
+    cursor.style.left = cx + 'px';
+    cursor.style.top  = cy + 'px';
+  });
+
+  (function animateRing() {
+    rx += (cx - rx) * 0.12;
+    ry += (cy - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    requestAnimationFrame(animateRing);
+  })();
+
+  document.querySelectorAll('a, button, .essay-item, .commercial-item, select').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+  });
+
+  // Scroll: nav shadow
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
