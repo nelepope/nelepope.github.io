@@ -472,6 +472,36 @@
 
   .essay-item > * { position: relative; z-index: 1; }
 
+  .essay-thumb {
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    margin-bottom: 1.85rem;
+    background: var(--paper-deep);
+    position: relative;
+  }
+
+  .essay-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(0.2) contrast(1.02);
+    transition: filter 0.6s var(--ease-out), transform 1.2s var(--ease-out);
+  }
+
+  .essay-thumb::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 0.5px solid var(--rule);
+    pointer-events: none;
+  }
+
+  .essay-item:hover .essay-thumb img {
+    filter: grayscale(0) contrast(1);
+    transform: scale(1.04);
+  }
+
   .essay-item:nth-child(odd) {
     padding-right: 3.5rem;
     border-right: 0.5px solid var(--rule);
@@ -942,24 +972,36 @@
   </div>
   <div class="essays-grid">
     <a href="god-does-not-play-dice.html" class="essay-item reveal reveal-delay-1">
+      <div class="essay-thumb">
+        <img src="https://substackcdn.com/image/fetch/$s_!d2Oz!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F72cbf91f-c25e-47de-9ce3-e7c071dd124d_1582x559.png" alt="Lead image for God Does Not Play Dice" loading="lazy">
+      </div>
       <p class="essay-tag">Science &amp; Philosophy</p>
       <h2 class="essay-title">God Does Not Play Dice</h2>
       <p class="essay-desc">Einstein, determinism, and Bell's theorem — on what it means to refuse a universe built on chance.</p>
       <span class="essay-arrow">Read →</span>
     </a>
     <a href="the-blue-epoch.html" class="essay-item reveal reveal-delay-2">
+      <div class="essay-thumb">
+        <img src="https://substackcdn.com/image/fetch/$s_!AHIq!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa83df400-622e-4eb1-b410-49be8a2c1f23_1600x1161.jpeg" alt="Yves Klein, 1961" loading="lazy">
+      </div>
       <p class="essay-tag">Art &amp; History</p>
       <h2 class="essay-title">The Blue Epoch</h2>
       <p class="essay-desc">Yves Klein, International Klein Blue, and the five-hundred-year obsession with ultramarine.</p>
       <span class="essay-arrow">Read →</span>
     </a>
-    <div class="essay-item reveal reveal-delay-3">
+    <a href="https://nelepope.substack.com" target="_blank" rel="noopener" class="essay-item reveal reveal-delay-3">
+      <div class="essay-thumb">
+        <img src="https://substackcdn.com/image/fetch/$s_!lNGV!,w_1000,h_1000,c_fill,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F16f98699-351f-4c8b-855f-d55bafb4f9d6_1001x1001.jpeg" alt="Pen — the Substack publication" loading="lazy">
+      </div>
       <p class="essay-tag">Substack — Pen</p>
       <h2 class="essay-title">Selected Essays</h2>
       <p class="essay-desc">Writing on craft, science, and the long, strange work of making something true.</p>
       <span class="essay-arrow">Read →</span>
-    </div>
+    </a>
     <a href="https://nelepope.substack.com/p/the-paradox-of-self" target="_blank" rel="noopener" class="essay-item reveal reveal-delay-4">
+      <div class="essay-thumb">
+        <img src="https://substackcdn.com/image/fetch/$s_!UEW4!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0751ee3c-68d3-4625-9d64-06be8f9a1b78_2139x883.jpeg" alt="Lead image for The Paradox of Self" loading="lazy">
+      </div>
       <p class="essay-tag">Philosophy</p>
       <h2 class="essay-title">The Paradox of Self</h2>
       <p class="essay-desc">A (sort of) organised and well-researched stream of consciousness — on the calculating self, ego, and what lies beneath.</p>
