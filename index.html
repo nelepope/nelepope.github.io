@@ -109,7 +109,10 @@
     --paper-warm: #f3f0e8;
     --paper-deep: #ece9e0;
     --rule: rgba(26,24,20,0.1);
-    --accent: #8b6f47;
+    --accent: #7d8a6e;
+    --accent-warm: #c89878;
+    --accent-mustard: #b5a04a;
+    --accent-mauve: #a39db1;
     --serif: 'Cormorant Garamond', Georgia, serif;
     --sans: 'Jost', sans-serif;
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -223,13 +226,13 @@
     font-size: 0.65rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--accent);
+    color: var(--accent-warm);
   }
 
   .available-dot {
     width: 6px;
     height: 6px;
-    background: var(--accent);
+    background: var(--accent-warm);
     border-radius: 50%;
     animation: pulse 2.5s ease-in-out infinite;
   }
@@ -269,6 +272,26 @@
     overflow: hidden;
     background: var(--paper-deep);
     animation: fadeUp 0.9s 0.4s var(--ease-out) both;
+    isolation: isolate;
+  }
+
+  .hero-portrait-wrap {
+    position: relative;
+  }
+
+  .hero-portrait-wrap::before {
+    content: '';
+    position: absolute;
+    inset: -8% -10% -12% -8%;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(200,152,120,0.32), transparent 55%),
+      radial-gradient(circle at 80% 20%, rgba(181,160,74,0.28), transparent 55%),
+      radial-gradient(circle at 75% 85%, rgba(163,157,177,0.30), transparent 60%),
+      radial-gradient(circle at 20% 80%, rgba(125,138,110,0.28), transparent 55%);
+    filter: blur(36px);
+    z-index: -1;
+    opacity: 0.9;
+    pointer-events: none;
   }
 
   .hero-portrait img {
@@ -970,9 +993,11 @@
       <a href="#contact" class="hero-secondary">Get in touch</a>
     </div>
   </div>
-  <figure class="hero-portrait">
-    <img src="portrait.jpg" alt="Portrait of Penelope Richmond, freelance copywriter and essayist based in London" width="800" height="1000">
-  </figure>
+  <div class="hero-portrait-wrap">
+    <figure class="hero-portrait">
+      <img src="portrait.jpg" alt="Portrait of Penelope Richmond, freelance copywriter and essayist based in London" width="800" height="1000">
+    </figure>
+  </div>
 </div>
 
 <div class="ornament">
