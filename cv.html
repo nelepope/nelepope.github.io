@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV — Penelope Richmond | nelepope</title>
+<meta name="description" content="CV of Penelope Richmond — freelance copywriter, science communicator, and former data analyst. BSc Physics (First-class Hons).">
+<meta name="author" content="Penelope Richmond">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#faf8f4">
+
+<link rel="canonical" href="https://nelepope.com/cv.html">
+
+<meta property="og:title" content="CV — Penelope Richmond">
+<meta property="og:description" content="Freelance copywriter, science communicator, former data analyst. BSc Physics, First-class Hons.">
+<meta property="og:type" content="profile">
+<meta property="og:url" content="https://nelepope.com/cv.html">
+<meta property="og:image" content="https://nelepope.com/portrait.jpg">
+<meta property="og:site_name" content="nelepope">
+<meta property="og:locale" content="en_GB">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CV — Penelope Richmond">
+<meta name="twitter:description" content="Freelance copywriter, science communicator, former data analyst.">
+<meta name="twitter:image" content="https://nelepope.com/portrait.jpg">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #1a1814; --ink-mid: #5a5751; --ink-light: #9a9690;
+  --paper: #faf8f4; --paper-warm: #f3f0e8; --paper-deep: #ece9e0;
+  --rule: rgba(26,24,20,0.1); --accent: #9a9690;
+  --headline: #7d85e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Jost', sans-serif;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+html { font-size: 16px; scroll-behavior: smooth; }
+body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-weight: 300; line-height: 1.7; min-height: 100vh; }
+::selection { background: var(--headline); color: var(--paper); }
+
+nav { display: flex; justify-content: space-between; align-items: baseline; padding: 1.75rem 4rem; border-bottom: 0.5px solid var(--rule); position: sticky; top: 0; background: rgba(250,248,244,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); z-index: 100; transition: box-shadow 0.3s; }
+nav.scrolled { box-shadow: 0 1px 0 var(--rule), 0 8px 24px rgba(26,24,20,0.04); }
+.nav-name { font-family: var(--serif); font-size: 1.1rem; font-weight: 400; letter-spacing: 0.02em; color: var(--ink); text-decoration: none; }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+.nav-links a { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-mid); text-decoration: none; transition: color 0.2s; position: relative; }
+.nav-links a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 0.5px; background: var(--ink); transition: width 0.3s var(--ease-out); }
+.nav-links a:hover { color: var(--ink); }
+.nav-links a:hover::after { width: 100%; }
+
+/* CV HEADER */
+.cv-header {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 6rem 4rem 3rem;
+  text-align: center;
+  position: relative;
+}
+
+.cv-name {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  color: var(--headline);
+  margin-bottom: 1.5rem;
+}
+
+.cv-name em {
+  font-style: italic;
+  opacity: 0.78;
+}
+
+.cv-contact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem 1.5rem;
+  font-size: 0.78rem;
+  color: var(--ink-mid);
+}
+
+.cv-contact a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--rule);
+  transition: text-decoration-color 0.2s;
+}
+
+.cv-contact a:hover { text-decoration-color: var(--ink); }
+
+.cv-contact span.sep { color: var(--ink-light); }
+
+.cv-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 0.5px solid var(--ink);
+  padding-bottom: 3px;
+  transition: opacity 0.2s, gap 0.3s var(--ease-out);
+}
+
+.cv-download:hover { opacity: 0.6; gap: 0.85rem; }
+.cv-download::after { content: '↓'; font-size: 0.85rem; }
+
+/* DIVIDER */
+.cv-rule {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 4rem;
+}
+
+.cv-rule hr {
+  border: none;
+  border-top: 0.5px solid var(--rule);
+}
+
+/* CV BODY GRID */
+.cv-body {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3.5rem 4rem 5rem;
+  display: grid;
+  grid-template-columns: 5fr 9fr;
+  gap: 4.5rem;
+  align-items: start;
+}
+
+.cv-section + .cv-section { margin-top: 2.75rem; }
+
+.cv-section-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 0.5px solid var(--rule);
+}
+
+/* SIDEBAR */
+.cv-sidebar h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  margin-bottom: 0.2rem;
+}
+
+.cv-sidebar h4 {
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+}
+
+.cv-sidebar p, .cv-sidebar li {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--ink-mid);
+}
+
+.cv-sidebar .meta {
+  font-size: 0.72rem;
+  color: var(--ink-light);
+  letter-spacing: 0.03em;
+  margin-bottom: 0.4rem;
+}
+
+.cv-sidebar .extra {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.88rem;
+  color: var(--ink-mid);
+  line-height: 1.55;
+  margin-top: 0.85rem;
+}
+
+.cv-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.cv-list-inline {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  font-size: 0.85rem;
+  color: var(--ink-mid);
+}
+
+/* MAIN — EXPERIENCE */
+.cv-role {
+  padding: 0 0 2.25rem;
+  border-bottom: 0.5px solid var(--rule);
+  margin-bottom: 2.25rem;
+}
+
+.cv-role:last-of-type { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+.cv-role-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1.5rem;
+  margin-bottom: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.cv-role-title {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+.cv-role-title em {
+  font-style: italic;
+  color: var(--ink-mid);
+  font-size: 0.95em;
+}
+
+.cv-role-dates {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  white-space: nowrap;
+}
+
+.cv-role-org {
+  font-size: 0.85rem;
+  color: var(--ink-mid);
+  font-style: italic;
+  font-family: var(--serif);
+  margin-bottom: 1rem;
+}
+
+.cv-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--ink-mid);
+}
+
+.cv-bullets li {
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.cv-bullets li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--ink-light);
+}
+
+/* ALSO SECTION */
+.cv-also { margin-top: 4rem; }
+
+/* FOOTER */
+footer { border-top: 0.5px solid var(--rule); padding: 2.25rem 4rem; display: flex; justify-content: space-between; align-items: center; }
+footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.08em; }
+.footer-links { display: flex; gap: 2.25rem; list-style: none; }
+.footer-links a { font-size: 0.63rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-light); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--ink-mid); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.cv-name { animation: fadeUp 0.8s 0.1s var(--ease-out) both; }
+.cv-contact { animation: fadeUp 0.8s 0.25s var(--ease-out) both; }
+.cv-download { animation: fadeUp 0.8s 0.4s var(--ease-out) both; }
+
+@media (max-width: 900px) {
+  nav { padding: 1.5rem 1.5rem; }
+  .nav-links { gap: 1.5rem; }
+  .cv-header { padding: 3.5rem 1.5rem 2rem; }
+  .cv-rule  { padding: 0 1.5rem; }
+  .cv-body  {
+    padding: 2.5rem 1.5rem 3.5rem;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .cv-section + .cv-section { margin-top: 2rem; }
+  .cv-role-head { gap: 0.5rem; }
+  footer { padding: 1.75rem 1.5rem; flex-direction: column; gap: 1.25rem; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<nav id="mainNav">
+  <a href="index.html" class="nav-name">nelepope</a>
+  <ul class="nav-links">
+    <li><a href="index.html#writing">Writing</a></li>
+    <li><a href="cv.html">CV</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+    <li><a href="https://nelepope.substack.com" target="_blank" rel="noopener">Substack</a></li>
+  </ul>
+</nav>
+
+<header class="cv-header">
+  <h1 class="cv-name">Penelope <em>Richmond</em></h1>
+  <p class="cv-contact">
+    <a href="https://www.linkedin.com/in/penelope-richmond/" target="_blank" rel="noopener">LinkedIn</a>
+    <span class="sep">·</span>
+    <a href="mailto:penelopermd@gmail.com">penelopermd@gmail.com</a>
+    <span class="sep">·</span>
+    <a href="tel:+447913789284">07913 789 284</a>
+  </p>
+  <a href="cv.pdf" class="cv-download" download>Download as PDF</a>
+</header>
+
+<div class="cv-rule"><hr></div>
+
+<div class="cv-body">
+
+  <!-- SIDEBAR -->
+  <aside class="cv-sidebar">
+
+    <section class="cv-section">
+      <p class="cv-section-label">Education</p>
+      <h3>BSc Physics</h3>
+      <h4>First-class honours</h4>
+      <p class="meta">University College London &amp; The Open University &nbsp;·&nbsp; 2016–2019</p>
+      <p>Final Project: <em>Quantum Logic Gates</em> — Distinction (93%)</p>
+      <p class="extra">Six A-levels at AAAAAC in Mathematics, Physics, Chemistry, English Literature, Philosophy and Fine Art.</p>
+    </section>
+
+    <section class="cv-section">
+      <p class="cv-section-label">Skills</p>
+      <ul class="cv-list">
+        <li>SEO writing</li>
+        <li>Technical writing</li>
+        <li>Science communication</li>
+        <li>Long-form editorial</li>
+        <li>Web copy</li>
+        <li>Social &amp; short-form content</li>
+        <li>Editing &amp; proofreading</li>
+        <li>Keyword &amp; topic research</li>
+        <li>Data analysis &amp; visualisation</li>
+        <li>Teaching &amp; curriculum design</li>
+      </ul>
+    </section>
+
+    <section class="cv-section">
+      <p class="cv-section-label">Attributes</p>
+      <ul class="cv-list-inline">
+        <li>Reliable</li>
+        <li>Self-motivated</li>
+        <li>Perceptive</li>
+        <li>Tenacious</li>
+        <li>Creative</li>
+        <li>Organised</li>
+        <li>Fast learner</li>
+        <li>Active listener</li>
+      </ul>
+    </section>
+
+    <section class="cv-section">
+      <p class="cv-section-label">Languages</p>
+      <p><strong style="color: var(--ink); font-weight: 400;">English</strong> &nbsp;·&nbsp; Native</p>
+    </section>
+
+  </aside>
+
+  <!-- MAIN -->
+  <main class="cv-main">
+
+    <section class="cv-section">
+      <p class="cv-section-label">Experience</p>
+
+      <article class="cv-role">
+        <div class="cv-role-head">
+          <h2 class="cv-role-title">Freelance Copywriter</h2>
+          <span class="cv-role-dates">Present · Remote</span>
+        </div>
+        <p class="cv-role-org">Self-employed</p>
+        <ul class="cv-bullets">
+          <li>Specialise in SEO content, web copy, and science communication.</li>
+          <li>Bring strong research skills to every project, producing writing that is clear and accurate.</li>
+          <li>Produce SEO articles, long-form editorial, and web copy for a range of clients.</li>
+          <li>Write Instagram captions and short-form social content.</li>
+          <li>Conduct keyword research and contribute to content strategy.</li>
+          <li>Apply technical writing skills to complex subject matter, making it accessible without sacrificing accuracy.</li>
+        </ul>
+      </article>
+
+      <article class="cv-role">
+        <div class="cv-role-head">
+          <h2 class="cv-role-title">Lecturer</h2>
+          <span class="cv-role-dates">Apr 2023 – Dec 2023 · London</span>
+        </div>
+        <p class="cv-role-org">University of East London</p>
+        <ul class="cv-bullets">
+          <li>Designed and delivered the Visual Analytics module for the new MA Data Journalism course — lesson plans, interactive assignments, assessment criteria.</li>
+          <li>Tailored teaching to the specific learning requirements of individual students.</li>
+          <li>Received 100% positive feedback from students on course completion.</li>
+        </ul>
+      </article>
+
+      <article class="cv-role">
+        <div class="cv-role-head">
+          <h2 class="cv-role-title">Consultant Data Analyst</h2>
+          <span class="cv-role-dates">Dec 2021 – Dec 2023 · Remote</span>
+        </div>
+        <p class="cv-role-org">Self-employed</p>
+        <ul class="cv-bullets">
+          <li>Worked with stakeholders to deliver data-driven dashboards supporting strategic decision-making.</li>
+          <li>Led data work for the City of London's Climate Action Strategy — mapped historical and target carbon-emission data to create dashboards that supported a 25% reduction in the City's own operational emissions and a 20% reduction across its supply chain.</li>
+          <li>Developed strong problem-solving, networking, and organisational skills through self-employment.</li>
+        </ul>
+      </article>
+
+      <article class="cv-role">
+        <div class="cv-role-head">
+          <h2 class="cv-role-title">Data Consultant</h2>
+          <span class="cv-role-dates">Dec 2020 – Dec 2021 · London</span>
+        </div>
+        <p class="cv-role-org">The Information Lab</p>
+        <ul class="cv-bullets">
+          <li>Helped clients make sense of their data through high-quality dashboards, enabling better data-driven decisions.</li>
+          <li>Supported and mentored colleagues, demonstrating the ability to delegate effectively and manage team workload.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="cv-section cv-also">
+      <p class="cv-section-label">Also</p>
+
+      <article class="cv-role">
+        <div class="cv-role-head">
+          <h2 class="cv-role-title">Other writing</h2>
+          <span class="cv-role-dates">Ongoing</span>
+        </div>
+        <ul class="cv-bullets">
+          <li>80,000 words into a book manuscript.</li>
+          <li>Publish a <a href="https://nelepope.substack.com" target="_blank" rel="noopener" style="color:var(--ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--rule);">Substack</a> on science, philosophy, music, art, and mental health.</li>
+        </ul>
+      </article>
+
+      <article class="cv-role">
+        <div class="cv-role-head">
+          <h2 class="cv-role-title">Writers' group co-host</h2>
+          <span class="cv-role-dates">Ongoing</span>
+        </div>
+        <ul class="cv-bullets">
+          <li>Co-host a weekly writers' group, ensuring every participant has the opportunity to contribute and feels heard.</li>
+          <li>Maintain a supportive, friendly, and enjoyable environment for all members.</li>
+        </ul>
+      </article>
+    </section>
+
+  </main>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 nelepope</p>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="https://nelepope.substack.com" target="_blank" rel="noopener">Substack</a></li>
+    <li><a href="https://www.linkedin.com/in/penelope-richmond/" target="_blank" rel="noopener">LinkedIn</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</footer>
+
+<script>
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+</script>
+
+</body>
+</html>
