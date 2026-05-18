@@ -241,27 +241,43 @@
 
   /* HERO */
   .hero {
-    padding: 6rem 4rem 5rem;
-    max-width: 1400px;
+    padding: 7rem 4rem 5rem;
+    max-width: 1180px;
+    margin: 0 auto;
     position: relative;
-    display: grid;
-    grid-template-columns: 7fr 5fr;
-    gap: 5rem;
+    display: flex;
+    flex-direction: row;
     align-items: center;
+    justify-content: center;
+    gap: 0;
   }
 
   .hero::before {
     content: '';
     position: absolute;
     top: 0;
-    left: 0;
-    right: 0;
+    left: 4rem;
+    right: 4rem;
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--accent), transparent);
     opacity: 0.4;
   }
 
-  .hero-text { min-width: 0; }
+  .hero-text {
+    position: relative;
+    z-index: 2;
+    flex: 0 0 auto;
+    max-width: 560px;
+    padding-right: 1rem;
+  }
+
+  .hero-portrait-wrap {
+    position: relative;
+    z-index: 1;
+    width: clamp(300px, 36vw, 420px);
+    flex: 0 0 auto;
+    margin-left: -120px;
+  }
 
   .hero-portrait {
     position: relative;
@@ -915,10 +931,12 @@
     .nav-available { display: none; }
     .hero {
       padding: 3.5rem 2rem 3rem;
-      grid-template-columns: 1fr;
-      gap: 3rem;
+      flex-direction: column;
+      gap: 2.5rem;
     }
-    .hero-portrait { max-width: 360px; margin: 0 auto; width: 100%; }
+    .hero::before { left: 2rem; right: 2rem; }
+    .hero-text { max-width: 100%; padding-right: 0; }
+    .hero-portrait-wrap { width: 100%; max-width: 360px; margin: 0 auto; }
     .ornament { margin: 0 2rem; }
     section { padding: 3.5rem 2rem; }
     .essays-grid { grid-template-columns: 1fr; }
