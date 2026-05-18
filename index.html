@@ -182,7 +182,7 @@
     font-size: 1.1rem;
     font-weight: 400;
     letter-spacing: 0.02em;
-    color: var(--ink);
+    color: var(--headline);
     text-decoration: none;
   }
 
@@ -247,10 +247,38 @@
     margin: 0 auto;
     position: relative;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3.5rem;
+  }
+
+  .hero-row {
+    display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    width: 100%;
     gap: 0;
+  }
+
+  .hero-below {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .hero-below .hero-sub {
+    margin: 0;
+    text-align: center;
+    max-width: 520px;
+  }
+
+  .hero-below .hero-actions {
+    justify-content: center;
   }
 
 
@@ -976,18 +1004,21 @@
 </nav>
 
 <div class="hero">
-  <div class="hero-text">
-    <p class="hero-kicker">Penelope Richmond</p>
-    <h1 class="hero-headline">Copywriter<br><em>and</em><br>essayist.</h1>
+  <div class="hero-row">
+    <div class="hero-text">
+      <p class="hero-kicker">Penelope Richmond</p>
+      <h1 class="hero-headline">Copywriter<br><em>and</em><br>essayist.</h1>
+    </div>
+    <figure class="hero-portrait">
+      <img src="portrait.jpg" alt="Portrait of Penelope Richmond, freelance copywriter and essayist based in London" width="800" height="1000">
+    </figure>
+  </div>
+  <div class="hero-below">
     <p class="hero-sub">Science, culture, and commerce. From B2B aviation copy to essays on ultramarine and quantum logic — writing rooted in curiosity and precision.</p>
     <div class="hero-actions">
-      <a href="#writing" class="hero-cta">Read the work</a>
-      <a href="#contact" class="hero-secondary">Get in touch</a>
+      <a href="#contact" class="hero-cta">Get in touch</a>
     </div>
   </div>
-  <figure class="hero-portrait">
-    <img src="portrait.jpg" alt="Portrait of Penelope Richmond, freelance copywriter and essayist based in London" width="800" height="1000">
-  </figure>
 </div>
 
 <div class="ornament">
