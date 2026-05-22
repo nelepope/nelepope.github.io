@@ -106,7 +106,7 @@ nav.scrolled { box-shadow: 0 1px 0 var(--rule), 0 8px 24px rgba(26,24,20,0.04); 
   margin-bottom: 2rem;
 }
 
-.essay-meta .tag { color: var(--accent); }
+.essay-meta .tag { color: var(--headline); }
 .essay-meta span + span { position: relative; }
 .essay-meta span + span::before {
   content: '·';
@@ -124,7 +124,7 @@ nav.scrolled { box-shadow: 0 1px 0 var(--rule), 0 8px 24px rgba(26,24,20,0.04); 
   margin-bottom: 1.5rem;
   letter-spacing: -0.015em;
 }
-.essay-title em { font-style: italic; color: var(--headline); opacity: 0.78; }
+.essay-title em { font-style: italic; color: var(--ink-mid); }
 
 .essay-dek {
   font-family: var(--serif);
