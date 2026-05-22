@@ -969,37 +969,135 @@
   .hero-sub     { animation: fadeUp 0.8s 0.35s var(--ease-out) both; }
   .hero-actions { animation: fadeUp 0.8s 0.5s var(--ease-out) both; }
 
-  /* RESPONSIVE */
+  /* TABLET ≤ 900px */
   @media (max-width: 900px) {
-    nav { padding: 1.5rem 2rem; }
+    nav { padding: 1.25rem 1.5rem; }
     .nav-available { display: none; }
+    .nav-links { gap: 1.4rem; }
+    .nav-links a { font-size: 0.62rem; letter-spacing: 0.12em; }
+
     .hero {
-      padding: 3.5rem 2rem 3rem;
+      padding: 3rem 1.5rem 2.5rem;
       flex-direction: column;
       gap: 2.5rem;
+      max-width: 100%;
     }
-    .hero::before { left: 2rem; right: 2rem; }
-    .hero-text { max-width: 100%; padding-right: 0; }
-    .hero-portrait-wrap { width: 100%; max-width: 360px; margin: 0 auto; }
-    .ornament { margin: 0 2rem; }
-    section { padding: 3.5rem 2rem; }
+    .hero::before { display: none; }
+
+    .hero-row {
+      flex-direction: column-reverse;
+      align-items: center;
+      gap: 2.5rem;
+      width: 100%;
+    }
+
+    .hero-text {
+      max-width: 100%;
+      padding-right: 0;
+      text-align: center;
+      display: block;
+    }
+
+    .hero-text .hero-kicker { margin-top: 0; }
+
+    .hero-kicker {
+      justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-headline { margin-bottom: 1.25rem; }
+
+    .hero-sub {
+      margin: 0 auto;
+      text-align: center;
+      max-width: 100%;
+    }
+
+    .hero-portrait {
+      width: 100%;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+
+    .hero-below { width: 100%; margin: 0; }
+    .hero-actions { justify-content: center; }
+
+    .ornament { margin: 0 1.5rem; }
+    section { padding: 3rem 1.5rem; }
+
+    .section-header { margin-bottom: 2rem; }
+    .section-count { font-size: 0.78rem; }
+
     .essays-grid { grid-template-columns: 1fr; }
+    .essay-item {
+      grid-template-columns: 100px 1fr;
+      gap: 1.25rem;
+      padding: 2rem 0;
+    }
     .essay-item:nth-child(odd) { padding-right: 0; border-right: none; }
     .essay-item:nth-child(even) { padding-left: 0; }
+    .essay-thumb { width: 100px; height: 100px; }
+    .essay-title { font-size: 1.35rem; }
+    .essay-desc { font-size: 0.8rem; }
+
     .commercial-list { grid-template-columns: 1fr; }
     .commercial-item { padding: 1.75rem 0; border-right: none; border-bottom: 0.5px solid var(--rule); }
     .commercial-item:last-child { padding-left: 0; }
     .commercial-item:nth-child(2) { padding-left: 0; }
-    .about-strip { padding: 4rem 2rem; grid-template-columns: 1fr; gap: 2.5rem; }
-    .about-portrait { max-width: 320px; }
-    .about-details { flex-wrap: wrap; gap: 1.75rem; }
-    .contact-section { padding: 4rem 2rem; grid-template-columns: 1fr; gap: 3rem; }
-    footer { padding: 1.75rem 2rem; flex-direction: column; gap: 1.25rem; text-align: center; }
+    .commercial-on-request { font-size: 1.4rem; }
+
+    .about-strip { padding: 4rem 1.5rem; }
+    .about-strip::before { font-size: 12rem; right: 1rem; }
+    .about-body { font-size: 0.88rem; }
+    .about-details { flex-wrap: wrap; gap: 1.25rem 1.75rem; }
+
+    .contact-section { padding: 4rem 1.5rem; grid-template-columns: 1fr; gap: 2.5rem; }
+    .contact-left h2 { font-size: clamp(1.9rem, 7vw, 2.5rem); }
+
+    footer { padding: 1.75rem 1.5rem; flex-direction: column; gap: 1.25rem; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; gap: 1rem 1.75rem; }
   }
 
-  @media (hover: none) {
+  /* PHONE ≤ 560px */
+  @media (max-width: 560px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-links { gap: 0.9rem; }
+    .nav-links a { font-size: 0.58rem; letter-spacing: 0.1em; }
+    .nav-name { font-size: 1rem; }
+
+    .hero { padding: 2.25rem 1.25rem 2rem; gap: 2rem; }
+    .hero-portrait { max-width: 240px; }
+    .hero-headline { font-size: 2.6rem; line-height: 1.05; }
+    .hero-sub { font-size: 0.88rem; line-height: 1.7; }
+    .hero-kicker { font-size: 0.6rem; gap: 0.6rem; }
+    .hero-kicker::after { width: 18px; }
+
+    .ornament { margin: 0 1.25rem; }
+    section { padding: 2.5rem 1.25rem; }
+
+    .essay-item {
+      grid-template-columns: 80px 1fr;
+      gap: 1rem;
+      padding: 1.5rem 0;
+    }
+    .essay-thumb { width: 80px; height: 80px; }
+    .essay-title { font-size: 1.2rem; }
+    .essay-desc { font-size: 0.78rem; line-height: 1.55; }
+    .essay-tag { font-size: 0.54rem; }
+
+    .about-strip { padding: 3rem 1.25rem; }
+    .contact-section { padding: 3rem 1.25rem; }
+    footer { padding: 1.5rem 1.25rem; }
+  }
+
+  /* Touch / no-hover devices: hide custom cursor */
+  @media (hover: none), (pointer: coarse) {
     body { cursor: auto; }
-    .cursor, .cursor-ring { display: none; }
+    .cursor, .cursor-ring { display: none !important; }
+    .essay-item:hover::after { opacity: 0; }
+    .essay-item:hover .essay-arrow { opacity: 1; transform: translateX(0); }
+    .hero-portrait img,
+    .essay-thumb img { filter: none; }
   }
 </style>
 </head>
