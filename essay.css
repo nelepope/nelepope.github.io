@@ -60,7 +60,7 @@ nav.scrolled { box-shadow: 0 1px 0 var(--rule), 0 8px 24px rgba(26,24,20,0.04); 
   font-size: 0.68rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--ink-mid);
+  color: var(--headline);
   text-decoration: none;
   transition: color 0.2s;
   position: relative;
@@ -283,7 +283,7 @@ nav.scrolled { box-shadow: 0 1px 0 var(--rule), 0 8px 24px rgba(26,24,20,0.04); 
   font-size: 0.68rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--ink-mid);
+  color: var(--headline);
   text-decoration: none;
   transition: color 0.2s, gap 0.3s var(--ease-out);
   display: inline-flex;
@@ -310,7 +310,7 @@ footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.08em; }
   font-size: 0.63rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--ink-light);
+  color: var(--headline);
   text-decoration: none;
   transition: color 0.2s;
 }

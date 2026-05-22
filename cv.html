@@ -52,7 +52,7 @@ nav { display: flex; justify-content: space-between; align-items: baseline; padd
 nav.scrolled { box-shadow: 0 1px 0 var(--rule), 0 8px 24px rgba(26,24,20,0.04); }
 .nav-name { font-family: var(--serif); font-size: 1.1rem; font-weight: 400; letter-spacing: 0.02em; color: var(--headline); text-decoration: none; }
 .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
-.nav-links a { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-mid); text-decoration: none; transition: color 0.2s; position: relative; }
+.nav-links a { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--headline); text-decoration: none; transition: color 0.2s; position: relative; }
 .nav-links a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 0.5px; background: var(--ink); transition: width 0.3s var(--ease-out); }
 .nav-links a:hover { color: var(--ink); }
 .nav-links a:hover::after { width: 100%; }
@@ -111,7 +111,7 @@ nav.scrolled { box-shadow: 0 1px 0 var(--rule), 0 8px 24px rgba(26,24,20,0.04); 
   font-size: 0.68rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--ink);
+  color: var(--headline);
   text-decoration: none;
   border-bottom: 0.5px solid var(--ink);
   padding-bottom: 3px;
@@ -150,7 +150,7 @@ nav.scrolled { box-shadow: 0 1px 0 var(--rule), 0 8px 24px rgba(26,24,20,0.04); 
   font-size: 0.62rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--ink-light);
+  color: var(--headline);
   margin-bottom: 1.5rem;
   padding-bottom: 0.85rem;
   border-bottom: 0.5px solid var(--rule);
@@ -170,7 +170,7 @@ nav.scrolled { box-shadow: 0 1px 0 var(--rule), 0 8px 24px rgba(26,24,20,0.04); 
   font-size: 0.62rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--ink-mid);
+  color: var(--headline);
   margin-bottom: 0.5rem;
   font-weight: 400;
 }
@@ -250,7 +250,7 @@ nav.scrolled { box-shadow: 0 1px 0 var(--rule), 0 8px 24px rgba(26,24,20,0.04); 
   font-size: 0.72rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--ink-light);
+  color: var(--headline);
   white-space: nowrap;
 }
 
@@ -291,7 +291,7 @@ nav.scrolled { box-shadow: 0 1px 0 var(--rule), 0 8px 24px rgba(26,24,20,0.04); 
 footer { border-top: 0.5px solid var(--rule); padding: 2.25rem 4rem; display: flex; justify-content: space-between; align-items: center; }
 footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.08em; }
 .footer-links { display: flex; gap: 2.25rem; list-style: none; }
-.footer-links a { font-size: 0.63rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-light); text-decoration: none; transition: color 0.2s; }
+.footer-links a { font-size: 0.63rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--headline); text-decoration: none; transition: color 0.2s; }
 .footer-links a:hover { color: var(--ink-mid); }
 
 @keyframes fadeUp {
