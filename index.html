@@ -683,12 +683,18 @@
   .about-strip {
     background: var(--paper-warm);
     padding: 6rem 4rem;
-    display: grid;
-    grid-template-columns: 5fr 8fr;
-    gap: 5rem;
-    align-items: start;
     position: relative;
     overflow: hidden;
+  }
+
+  .about-strip > * {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .about-label {
+    margin-bottom: 2.5rem;
   }
 
   .about-strip::before {
@@ -1110,7 +1116,7 @@
 </section>
 
 <div class="about-strip" id="about">
-  <h2 class="about-headline">Precise<br>by<br><em>nature.</em></h2>
+  <p class="section-label about-label">About</p>
   <div class="about-body">
     <p>I take complex ideas and express them with precision and clarity. I write web copy, blog content, and long-form editorial material that informs, delights, and motivates. I bring visibility and traffic to businesses by seamlessly integrating SEO keywords in a way that is honest and organic.</p>
     <p>I combine the analytical rigour of a first-class degree in Physics with creative spirit. I wrote about quantum logic gates for my dissertation, so I embrace complicated ideas with confidence and enthusiasm (knowing that nothing can ever be more obscure than that). I believe even the most complex of matters can be expressed in a way that is elegant and alive.</p>
