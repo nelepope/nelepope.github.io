@@ -187,6 +187,8 @@
     text-decoration: none;
   }
 
+  .nav-name-short { display: none; }
+
   .nav-links {
     display: flex;
     gap: 2.5rem;
@@ -1066,7 +1068,9 @@
     nav { padding: 1rem 1.25rem; }
     .nav-links { gap: 0.9rem; }
     .nav-links a { font-size: 0.58rem; letter-spacing: 0.1em; }
-    .nav-name { font-size: 1rem; }
+    .nav-name { font-size: 0.85rem; letter-spacing: 0.22em; }
+    .nav-name-full { display: none; }
+    .nav-name-short { display: inline; }
 
     .hero { padding: 2.25rem 1.25rem 2rem; gap: 2rem; }
     .hero-portrait { max-width: 240px; }
@@ -1110,7 +1114,7 @@
 <div class="cursor-ring" id="cursorRing"></div>
 
 <nav id="mainNav">
-  <a href="#" class="nav-name">penelope richmond</a>
+  <a href="#" class="nav-name"><span class="nav-name-full">penelope richmond</span><span class="nav-name-short">PR</span></a>
   <ul class="nav-links">
     <li><a href="#writing">Writing</a></li>
     <li><a href="cv.html">CV</a></li>
