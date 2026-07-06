@@ -416,19 +416,23 @@
 
   /* TESTIMONIAL */
   .testimonial-section {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 1rem 4rem 5rem;
+    background: var(--headline);
+    padding: 6.5rem 4rem;
     text-align: center;
   }
 
-  .testimonial-section::before {
+  .testimonial-section .testimonial {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .testimonial-section .testimonial::before {
     content: '"';
     display: block;
     font-family: var(--serif);
     font-size: 6rem;
     font-weight: 300;
-    color: var(--paper-deep);
+    color: rgba(250,248,244,0.28);
     line-height: 1;
     margin-bottom: -1.5rem;
   }
@@ -439,7 +443,7 @@
     font-weight: 300;
     font-size: clamp(1.1rem, 2vw, 1.4rem);
     line-height: 1.75;
-    color: var(--ink);
+    color: var(--paper);
   }
 
   .testimonial-attribution {
@@ -447,18 +451,18 @@
     font-size: 0.68rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--ink-mid);
+    color: rgba(250,248,244,0.72);
   }
 
   .testimonial-attribution a {
-    color: var(--ink);
+    color: var(--paper);
     text-decoration: underline;
     text-underline-offset: 3px;
-    text-decoration-color: var(--rule);
+    text-decoration-color: rgba(250,248,244,0.4);
     transition: text-decoration-color 0.2s;
   }
 
-  .testimonial-attribution a:hover { text-decoration-color: var(--ink); }
+  .testimonial-attribution a:hover { text-decoration-color: var(--paper); }
 
   /* ORNAMENT */
   .ornament {
@@ -1075,8 +1079,8 @@
 
     .ornament { margin: 0 1.5rem; }
     section { padding: 3rem 1.5rem; }
-    .testimonial-section { padding: 0.5rem 1.5rem 3rem; }
-    .testimonial-section::before { font-size: 4rem; }
+    .testimonial-section { padding: 4rem 1.5rem; }
+    .testimonial-section .testimonial::before { font-size: 4rem; }
 
     .section-header { margin-bottom: 2rem; }
     .section-count { font-size: 0.78rem; }
@@ -1194,20 +1198,12 @@
   </div>
 </div>
 
-<div class="ornament">
-  <span class="ornament-glyph">✦</span>
-</div>
-
 <section class="testimonial-section reveal">
   <blockquote class="testimonial">
     <p class="testimonial-quote">Pen was a delight to work with. She was incredibly professional and very fast in her turnaround of any work that we gave her. We really appreciated the level of critical thinking she applied to each of the briefs, working with our account managers when something doesn't quite look right and making excellent suggestions to keep things on track.<br><br>On top of that, the quality of the work is outstanding. She's always a pleasure to work with.</p>
     <footer class="testimonial-attribution">Ross, <a href="https://typeamedia.net/" target="_blank" rel="noopener">Type A Media</a></footer>
   </blockquote>
 </section>
-
-<div class="ornament reveal">
-  <span class="ornament-glyph">✦</span>
-</div>
 
 <section id="writing">
   <div class="section-header reveal">
