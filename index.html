@@ -36,7 +36,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cutive+Mono&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
 
 <!-- Structured data: Person -->
 <script type="application/ld+json">
@@ -111,7 +111,7 @@
     --rule: rgba(26,24,20,0.1);
     --accent: #9a9690;
     --headline: #6770d4;
-    --serif: 'Cormorant Garamond', Georgia, serif;
+    --serif: 'Bodoni Moda', Georgia, serif;
     --sans: 'Jost', sans-serif;
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   }
@@ -122,7 +122,7 @@
     background:
       radial-gradient(1300px 800px at 65% 92vh, rgba(247,160,85,0.25), transparent 62%),
       radial-gradient(1050px 620px at 55% 96vh, rgba(250,175,110,0.15), transparent 58%),
-      linear-gradient(180deg, transparent 0%, transparent 40%, rgba(140,148,230,0.38) 80%, rgba(90,98,200,0.32) 100%),
+      linear-gradient(180deg, transparent 0%, transparent 40%, rgba(247,170,110,0.16) 80%, rgba(240,140,80,0.13) 100%),
       var(--paper);
     color: var(--ink);
     font-family: var(--sans);
@@ -217,7 +217,7 @@
     left: 0;
     width: 0;
     height: 0.5px;
-    background: var(--ink);
+    background: var(--headline);
     transition: width 0.3s var(--ease-out);
   }
 
@@ -343,13 +343,14 @@
   }
 
   .hero-headline {
-    font-family: 'Cutive Mono', monospace;
+    font-family: var(--serif);
+    font-style: italic;
     font-size: clamp(2.2rem, 4.3vw, 3.9rem);
     font-weight: 400;
     line-height: 1.15;
     color: var(--headline);
     margin-bottom: 2.25rem;
-    letter-spacing: 0;
+    letter-spacing: -0.015em;
   }
 
   .hero-headline em {
@@ -424,8 +425,7 @@
   }
 
   .testimonial-quote {
-    font-family: var(--serif);
-    font-style: italic;
+    font-family: var(--sans);
     font-weight: 300;
     font-size: clamp(0.95rem, 1.5vw, 1.1rem);
     line-height: 1.7;
@@ -501,6 +501,8 @@
   }
 
   .section-header {
+    position: relative;
+    z-index: 1;
     display: flex;
     align-items: baseline;
     justify-content: space-between;
@@ -522,7 +524,27 @@
   }
 
   /* ESSAYS */
+  #writing {
+    position: relative;
+    overflow: hidden;
+  }
+
+  #writing::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1500px;
+    height: 1200px;
+    background: radial-gradient(circle, rgba(247,170,110,0.14), transparent 72%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
   .essays-grid {
+    position: relative;
+    z-index: 1;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0;
@@ -542,20 +564,6 @@
     gap: 2rem;
     align-items: center;
   }
-
-  .essay-item::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: var(--paper-warm);
-    opacity: 0;
-    transition: opacity 0.4s var(--ease-out);
-    z-index: 0;
-  }
-
-  .essay-item:hover::after { opacity: 1; }
-
-  .essay-item > * { position: relative; z-index: 1; }
 
   .essay-item:nth-child(odd) {
     padding-right: 3rem;
@@ -646,7 +654,7 @@
   .essay-item:hover .essay-arrow {
     opacity: 1;
     transform: translateX(0);
-    color: var(--ink-mid);
+    color: var(--headline);
   }
 
   /* COMMERCIAL */
@@ -660,10 +668,7 @@
 
   .commercial-item {
     padding: 2.5rem 0;
-    transition: background 0.3s;
   }
-
-  .commercial-item:hover { background: var(--paper-warm); }
 
   .commercial-on-request {
     font-family: var(--serif);
@@ -721,7 +726,10 @@
 
   /* ABOUT STRIP */
   .about-strip {
-    background: var(--paper-warm);
+    background:
+      radial-gradient(1200px 700px at 20% 0%, rgba(103,112,212,0.14), transparent 65%),
+      radial-gradient(900px 600px at 100% 100%, rgba(103,112,212,0.1), transparent 60%),
+      #ffffff;
     padding: 6rem 4rem;
     position: relative;
     overflow: hidden;
@@ -736,19 +744,6 @@
   .about-label {
     margin-bottom: 2.5rem;
     color: var(--headline);
-  }
-
-  .about-strip::before {
-    content: '"';
-    position: absolute;
-    top: -1rem;
-    right: 3rem;
-    font-family: var(--serif);
-    font-size: 18rem;
-    color: var(--paper-deep);
-    line-height: 1;
-    pointer-events: none;
-    font-weight: 300;
   }
 
   .about-portrait {
@@ -884,7 +879,7 @@
   }
 
   .contact-direct a:hover {
-    text-decoration-color: var(--ink);
+    text-decoration-color: var(--headline);
   }
 
   .contact-form {
@@ -930,7 +925,7 @@
   .form-group input:focus,
   .form-group textarea:focus,
   .form-group select:focus {
-    border-bottom-color: var(--ink);
+    border-bottom-color: var(--headline);
   }
 
   .form-group textarea { resize: none; min-height: 90px; }
@@ -944,13 +939,13 @@
     font-size: 0.68rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--ink);
+    color: var(--headline);
     background: none;
     border: none;
     cursor: none;
     padding: 0;
     font-family: var(--sans);
-    transition: opacity 0.2s, gap 0.3s var(--ease-out);
+    transition: opacity 0.2s, gap 0.3s var(--ease-out), letter-spacing 0.3s var(--ease-out);
     align-self: flex-start;
   }
 
@@ -964,6 +959,7 @@
   .form-submit:hover {
     opacity: 0.6;
     gap: 1.25rem;
+    letter-spacing: 0.22em;
   }
 
   .form-submit:hover::after { transform: translateX(3px); }
@@ -1088,7 +1084,6 @@
     .commercial-on-request { font-size: 1.4rem; }
 
     .about-strip { padding: 4rem 1.5rem; }
-    .about-strip::before { font-size: 12rem; right: 1rem; }
     .about-body { font-size: 0.88rem; }
     .about-details { flex-wrap: wrap; gap: 1.25rem 1.75rem; }
 
@@ -1137,7 +1132,6 @@
   @media (hover: none), (pointer: coarse) {
     body { cursor: auto; }
     .cursor, .cursor-ring { display: none !important; }
-    .essay-item:hover::after { opacity: 0; }
     .essay-item:hover .essay-arrow { opacity: 1; transform: translateX(0); }
     .hero-portrait img,
     .essay-thumb img { filter: none; }
