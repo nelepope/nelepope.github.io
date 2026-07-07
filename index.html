@@ -36,7 +36,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cutive+Mono&family=Jost:wght@300;400&display=swap" rel="stylesheet">
 
 <!-- Structured data: Person -->
 <script type="application/ld+json">
@@ -119,7 +119,11 @@
   html { font-size: 16px; scroll-behavior: smooth; }
 
   body {
-    background: var(--paper);
+    background:
+      radial-gradient(1300px 800px at 65% 92vh, rgba(247,160,85,0.25), transparent 62%),
+      radial-gradient(1050px 620px at 55% 96vh, rgba(250,175,110,0.15), transparent 58%),
+      linear-gradient(180deg, transparent 0%, transparent 40%, rgba(140,148,230,0.38) 80%, rgba(90,98,200,0.32) 100%),
+      var(--paper);
     color: var(--ink);
     font-family: var(--sans);
     font-weight: 300;
@@ -259,41 +263,24 @@
     display: flex;
     flex-direction: row;
     align-items: stretch;
-    justify-content: center;
+    justify-content: flex-start;
     width: 100%;
     gap: 3rem;
   }
-
-  .hero-below {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    margin: 0 auto;
-  }
-
-  .hero-below .hero-actions {
-    justify-content: center;
-  }
-
 
   .hero-text {
     position: relative;
     z-index: 2;
     flex: 0 0 auto;
     max-width: 560px;
-    padding-right: 1rem;
-    text-align: right;
+    padding-left: 1rem;
+    text-align: left;
     display: flex;
     flex-direction: column;
   }
 
-  .hero-text .hero-kicker {
-    margin-top: auto;
-  }
-
   .hero-text .hero-sub {
-    margin-bottom: 0;
+    margin-bottom: 2rem;
   }
 
   .hero-portrait-wrap {
@@ -306,6 +293,7 @@
 
   .hero-portrait {
     position: relative;
+    width: clamp(240px, 26vw, 340px);
     aspect-ratio: 4 / 5;
     overflow: hidden;
     background: var(--paper-deep);
@@ -335,14 +323,14 @@
   }
 
   .hero-kicker {
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--headline);
     margin-bottom: 1.75rem;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
     gap: 1rem;
   }
 
@@ -355,13 +343,13 @@
   }
 
   .hero-headline {
-    font-family: var(--serif);
-    font-size: clamp(3.2rem, 6.5vw, 6rem);
-    font-weight: 300;
-    line-height: 1.08;
+    font-family: 'Cutive Mono', monospace;
+    font-size: clamp(2.2rem, 4.3vw, 3.9rem);
+    font-weight: 400;
+    line-height: 1.15;
     color: var(--headline);
     margin-bottom: 2.25rem;
-    letter-spacing: -0.015em;
+    letter-spacing: 0;
   }
 
   .hero-headline em {
@@ -371,18 +359,17 @@
   }
 
   .hero-sub {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     color: var(--ink-mid);
-    max-width: 460px;
-    margin-left: auto;
-    line-height: 1.85;
+    max-width: 420px;
+    line-height: 1.8;
     margin-bottom: 3.25rem;
   }
 
   .hero-actions {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
     gap: 3rem;
   }
 
@@ -416,14 +403,13 @@
 
   /* TESTIMONIAL */
   .testimonial-section {
-    background: var(--headline);
     padding: 6.5rem 4rem;
     text-align: center;
   }
 
   .testimonial-section .testimonial {
-    max-width: 760px;
-    margin: 0 auto;
+    max-width: 480px;
+    margin: 0 0 0 auto;
   }
 
   .testimonial-section .testimonial::before {
@@ -432,7 +418,7 @@
     font-family: var(--serif);
     font-size: 6rem;
     font-weight: 300;
-    color: rgba(250,248,244,0.28);
+    color: var(--paper-deep);
     line-height: 1;
     margin-bottom: -1.5rem;
   }
@@ -441,9 +427,9 @@
     font-family: var(--serif);
     font-style: italic;
     font-weight: 300;
-    font-size: clamp(1.1rem, 2vw, 1.4rem);
-    line-height: 1.75;
-    color: var(--paper);
+    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+    line-height: 1.7;
+    color: var(--ink);
   }
 
   .testimonial-attribution {
@@ -451,18 +437,19 @@
     font-size: 0.68rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: rgba(250,248,244,0.72);
+    color: var(--ink-mid);
   }
 
   .testimonial-attribution a {
-    color: var(--paper);
+    color: var(--headline);
+    font-weight: 700;
     text-decoration: underline;
     text-underline-offset: 3px;
-    text-decoration-color: rgba(250,248,244,0.4);
+    text-decoration-color: var(--rule);
     transition: text-decoration-color 0.2s;
   }
 
-  .testimonial-attribution a:hover { text-decoration-color: var(--paper); }
+  .testimonial-attribution a:hover { text-decoration-color: var(--ink); }
 
   /* ORNAMENT */
   .ornament {
@@ -1019,8 +1006,8 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  .hero-kicker  { animation: fadeUp 0.7s 0.1s var(--ease-out) both; }
-  .hero-headline { animation: fadeUp 0.8s 0.2s var(--ease-out) both; }
+  .hero-headline { animation: fadeUp 0.8s 0.1s var(--ease-out) both; }
+  .hero-kicker  { animation: fadeUp 0.7s 0.25s var(--ease-out) both; }
   .hero-sub     { animation: fadeUp 0.8s 0.35s var(--ease-out) both; }
   .hero-actions { animation: fadeUp 0.8s 0.5s var(--ease-out) both; }
 
@@ -1040,7 +1027,7 @@
     .hero::before { display: none; }
 
     .hero-row {
-      flex-direction: column-reverse;
+      flex-direction: column;
       align-items: center;
       gap: 2.5rem;
       width: 100%;
@@ -1048,12 +1035,10 @@
 
     .hero-text {
       max-width: 100%;
-      padding-right: 0;
+      padding-left: 0;
       text-align: center;
       display: block;
     }
-
-    .hero-text .hero-kicker { margin-top: 0; }
 
     .hero-kicker {
       justify-content: center;
@@ -1063,7 +1048,7 @@
     .hero-headline { margin-bottom: 1.25rem; }
 
     .hero-sub {
-      margin: 0 auto;
+      margin: 0 auto 2rem;
       text-align: center;
       max-width: 100%;
     }
@@ -1074,7 +1059,6 @@
       margin: 0 auto;
     }
 
-    .hero-below { width: 100%; margin: 0; }
     .hero-actions { justify-content: center; }
 
     .ornament { margin: 0 1.5rem; }
@@ -1126,7 +1110,7 @@
 
     .hero { padding: 2.25rem 1.25rem 2rem; gap: 2rem; }
     .hero-portrait { max-width: 240px; }
-    .hero-headline { font-size: 2.6rem; line-height: 1.05; }
+    .hero-headline { font-size: 2.2rem; line-height: 1.15; }
     .hero-sub { font-size: 0.88rem; line-height: 1.7; }
     .hero-kicker { font-size: 0.6rem; gap: 0.6rem; }
     .hero-kicker::after { width: 18px; }
@@ -1182,18 +1166,16 @@
 
 <div class="hero">
   <div class="hero-row">
-    <div class="hero-text">
-      <p class="hero-kicker">Penelope Richmond</p>
-      <h1 class="hero-headline">Copywriter<br><em>and</em><br>essayist.</h1>
-      <p class="hero-sub">SEO articles, long-form content, and short-form copy. Writing with clarity and curiosity.</p>
-    </div>
     <figure class="hero-portrait">
       <img src="portrait.jpg" alt="Portrait of Penelope Richmond, freelance copywriter and essayist based in London" width="800" height="1000">
     </figure>
-  </div>
-  <div class="hero-below">
-    <div class="hero-actions">
-      <a href="#contact" class="hero-cta">Get in touch</a>
+    <div class="hero-text">
+      <h1 class="hero-headline">Penelope<br>Richmond</h1>
+      <p class="hero-kicker">Writer and copywriter</p>
+      <p class="hero-sub">SEO articles, long-form content, and short-form copy. Writing with clarity and curiosity.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="hero-cta">Get in touch</a>
+      </div>
     </div>
   </div>
 </div>
@@ -1201,7 +1183,7 @@
 <section class="testimonial-section reveal">
   <blockquote class="testimonial">
     <p class="testimonial-quote">Pen was a delight to work with. She was incredibly professional and very fast in her turnaround of any work that we gave her. We really appreciated the level of critical thinking she applied to each of the briefs, working with our account managers when something doesn't quite look right and making excellent suggestions to keep things on track.<br><br>On top of that, the quality of the work is outstanding. She's always a pleasure to work with.</p>
-    <footer class="testimonial-attribution">Ross, <a href="https://typeamedia.net/" target="_blank" rel="noopener">Type A Media</a></footer>
+    <footer class="testimonial-attribution">Ross Tavendale, <a href="https://typeamedia.net/" target="_blank" rel="noopener">Type A Media</a></footer>
   </blockquote>
 </section>
 
