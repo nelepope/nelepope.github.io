@@ -411,6 +411,11 @@
     text-align: center;
   }
 
+  .testimonial-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
   .testimonial-section .testimonial {
     max-width: 480px;
     margin: 0 0 0 auto;
@@ -528,6 +533,8 @@
 
   /* ESSAYS */
   #writing {
+    max-width: 1180px;
+    margin: 0 auto;
     position: relative;
     overflow: hidden;
   }
@@ -661,6 +668,11 @@
   }
 
   /* COMMERCIAL */
+  .commercial-section {
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
   .commercial-list {
     display: grid;
     grid-template-columns: 1fr;
@@ -838,6 +850,8 @@
 
   /* CONTACT */
   .contact-section {
+    max-width: 1180px;
+    margin: 0 auto;
     padding: 7rem 4rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -964,7 +978,9 @@
   .form-submit:hover::after { transform: translateX(3px); }
 
   /* FOOTER */
-  footer {
+  body > footer {
+    max-width: 1180px;
+    margin: 0 auto;
     border-top: 0.5px solid var(--rule);
     padding: 2.25rem 4rem;
     display: flex;
@@ -1089,7 +1105,7 @@
     .contact-section { padding: 4rem 1.5rem; grid-template-columns: 1fr; gap: 2.5rem; }
     .contact-left h2 { font-size: clamp(1.9rem, 7vw, 2.5rem); }
 
-    footer { padding: 1.75rem 1.5rem; flex-direction: column; gap: 1.25rem; text-align: center; }
+    body > footer { padding: 1.75rem 1.5rem; flex-direction: column; gap: 1.25rem; text-align: center; }
     .footer-links { flex-wrap: wrap; justify-content: center; gap: 1rem 1.75rem; }
   }
 
@@ -1124,7 +1140,7 @@
 
     .about-strip { padding: 3rem 1.25rem; }
     .contact-section { padding: 3rem 1.25rem; }
-    footer { padding: 1.5rem 1.25rem; }
+    body > footer { padding: 1.5rem 1.25rem; }
   }
 
   /* Touch / no-hover devices: hide custom cursor */
@@ -1174,10 +1190,12 @@
 </div>
 
 <section class="testimonial-section reveal">
-  <blockquote class="testimonial">
-    <p class="testimonial-quote">Pen was a delight to work with. She was incredibly professional and very fast in her turnaround of any work that we gave her. We really appreciated the level of critical thinking she applied to each of the briefs, working with our account managers when something doesn't quite look right and making excellent suggestions to keep things on track.<br><br>On top of that, the quality of the work is outstanding. She's always a pleasure to work with.</p>
-    <footer class="testimonial-attribution">Ross Tavendale, <a href="https://typeamedia.net/" target="_blank" rel="noopener">Type A Media</a></footer>
-  </blockquote>
+  <div class="testimonial-inner">
+    <blockquote class="testimonial">
+      <p class="testimonial-quote">Pen was a delight to work with. She was incredibly professional and very fast in her turnaround of any work that we gave her. We really appreciated the level of critical thinking she applied to each of the briefs, working with our account managers when something doesn't quite look right and making excellent suggestions to keep things on track.<br><br>On top of that, the quality of the work is outstanding. She's always a pleasure to work with.</p>
+      <footer class="testimonial-attribution">Ross Tavendale, <a href="https://typeamedia.net/" target="_blank" rel="noopener">Type A Media</a></footer>
+    </blockquote>
+  </div>
 </section>
 
 <section id="writing">
@@ -1248,7 +1266,7 @@
   <span class="ornament-glyph">✦</span>
 </div>
 
-<section class="reveal">
+<section class="commercial-section reveal">
   <div class="section-header">
     <p class="section-label">Commercial &amp; Copy</p>
     <span class="section-count">Portfolio</span>
