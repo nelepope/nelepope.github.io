@@ -118,15 +118,8 @@
   html { font-size: 16px; scroll-behavior: smooth; }
 
   body {
-    background:
-      radial-gradient(1400px 900px at 25% 0%, rgba(247,185,140,0.2), transparent 65%),
-      radial-gradient(1200px 800px at 85% 55%, rgba(247,165,110,0.14), transparent 60%),
-      radial-gradient(1200px 700px at 20% 18%, rgba(103,112,212,0.13), transparent 65%),
-      radial-gradient(1000px 650px at 90% 68%, rgba(103,112,212,0.1), transparent 60%),
-      radial-gradient(900px 600px at 75% 10%, rgba(255,255,255,0.55), transparent 60%),
-      radial-gradient(1000px 700px at 15% 45%, rgba(255,255,255,0.5), transparent 62%),
-      radial-gradient(850px 600px at 60% 88%, rgba(255,255,255,0.45), transparent 60%),
-      #fbf3ec;
+    background: url('Pics/background.png') repeat;
+    background-color: var(--paper);
     color: var(--ink);
     font-family: var(--sans);
     font-weight: 300;
@@ -252,157 +245,75 @@
 
   /* HERO */
   .hero {
-    padding: 7rem 4rem 5rem;
-    max-width: 1180px;
-    margin: 0 auto;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3.5rem;
-  }
-
-  .hero-row {
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    justify-content: flex-start;
+    max-width: none;
     width: 100%;
-    gap: 3rem;
+    margin: 0;
+    padding: 9rem 2rem;
+    min-height: 68vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
   }
 
   .hero-text {
-    position: relative;
-    z-index: 2;
-    flex: 0 0 auto;
-    max-width: 560px;
-    padding-left: 1rem;
-    text-align: left;
     display: flex;
     flex-direction: column;
-  }
-
-  .hero-text .hero-sub {
-    margin-bottom: 2rem;
-  }
-
-  .hero-portrait-wrap {
-    position: relative;
-    z-index: 1;
-    width: clamp(300px, 36vw, 420px);
-    flex: 0 0 auto;
-    margin-left: -120px;
-  }
-
-  .hero-portrait {
-    position: relative;
-    width: clamp(240px, 26vw, 340px);
-    aspect-ratio: 4 / 5;
-    overflow: hidden;
-    background: var(--paper-deep);
-    animation: fadeUp 0.9s 0.4s var(--ease-out) both;
-  }
-
-  .hero-portrait img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    filter: grayscale(0.15) contrast(1.02);
-    transition: filter 0.6s var(--ease-out), transform 1.2s var(--ease-out);
-  }
-
-  .hero-portrait:hover img {
-    filter: grayscale(0) contrast(1);
-    transform: scale(1.03);
-  }
-
-  .hero-portrait::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border: 0.5px solid var(--rule);
-    pointer-events: none;
-  }
-
-  .hero-kicker {
-    font-size: 0.6rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--headline);
-    margin-bottom: 1.75rem;
-    display: flex;
     align-items: center;
-    justify-content: flex-start;
-    gap: 1rem;
-  }
-
-  .hero-kicker::after {
-    content: '';
-    display: inline-block;
-    width: 28px;
-    height: 0.5px;
-    background: var(--ink-light);
+    max-width: 680px;
   }
 
   .hero-headline {
     font-family: var(--serif);
-    font-size: clamp(2.2rem, 4.3vw, 3.9rem);
-    font-weight: 300;
-    line-height: 1.15;
-    color: var(--headline);
-    margin-bottom: 2.25rem;
-    letter-spacing: -0.015em;
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
   }
 
-  .hero-headline em {
+  .hero-kicker {
+    font-family: var(--serif);
+    font-size: clamp(1.4rem, 2.6vw, 2rem);
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 2rem;
+  }
+
+  .hero-kicker em {
     font-style: italic;
-    color: var(--headline);
-    opacity: 0.78;
   }
 
   .hero-sub {
-    font-size: 0.85rem;
-    color: var(--ink-mid);
-    max-width: 420px;
-    line-height: 1.8;
-    margin-bottom: 3.25rem;
+    font-family: var(--serif);
+    font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+    color: var(--ink);
+    line-height: 1.7;
+    max-width: 480px;
+    margin-bottom: 2.5rem;
   }
 
   .hero-actions {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    gap: 3rem;
+    justify-content: center;
   }
 
   .hero-cta {
     display: inline-block;
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--headline);
-    text-decoration: none;
-    border-bottom: 0.5px solid var(--headline);
-    padding-bottom: 3px;
-    transition: opacity 0.2s, letter-spacing 0.3s var(--ease-out);
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: var(--ink);
+    transition: opacity 0.2s;
   }
 
   .hero-cta:hover {
-    opacity: 0.5;
-    letter-spacing: 0.22em;
+    opacity: 0.55;
   }
-
-  .hero-secondary {
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--headline);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .hero-secondary:hover { color: var(--ink-mid); }
 
   /* TESTIMONIAL */
   .testimonial-section {
@@ -1029,47 +940,13 @@
     .nav-links a { font-size: 0.62rem; letter-spacing: 0.12em; }
 
     .hero {
-      padding: 3rem 1.5rem 2.5rem;
-      flex-direction: column;
-      gap: 2.5rem;
-      max-width: 100%;
-    }
-    .hero::before { display: none; }
-
-    .hero-row {
-      flex-direction: column;
-      align-items: center;
-      gap: 2.5rem;
-      width: 100%;
+      padding: 5rem 1.5rem;
+      min-height: 60vh;
     }
 
     .hero-text {
       max-width: 100%;
-      padding-left: 0;
-      text-align: center;
-      display: block;
     }
-
-    .hero-kicker {
-      justify-content: center;
-      margin-bottom: 1.25rem;
-    }
-
-    .hero-headline { margin-bottom: 1.25rem; }
-
-    .hero-sub {
-      margin: 0 auto 2rem;
-      text-align: center;
-      max-width: 100%;
-    }
-
-    .hero-portrait {
-      width: 100%;
-      max-width: 320px;
-      margin: 0 auto;
-    }
-
-    .hero-actions { justify-content: center; }
 
     .ornament { margin: 0 1.5rem; }
     section { padding: 3rem 1.5rem; }
@@ -1117,12 +994,7 @@
     .nav-name-full { display: none; }
     .nav-name-short { display: inline; }
 
-    .hero { padding: 2.25rem 1.25rem 2rem; gap: 2rem; }
-    .hero-portrait { max-width: 240px; }
-    .hero-headline { font-size: 2.2rem; line-height: 1.15; }
-    .hero-sub { font-size: 0.88rem; line-height: 1.7; }
-    .hero-kicker { font-size: 0.6rem; gap: 0.6rem; }
-    .hero-kicker::after { width: 18px; }
+    .hero { padding: 3.5rem 1.25rem; min-height: 55vh; }
 
     .ornament { margin: 0 1.25rem; }
     section { padding: 2.5rem 1.25rem; }
@@ -1147,7 +1019,6 @@
     body { cursor: auto; }
     .cursor, .cursor-ring { display: none !important; }
     .essay-item:hover .essay-arrow { opacity: 1; transform: translateX(0); }
-    .hero-portrait img,
     .essay-thumb img { filter: none; }
   }
 </style>
@@ -1174,17 +1045,12 @@
 </nav>
 
 <div class="hero">
-  <div class="hero-row">
-    <figure class="hero-portrait">
-      <img src="Pics/portrait.jpg" alt="Portrait of Penelope Saint-George, freelance copywriter and essayist based in London" width="800" height="1000">
-    </figure>
-    <div class="hero-text">
-      <p class="hero-headline">Penelope<br>Saint‑George</p>
-      <h1 class="hero-kicker">Freelance copywriter and writer</h1>
-      <p class="hero-sub">SEO articles, long-form content, and short-form copy. Writing with clarity and curiosity.</p>
-      <div class="hero-actions">
-        <a href="#contact" class="hero-cta">Get in touch</a>
-      </div>
+  <div class="hero-text">
+    <p class="hero-headline">Penelope Saint-George</p>
+    <h1 class="hero-kicker">copywriter <em>&amp;</em> editor</h1>
+    <p class="hero-sub">SEO - long-form content - short-form copy<br>Writing with clarity and style.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="hero-cta">get in touch</a>
     </div>
   </div>
 </div>
