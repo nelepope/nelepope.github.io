@@ -691,6 +691,20 @@
     padding: 2.5rem 0;
   }
 
+  .commercial-item + .commercial-item {
+    border-top: 0.5px solid var(--rule);
+  }
+
+  .commercial-title a {
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: var(--rule);
+    transition: text-decoration-color 0.3s var(--ease-out);
+  }
+
+  .commercial-title a:hover { text-decoration-color: var(--headline); }
+
   .commercial-on-request {
     font-family: var(--serif);
     font-size: 1.65rem;
@@ -1290,6 +1304,10 @@
     <span class="section-count">Portfolio</span>
   </div>
   <div class="commercial-list">
+    <div class="commercial-item">
+      <p class="commercial-title"><a href="https://healthisaprivilege.com" target="_blank" rel="noopener">Health Is A Privilege</a></p>
+      <p class="commercial-type">healthisaprivilege.com</p>
+    </div>
     <div class="commercial-item">
       <p class="commercial-on-request">Samples available on request.</p>
       <p class="commercial-on-request-sub">Get in touch for a tailored portfolio &mdash; <a href="seo-copywriting.html" style="color:var(--ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--rule);">SEO articles</a>, web copy, brand strategy, and editorial.</p>
