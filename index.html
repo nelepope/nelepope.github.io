@@ -102,6 +102,7 @@
   @font-face { font-family: 'Editors Note Text'; src: url('fonts/editorsnotetext-italic-webfont.woff2') format('woff2'), url('fonts/editorsnotetext-italic-webfont.woff') format('woff'); font-weight: 400; font-style: italic; font-display: swap; }
   @font-face { font-family: 'Editors Note Text'; src: url('fonts/editorsnotetext-bold-webfont.woff2') format('woff2'), url('fonts/editorsnotetext-bold-webfont.woff') format('woff'); font-weight: 700; font-style: normal; font-display: swap; }
   @font-face { font-family: 'Editors Note Text'; src: url('fonts/editorsnotetext-bolditalic-webfont.woff2') format('woff2'), url('fonts/editorsnotetext-bolditalic-webfont.woff') format('woff'); font-weight: 700; font-style: italic; font-display: swap; }
+  @font-face { font-family: 'Editors Note Light'; src: url('fonts/editorsnotetext-thin-webfont.woff2') format('woff2'), url('fonts/editorsnotetext-thin-webfont.woff') format('woff'); font-weight: 400; font-style: normal; font-display: swap; }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -114,8 +115,9 @@
     --paper-deep: #ece9e0;
     --rule: rgba(26,24,20,0.1);
     --accent: #9a9690;
-    --headline: #545cae;
+    --headline: #2d6a35;
     --serif: 'Editors Note Text', Georgia, serif;
+    --serif-light: 'Editors Note Light', Georgia, serif;
     --sans: 'Jost', sans-serif;
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   }
@@ -250,54 +252,32 @@
 
   /* HERO */
   .hero {
-    padding: 7rem 4rem 5rem;
+    padding: 5rem 2rem 6rem;
     max-width: 1180px;
     margin: 0 auto;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3.5rem;
-  }
-
-  .hero-row {
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    justify-content: flex-start;
-    width: 100%;
-    gap: 3rem;
   }
 
   .hero-text {
     position: relative;
     z-index: 2;
-    flex: 0 0 auto;
-    max-width: 560px;
-    padding-left: 1rem;
-    text-align: left;
+    max-width: 680px;
+    text-align: center;
     display: flex;
     flex-direction: column;
-  }
-
-  .hero-text .hero-sub {
-    margin-bottom: 2rem;
-  }
-
-  .hero-portrait-wrap {
-    position: relative;
-    z-index: 1;
-    width: clamp(300px, 36vw, 420px);
-    flex: 0 0 auto;
-    margin-left: -120px;
+    align-items: center;
   }
 
   .hero-portrait {
     position: relative;
-    width: clamp(240px, 26vw, 340px);
+    width: clamp(150px, 16vw, 190px);
     aspect-ratio: 1005 / 1200;
     overflow: hidden;
     background: var(--paper-deep);
+    margin-bottom: 1.75rem;
     animation: fadeUp 0.9s 0.4s var(--ease-out) both;
   }
 
@@ -324,33 +304,22 @@
   }
 
   .hero-kicker {
-    font-size: 0.6rem;
-    letter-spacing: 0.22em;
+    font-size: clamp(0.85rem, 1.5vw, 1.05rem);
+    font-weight: 400;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--headline);
-    margin-bottom: 1.75rem;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 1rem;
-  }
-
-  .hero-kicker::after {
-    content: '';
-    display: inline-block;
-    width: 28px;
-    height: 0.5px;
-    background: var(--ink-light);
+    margin-bottom: 1.5rem;
   }
 
   .hero-headline {
-    font-family: var(--serif);
-    font-size: clamp(2.2rem, 4.3vw, 3.9rem);
-    font-weight: 300;
-    line-height: 1.15;
+    font-family: var(--serif-light);
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 400;
+    line-height: 1.1;
     color: var(--headline);
-    margin-bottom: 2.25rem;
-    letter-spacing: -0.015em;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
   }
 
   .hero-headline em {
@@ -360,36 +329,30 @@
   }
 
   .hero-sub {
-    font-size: 0.85rem;
-    color: var(--ink-mid);
-    max-width: 420px;
-    line-height: 1.8;
-    margin-bottom: 3.25rem;
+    font-size: clamp(0.85rem, 1.2vw, 0.98rem);
+    color: var(--headline);
+    max-width: 520px;
+    line-height: 1.9;
+    margin-bottom: 2.75rem;
   }
 
   .hero-actions {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    gap: 3rem;
+    justify-content: center;
   }
 
   .hero-cta {
     display: inline-block;
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
     color: var(--headline);
-    text-decoration: none;
-    border-bottom: 0.5px solid var(--headline);
-    padding-bottom: 3px;
-    transition: opacity 0.2s, letter-spacing 0.3s var(--ease-out);
+    text-decoration: underline;
+    text-underline-offset: 5px;
+    text-decoration-thickness: 1px;
+    transition: opacity 0.2s;
   }
 
-  .hero-cta:hover {
-    opacity: 0.5;
-    letter-spacing: 0.22em;
-  }
+  .hero-cta:hover { opacity: 0.55; }
 
   .hero-secondary {
     font-size: 0.68rem;
@@ -1041,47 +1004,14 @@
     .nav-links a { font-size: 0.62rem; letter-spacing: 0.12em; }
 
     .hero {
-      padding: 3rem 1.5rem 2.5rem;
-      flex-direction: column;
-      gap: 2.5rem;
+      padding: 3.5rem 1.5rem 4rem;
       max-width: 100%;
     }
     .hero::before { display: none; }
 
-    .hero-row {
-      flex-direction: column;
-      align-items: center;
-      gap: 2.5rem;
-      width: 100%;
-    }
+    .hero-text { max-width: 100%; }
 
-    .hero-text {
-      max-width: 100%;
-      padding-left: 0;
-      text-align: center;
-      display: block;
-    }
-
-    .hero-kicker {
-      justify-content: center;
-      margin-bottom: 1.25rem;
-    }
-
-    .hero-headline { margin-bottom: 1.25rem; }
-
-    .hero-sub {
-      margin: 0 auto 2rem;
-      text-align: center;
-      max-width: 100%;
-    }
-
-    .hero-portrait {
-      width: 100%;
-      max-width: 320px;
-      margin: 0 auto;
-    }
-
-    .hero-actions { justify-content: center; }
+    .hero-sub { margin-bottom: 2rem; max-width: 100%; }
 
     .ornament { margin: 0 1.5rem; }
     section { padding: 3rem 1.5rem; }
@@ -1129,12 +1059,11 @@
     .nav-name-full { display: none; }
     .nav-name-short { display: inline; }
 
-    .hero { padding: 2.25rem 1.25rem 2rem; gap: 2rem; }
-    .hero-portrait { max-width: 240px; }
-    .hero-headline { font-size: 2.2rem; line-height: 1.15; }
-    .hero-sub { font-size: 0.88rem; line-height: 1.7; }
-    .hero-kicker { font-size: 0.6rem; gap: 0.6rem; }
-    .hero-kicker::after { width: 18px; }
+    .hero { padding: 2.5rem 1.25rem 3rem; }
+    .hero-portrait { width: 140px; margin-bottom: 1.25rem; }
+    .hero-headline { font-size: 2rem; line-height: 1.15; }
+    .hero-sub { font-size: 0.88rem; line-height: 1.8; }
+    .hero-kicker { font-size: 0.8rem; }
 
     .ornament { margin: 0 1.25rem; }
     section { padding: 2.5rem 1.25rem; }
@@ -1186,17 +1115,15 @@
 </nav>
 
 <div class="hero">
-  <div class="hero-row">
+  <div class="hero-text">
     <figure class="hero-portrait">
       <img src="Pics/PSH.png" alt="Portrait of Penelope Saint-George, freelance copywriter and essayist based in London" width="1005" height="1200">
     </figure>
-    <div class="hero-text">
-      <p class="hero-headline">Penelope<br>Saint‑George</p>
-      <h1 class="hero-kicker">Freelance copywriter and writer</h1>
-      <p class="hero-sub">SEO articles, long-form content, and short-form copy. Writing with clarity and curiosity.</p>
-      <div class="hero-actions">
-        <a href="#contact" class="hero-cta">Get in touch</a>
-      </div>
+    <p class="hero-headline">Penelope Saint‑George</p>
+    <h1 class="hero-kicker">Copywriter &amp; Editor</h1>
+    <p class="hero-sub">SEO - long-form content - short-form copy<br>Writing with clarity and style</p>
+    <div class="hero-actions">
+      <a href="#contact" class="hero-cta">get in touch</a>
     </div>
   </div>
 </div>
