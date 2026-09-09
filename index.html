@@ -131,7 +131,7 @@
 
   body {
     background:
-      linear-gradient(rgba(247,170,110,0.05), rgba(247,170,110,0.05));
+      linear-gradient(rgba(247,170,110,0.02), rgba(247,170,110,0.02));
     background-color: var(--paper);
     color: var(--ink);
     font-family: var(--sans);
@@ -180,7 +180,7 @@
     position: sticky;
     top: 0;
     background:
-      linear-gradient(rgba(247,170,110,0.05), rgba(247,170,110,0.05));
+      linear-gradient(rgba(247,170,110,0.02), rgba(247,170,110,0.02));
     background-color: var(--paper);
     z-index: 100;
     transition: box-shadow 0.3s;
@@ -265,7 +265,10 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    gap: 3rem;
+    font-size: clamp(2.4rem, calc(9.6vw - 13px), 6.3rem);
+    gap: 0.307em;
+    min-height: calc(100vh - var(--nav-h, 84px));
+    min-height: calc(100dvh - var(--nav-h, 84px));
   }
 
   .hero-text {
@@ -279,7 +282,7 @@
 
   .hero-portrait {
     position: relative;
-    width: clamp(160px, 19vw, 225px);
+    width: 1.716em;
     flex: 0 0 auto;
     aspect-ratio: 1 / 1;
     overflow: hidden;
@@ -320,11 +323,12 @@
 
   .hero-headline {
     font-family: var(--serif-light);
-    font-size: clamp(2.6rem, 5.6vw, 4.6rem);
+    font-size: 1em;
     font-weight: 400;
     font-style: italic;
     line-height: 1.05;
     color: var(--headline);
+    margin-top: -0.13em;
     margin-bottom: var(--space-1);
     letter-spacing: -0.005em;
   }
@@ -1045,6 +1049,9 @@
 
     .hero-text { max-width: 100%; }
 
+    .hero { font-size: clamp(2.2rem, 7vw, 3.6rem); }
+    .hero-portrait { width: clamp(150px, 26vw, 220px); }
+
     .hero-sub { max-width: 100%; }
 
     .ornament { margin: 0 1.5rem; }
@@ -1097,7 +1104,8 @@
 
     .hero { padding: 2.5rem 1.25rem 3rem; gap: var(--space-2); }
     .hero-portrait { width: 150px; }
-    .hero-headline { font-size: 2.2rem; line-height: 1.1; }
+    .hero { font-size: 2.2rem; }
+    .hero-headline { line-height: 1.1; }
     .hero-sub { font-size: 0.9rem; }
     .hero-kicker { font-size: 0.85rem; }
 
@@ -1345,6 +1353,12 @@
 </footer>
 
 <script>
+  const navEl = document.querySelector('nav');
+  const setNavHeight = () =>
+    document.documentElement.style.setProperty('--nav-h', navEl.offsetHeight + 'px');
+  setNavHeight();
+  new ResizeObserver(setNavHeight).observe(navEl);
+
   // Custom cursor
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
