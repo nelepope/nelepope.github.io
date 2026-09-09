@@ -126,7 +126,7 @@
 
   body {
     background:
-      linear-gradient(rgba(247,170,110,0.13), rgba(247,170,110,0.13));
+      linear-gradient(rgba(247,170,110,0.08), rgba(247,170,110,0.08));
     background-color: var(--paper);
     color: var(--ink);
     font-family: var(--sans);
@@ -175,7 +175,7 @@
     position: sticky;
     top: 0;
     background:
-      linear-gradient(rgba(247,170,110,0.13), rgba(247,170,110,0.13));
+      linear-gradient(rgba(247,170,110,0.08), rgba(247,170,110,0.08));
     background-color: var(--paper);
     z-index: 100;
     transition: box-shadow 0.3s;
@@ -637,15 +637,52 @@
     border-top: 0.5px solid var(--rule);
   }
 
-  .commercial-title a {
-    color: var(--ink);
-    text-decoration: underline;
-    text-underline-offset: 4px;
-    text-decoration-color: var(--rule);
-    transition: text-decoration-color 0.3s var(--ease-out);
+  .commercial-work {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 2rem;
+    align-items: center;
+    color: inherit;
+    text-decoration: none;
   }
 
-  .commercial-title a:hover { text-decoration-color: var(--headline); }
+  .commercial-thumb {
+    width: 140px;
+    height: 140px;
+    overflow: hidden;
+    background: var(--paper-deep);
+    position: relative;
+  }
+
+  .commercial-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(0.18) contrast(1.02);
+    transition: filter 0.6s var(--ease-out), transform 1.2s var(--ease-out);
+  }
+
+  .commercial-thumb::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 0.5px solid var(--rule);
+    pointer-events: none;
+  }
+
+  .commercial-work:hover .commercial-thumb img {
+    filter: grayscale(0) contrast(1);
+    transform: scale(1.04);
+  }
+
+  .commercial-work:hover .commercial-title { font-style: italic; }
+
+  .commercial-url {
+    font-size: 0.8rem;
+    color: var(--headline);
+    margin-bottom: 0.5rem;
+  }
 
   .commercial-on-request {
     font-family: var(--serif);
@@ -1018,6 +1055,8 @@
     .essay-item:nth-child(odd) { padding-right: 0; border-right: none; }
     .essay-item:nth-child(even) { padding-left: 0; }
     .essay-thumb { width: 100px; height: 100px; }
+    .commercial-work { grid-template-columns: 100px 1fr; gap: 1.25rem; }
+    .commercial-thumb { width: 100px; height: 100px; }
     .essay-title { font-size: 1.35rem; }
     .essay-desc { font-size: 0.8rem; }
 
@@ -1062,6 +1101,8 @@
       padding: 1.5rem 0;
     }
     .essay-thumb { width: 80px; height: 80px; }
+    .commercial-work { grid-template-columns: 80px 1fr; gap: 1rem; }
+    .commercial-thumb { width: 80px; height: 80px; }
     .essay-title { font-size: 1.2rem; }
     .essay-desc { font-size: 0.78rem; line-height: 1.55; }
     .essay-tag { font-size: 0.54rem; }
@@ -1210,10 +1251,16 @@
     <span class="section-count">Portfolio</span>
   </div>
   <div class="commercial-list">
-    <div class="commercial-item">
-      <p class="commercial-title"><a href="https://healthisaprivilege.com" target="_blank" rel="noopener">Health Is A Privilege</a></p>
-      <p class="commercial-type">healthisaprivilege.com</p>
-    </div>
+    <a href="https://healthisaprivilege.com" target="_blank" rel="noopener" class="commercial-item commercial-work">
+      <div class="commercial-thumb">
+        <img src="Pics/health-is-a-privilege.png" alt="Landing page for the play Health Is A Privilege" loading="lazy">
+      </div>
+      <div class="commercial-content">
+        <p class="commercial-title">Health Is A Privilege</p>
+        <p class="commercial-url">healthisaprivilege.com</p>
+        <p class="commercial-type">Copy and website design for a theatre play.</p>
+      </div>
+    </a>
     <div class="commercial-item">
       <p class="commercial-on-request">Samples available on request.</p>
       <p class="commercial-on-request-sub">Get in touch for a tailored portfolio &mdash; <a href="seo-copywriting.html" style="color:var(--ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--rule);">SEO articles</a>, web copy, brand strategy, and editorial.</p>
