@@ -125,7 +125,15 @@
   html { font-size: 16px; scroll-behavior: smooth; }
 
   body {
-    background: linear-gradient(rgba(250,248,244,0.55), rgba(250,248,244,0.55)), url('Pics/background.png') repeat;
+    background:
+      radial-gradient(1100px 850px at 22% 6%, rgba(247,170,110,0.13), transparent 70%),
+      radial-gradient(950px 750px at 82% 20%, rgba(247,170,110,0.07), transparent 70%),
+      radial-gradient(1400px 1000px at 50% 38%, rgba(247,170,110,0.15), transparent 72%),
+      radial-gradient(950px 800px at 15% 56%, rgba(247,170,110,0.09), transparent 70%),
+      radial-gradient(1100px 850px at 85% 70%, rgba(247,170,110,0.12), transparent 72%),
+      radial-gradient(1000px 800px at 40% 88%, rgba(247,170,110,0.06), transparent 70%),
+      linear-gradient(rgba(250,248,244,0.55), rgba(250,248,244,0.55)),
+      url('Pics/background.png') repeat;
     background-color: var(--paper);
     color: var(--ink);
     font-family: var(--sans);
@@ -497,19 +505,6 @@
     margin: 0 auto;
     position: relative;
     overflow: hidden;
-  }
-
-  #writing::before {
-    content: '';
-    position: absolute;
-    top: -100px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 1500px;
-    height: 1200px;
-    background: radial-gradient(circle, rgba(247,170,110,0.14), transparent 72%);
-    pointer-events: none;
-    z-index: 0;
   }
 
   .essays-grid {
