@@ -168,6 +168,23 @@ footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.08em; }
 @media (hover: none), (pointer: coarse) {
   body { cursor: auto; }
 }
+
+/* Mobile menu */
+.nav-toggle { display: none; }
+@media (max-width: 600px) {
+  #mainNav { position: sticky; top: 0; align-items: center; }
+  #mainNav .nav-name { white-space: nowrap; }
+  .nav-toggle { display: flex; flex-direction: column; justify-content: center; gap: 5px; width: 40px; height: 40px; margin-right: -8px; padding: 0 8px; background: none; border: 0; cursor: pointer; }
+  .nav-toggle span { display: block; height: 1px; background: var(--headline); transition: transform 0.3s var(--ease-out), opacity 0.2s; }
+  #mainNav.open .nav-toggle span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  #mainNav.open .nav-toggle span:nth-child(2) { opacity: 0; }
+  #mainNav.open .nav-toggle span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+  #mainNav .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; row-gap: 0; padding: 0.25rem 1.25rem 0.75rem; background: var(--paper); border-bottom: 0.5px solid var(--rule); box-shadow: 0 12px 24px rgba(26,24,20,0.06); }
+  #mainNav.open .nav-links { display: flex; }
+  #mainNav .nav-links a { display: block; padding: 0.9rem 0; font-size: 0.78rem; letter-spacing: 0.16em; border-bottom: 0.5px solid var(--rule); }
+  #mainNav .nav-links li:last-child a { border-bottom: 0; }
+  #mainNav .nav-links a::after { display: none; }
+}
 </style>
 </head>
 <body>
@@ -176,7 +193,8 @@ footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.08em; }
 
 <nav id="mainNav">
   <a href="index.html" class="nav-name">Saint-George</a>
-  <ul class="nav-links">
+  <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="navLinks">
     <li><a href="index.html#writing">Writing</a></li>
     <li><a href="cv.html">CV</a></li>
     <li><a href="seo-copywriting.html">SEO</a></li>
@@ -289,5 +307,20 @@ footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.08em; }
   onScroll();
 </script>
 
+<script>
+  (() => {
+    const nav = document.getElementById('mainNav');
+    const toggle = nav.querySelector('.nav-toggle');
+    const setOpen = open => {
+      nav.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    };
+    toggle.addEventListener('click', () => setOpen(!nav.classList.contains('open')));
+    nav.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+    document.addEventListener('click', e => { if (!nav.contains(e.target)) setOpen(false); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
+  })();
+</script>
 </body>
 </html>
