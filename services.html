@@ -324,12 +324,16 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 .calendly-inline-widget { margin-top: 1.25rem; }
 .booking { max-width: 1100px; margin: 0 auto; padding: 3.5rem 4rem; border-top: 0.5px solid var(--rule); display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: start; }
 .service-cta { margin-top: 0; }
-.booking .skel-contact-heading { text-align: left; }
+.booking .skel-contact-heading { text-align: left; font-size: clamp(1.3rem, 2.4vw, 1.75rem); }
 @media (min-width: 900px) {
-  .booking { grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .booking { grid-template-columns: 1fr 1fr; gap: 3rem; }
+  .booking .booking-col + .booking-col { border-left: 1px solid rgba(45,106,53,0.25); padding-left: 3rem; }
   .booking .contact-form { height: 700px; }
   .booking .contact-form .form-group:last-of-type { flex: 1; display: flex; flex-direction: column; min-height: 0; }
   .booking .contact-form textarea { flex: 1; min-height: 0; }
+}
+@media (max-width: 899px) {
+  .booking .booking-col + .booking-col { border-top: 1px solid rgba(45,106,53,0.25); padding-top: 2.5rem; }
 }
 @media (max-width: 560px) {
   .booking { padding: 2.5rem 1.25rem; gap: 2.25rem; }
@@ -430,7 +434,7 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
   </div>
 
   <div class="booking-col">
-  <p class="skel-contact-heading">Contact me</p>
+  <p class="skel-contact-heading">or send me a message</p>
   <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
     <div class="form-group">
       <label for="services-name">Name</label>
