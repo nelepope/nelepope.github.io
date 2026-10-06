@@ -327,7 +327,10 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 .service-cta { margin-top: 0; }
 .booking .skel-contact-heading { text-align: left; }
 @media (min-width: 900px) {
-  .booking { grid-template-columns: 1.25fr 1fr; gap: 4rem; }
+  .booking { grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .booking .contact-form { height: 700px; }
+  .booking .contact-form .form-group:last-of-type { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+  .booking .contact-form textarea { flex: 1; min-height: 0; }
 }
 @media (max-width: 560px) {
   .booking { padding: 2.5rem 1.25rem; gap: 2.25rem; }
