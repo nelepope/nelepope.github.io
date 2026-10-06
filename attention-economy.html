@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You really think you deserve my attention? — Saint-George</title>
+<meta name="description" content="Why most copywriting fails in the attention economy — on advertising, Herbert Simon, and the privilege of being read.">
+<meta name="author" content="Saint-George">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#faf8f4">
+
+<link rel="canonical" href="https://penelopesaintgeorge.com/attention-economy.html">
+
+<meta property="og:title" content="You really think you deserve my attention?">
+<meta property="og:description" content="Why most copywriting fails in the attention economy.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://penelopesaintgeorge.com/attention-economy.html">
+<meta property="og:image" content="https://penelopesaintgeorge.com/Pics/attention-economy.jpg">
+<meta property="og:site_name" content="Saint-George">
+<meta property="og:locale" content="en_GB">
+<meta property="article:author" content="Saint-George">
+<meta property="article:published_time" content="2026-10-02">
+<meta property="article:section" content="Copywriting">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="You really think you deserve my attention?">
+<meta name="twitter:description" content="Why most copywriting fails in the attention economy.">
+<meta name="twitter:image" content="https://penelopesaintgeorge.com/Pics/attention-economy.jpg">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+@font-face { font-family: 'Editors Note Light'; src: url('fonts/editorsnotetext-thin-webfont.woff2') format('woff2'), url('fonts/editorsnotetext-thin-webfont.woff') format('woff'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Editors Note Light'; src: url('fonts/editorsnotetext-thinitalic-webfont.woff2') format('woff2'), url('fonts/editorsnotetext-thinitalic-webfont.woff') format('woff'); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Editors Note Text'; src: url('fonts/editorsnotetext-regular-webfont.woff2') format('woff2'), url('fonts/editorsnotetext-regular-webfont.woff') format('woff'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Editors Note Text'; src: url('fonts/editorsnotetext-italic-webfont.woff2') format('woff2'), url('fonts/editorsnotetext-italic-webfont.woff') format('woff'); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Editors Note Text'; src: url('fonts/editorsnotetext-bold-webfont.woff2') format('woff2'), url('fonts/editorsnotetext-bold-webfont.woff') format('woff'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Editors Note Text'; src: url('fonts/editorsnotetext-bolditalic-webfont.woff2') format('woff2'), url('fonts/editorsnotetext-bolditalic-webfont.woff') format('woff'); font-weight: 700; font-style: italic; font-display: swap; }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #1a1814; --ink-mid: #5a5751; --ink-light: #9a9690;
+  --paper: #faf8f4; --paper-warm: #f3f0e8; --paper-deep: #ece9e0;
+  --rule: rgba(26,24,20,0.1); --accent: #9a9690; --headline: #2d6a35; --headline-deep: #1f4a27; --serif-light: 'Editors Note Light', Georgia, serif;
+  --serif: 'Editors Note Text', Georgia, serif;
+  --sans: 'Jost', sans-serif;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+html { font-size: 16px; scroll-behavior: smooth; }
+body { background-color: var(--paper); color: var(--ink); font-family: var(--sans); font-weight: 300; line-height: 1.7; min-height: 100vh; }
+::selection { background: var(--accent); color: var(--paper); }
+nav { display: flex; justify-content: space-between; align-items: baseline; padding: 1.75rem 4rem; border-bottom: 0.5px solid var(--rule); position: sticky; top: 0; background: rgba(250,248,244,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); z-index: 100; transition: box-shadow 0.3s; }
+nav.scrolled { box-shadow: 0 1px 0 var(--rule), 0 8px 24px rgba(26,24,20,0.04); }
+.nav-name { font-family: var(--sans); font-size: 0.72rem; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; color: var(--headline); text-decoration: none; }
+.nav-name-short { display: none; }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; flex-wrap: wrap; justify-content: flex-end; row-gap: 0.35rem; }
+.nav-links a { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--headline); text-decoration: none; transition: color 0.2s; position: relative; }
+.nav-links a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 0.5px; background: var(--ink); transition: width 0.3s var(--ease-out); }
+.nav-links a:hover { color: var(--ink); }
+.nav-links a:hover::after { width: 100%; }
+.progress { position: fixed; top: 0; left: 0; height: 2px; background: var(--accent); width: 0%; z-index: 200; transition: width 0.1s linear; }
+.essay-header { max-width: 720px; margin: 0 auto; padding: 6rem 2rem 3rem; text-align: left; }
+.essay-meta { display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 2rem; }
+.essay-meta .tag { color: var(--headline); }
+.essay-meta span + span { position: relative; }
+.essay-meta span + span::before { content: '·'; position: absolute; left: -1rem; color: var(--ink-light); }
+.essay-title { font-family: var(--serif-light); font-style: italic; font-size: clamp(2.5rem, 5.5vw, 4.5rem); font-weight: 400; line-height: 1.1; color: var(--headline-deep); margin-bottom: 1.5rem; letter-spacing: -0.01em; }
+.essay-title em { font-style: inherit; color: inherit; }
+.essay-dek { font-family: var(--serif); font-style: italic; font-size: 1.35rem; font-weight: 300; color: var(--ink-mid); line-height: 1.45; max-width: 620px; }
+.essay-byline { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 0.5px solid var(--rule); display: flex; justify-content: space-between; align-items: center; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-light); }
+.essay-byline strong { color: var(--ink); font-weight: 400; letter-spacing: 0.14em; }
+.essay-body { max-width: 660px; margin: 0 auto; padding: 1rem 2rem 5rem; font-size: 1.075rem; line-height: 1.85; color: var(--ink); }
+.essay-body p { margin-bottom: 1.4em; font-weight: 300; }
+.essay-body p.dropcap::first-letter { font-family: var(--serif); font-weight: 300; font-size: 4.5em; float: left; line-height: 0.85; margin: 0.1em 0.12em 0 -0.04em; color: var(--accent); }
+.essay-body h2 { font-family: var(--serif); font-weight: 300; font-size: 1.85rem; line-height: 1.2; color: var(--ink); margin: 3.5rem 0 1.5rem; letter-spacing: -0.005em; }
+.essay-body h2 em { font-style: italic; color: var(--ink-mid); }
+.essay-body blockquote { margin: 2.25rem 0; padding: 0.25rem 0 0.25rem 1.5rem; border-left: 1px solid var(--accent); font-family: var(--serif); font-style: italic; font-size: 1.35rem; line-height: 1.5; color: var(--ink-mid); font-weight: 300; }
+.essay-body blockquote cite { display: block; margin-top: 0.85rem; font-family: var(--sans); font-style: normal; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-light); }
+.essay-body a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--rule); transition: text-decoration-color 0.2s; }
+.essay-body a:hover { text-decoration-color: var(--ink); }
+.essay-body em { font-style: italic; }
+.essay-body strong { font-weight: 400; color: var(--ink); }
+.essay-body figure { margin: 2.75rem 0; }
+.essay-body figure img { width: 100%; display: block; background: var(--paper-deep); }
+.essay-body figure figcaption { margin-top: 0.85rem; font-family: var(--serif); font-style: italic; font-size: 0.88rem; color: var(--ink-light); line-height: 1.5; text-align: center; }
+.essay-lead-image { max-width: 1100px; margin: 1rem auto 3.5rem; padding: 0 2rem; }
+.essay-lead-image img { width: 100%; display: block; background: var(--paper-deep); aspect-ratio: 16 / 11; object-fit: cover; }
+.essay-lead-image figcaption { margin-top: 0.85rem; font-family: var(--serif); font-style: italic; font-size: 0.88rem; color: var(--ink-light); text-align: center; }
+.section-break { display: flex; align-items: center; justify-content: center; gap: 1.25rem; margin: 3rem 0; color: var(--ink-light); }
+.section-break::before, .section-break::after { content: ''; width: 40px; height: 0.5px; background: var(--rule); }
+.section-break span { font-family: var(--serif); font-size: 1rem; opacity: 0.6; letter-spacing: 0.2em; }
+.essay-end { max-width: 660px; margin: 0 auto; padding: 0 2rem 4rem; text-align: center; }
+.essay-end-glyph { font-family: var(--serif); font-size: 1.5rem; color: var(--ink-light); letter-spacing: 0.5em; margin-bottom: 3rem; }
+.essay-nav { border-top: 0.5px solid var(--rule); border-bottom: 0.5px solid var(--rule); display: grid; grid-template-columns: 1fr 1fr; margin: 0 auto; max-width: 660px; padding: 0 2rem; }
+.essay-nav a { padding: 2rem 0; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--headline); text-decoration: none; transition: color 0.2s, gap 0.3s var(--ease-out); display: inline-flex; align-items: center; gap: 0.65rem; }
+.essay-nav a:first-child { justify-content: flex-start; }
+.essay-nav a:last-child  { justify-content: flex-end; }
+.essay-nav a:hover { color: var(--ink); gap: 1rem; }
+footer { border-top: 0.5px solid var(--rule); padding: 2.25rem 4rem; display: flex; justify-content: space-between; align-items: center; }
+footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.08em; }
+.footer-links { display: flex; gap: 2.25rem; list-style: none; }
+.footer-links a { font-size: 0.63rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--headline); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--ink-mid); }
+@media (max-width: 980px) {
+  nav { padding: 1.25rem 1.5rem; }
+  .nav-links { gap: 1.2rem; }
+  .nav-links a { font-size: 0.62rem; letter-spacing: 0.12em; }
+  .essay-header { padding: 3.5rem 1.5rem 2rem; }
+  .essay-meta { font-size: 0.58rem; gap: 0.6rem 1.25rem; margin-bottom: 1.5rem; }
+  .essay-meta span + span::before { left: -0.85rem; }
+  .essay-title { font-size: clamp(2rem, 8vw, 3rem); }
+  .essay-dek { font-size: 1.15rem; }
+  .essay-byline { font-size: 0.62rem; margin-top: 2rem; flex-wrap: wrap; gap: 0.5rem 1rem; }
+  .essay-body { padding: 1rem 1.5rem 3.5rem; font-size: 1.025rem; line-height: 1.8; }
+  .essay-body p.dropcap::first-letter { font-size: 4em; }
+  .essay-body h2 { font-size: 1.6rem; margin: 3rem 0 1.2rem; }
+  .essay-body blockquote { font-size: 1.15rem; padding-left: 1.1rem; margin: 1.75rem 0; }
+  .essay-body figure { margin: 2.25rem 0; }
+  .essay-lead-image { padding: 0 1.5rem; margin: 0.5rem auto 2.75rem; }
+  .essay-end { padding: 0 1.5rem 2.5rem; }
+  .essay-nav { padding: 0 1.5rem; }
+  .essay-nav a { padding: 1.5rem 0; font-size: 0.6rem; letter-spacing: 0.14em; }
+  footer { padding: 1.75rem 1.5rem; flex-direction: column; gap: 1.25rem; text-align: center; }
+  .footer-links { flex-wrap: wrap; justify-content: center; gap: 1rem 1.75rem; }
+}
+@media (max-width: 560px) {
+  nav { padding: 1rem 1.25rem; }
+  .nav-links { gap: 0.85rem; }
+  .nav-links a { font-size: 0.56rem; letter-spacing: 0.1em; }
+  .nav-name { font-size: 0.85rem; letter-spacing: 0.22em; }
+  .nav-name-full { display: none; }
+  .nav-name-short { display: inline; }
+  .essay-header { padding: 2.75rem 1.25rem 1.5rem; }
+  .essay-title { font-size: 2rem; line-height: 1.1; }
+  .essay-dek { font-size: 1.05rem; }
+  .essay-body { padding: 0.75rem 1.25rem 3rem; font-size: 0.95rem; line-height: 1.75; }
+  .essay-body p.dropcap::first-letter { font-size: 3.5em; }
+  .essay-body h2 { font-size: 1.4rem; margin: 2.5rem 0 1rem; }
+  .essay-body blockquote { font-size: 1.05rem; line-height: 1.5; padding-left: 0.9rem; }
+  .essay-body figure { margin: 1.75rem 0; }
+  .essay-lead-image { padding: 0 1.25rem; }
+  .essay-lead-image img { aspect-ratio: 4 / 3; }
+  .essay-end { padding: 0 1.25rem 2rem; }
+  .essay-nav { padding: 0 1.25rem; grid-template-columns: 1fr; }
+  .essay-nav a { padding: 1.25rem 0; }
+  .essay-nav a:last-child { justify-content: flex-start; border-top: 0.5px solid var(--rule); }
+}
+@media (hover: none), (pointer: coarse) {
+  body { cursor: auto; }
+}
+
+/* Mobile menu */
+.nav-toggle { display: none; }
+@media (max-width: 600px) {
+  #mainNav { position: sticky; top: 0; align-items: center; }
+  #mainNav .nav-name { white-space: nowrap; }
+  .nav-toggle { display: flex; flex-direction: column; justify-content: center; gap: 5px; width: 40px; height: 40px; margin-right: -8px; padding: 0 8px; background: none; border: 0; cursor: pointer; }
+  .nav-toggle span { display: block; height: 1px; background: var(--headline); transition: transform 0.3s var(--ease-out), opacity 0.2s; }
+  #mainNav.open .nav-toggle span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  #mainNav.open .nav-toggle span:nth-child(2) { opacity: 0; }
+  #mainNav.open .nav-toggle span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+  #mainNav .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; row-gap: 0; padding: 0.25rem 1.25rem 0.75rem; background: var(--paper); border-bottom: 0.5px solid var(--rule); box-shadow: 0 12px 24px rgba(26,24,20,0.06); }
+  #mainNav.open .nav-links { display: flex; }
+  #mainNav .nav-links a { display: block; padding: 0.9rem 0; font-size: 0.78rem; letter-spacing: 0.16em; border-bottom: 0.5px solid var(--rule); }
+  #mainNav .nav-links li:last-child a { border-bottom: 0; }
+  #mainNav .nav-links a::after { display: none; }
+}
+
+.essay-body sup a { font-family: var(--sans); font-size: 0.6em; text-decoration: none; color: var(--headline); padding-left: 0.15em; }
+.essay-body sup a:hover { text-decoration: underline; }
+.footnotes { border-top: 0.5px solid var(--rule); margin-top: 3.5rem; padding-top: 1.75rem; }
+.footnotes h2 { font-family: var(--sans); font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-light); font-weight: 400; margin-bottom: 1.25rem; }
+.footnotes ol { padding-left: 1.1rem; }
+.footnotes li { font-size: 0.82rem; line-height: 1.65; color: var(--ink-mid); margin-bottom: 0.85rem; }
+.footnotes a { color: var(--headline); text-decoration: underline; text-underline-offset: 2px; word-break: break-word; }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "You really think you deserve my attention?",
+  "alternativeHeadline": "Why most copywriting fails in the attention economy.",
+  "description": "Why most copywriting fails in the attention economy \u2014 on advertising, Herbert Simon, and the privilege of being read.",
+  "image": "https://penelopesaintgeorge.com/Pics/attention-economy.jpg",
+  "datePublished": "2026-10-02",
+  "dateModified": "2026-10-02",
+  "author": { "@type": "Person", "name": "Penelope Saint-George", "url": "https://penelopesaintgeorge.com/" },
+  "publisher": { "@type": "Person", "name": "Penelope Saint-George" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://penelopesaintgeorge.com/attention-economy.html" },
+  "articleSection": "Copywriting",
+  "keywords": ["copywriting", "attention economy", "advertising", "Herbert Simon", "Howard Gossage", "marketing"],
+  "inLanguage": "en-GB"
+}
+</script>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<nav id="mainNav">
+  <a href="index.html" class="nav-name">Saint-George</a>
+  <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html#writing">Writing</a></li>
+    <li><a href="cv.html">CV</a></li>
+    <li><a href="seo-copywriting.html">SEO</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+    <li><a href="https://nelepope.substack.com" target="_blank" rel="noopener">Substack</a></li>
+    <li><a href="https://x.com/pensaintgeorge" target="_blank" rel="noopener">X</a></li>
+  </ul>
+</nav>
+
+<header class="essay-header">
+  <p class="essay-meta">
+    <span class="tag">Copywriting</span>
+    <span>4 min read</span>
+    <span>2 October 2026</span>
+  </p>
+  <h1 class="essay-title">You really think you deserve my attention?</h1>
+  <p class="essay-dek">Why most copywriting fails in the attention economy.</p>
+  <div class="essay-byline">
+    <span>By <strong>Penelope Saint-George</strong></span>
+    <span>Essay</span>
+  </div>
+</header>
+
+<article class="essay-body">
+
+  <p class="dropcap">As I got on the Tube this morning, I thought about how to further optimise the space in our small flat. I thought about someone I am meeting later who's going through a hard time. I thought about all the people I haven't replied to on WhatsApp. I thought about the fact that our bathroom light is broken and I can't guarantee that all my eyeshadow is in the right place.</p>
+
+  <p>Why should I, or anyone navigating worse first-world problems, stop and read what you have to say just because you want my money? Much copy assumes the reader is already interested when they are absolutely not. And why would they be? Why would they listen to you over the hundred other people also trying to get their attention because you want their money? As a copywriter who has sought work via cold emailing, I think about this a lot.</p>
+
+  <p>Ed Papazian, of Media Dynamics, estimated that people are exposed to about 360 adverts a day, and that fewer than half of these ever register.<sup><a href="#fn1" id="fnref1">1</a></sup> That was in 2014 and didn't include billboards, in-store marketing and packaging. Since then, we gained TikTok and more unskippable YouTube ads.</p>
+
+  <p>In days of yore, books were written by hand, and Cambridge University Library had only 122 of them.<sup><a href="#fn2" id="fnref2">2</a></sup> Information travelled as fast as a horse or pamphlet peddler, and most people couldn't read anyway. Information was scarce. Now it overflows, and our consumption of it is bottlenecked by our attention.</p>
+
+  <p>"A wealth of information creates a poverty of attention",<sup><a href="#fn3" id="fnref3">3</a></sup> wrote the economist Herbert Simon in 1971, before the internet existed. Simon said that an information processing system isn't useful because of how much information it generates or processes, but "the crucial question is how much information it will allow to be withheld from the attention of other parts of the system… to be an attention conserver".</p>
+
+  <p>And yet, technology does the opposite. Google, Instagram, TikTok and YouTube are free because the users aren't the customers; the advertisers are. These services sell users' attention. This is why they use infamous algorithms to make the apps addictive. Attention is a currency. We may not pay them in cash, but we pay with our attention. Instead of paying money for YouTube Premium, I submit to letting ads play before every video. And my desire to learn some piano tricks is greater than the pain of watching someone fake-sigh in a Febreze advert.</p>
+
+  <p>Most advertising fails to acknowledge that it's barging into people's lives, attempting to steal attention, as Martin Weigel put it in his essay <em>The Fracking of Attention</em>, "with all the grace and social skills of a drunken boor gatecrashing a wedding party."<sup><a href="#fn4" id="fnref4">4</a></sup> I initially read this as "boar" rather than "boor" and think it captures the point better.<sup><a href="#fn5" id="fnref5">5</a></sup> Would you give your time and money to this drunken boar? I suspect not, unless you want to sabotage the wedding.</p>
+
+  <figure>
+    <img src="Pics/attention-economy.jpg" alt="A wild boar standing in autumn woodland" loading="lazy">
+    <figcaption>I couldn't find a picture of a drunk pig crashing a wedding.</figcaption>
+  </figure>
+
+  <div class="section-break"><span>✦</span></div>
+
+  <p>So what do I propose? As people's attention is scarce, it should be treated as a precious thing. The 1960s adman Howard Gossage believed that advertisers should treat the audience as people to be charmed and entertained and won over, the way a performer treats a crowd.<sup><a href="#fn6" id="fnref6">6</a></sup> It is a great privilege to have people's attention. It is an opportunity to make a connection, to make people laugh or smile if only for a moment.</p>
+
+  <p>I experienced a moment of levity amid my Tube journey anxiety. It was not a conversation, an in-person interaction, a podcast or my book that made me laugh. It was a Specsavers ad.</p>
+
+  <figure>
+    <img src="Pics/specsavers-harold.jpg" alt="A Specsavers advert" loading="lazy">
+    <figcaption>Poor Harold.</figcaption>
+  </figure>
+
+  <p>I don't need glasses, but if I did, I would go there.</p>
+
+  <blockquote>
+    The real fact of the matter is that nobody reads ads. People read what interests them, and sometimes it's an ad.
+    <cite>— Howard Gossage<sup><a href="#fn7" id="fnref7">7</a></sup></cite>
+  </blockquote>
+
+  <section class="footnotes">
+    <h2>Notes</h2>
+    <ol>
+      <li id="fn1">Media Dynamics, Inc. (2014) <em>Adults spend almost 10 hours per day with the media, but note only 150 ads</em> [Press release]. 22 September. Available at: <a href="https://www.mediadynamicsinc.com/uploads/files/PR092214-Note-only-150-Ads-2mk.pdf" target="_blank" rel="noopener">mediadynamicsinc.com</a> (Accessed: 2 October 2026).</li>
+      <li id="fn2">Cambridge University Library's online exhibition <em>Lines of Thought</em>, entry "Donors by 1424". Available at: <a href="https://exhibitions.lib.cam.ac.uk/linesofthought/?p=526" target="_blank" rel="noopener">exhibitions.lib.cam.ac.uk</a>.</li>
+      <li id="fn3">Simon, H.A. (1971) 'Designing organizations for an information-rich world', in Greenberger, M. (ed.) <em>Computers, Communications, and the Public Interest</em>. Baltimore: Johns Hopkins Press, pp. 37–72.</li>
+      <li id="fn4">Weigel, M. (2015) 'The fracking of attention', <em>Martin Weigel</em>, 27 October. Available at: <a href="https://www.martinweigel.org/archive/2015/10/27/the-fracking-of-attention" target="_blank" rel="noopener">martinweigel.org</a> (Accessed: 2 October 2026).</li>
+      <li id="fn5">It also reminds me of this headline: <a href="https://www.independent.co.uk/news/world/australasia/boozy-feral-pig-steals-beer-gets-drunk-and-starts-fight-with-a-cow-8731783.html" target="_blank" rel="noopener">Boozy feral pig steals beer, gets drunk and starts fight with a cow</a>.</li>
+      <li id="fn6">Harrison, S. (2012) 'Gossage: a man ahead of his time', <em>Campaign</em>. Available at: <a href="https://www.campaignlive.co.uk/article/gossage-man-ahead-time/1123384" target="_blank" rel="noopener">campaignlive.co.uk</a> (Accessed: 2 October 2026).</li>
+      <li id="fn7">Gossage, H.L. (1986) <em>Is There Any Hope for Advertising?</em> Edited by K.B. Rotzoll, J. Graham and B. Mussey. Urbana: University of Illinois Press.</li>
+    </ol>
+  </section>
+</article>
+
+<div class="essay-end">
+  <p class="essay-end-glyph">✦ ✦ ✦</p>
+</div>
+
+<nav class="essay-nav">
+  <a href="index.html#writing">← All writing</a>
+  <a href="https://copywriterpen.substack.com/p/you-really-think-you-deserve-my-attention" target="_blank" rel="noopener">Read on Substack →</a>
+</nav>
+
+<footer>
+  <p>&copy; 2026 Penelope Saint-George</p>
+  <ul class="footer-links">
+    <li><a href="https://nelepope.substack.com" target="_blank" rel="noopener">Substack</a></li>
+    <li><a href="https://linkedin.com/in/YOUR_LINKEDIN" target="_blank" rel="noopener">LinkedIn</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</footer>
+
+<script>
+  const nav = document.getElementById('mainNav');
+  const progress = document.getElementById('progress');
+  function onScroll() {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    progress.style.width = max > 0 ? (window.scrollY / max * 100) + '%' : '0%';
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>
+
+<script>
+  (() => {
+    const nav = document.getElementById('mainNav');
+    const toggle = nav.querySelector('.nav-toggle');
+    const setOpen = open => {
+      nav.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    };
+    toggle.addEventListener('click', () => setOpen(!nav.classList.contains('open')));
+    nav.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+    document.addEventListener('click', e => { if (!nav.contains(e.target)) setOpen(false); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
+  })();
+</script>
+</body>
+</html>
