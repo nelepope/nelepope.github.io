@@ -269,14 +269,14 @@
 
   /* HERO */
   .hero {
-    padding: 2rem 4rem 4rem;
-    max-width: 1180px;
-    margin: 0 auto;
+    padding: 7.4vh 7.8% 4rem;
+    max-width: none;
+    margin: 0;
     position: relative;
     display: grid;
     grid-template-columns: 1fr;
-    align-content: center;
-    font-size: clamp(1.6rem, calc(11.7vw - 15px), 7.7rem);
+    align-content: start;
+    font-size: clamp(1.6rem, 9.75vw, 11rem);
     min-height: calc(100vh - var(--nav-h, 84px));
     min-height: calc(100dvh - var(--nav-h, 84px));
   }
@@ -322,12 +322,12 @@
     pointer-events: none;
   }
   .hero-kicker {
-    font-size: clamp(0.95rem, 1.75vw, 1.4rem);
+    font-size: clamp(0.95rem, 1.64vw, 1.8rem);
     font-weight: 400;
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--headline-deep);
-    margin-bottom: 0.9rem;
+    margin-bottom: 1.7vh;
   }
   .hero-headline {
     font-family: var(--display);
@@ -336,7 +336,7 @@
     font-style: normal;
     line-height: 1;
     color: var(--headline-deep);
-    margin: 0 0 0.52em;
+    margin: 0 0 7.5vh;
     letter-spacing: 0;
     white-space: nowrap;
   }
@@ -352,11 +352,11 @@
     opacity: 0.78;
   }
   .hero-sub {
-    font-size: clamp(0.9rem, 1.35vw, 1.15rem);
+    font-size: clamp(0.9rem, 1.53vw, 1.65rem);
     color: var(--ink-light);
     max-width: 640px;
     line-height: 1.6;
-    margin-bottom: 1.6rem;
+    margin-bottom: 2.3vh;
   }
 
   .hero-actions {
@@ -366,7 +366,7 @@
   }
   .hero-cta {
     display: inline-block;
-    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+    font-size: clamp(0.9rem, 1.67vw, 1.8rem);
     font-style: italic;
     font-weight: 400;
     letter-spacing: 0.1em;
@@ -1178,19 +1178,21 @@
   }
   .hero-scroll {
     position: absolute;
-    right: 8%;
-    bottom: 2.5rem;
+    left: 72.2%;
+    right: auto;
+    top: 46.1%;
+    bottom: auto;
     display: flex;
     align-items: flex-start;
     gap: 0.6rem;
     color: var(--pink);
     text-decoration: none;
     font-family: var(--sans);
-    font-size: 1.05rem;
+    font-size: clamp(0.85rem, 1.25vw, 1.05rem);
     line-height: 1.18;
     text-align: left;
   }
-  .hero-scroll svg { width: 20px; height: 200px; flex: 0 0 auto; margin-top: 0.1em; }
+  .hero-scroll svg { width: 20px; height: 19.6vh; min-height: 120px; flex: 0 0 auto; margin-top: 0.1em; }
   .hero-scroll span { max-width: 6ch; }
   .hero-scroll:hover { opacity: 0.75; }
 </style>
