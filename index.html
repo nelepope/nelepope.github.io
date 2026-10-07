@@ -1204,33 +1204,26 @@
     font-style: normal;
     display: inline-block;
     white-space: nowrap;
-  }
-  .hero-scroll span b {
-    font-weight: inherit;
     opacity: 0;
-    animation: cueType 0.01s linear forwards;
+    animation: cueWord 0.4s var(--ease-out) forwards;
   }
-  @keyframes cueType { to { opacity: 1; } }
-  .cue-caret {
-    display: inline-block;
-    width: 1px;
-    height: 0.95em;
-    background: currentColor;
-    vertical-align: -0.12em;
-    margin-left: 1px;
-    animation: cueBlink 0.5s steps(1) infinite, cueCaretOff 0.01s linear 2.11s forwards;
+  .hero-scroll span i:nth-child(1) { animation-delay: 0.35s; }
+  .hero-scroll span i:nth-child(2) { animation-delay: 0.60s; }
+  .hero-scroll span i:nth-child(3) { animation-delay: 0.85s; }
+  .hero-scroll span i:nth-child(4) { animation-delay: 1.10s; }
+  .hero-scroll span i:nth-child(5) { animation-delay: 1.35s; }
+  @keyframes cueWord {
+    from { opacity: 0; transform: translateY(-0.3em); }
+    to   { opacity: 1; transform: translateY(0); }
   }
-  @keyframes cueBlink { 50% { opacity: 0; } }
-  @keyframes cueCaretOff { to { opacity: 0; animation-play-state: paused; } }
   .hero-scroll svg path {
     stroke-dasharray: 1;
     stroke-dashoffset: 1;
-    animation: cueArrow 0.9s var(--ease-out) 1.76s forwards;
+    animation: cueArrow 0.9s var(--ease-out) 1.85s forwards;
   }
   @keyframes cueArrow { to { stroke-dashoffset: 0; } }
   @media (prefers-reduced-motion: reduce) {
-    .hero-scroll span b { opacity: 1; animation: none; }
-    .cue-caret { display: none; }
+    .hero-scroll span i { opacity: 1; animation: none; }
     .hero-scroll svg path { stroke-dashoffset: 0; animation: none; }
   }
   .hero-scroll:hover { opacity: 0.75; }
@@ -1271,7 +1264,7 @@
   </div>
   <a class="hero-scroll" href="#writing">
     <svg viewBox="0 0 24 200" aria-hidden="true" focusable="false"><path pathLength="1" d="M12 0 V190 M4 178 L12 194 L20 178" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    <span><i><b style="animation-delay:0.350s">s</b><b style="animation-delay:0.405s">c</b><b style="animation-delay:0.460s">r</b><b style="animation-delay:0.515s">o</b><b style="animation-delay:0.570s">l</b><b style="animation-delay:0.625s">l</b></i> <i><b style="animation-delay:0.680s">d</b><b style="animation-delay:0.735s">o</b><b style="animation-delay:0.790s">w</b><b style="animation-delay:0.845s">n</b></i> <i><b style="animation-delay:0.900s">f</b><b style="animation-delay:0.955s">o</b><b style="animation-delay:1.010s">r</b></i> <i><b style="animation-delay:1.065s">g</b><b style="animation-delay:1.120s">o</b><b style="animation-delay:1.175s">o</b><b style="animation-delay:1.230s">d</b></i> <i><b style="animation-delay:1.285s">t</b><b style="animation-delay:1.340s">h</b><b style="animation-delay:1.395s">i</b><b style="animation-delay:1.450s">n</b><b style="animation-delay:1.505s">g</b><b style="animation-delay:1.560s">s</b></i><u class="cue-caret"></u></span>
+    <span><i>scroll</i> <i>down</i> <i>for</i> <i>good</i> <i>things</i></span>
   </a>
 </div>
 
