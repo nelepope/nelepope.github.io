@@ -1198,6 +1198,31 @@
   }
   .hero-scroll svg { width: 20px; height: 19.6vh; min-height: 120px; flex: 0 0 auto; margin-top: 0.1em; }
   .hero-scroll span { max-width: 6ch; }
+  .hero-scroll span i {
+    font-style: normal;
+    display: inline-block;
+    opacity: 0;
+    animation: cueWord 0.45s var(--ease-out) forwards;
+  }
+  .hero-scroll span i:nth-child(1) { animation-delay: 0.35s; }
+  .hero-scroll span i:nth-child(2) { animation-delay: 0.55s; }
+  .hero-scroll span i:nth-child(3) { animation-delay: 0.75s; }
+  .hero-scroll span i:nth-child(4) { animation-delay: 0.95s; }
+  .hero-scroll span i:nth-child(5) { animation-delay: 1.15s; }
+  @keyframes cueWord {
+    from { opacity: 0; transform: translateY(0.35em); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-scroll svg path {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: cueArrow 0.9s var(--ease-out) 1.5s forwards;
+  }
+  @keyframes cueArrow { to { stroke-dashoffset: 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-scroll span i { opacity: 1; animation: none; }
+    .hero-scroll svg path { stroke-dashoffset: 0; animation: none; }
+  }
   .hero-scroll:hover { opacity: 0.75; }
 </style>
 </head>
@@ -1235,8 +1260,8 @@
     </div>
   </div>
   <a class="hero-scroll" href="#writing">
-    <svg viewBox="0 0 24 200" aria-hidden="true" focusable="false"><path d="M12 0 V190 M4 178 L12 194 L20 178" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    <span>scroll down<br>for good things</span>
+    <svg viewBox="0 0 24 200" aria-hidden="true" focusable="false"><path pathLength="1" d="M12 0 V190 M4 178 L12 194 L20 178" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span><i>scroll</i> <i>down</i> <i>for</i> <i>good</i> <i>things</i></span>
   </a>
 </div>
 
