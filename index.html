@@ -394,18 +394,18 @@
 
   .hero-secondary:hover { color: var(--ink-mid); }
 
-  /* TESTIMONIAL */
-  .testimonial-section {
+  /* INTRO STATEMENT */
+  .intro-statement {
     padding: 2.5rem 4rem 6.5rem;
     text-align: center;
   }
 
-  .testimonial-inner {
+  .intro-inner {
     max-width: 1180px;
     margin: 0 auto;
   }
 
-  .testimonial-section .testimonial {
+  .intro-statement .intro-card {
     max-width: 760px;
     margin: 0 auto;
     background: var(--headline-deep);
@@ -413,34 +413,16 @@
     padding: 3rem 3.5rem 3.25rem;
   }
 
-  .testimonial-quote {
+  .intro-text {
     text-wrap: pretty;
     font-family: var(--serif-light);
-    font-style: italic;
     font-weight: 400;
-    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
-    line-height: 1.7;
+    font-size: clamp(1rem, 1.65vw, 1.25rem);
+    line-height: 1.75;
     color: var(--paper);
   }
 
-  .testimonial-attribution {
-    margin-top: 1.75rem;
-    font-size: 0.68rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(250,248,244,0.72);
-  }
-
-  .testimonial-attribution a {
-    color: var(--paper);
-    font-weight: 700;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    text-decoration-color: rgba(250,248,244,0.4);
-    transition: text-decoration-color 0.2s;
-  }
-
-  .testimonial-attribution a:hover { text-decoration-color: var(--paper); }
+  .intro-text + .intro-text { margin-top: 1.25rem; }
 
   /* ORNAMENT */
   .ornament {
@@ -1093,8 +1075,8 @@
 
     .ornament { margin: 0 1.5rem; }
     section { padding: 3rem 1.5rem; }
-    .testimonial-section { padding: 4rem 1.5rem; }
-    .testimonial-section .testimonial { padding: 2.25rem 1.25rem 2.5rem; }
+    .intro-statement { padding: 4rem 1.5rem; }
+    .intro-statement .intro-card { padding: 2.25rem 1.25rem 2.5rem; }
 
     .section-header { margin-bottom: 2rem; }
     .section-count { font-size: 0.78rem; }
@@ -1303,12 +1285,12 @@
   </a>
 </div>
 
-<section class="testimonial-section reveal">
-  <div class="testimonial-inner">
-    <blockquote class="testimonial">
-      <p class="testimonial-quote">Pen was a delight to work with. She was incredibly professional and very fast in her turnaround of any work that we gave her. We really appreciated the level of critical thinking she applied to each of the briefs, working with our account managers when something doesn't quite look right and making excellent suggestions to keep things on track.<br><br>On top of that, the quality of the work is outstanding. She's always a pleasure to work with.</p>
-      <footer class="testimonial-attribution">Ross Tavendale, <a href="https://typeamedia.net/" target="_blank" rel="noopener">Type A Media</a></footer>
-    </blockquote>
+<section class="intro-statement reveal">
+  <div class="intro-inner">
+    <div class="intro-card">
+      <p class="intro-text">I write web copy, blog content, and long-form editorial material that informs, delights, and motivates.</p>
+      <p class="intro-text">I bring visibility and traffic to businesses by seamlessly integrating SEO keywords in a way that is honest and organic.</p>
+    </div>
   </div>
 </section>
 
