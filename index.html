@@ -642,34 +642,25 @@
     max-width: 1180px;
     margin: 0 auto;
   }
-
   .commercial-list {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 0;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem 2.25rem;
     border-top: 0.5px solid var(--rule);
-    max-width: 840px;
+    padding-top: 2.75rem;
+    max-width: none;
   }
-
   .commercial-item {
-    padding: 2.5rem 0;
+    padding: 0;
   }
-
-  .commercial-item + .commercial-item {
-    border-top: 0.5px solid var(--rule);
-  }
-
+  .commercial-item + .commercial-item { border-top: 0; }
   .commercial-work {
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 2rem;
-    align-items: center;
+    display: block;
     color: inherit;
     text-decoration: none;
   }
-
   .commercial-thumb {
-    width: 280px;
+    width: 100%;
     aspect-ratio: 859 / 461;
     overflow: hidden;
     background: var(--paper-deep);
@@ -745,6 +736,12 @@
     opacity: 0.8;
   }
 
+  .commercial-content { margin-top: 1rem; }
+  .commercial-list > .commercial-item:not(.commercial-work) {
+    grid-column: 1 / -1;
+    border-top: 0.5px solid var(--rule);
+    padding-top: 2.5rem;
+  }
   .commercial-title {
     font-family: var(--serif-light);
     font-size: 1.15rem;
@@ -1083,8 +1080,7 @@
     .essay-item:nth-child(odd) { padding-right: 0; border-right: none; }
     .essay-item:nth-child(even) { padding-left: 0; }
     .essay-thumb { width: 100px; height: 100px; }
-    .commercial-work { grid-template-columns: 200px 1fr; gap: 1.25rem; }
-    .commercial-thumb { width: 200px; }
+    .commercial-list { grid-template-columns: repeat(2, 1fr); gap: 2.5rem 1.75rem; }
     .essay-title { font-size: 1.35rem; }
     .essay-desc { font-size: 0.8rem; }
 
@@ -1130,8 +1126,7 @@
       padding: 1.5rem 0;
     }
     .essay-thumb { width: 80px; height: 80px; }
-    .commercial-work { grid-template-columns: 130px 1fr; gap: 1rem; }
-    .commercial-thumb { width: 130px; }
+    .commercial-list { grid-template-columns: 1fr; gap: 2.25rem; }
     .essay-title { font-size: 1.2rem; }
     .essay-desc { font-size: 0.78rem; line-height: 1.55; }
     .essay-tag { font-size: 0.54rem; }
