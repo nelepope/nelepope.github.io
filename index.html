@@ -197,11 +197,23 @@
     transition: box-shadow 0.3s;
   }
 
+  nav.name-visible .nav-name {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav-name { transition: none; }
+  }
+
   nav.scrolled {
     box-shadow: 0 1px 0 var(--rule), 0 8px 24px rgba(26,24,20,0.04);
   }
 
   .nav-name {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s var(--ease-out), visibility 0.4s;
     font-family: var(--sans);
     font-size: 0.72rem;
     font-weight: 400;
@@ -1472,9 +1484,15 @@
 
   // Scroll: nav shadow
   const nav = document.getElementById('mainNav');
-  window.addEventListener('scroll', () => {
+  const heroName = document.querySelector('.hero-headline');
+  const syncNav = () => {
     nav.classList.toggle('scrolled', window.scrollY > 20);
-  }, { passive: true });
+    const passed = !heroName || heroName.getBoundingClientRect().bottom <= nav.offsetHeight;
+    nav.classList.toggle('name-visible', passed);
+  };
+  window.addEventListener('scroll', syncNav, { passive: true });
+  window.addEventListener('resize', syncNav);
+  syncNav();
 
   // Scroll reveal
   const observer = new IntersectionObserver(entries => {
