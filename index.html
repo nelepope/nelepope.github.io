@@ -345,14 +345,22 @@
     color: var(--headline);
     opacity: 0.78;
   }
-  .hero-sub {
-    font-size: clamp(0.9rem, 1.53vw, 1.65rem);
-    color: var(--ink-light);
-    max-width: 640px;
-    line-height: 1.6;
-    margin-left: 13.6vw;
-    margin-bottom: 2.3vh;
+  .hero-statement {
+    margin-left: 8.7vw;
+    margin-bottom: 2.6vh;
+    max-width: 34rem;
   }
+
+  .hero-statement p {
+    text-wrap: pretty;
+    font-family: var(--serif-light);
+    font-size: clamp(1rem, 1.5vw, 1.5rem);
+    line-height: 1.5;
+    color: var(--headline-deep);
+  }
+
+  .hero-statement p + p { margin-top: 0.75rem; }
+
 
   .hero-actions {
     display: flex;
@@ -384,35 +392,6 @@
   }
 
   .hero-secondary:hover { color: var(--ink-mid); }
-
-  /* INTRO STATEMENT */
-  .intro-statement {
-    padding: 2.5rem 0 6.5rem;
-    text-align: left;
-  }
-
-  .intro-inner {
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 0 4rem;
-  }
-
-  .intro-statement .intro-card {
-    max-width: 880px;
-    margin: 0;
-    padding: 0;
-  }
-
-  .intro-text {
-    text-wrap: pretty;
-    font-family: var(--serif-light);
-    font-weight: 400;
-    font-size: clamp(1.5rem, 3.05vw, 2.45rem);
-    line-height: 1.45;
-    color: var(--headline-deep);
-  }
-
-  .intro-text + .intro-text { margin-top: 1.5rem; }
 
   /* ORNAMENT */
   .ornament {
@@ -1037,7 +1016,7 @@
 
   .hero-headline { animation: fadeUp 0.8s 0.1s var(--ease-out) both; }
   .hero-kicker  { animation: fadeUp 0.7s 0.25s var(--ease-out) both; }
-  .hero-sub     { animation: fadeUp 0.8s 0.35s var(--ease-out) both; }
+  .hero-statement { animation: fadeUp 0.8s 1.95s var(--ease-out) both; }
   .hero-actions { animation: fadeUp 0.8s 0.5s var(--ease-out) both; }
 
   /* TABLET ≤ 900px */
@@ -1060,13 +1039,8 @@
     .hero { font-size: clamp(2.2rem, 7vw, 3.6rem); }
     .hero-portrait { width: clamp(150px, 26vw, 220px); }
 
-    .hero-sub { max-width: 100%; }
-
     .ornament { margin: 0 1.5rem; }
     section { padding: 3rem 1.5rem; }
-    .intro-statement { padding: 4rem 0; }
-    .intro-inner { padding: 0 1.5rem; }
-    .intro-statement .intro-card { padding: 0; }
 
     .section-header { margin-bottom: 2rem; }
     .section-count { font-size: 0.78rem; }
@@ -1103,7 +1077,6 @@
 
   /* PHONE ≤ 560px */
   @media (max-width: 560px) {
-    .intro-inner { padding: 0 1.25rem; }
     nav { padding: 1rem 1.25rem; }
     .nav-links { gap: 0.9rem; }
     .nav-links a { font-size: 0.58rem; letter-spacing: 0.1em; }
@@ -1115,7 +1088,6 @@
     .hero-portrait { width: 150px; }
     .hero { font-size: 2.2rem; }
     .hero-headline { line-height: 1.1; }
-    .hero-sub { font-size: 0.9rem; }
     .hero-kicker { font-size: 0.85rem; }
 
     .ornament { margin: 0 1.25rem; }
@@ -1177,7 +1149,7 @@
   @keyframes kickerCaretOff { to { border-right-color: transparent; } }
   .hero-first { font-style: italic; }
   @media (max-width: 600px) { .hero-headline { white-space: normal; line-height: 1.05; } }
-  @media (max-width: 600px) { .hero-kicker, .hero-sub, .hero-actions { margin-left: 0; } }
+  @media (max-width: 600px) { .hero-kicker, .hero-actions, .hero-statement { margin-left: 0; } }
   .hero-o { position: relative; }
   .hero-o::after {
     content: '\2733';
@@ -1247,7 +1219,6 @@
   <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
   <ul class="nav-links" id="navLinks">
     <li><a href="writing.html">Writing</a></li>
-    <li><a href="cv.html">CV</a></li>
     <li><a href="services.html">Services</a></li>
     <li><a href="seo-copywriting.html">SEO</a></li>
     <li><a href="#about">About</a></li>
@@ -1260,7 +1231,9 @@
   <div class="hero-text">
     <p class="hero-headline"><span class="hero-first">Penelope</span> <span class="hero-surname">Saint-Ge<span class="hero-o">O</span>rge</span></p>
     <h1 class="hero-kicker">Copywriter &amp; Editor</h1>
-    <p class="hero-sub">SEO - long-form content - short-form copy</p>
+    <div class="hero-statement">
+      <p>I write web copy, blog content, and long-form editorial material that informs, delights, and motivates.</p>
+    </div>
     <div class="hero-actions">
       <a href="#contact" class="hero-cta">Get in touch</a>
     </div>
@@ -1271,14 +1244,6 @@
   </a>
 </div>
 
-<section class="intro-statement reveal">
-  <div class="intro-inner">
-    <div class="intro-card">
-      <p class="intro-text">I write web copy, blog content, and long-form editorial material that informs, delights, and motivates.</p>
-      <p class="intro-text">I bring visibility and traffic to businesses by seamlessly integrating SEO keywords in a way that is honest and organic.</p>
-    </div>
-  </div>
-</section>
 
 <section id="writing">
   <div class="section-header reveal">
@@ -1399,6 +1364,10 @@
       <div class="detail-item">
         <p class="detail-label">Available for</p>
         <p class="detail-value">Freelance &amp; contracts</p>
+      </div>
+      <div class="detail-item">
+        <p class="detail-label">CV</p>
+        <p class="detail-value"><a href="cv.html" style="color:var(--ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--rule);">Read my CV</a></p>
       </div>
       <div class="detail-item">
         <p class="detail-label">Substack</p>
