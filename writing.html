@@ -370,12 +370,11 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 
 .page-substack a:hover { border-color: var(--headline); }
 
-/* ESSAY ARCHIVE */
-.archive { padding: 0 4rem 6rem; }
-/* ESSAYS */
+/* ESSAY ARCHIVE — same cards as the landing page */
 .archive {
   max-width: 1180px;
   margin: 0 auto;
+  padding: 0 4rem 6rem;
   position: relative;
   overflow: hidden;
 }
@@ -384,38 +383,26 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2.75rem 1rem;
 }
 
 .essay-item {
-  padding: 2.5rem 0;
-  border-bottom: 0.5px solid var(--rule);
-  cursor: pointer;
-  transition: background 0.4s var(--ease-out);
+  display: block;
+  padding: 0;
+  border: 0;
   position: relative;
-  overflow: hidden;
   color: inherit;
   text-decoration: none;
-  display: grid;
-  grid-template-columns: 140px 1fr;
-  gap: 2rem;
-  align-items: center;
 }
-
-.essay-item:nth-child(odd) {
-  padding-right: 3rem;
-  border-right: 0.5px solid var(--rule);
-}
-
-.essay-item:nth-child(even) { padding-left: 3rem; }
 
 .essay-thumb {
-  width: 140px;
-  height: 140px;
+  width: 100%;
+  aspect-ratio: 5 / 4;
   overflow: hidden;
   background: var(--paper-deep);
   position: relative;
+  isolation: isolate;
 }
 
 .essay-thumb img {
@@ -423,9 +410,10 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
   height: 100%;
   object-fit: cover;
   display: block;
-  filter: grayscale(0.18) contrast(1.02);
-  transition: filter 0.6s var(--ease-out), transform 1.2s var(--ease-out);
+  filter: grayscale(1) contrast(1.02);
 }
+
+.essay-item.no-duotone .essay-thumb img { filter: grayscale(0.18) contrast(1.02); }
 
 .essay-thumb::after {
   content: '';
@@ -433,77 +421,49 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
   inset: 0;
   border: 0.5px solid var(--rule);
   pointer-events: none;
-}
-
-.essay-item:hover .essay-thumb img {
-  filter: grayscale(0) contrast(1);
-  transform: scale(1.04);
+  z-index: 2;
 }
 
 .essay-content {
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
+  gap: 0.3rem;
+  margin-top: 0.85rem;
 }
 
-.essay-tag {
-  font-size: 0.58rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--headline);
-  opacity: 1;
-  line-height: 1;
-}
+.essay-tag { display: none; }
 
 .essay-title {
   font-family: var(--serif-light);
-  font-size: 1.55rem;
+  font-size: 1.22rem;
   font-weight: 400;
-  line-height: 1.15;
-  color: var(--ink);
-  letter-spacing: -0.005em;
+  line-height: 1.25;
+  color: var(--headline);
+  letter-spacing: 0;
   transition: font-style 0.2s;
 }
 
 .essay-item:hover .essay-title { font-style: italic; }
 
 .essay-desc {
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   color: var(--ink-mid);
-  line-height: 1.65;
-  margin-top: 0.15rem;
+  line-height: 1.45;
 }
 
-.essay-arrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  margin-top: 0.5rem;
-  font-size: 0.58rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--headline);
-  opacity: 0;
-  transform: translateX(-6px);
-  transition: opacity 0.3s, transform 0.4s var(--ease-out), color 0.2s;
+.essay-arrow { display: none; }
+
+@media (max-width: 980px) {
+  .essays-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem 1rem; }
 }
 
-.essay-item:hover .essay-arrow {
-  opacity: 1;
-  transform: translateX(0);
-  color: var(--headline);
+@media (max-width: 560px) {
+  .essays-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .essay-title { font-size: 1.15rem; }
+  .essay-desc { font-size: 0.78rem; line-height: 1.55; }
 }
 
-
-@media (max-width: 760px) {
-  .essays-grid { grid-template-columns: 1fr; }
-  .essay-item { grid-template-columns: 100px 1fr; gap: 1.25rem; padding: 2rem 0; }
-  .essay-item:nth-child(odd) { padding-right: 0; border-right: none; }
-  .essay-item:nth-child(even) { padding-left: 0; }
-  .essay-thumb { width: 100px; height: 100px; }
-  .essay-title { font-size: 1.35rem; }
-  .essay-desc { font-size: 0.8rem; }
 }
 
 </style>
@@ -568,7 +528,7 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
       <span class="essay-arrow">Read →</span>
       </div>
     </a>
-    <a href="the-blue-epoch.html" class="essay-item">
+    <a href="the-blue-epoch.html" class="essay-item no-duotone">
       <div class="essay-thumb">
         <img src="https://substackcdn.com/image/fetch/$s_!AHIq!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa83df400-622e-4eb1-b410-49be8a2c1f23_1600x1161.jpeg" alt="Yves Klein, 1961" loading="lazy">
       </div>
