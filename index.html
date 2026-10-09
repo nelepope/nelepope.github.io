@@ -580,6 +580,10 @@
 
   .essay-item:hover .essay-thumb::before { opacity: 0; }
 
+  .essay-item.no-duotone .essay-thumb::before { content: none; }
+  .essay-item.no-duotone .essay-thumb img { filter: grayscale(0.18) contrast(1.02); }
+  .essay-item.no-duotone:hover .essay-thumb img { filter: grayscale(0) contrast(1); }
+
   .essay-thumb::after { z-index: 2; }
 
   .essay-content {
@@ -1294,7 +1298,7 @@
       <span class="essay-arrow">Read →</span>
       </div>
     </a>
-    <a href="the-blue-epoch.html" class="essay-item reveal reveal-delay-2">
+    <a href="the-blue-epoch.html" class="essay-item no-duotone reveal reveal-delay-2">
       <div class="essay-thumb">
         <img src="https://substackcdn.com/image/fetch/$s_!AHIq!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa83df400-622e-4eb1-b410-49be8a2c1f23_1600x1161.jpeg" alt="Yves Klein, 1961" loading="lazy">
       </div>
