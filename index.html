@@ -595,110 +595,62 @@
 
   .testimonial-source a:hover { text-decoration-color: var(--headline); }
 
-  /* hover annotation on the quote */
-  .annotate {
-    position: relative;
-    white-space: nowrap;
-    color: inherit;
-  }
-
+  /* hover annotation on the quote — the marks are the artwork itself */
+  .annotate,
   .annotate-line {
     position: relative;
     color: inherit;
   }
 
+  .annotate { white-space: nowrap; }
+
+  .annotate-marks,
   .annotate-underline {
     position: absolute;
-    left: 52%;
-    bottom: -0.55em;
-    width: 56%;
-    height: 0.55em;
-    overflow: visible;
     pointer-events: none;
-    color: #d44237;
     opacity: 0;
-    transition: opacity 0.15s linear 0.45s;
+    transition: opacity 0.35s var(--ease-out), clip-path 0.55s var(--ease-out);
+  }
+
+  .annotate-marks {
+    left: -9%;
+    top: -1.5em;
+    width: 202%;
+    height: auto;
+    clip-path: inset(0 0 0 0);
+    transform-origin: 20% 80%;
+    transform: scale(0.96);
+    transition: opacity 0.35s var(--ease-out), transform 0.5s var(--ease-out);
+  }
+
+  .annotate-underline {
+    left: 48%;
+    top: 0.72em;
+    width: 56%;
+    height: auto;
+    clip-path: inset(0 100% 0 0);
+    transition: opacity 0.2s linear 0.3s, clip-path 0.5s var(--ease-out) 0.3s;
+  }
+
+  .testimonial:hover .annotate-marks {
+    opacity: 1;
+    transform: scale(1);
   }
 
   .testimonial:hover .annotate-underline {
     opacity: 1;
-    transition-delay: 0s;
-  }
-
-  .annotate-underline path {
-    stroke-dasharray: 1;
-    stroke-dashoffset: 1;
-    transition: stroke-dashoffset 0.5s var(--ease-out) 0.35s;
-  }
-
-  .testimonial:hover .annotate-underline path { stroke-dashoffset: 0; }
-
-  .annotate-ring,
-  .annotate-arrow {
-    position: absolute;
-    overflow: visible;
-    pointer-events: none;
-    color: #d44237;
-    opacity: 0;
-    transition: opacity 0.15s linear 0.45s;
-  }
-
-  .testimonial:hover .annotate-ring,
-  .testimonial:hover .annotate-arrow {
-    opacity: 1;
-    transition-delay: 0s;
-  }
-
-  .annotate-ring {
-    left: -9%;
-    top: -48%;
-    width: 118%;
-    height: 200%;
-  }
-
-  .annotate-arrow {
-    left: 72%;
-    bottom: 118%;
-    width: 2.3em;
-    height: 1.9em;
-  }
-
-  .annotate-note {
-    position: absolute;
-    left: 104%;
-    bottom: 172%;
-    font-family: 'Caveat', cursive;
-    font-weight: 400;
-    font-size: 0.82em;
-    line-height: 1;
-    color: #d44237;
-    white-space: nowrap;
-    transform: rotate(-12deg) translateY(6px);
-    opacity: 0;
-    transition: opacity 0.3s 0.75s var(--ease-out), transform 0.4s 0.75s var(--ease-out);
-  }
-
-  .annotate-ring path,
-  .annotate-arrow path {
-    stroke-dasharray: 1;
-    stroke-dashoffset: 1;
-    transition: stroke-dashoffset 0.7s var(--ease-out);
-  }
-
-  .annotate-arrow path { transition-duration: 0.35s; transition-delay: 0.55s; }
-
-  .testimonial:hover .annotate-ring path,
-  .testimonial:hover .annotate-arrow path { stroke-dashoffset: 0; }
-
-  .testimonial:hover .annotate-note {
-    opacity: 1;
-    transform: rotate(-12deg) translateY(0);
+    clip-path: inset(0 0 0 0);
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .annotate-ring path,
-    .annotate-arrow path,
-    .annotate-note { transition: none; }
+    .annotate-marks,
+    .annotate-underline { transition: none; }
+  }
+
+  /* no hover to trigger it, and no room for it, on touch screens */
+  @media (max-width: 760px), (hover: none) {
+    .annotate-marks,
+    .annotate-underline { display: none; }
   }
 
   /* ESSAYS */
@@ -1454,9 +1406,9 @@
 <section class="testimonial-section reveal" id="testimonial">
   <figure class="testimonial">
     <blockquote class="testimonial-quote">
-      <p class="testimonial-lead"><svg class="testimonial-mark" viewBox="0 0 122 81" aria-hidden="true" focusable="false" fill="currentColor"><g transform="rotate(180 61 40.5)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/><g transform="translate(66,0)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/></g></g></svg>Pen was <span class="annotate">a delight<svg class="annotate-ring" viewBox="0 0 200 80" preserveAspectRatio="none" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path pathLength="1" vector-effect="non-scaling-stroke" d="M158 14 C104 1 30 9 14 33 C1 54 50 73 108 73 C163 73 197 57 192 34 C188 15 152 4 116 7 C104 8 96 10 90 12"/></svg><svg class="annotate-arrow" viewBox="0 0 70 60" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path pathLength="1" d="M66 6 C52 14 28 28 8 50"/><path pathLength="1" d="M19 45 L8 51 L13 40"/></svg><span class="annotate-note">a delight!</span></span> to work with.</p>
+      <p class="testimonial-lead"><svg class="testimonial-mark" viewBox="0 0 122 81" aria-hidden="true" focusable="false" fill="currentColor"><g transform="rotate(180 61 40.5)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/><g transform="translate(66,0)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/></g></g></svg>Pen was <span class="annotate">a delight<img class="annotate-marks" src="Pics/annotate-marks.png" alt="" aria-hidden="true"></span> to work with.</p>
       <p class="testimonial-body">She was incredibly professional and very fast in her turnaround of any work that we gave her. We really appreciated the level of critical thinking she applied to each of the briefs, working with our account managers when something doesn't quite look right and making excellent suggestions to keep things on track.</p>
-      <p class="testimonial-body"><span class="annotate-line">On top of that, the quality of the work is outstanding.<svg class="annotate-underline" viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path pathLength="1" vector-effect="non-scaling-stroke" d="M3 9 C62 3 152 2 232 5 C262 6 283 8 297 12"/><path pathLength="1" vector-effect="non-scaling-stroke" d="M8 14 C72 9 162 7 242 9 C268 10 288 12 298 9"/></svg></span></p>
+      <p class="testimonial-body"><span class="annotate-line">On top of that, the quality of the work is outstanding.<img class="annotate-underline" src="Pics/annotate-underline.png" alt="" aria-hidden="true"></span></p>
       <p class="testimonial-body">She's always a pleasure to work with.</p>
     </blockquote>
     <figcaption class="testimonial-source">Ross Tavendale, <a href="https://typeamedia.net/" target="_blank" rel="noopener">Type A Media</a></figcaption>
