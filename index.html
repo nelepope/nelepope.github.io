@@ -500,7 +500,8 @@
   .service-row:hover .service-star { transform: rotate(90deg); }
 
   .service-question {
-    font-size: clamp(1rem, 1.7vw, 1.45rem);
+    font-family: var(--serif);
+    font-size: clamp(1.05rem, 1.75vw, 1.5rem);
     font-weight: 400;
     line-height: 1.5;
     color: var(--ink);
@@ -539,12 +540,10 @@
   }
 
   #writing .section-header,
-  #projects .section-header,
-  #services .section-header { align-items: baseline; margin-bottom: 1.6rem; }
+  #projects .section-header { align-items: baseline; margin-bottom: 1.6rem; }
 
   #writing .section-label,
-  #projects .section-label,
-  #services .section-label {
+  #projects .section-label {
     font-family: var(--serif-light);
     font-size: clamp(1.6rem, 2.5vw, 2.3rem);
     font-weight: 400;
@@ -1258,9 +1257,6 @@
 
 
 <section class="services-section reveal" id="services">
-  <div class="section-header">
-    <p class="section-label">Services</p>
-  </div>
   <div class="services-list">
     <a href="services.html" class="service-row reveal reveal-delay-1">
       <span class="service-star" aria-hidden="true">&#10035;</span>
