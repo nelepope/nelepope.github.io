@@ -353,7 +353,7 @@
     position: relative;
     margin-left: 11.8vw;
     margin-bottom: 2.6vh;
-    max-width: 42rem;
+    max-width: none;
   }
 
   .hero-statement::before {
@@ -377,6 +377,7 @@
     font-family: var(--serif-light);
     font-size: clamp(1.15rem, 2.05vw, 2.1rem);
     line-height: 1.9;
+    white-space: nowrap;
     color: var(--headline-deep);
   }
 
@@ -1145,7 +1146,11 @@
   .hero-first { font-style: italic; }
   @media (max-width: 600px) { .hero-headline { white-space: normal; line-height: 1.05; } }
   @media (max-width: 600px) { .hero-kicker, .hero-actions, .hero-statement { margin-left: 0; } }
-  @media (max-width: 900px) { .hero-statement::before { display: none; } }
+  @media (max-width: 900px) {
+    .hero-statement::before { display: none; }
+    .hero-statement { max-width: 42rem; }
+    .hero-statement p { white-space: normal; }
+  }
   .hero-o { position: relative; }
   .hero-o::after {
     content: '\2733';
@@ -1216,7 +1221,6 @@
   <ul class="nav-links" id="navLinks">
     <li><a href="writing.html">Writing</a></li>
     <li><a href="services.html">Services</a></li>
-    <li><a href="seo-copywriting.html">SEO</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="https://x.com/pensaintgeorge" target="_blank" rel="noopener">X</a></li>
@@ -1484,7 +1488,7 @@
       if (pending) return;
       pending = true;
       requestAnimationFrame(() => {
-        root.style.setProperty('--star-turn', (window.scrollY * 0.22) + 'deg');
+        root.style.setProperty('--star-turn', (window.scrollY * 0.4) + 'deg');
         pending = false;
       });
     };

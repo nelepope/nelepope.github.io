@@ -95,6 +95,29 @@ body > nav.scrolled { box-shadow: 0 1px 0 var(--rule), 0 8px 24px rgba(26,24,20,
   margin-bottom: 1.5rem;
 }
 
+.service-index {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem 2.25rem;
+  list-style: none;
+  margin: 0 0 2.25rem;
+}
+.service-index a {
+  font-family: var(--serif-light);
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  color: var(--headline);
+  text-decoration: none;
+  border-bottom: 0.5px solid transparent;
+  padding-bottom: 0.25rem;
+  transition: border-color 0.3s var(--ease-out), font-style 0.2s;
+}
+.service-index a:hover { border-color: var(--headline); }
+.service-index a.current { font-style: italic; border-color: var(--rule); }
+@media (max-width: 600px) {
+  .service-index { gap: 0.4rem 1.5rem; margin-bottom: 1.75rem; }
+}
+
 .page-title {
   font-family: var(--serif-light);
   font-weight: 400;
@@ -330,7 +353,6 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
   <ul class="nav-links" id="navLinks">
     <li><a href="writing.html">Writing</a></li>
     <li><a href="services.html">Services</a></li>
-    <li><a href="seo-copywriting.html" class="current">SEO</a></li>
     <li><a href="index.html#about">About</a></li>
     <li><a href="index.html#contact">Contact</a></li>
     <li><a href="https://x.com/pensaintgeorge" target="_blank" rel="noopener">X</a></li>
@@ -339,6 +361,11 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 
 <div class="page-header">
   <p class="page-kicker">Services</p>
+  <ul class="service-index">
+    <li><a href="services.html#enquire">AI Draft Editing</a></li>
+    <li><a href="services.html">Web-copy Audit</a></li>
+    <li><a href="seo-copywriting.html" class="current" aria-current="page">SEO copywriting</a></li>
+  </ul>
   <h1 class="page-title">SEO Copywriting</h1>
 </div>
 
