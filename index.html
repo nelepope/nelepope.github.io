@@ -475,58 +475,59 @@
     margin: 0 auto;
   }
 
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2.25rem;
-  }
-
-  .service-card {
+  .services-list {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    padding: 0 2rem 0 0;
+    gap: 4.5rem;
+  }
+
+  .service-row {
+    display: grid;
+    grid-template-columns: 3.5rem minmax(0, 40%) 7rem 1fr;
+    align-items: center;
+    gap: 0 1.5rem;
     color: inherit;
     text-decoration: none;
   }
 
-  .service-card + .service-card {
-    border-left: 0.5px solid var(--rule);
-    padding-left: 2.25rem;
+  .service-star {
+    font-size: 2.4rem;
+    line-height: 1;
+    color: var(--headline);
+    transition: transform 0.6s var(--ease-out);
   }
 
-  .service-card-title {
-    font-family: var(--serif-light);
-    font-size: clamp(1.6rem, 2.25vw, 2.2rem);
+  .service-row:hover .service-star { transform: rotate(90deg); }
+
+  .service-question {
+    font-size: clamp(1rem, 1.7vw, 1.45rem);
     font-weight: 400;
-    line-height: 1.15;
-    color: var(--headline);
-    transition: font-style 0.2s;
-  }
-
-  .service-card:hover .service-card-title { font-style: italic; }
-
-  .service-card-line {
-    margin-top: 0.75rem;
-    font-size: 0.82rem;
-    line-height: 1.6;
-    color: var(--ink-mid);
-    min-height: 3.2em;
-  }
-
-  .service-card-cta {
-    margin-top: 1.5rem;
-    width: 100%;
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 0.95rem;
     line-height: 1.5;
-    color: var(--headline);
+    color: var(--ink);
   }
 
-  .service-card-cta::after {
-    content: ' \2192';
-    white-space: nowrap;
+  .service-question em {
+    font-style: italic;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+  }
+
+  .service-arrow {
+    width: 100%;
+    height: 24px;
+    color: var(--headline);
+    transition: transform 0.4s var(--ease-out);
+  }
+
+  .service-row:hover .service-arrow { transform: translateX(6px); }
+
+  .service-name {
+    font-size: clamp(1.15rem, 2.1vw, 1.95rem);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--headline);
+    line-height: 1.2;
   }
 
   /* ESSAYS */
@@ -1060,9 +1061,8 @@
     .section-count { font-size: 0.78rem; }
 
     .essays-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem 1rem; }
-    .services-grid { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-    .service-card { padding-right: 0; }
-    .service-card + .service-card { padding-left: 1.5rem; }
+    .services-list { gap: 3rem; }
+    .service-row { grid-template-columns: 2.5rem minmax(0, 44%) 4rem 1fr; gap: 0 1rem; }
     .commercial-list { grid-template-columns: repeat(2, 1fr); gap: 2.5rem 1.75rem; }
 
     .commercial-list { grid-template-columns: 1fr; }
@@ -1099,9 +1099,17 @@
     section { padding: 2.5rem 1.25rem; }
 
     .essays-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .services-grid { grid-template-columns: 1fr; gap: 0; }
-    .service-card { padding: 2rem 0; }
-    .service-card + .service-card { border-left: 0; border-top: 0.5px solid var(--rule); padding-left: 0; }
+    .services-list { gap: 2.5rem; }
+    .service-row {
+      grid-template-columns: 2.25rem 1fr;
+      grid-template-areas: 'star question' '. name';
+      gap: 0.75rem 0.75rem;
+      align-items: start;
+    }
+    .service-star { grid-area: star; font-size: 1.5rem; }
+    .service-question { grid-area: question; }
+    .service-arrow { display: none; }
+    .service-name { grid-area: name; }
     .commercial-list { grid-template-columns: 1fr; gap: 2.25rem; }
     .essay-title { font-size: 1.15rem; }
     .essay-desc { font-size: 0.78rem; line-height: 1.55; }
@@ -1253,21 +1261,24 @@
   <div class="section-header">
     <p class="section-label">Services</p>
   </div>
-  <div class="services-grid">
-    <a href="#contact" class="service-card reveal reveal-delay-1">
-      <h2 class="service-card-title">AI Draft Editing</h2>
-      <p class="service-card-line">I can turn AI slop into something worth reading</p>
-      <span class="service-card-cta">I would like to transform my AI drafts into engaging copy that converts</span>
+  <div class="services-list">
+    <a href="services.html" class="service-row reveal reveal-delay-1">
+      <span class="service-star" aria-hidden="true">&#10035;</span>
+      <p class="service-question">Want to know <em>where and how your website is holding you back</em> from converting visitors into customers?</p>
+      <svg class="service-arrow" viewBox="0 0 104 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M0 12 H96"/><path d="M84 3 L98 12 L84 21"/></svg>
+      <span class="service-name">Web-copy auditing</span>
     </a>
-    <a href="services.html" class="service-card reveal reveal-delay-2">
-      <h2 class="service-card-title">Web-copy Audit</h2>
-      <p class="service-card-line">An objective review of your current website copy</p>
-      <span class="service-card-cta">I want to know how I can convert more visitors to customers</span>
+    <a href="services.html#enquire" class="service-row reveal reveal-delay-2">
+      <span class="service-star" aria-hidden="true">&#10035;</span>
+      <p class="service-question">Want to transform your AI drafts into <em>engaging copy</em>?</p>
+      <svg class="service-arrow" viewBox="0 0 104 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M0 12 H96"/><path d="M84 3 L98 12 L84 21"/></svg>
+      <span class="service-name">AI draft editing</span>
     </a>
-    <a href="seo-copywriting.html" class="service-card reveal reveal-delay-3">
-      <h2 class="service-card-title">SEO copywriting</h2>
-      <p class="service-card-line">Compelling content that shows up in search engines</p>
-      <span class="service-card-cta">I want to rank high up in search results</span>
+    <a href="seo-copywriting.html" class="service-row reveal reveal-delay-3">
+      <span class="service-star" aria-hidden="true">&#10035;</span>
+      <p class="service-question">Want to <em>rank higher</em> in search results?</p>
+      <svg class="service-arrow" viewBox="0 0 104 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M0 12 H96"/><path d="M84 3 L98 12 L84 21"/></svg>
+      <span class="service-name">SEO copywriting</span>
     </a>
   </div>
 </section>
