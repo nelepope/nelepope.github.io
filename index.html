@@ -503,42 +503,42 @@
     overflow: hidden;
   }
 
+  #writing .section-header { align-items: baseline; margin-bottom: 1.6rem; }
+
+  #writing .section-label {
+    font-family: var(--serif-light);
+    font-size: clamp(1.6rem, 2.5vw, 2.3rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.005em;
+    text-transform: none;
+    color: var(--headline);
+  }
+
   .essays-grid {
     position: relative;
     z-index: 1;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
   }
 
   .essay-item {
-    padding: 2.5rem 0;
-    border-bottom: 0.5px solid var(--rule);
-    cursor: none;
-    transition: background 0.4s var(--ease-out);
+    display: block;
+    padding: 0;
+    border: 0;
     position: relative;
-    overflow: hidden;
     color: inherit;
     text-decoration: none;
-    display: grid;
-    grid-template-columns: 140px 1fr;
-    gap: 2rem;
-    align-items: center;
   }
-
-  .essay-item:nth-child(odd) {
-    padding-right: 3rem;
-    border-right: 0.5px solid var(--rule);
-  }
-
-  .essay-item:nth-child(even) { padding-left: 3rem; }
 
   .essay-thumb {
-    width: 140px;
-    height: 140px;
+    width: 100%;
+    aspect-ratio: 5 / 4;
     overflow: hidden;
     background: var(--paper-deep);
     position: relative;
+    isolation: isolate;
   }
 
   .essay-thumb img {
@@ -547,25 +547,9 @@
     object-fit: cover;
     display: block;
     filter: grayscale(1) contrast(1.02);
-    transition: filter 0.6s var(--ease-out), transform 1.2s var(--ease-out);
   }
 
-  .essay-thumb::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border: 0.5px solid var(--rule);
-    pointer-events: none;
-  }
-
-  .essay-item:hover .essay-thumb img {
-    filter: grayscale(0) contrast(1);
-    transform: scale(1.04);
-  }
-
-  /* DUOTONE — blog header pictures */
-  .essay-thumb { isolation: isolate; }
-
+  /* DUOTONE — blog thumbnails */
   .essay-thumb::before {
     content: '';
     position: absolute;
@@ -574,72 +558,49 @@
     mix-blend-mode: screen;
     pointer-events: none;
     z-index: 1;
-    opacity: 1;
-    transition: opacity 0.6s var(--ease-out);
   }
-
-  .essay-item:hover .essay-thumb::before { opacity: 0; }
 
   .essay-item.no-duotone .essay-thumb::before { content: none; }
   .essay-item.no-duotone .essay-thumb img { filter: grayscale(0.18) contrast(1.02); }
-  .essay-item.no-duotone:hover .essay-thumb img { filter: grayscale(0) contrast(1); }
 
-  .essay-thumb::after { z-index: 2; }
+  .essay-thumb::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 0.5px solid var(--rule);
+    pointer-events: none;
+    z-index: 2;
+  }
 
   .essay-content {
     min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.65rem;
+    gap: 0.3rem;
+    margin-top: 0.85rem;
   }
 
-  .essay-tag {
-    font-size: 0.58rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--headline);
-    opacity: 1;
-    line-height: 1;
-  }
+  .essay-tag { display: none; }
 
   .essay-title {
     font-family: var(--serif-light);
-    font-size: 1.55rem;
+    font-size: 1.02rem;
     font-weight: 400;
-    line-height: 1.15;
-    color: var(--ink);
-    letter-spacing: -0.005em;
+    line-height: 1.25;
+    color: var(--headline);
+    letter-spacing: 0;
     transition: font-style 0.2s;
   }
 
   .essay-item:hover .essay-title { font-style: italic; }
 
   .essay-desc {
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     color: var(--ink-mid);
-    line-height: 1.65;
-    margin-top: 0.15rem;
+    line-height: 1.45;
   }
 
-  .essay-arrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    margin-top: 0.5rem;
-    font-size: 0.58rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--headline);
-    opacity: 0;
-    transform: translateX(-6px);
-    transition: opacity 0.3s, transform 0.4s var(--ease-out), color 0.2s;
-  }
-
-  .essay-item:hover .essay-arrow {
-    opacity: 1;
-    transform: translateX(0);
-    color: var(--headline);
-  }
+  .essay-arrow { display: none; }
 
   /* COMMERCIAL */
   .commercial-section {
@@ -1070,18 +1031,8 @@
     .section-header { margin-bottom: 2rem; }
     .section-count { font-size: 0.78rem; }
 
-    .essays-grid { grid-template-columns: 1fr; }
-    .essay-item {
-      grid-template-columns: 100px 1fr;
-      gap: 1.25rem;
-      padding: 2rem 0;
-    }
-    .essay-item:nth-child(odd) { padding-right: 0; border-right: none; }
-    .essay-item:nth-child(even) { padding-left: 0; }
-    .essay-thumb { width: 100px; height: 100px; }
+    .essays-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem 1rem; }
     .commercial-list { grid-template-columns: repeat(2, 1fr); gap: 2.5rem 1.75rem; }
-    .essay-title { font-size: 1.35rem; }
-    .essay-desc { font-size: 0.8rem; }
 
     .commercial-list { grid-template-columns: 1fr; }
     .commercial-item { padding: 1.75rem 0; border-right: none; border-bottom: 0.5px solid var(--rule); }
@@ -1118,16 +1069,10 @@
     .ornament { margin: 0 1.25rem; }
     section { padding: 2.5rem 1.25rem; }
 
-    .essay-item {
-      grid-template-columns: 80px 1fr;
-      gap: 1rem;
-      padding: 1.5rem 0;
-    }
-    .essay-thumb { width: 80px; height: 80px; }
+    .essays-grid { grid-template-columns: 1fr; gap: 2rem; }
     .commercial-list { grid-template-columns: 1fr; gap: 2.25rem; }
-    .essay-title { font-size: 1.2rem; }
+    .essay-title { font-size: 1.05rem; }
     .essay-desc { font-size: 0.78rem; line-height: 1.55; }
-    .essay-tag { font-size: 0.54rem; }
 
     .about-strip { padding: 3rem 1.25rem; }
     .contact-section { padding: 3rem 1.25rem; }
@@ -1138,9 +1083,7 @@
   @media (hover: none), (pointer: coarse) {
     body { cursor: auto; }
     .cursor, .cursor-ring { display: none !important; }
-    .essay-item:hover .essay-arrow { opacity: 1; transform: translateX(0); }
-    .hero-portrait img,
-    .essay-thumb img { filter: none; }
+    .hero-portrait img { filter: none; }
   }
 
 /* Mobile menu */
@@ -1272,7 +1215,7 @@
 
 <section id="writing">
   <div class="section-header reveal">
-    <p class="section-label">Essays &amp; Long-form</p>
+    <p class="section-label">Essays &amp; Long-Form</p>
     <a class="section-count section-more" href="writing.html">All writing &#8594;</a>
   </div>
   <div class="essays-grid">
