@@ -597,18 +597,7 @@
     filter: grayscale(1) contrast(1.02);
   }
 
-  /* DUOTONE — blog thumbnails */
-  .essay-thumb::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: #d44237;
-    mix-blend-mode: screen;
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  .essay-item.no-duotone .essay-thumb::before { content: none; }
+  /* blog thumbnails: black and white, bar the one that keeps its colour */
   .essay-item.no-duotone .essay-thumb img { filter: grayscale(0.18) contrast(1.02); }
 
   .essay-thumb::after {
