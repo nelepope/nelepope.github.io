@@ -419,7 +419,7 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
   height: 100%;
   object-fit: cover;
   display: block;
-  filter: grayscale(0.18) contrast(1.02);
+  filter: grayscale(1) contrast(1.02);
   transition: filter 0.6s var(--ease-out), transform 1.2s var(--ease-out);
 }
 
@@ -435,6 +435,25 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
   filter: grayscale(0) contrast(1);
   transform: scale(1.04);
 }
+
+/* DUOTONE — blog header pictures */
+.essay-thumb { isolation: isolate; }
+
+.essay-thumb::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #d44237;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 1;
+  transition: opacity 0.6s var(--ease-out);
+}
+
+.essay-item:hover .essay-thumb::before { opacity: 0; }
+
+.essay-thumb::after { z-index: 2; }
 
 .essay-content {
   min-width: 0;
