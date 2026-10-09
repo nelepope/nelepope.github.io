@@ -349,16 +349,28 @@
     opacity: 0.78;
   }
   .hero-statement {
-    margin-left: 8.7vw;
+    position: relative;
+    margin-left: 11.8vw;
     margin-bottom: 2.6vh;
     max-width: 42rem;
+  }
+
+  .hero-statement::before {
+    content: '\2733';
+    position: absolute;
+    left: -10rem;
+    top: -2.1rem;
+    font-size: 3.6rem;
+    line-height: 1;
+    color: #d44237;
+    pointer-events: none;
   }
 
   .hero-statement p {
     text-wrap: pretty;
     font-family: var(--serif-light);
     font-size: clamp(1.15rem, 2.05vw, 2.1rem);
-    line-height: 1.5;
+    line-height: 1.9;
     color: var(--headline-deep);
   }
 
@@ -478,7 +490,7 @@
 
   .service-card-title {
     font-family: var(--serif-light);
-    font-size: clamp(1.4rem, 1.95vw, 1.95rem);
+    font-size: clamp(1.6rem, 2.25vw, 2.2rem);
     font-weight: 400;
     line-height: 1.15;
     color: var(--headline);
@@ -1127,6 +1139,7 @@
   .hero-first { font-style: italic; }
   @media (max-width: 600px) { .hero-headline { white-space: normal; line-height: 1.05; } }
   @media (max-width: 600px) { .hero-kicker, .hero-actions, .hero-statement { margin-left: 0; } }
+  @media (max-width: 900px) { .hero-statement::before { display: none; } }
   .hero-o { position: relative; }
   .hero-o::after {
     content: '\2733';
@@ -1141,9 +1154,9 @@
   }
   .hero-scroll {
     position: absolute;
-    left: 72.2%;
+    left: 79%;
     right: auto;
-    top: 55%;
+    top: 60%;
     bottom: auto;
     display: flex;
     align-items: flex-start;
