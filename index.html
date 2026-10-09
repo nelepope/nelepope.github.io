@@ -8,7 +8,7 @@
 <meta name="author" content="Saint-George">
 <meta name="keywords" content="freelance copywriter, essayist, London, SEO copywriter, long-form writer, brand strategist, science writer, B2B copywriter">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-<meta name="theme-color" content="#fff5ef">
+<meta name="theme-color" content="#fff9f5">
 
 <link rel="canonical" href="https://penelopesaintgeorge.com/">
 
@@ -121,7 +121,7 @@
     --ink: #1a1814;
     --ink-mid: #5a5751;
     --ink-light: #9a9690;
-    --paper: #fff5ef;
+    --paper: #fff9f5;
     --paper-warm: #f3f0e8;
     --paper-deep: #ece9e0;
     --rule: rgba(26,24,20,0.1);
@@ -206,6 +206,7 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
+    .hero-statement::before { opacity: 1; animation: none; transform: none; }
     .nav-name { transition: none; }
   }
 
@@ -364,7 +365,12 @@
     line-height: 1;
     color: #d44237;
     pointer-events: none;
+    opacity: 0;
+    transform: rotate(var(--star-turn, 0deg));
+    animation: starIn 0.8s var(--ease-out) 3.95s forwards;
   }
+
+  @keyframes starIn { to { opacity: 1; } }
 
   .hero-statement p {
     text-wrap: pretty;
@@ -1470,6 +1476,21 @@
   window.addEventListener('scroll', syncNav, { passive: true });
   window.addEventListener('resize', syncNav);
   syncNav();
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const root = document.documentElement;
+    let pending = false;
+    const spinStar = () => {
+      if (pending) return;
+      pending = true;
+      requestAnimationFrame(() => {
+        root.style.setProperty('--star-turn', (window.scrollY * 0.22) + 'deg');
+        pending = false;
+      });
+    };
+    window.addEventListener('scroll', spinStar, { passive: true });
+    spinStar();
+  }
 
   // Scroll reveal
   const observer = new IntersectionObserver(entries => {

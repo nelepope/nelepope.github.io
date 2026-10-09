@@ -7,7 +7,7 @@
 <meta name="description" content="Web copy audit — a structured, objective review of your website copy, with a detailed list of issues, what to do about them, and a call to walk through it.">
 <meta name="author" content="Saint-George">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-<meta name="theme-color" content="#fff5ef">
+<meta name="theme-color" content="#fff9f5">
 
 <link rel="canonical" href="https://penelopesaintgeorge.com/services.html">
 
@@ -53,7 +53,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
   --ink: #1a1814; --ink-mid: #5a5751; --ink-light: #9a9690;
-  --paper: #fff5ef; --paper-warm: #f3f0e8; --paper-deep: #ece9e0;
+  --paper: #fff9f5; --paper-warm: #f3f0e8; --paper-deep: #ece9e0;
   --rule: rgba(26,24,20,0.1); --accent: #9a9690;
   --headline: #2d6a35;
   --serif: 'Solance Serif', Georgia, serif;
@@ -68,7 +68,7 @@ body {
 }
 ::selection { background: var(--headline); color: var(--paper); }
 
-body > nav { display: flex; justify-content: space-between; align-items: baseline; padding: 1.75rem 4rem; border-bottom: 0.5px solid var(--rule); position: sticky; top: 0; background: rgba(255,245,239,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); z-index: 100; transition: box-shadow 0.3s; }
+body > nav { display: flex; justify-content: space-between; align-items: baseline; padding: 1.75rem 4rem; border-bottom: 0.5px solid var(--rule); position: sticky; top: 0; background: rgba(255,249,245,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); z-index: 100; transition: box-shadow 0.3s; }
 body > nav.scrolled { box-shadow: 0 1px 0 var(--rule), 0 8px 24px rgba(26,24,20,0.04); }
 .nav-name { font-family: var(--sans); font-size: 0.72rem; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; color: var(--headline); text-decoration: none; }
 .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; flex-wrap: wrap; justify-content: flex-end; row-gap: 0.35rem; }
@@ -93,6 +93,29 @@ body > nav.scrolled { box-shadow: 0 1px 0 var(--rule), 0 8px 24px rgba(26,24,20,
   text-transform: uppercase;
   color: var(--headline);
   margin-bottom: 1.5rem;
+}
+
+.service-index {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem 2.25rem;
+  list-style: none;
+  margin: 0 0 2.25rem;
+}
+.service-index a {
+  font-family: var(--serif-light);
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  color: var(--headline);
+  text-decoration: none;
+  border-bottom: 0.5px solid transparent;
+  padding-bottom: 0.25rem;
+  transition: border-color 0.3s var(--ease-out), font-style 0.2s;
+}
+.service-index a:hover { border-color: var(--headline); }
+.service-index a.current { font-style: italic; border-color: var(--rule); }
+@media (max-width: 600px) {
+  .service-index { gap: 0.4rem 1.5rem; margin-bottom: 1.75rem; }
 }
 
 .page-title {
@@ -386,6 +409,11 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 
 <div class="page-header">
   <p class="page-kicker">Services</p>
+  <ul class="service-index">
+    <li><a href="#enquire">AI Draft Editing</a></li>
+    <li><a href="services.html" class="current" aria-current="page">Web-copy Audit</a></li>
+    <li><a href="seo-copywriting.html">SEO copywriting</a></li>
+  </ul>
   <h1 class="page-title">Web copy audit</h1>
 </div>
 
@@ -430,7 +458,7 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 
 </section>
 
-<section class="booking">
+<section class="booking" id="enquire">
   <div class="booking-col">
     <p class="service-cta">Interested? Let's have a chat!</p>
 
