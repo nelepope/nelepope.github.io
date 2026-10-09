@@ -476,21 +476,28 @@
   }
 
   .services-list {
-    display: flex;
-    flex-direction: column;
-    gap: 4.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 3.5rem;
+    row-gap: 3.5rem;
   }
 
   .service-row {
     display: grid;
-    grid-template-columns: 3.5rem minmax(0, 40%) 7rem 1fr;
-    align-items: center;
-    gap: 0 1.5rem;
+    grid-template-columns: 3.2rem minmax(0, 1fr);
+    align-items: start;
     color: inherit;
     text-decoration: none;
   }
 
+  .service-row:nth-child(1) { grid-column: 1; grid-row: 1; }
+  .service-row:nth-child(2) { grid-column: 2; grid-row: 2; }
+  .service-row:nth-child(3) { grid-column: 1; grid-row: 3; }
+
   .service-star {
+    grid-column: 1;
+    grid-row: 1;
+    margin-top: 0.12em;
     font-size: 2.4rem;
     line-height: 1;
     color: var(--headline);
@@ -500,10 +507,12 @@
   .service-row:hover .service-star { transform: rotate(90deg); }
 
   .service-question {
+    grid-column: 2;
+    grid-row: 1;
     font-family: var(--serif);
-    font-size: clamp(1.05rem, 1.75vw, 1.5rem);
+    font-size: clamp(1.1rem, 1.85vw, 1.7rem);
     font-weight: 400;
-    line-height: 1.5;
+    line-height: 1.45;
     color: var(--ink);
   }
 
@@ -514,24 +523,39 @@
     text-decoration-thickness: 1px;
   }
 
-  .service-arrow {
-    width: 100%;
-    height: 24px;
+  .service-desc {
+    grid-column: 2;
+    grid-row: 2;
+    margin-top: 0.45rem;
+    font-size: clamp(0.85rem, 1.15vw, 1.05rem);
+    line-height: 1.55;
+    color: var(--ink);
+  }
+
+  .service-name {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-top: 1.1rem;
+    padding-left: 1.1rem;
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: clamp(0.95rem, 1.35vw, 1.2rem);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     color: var(--headline);
+  }
+
+  .service-caret {
+    width: 0.62em;
+    height: 0.74em;
+    flex: none;
     transition: transform 0.4s var(--ease-out);
   }
 
-  .service-row:hover .service-arrow { transform: translateX(6px); }
-
-  .service-name {
-    font-family: var(--sans);
-    font-weight: 400;
-    font-size: clamp(1.05rem, 1.85vw, 1.75rem);
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--headline);
-    line-height: 1.2;
-  }
+  .service-row:hover .service-caret { transform: translateX(4px); }
 
   /* TESTIMONIAL */
   .testimonial-section {
@@ -882,9 +906,16 @@
   }
 
   .about-strip > * {
-    max-width: 720px;
+    max-width: 1180px;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .about-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+    gap: 3.5rem;
+    align-items: start;
   }
 
   .about-label {
@@ -897,6 +928,7 @@
     aspect-ratio: 4 / 5;
     overflow: hidden;
     background: var(--paper-deep);
+    margin: 0;
   }
 
   .about-portrait img {
@@ -904,13 +936,7 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    filter: grayscale(0.15) contrast(1.02);
-    transition: filter 0.6s var(--ease-out), transform 0.8s var(--ease-out);
-  }
-
-  .about-portrait:hover img {
-    filter: grayscale(0) contrast(1);
-    transform: scale(1.02);
+    filter: grayscale(1) contrast(1.02);
   }
 
   .about-portrait::after {
@@ -941,6 +967,7 @@
   .about-headline em { font-style: italic; }
 
   .about-body {
+    max-width: 680px;
     font-size: 0.9rem;
     color: var(--ink-mid);
     line-height: 1.95;
@@ -1182,8 +1209,7 @@
     .section-count { font-size: 0.78rem; }
 
     .essays-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem 1rem; }
-    .services-list { gap: 3rem; }
-    .service-row { grid-template-columns: 2.5rem minmax(0, 44%) 4rem 1fr; gap: 0 1rem; }
+    .services-list { column-gap: 2rem; row-gap: 2.5rem; }
     .commercial-list { grid-template-columns: repeat(2, 1fr); gap: 2.5rem 1.75rem; }
 
     .commercial-list { grid-template-columns: 1fr; }
@@ -1193,6 +1219,7 @@
 
 
     .about-strip { padding: 4rem 1.5rem; }
+    .about-inner { grid-template-columns: minmax(0, 200px) minmax(0, 1fr); gap: 2rem; }
     .about-body { font-size: 0.88rem; }
     .about-details { flex-wrap: wrap; gap: 1.25rem 1.75rem; }
 
@@ -1221,22 +1248,19 @@
 
     .essays-grid { grid-template-columns: 1fr; gap: 2rem; }
     .testimonial-body { text-align: left; }
-    .services-list { gap: 2.5rem; }
-    .service-row {
-      grid-template-columns: 2.25rem 1fr;
-      grid-template-areas: 'star question' '. name';
-      gap: 0.75rem 0.75rem;
-      align-items: start;
-    }
-    .service-star { grid-area: star; font-size: 1.5rem; }
-    .service-question { grid-area: question; }
-    .service-arrow { display: none; }
-    .service-name { grid-area: name; }
+    .services-list { grid-template-columns: 1fr; row-gap: 2.5rem; }
+    .service-row { grid-template-columns: 2.25rem minmax(0, 1fr); }
+    .service-row:nth-child(1) { grid-column: 1; grid-row: 1; }
+    .service-row:nth-child(2) { grid-column: 1; grid-row: 2; }
+    .service-row:nth-child(3) { grid-column: 1; grid-row: 3; }
+    .service-star { font-size: 1.6rem; }
     .commercial-list { grid-template-columns: 1fr; gap: 2.25rem; }
     .essay-title { font-size: 1.15rem; }
     .essay-desc { font-size: 0.78rem; line-height: 1.55; }
 
     .about-strip { padding: 3rem 1.25rem; }
+    .about-inner { grid-template-columns: 1fr; gap: 1.75rem; }
+    .about-portrait { max-width: 220px; }
     .contact-section { padding: 3rem 1.25rem; }
     body > footer { padding: 1.5rem 1.25rem; }
   }
@@ -1384,20 +1408,20 @@
     <a href="services.html" class="service-row reveal reveal-delay-1">
       <span class="service-star" aria-hidden="true">&#10035;</span>
       <p class="service-question">Want to know <em>where and how your website is holding you back</em> from converting visitors into customers?</p>
-      <svg class="service-arrow" viewBox="0 0 104 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M0 12 H96"/><path d="M84 3 L98 12 L84 21"/></svg>
-      <span class="service-name">Web-copy auditing</span>
+      <p class="service-desc">I provide an objective review of your current website copy</p>
+      <span class="service-name"><svg class="service-caret" viewBox="0 0 10 12" aria-hidden="true" focusable="false" fill="currentColor"><path d="M0 0 L10 6 L0 12 Z"/></svg>Web-copy auditing</span>
     </a>
     <a href="services.html#enquire" class="service-row reveal reveal-delay-2">
       <span class="service-star" aria-hidden="true">&#10035;</span>
       <p class="service-question">Want to transform your AI drafts into <em>engaging copy</em>?</p>
-      <svg class="service-arrow" viewBox="0 0 104 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M0 12 H96"/><path d="M84 3 L98 12 L84 21"/></svg>
-      <span class="service-name">AI draft editing</span>
+      <p class="service-desc">I turn AI slop into something worth reading</p>
+      <span class="service-name"><svg class="service-caret" viewBox="0 0 10 12" aria-hidden="true" focusable="false" fill="currentColor"><path d="M0 0 L10 6 L0 12 Z"/></svg>AI draft editing</span>
     </a>
     <a href="seo-copywriting.html" class="service-row reveal reveal-delay-3">
       <span class="service-star" aria-hidden="true">&#10035;</span>
       <p class="service-question">Want to <em>rank higher</em> in search results?</p>
-      <svg class="service-arrow" viewBox="0 0 104 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M0 12 H96"/><path d="M84 3 L98 12 L84 21"/></svg>
-      <span class="service-name">SEO copywriting</span>
+      <p class="service-desc">I write compelling, engaging content and implement SEO strategies to help you show up in search engines</p>
+      <span class="service-name"><svg class="service-caret" viewBox="0 0 10 12" aria-hidden="true" focusable="false" fill="currentColor"><path d="M0 0 L10 6 L0 12 Z"/></svg>SEO copywriting</span>
     </a>
   </div>
 </section>
@@ -1515,6 +1539,10 @@
 
 <div class="about-strip" id="about">
   <p class="section-label about-label">About</p>
+  <div class="about-inner">
+  <figure class="about-portrait">
+    <img src="Pics/about-portrait.jpg" alt="Penelope Saint-George" loading="lazy">
+  </figure>
   <div class="about-body">
     <p>I take complex ideas and express them with precision and clarity. I write web copy, blog content, and long-form editorial material that informs, delights, and motivates. I bring visibility and traffic to businesses by seamlessly integrating SEO keywords in a way that is honest and organic.</p>
     <p>I combine the analytical rigour of a first-class degree in Physics with creative spirit. I wrote about quantum logic gates for my dissertation, so I embrace complicated ideas with confidence and enthusiasm (knowing that nothing can ever be more obscure than that). I believe even the most complex of matters can be expressed in a way that is elegant and alive.</p>
@@ -1538,6 +1566,7 @@
         <p class="detail-value"><a href="https://nelepope.substack.com" target="_blank" rel="noopener" style="color:var(--ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--rule);">Pen</a></p>
       </div>
     </div>
+  </div>
   </div>
 </div>
 
