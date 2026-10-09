@@ -1488,7 +1488,7 @@
       if (pending) return;
       pending = true;
       requestAnimationFrame(() => {
-        root.style.setProperty('--star-turn', (window.scrollY * 0.4) + 'deg');
+        root.style.setProperty('--star-turn', (window.scrollY * 0.9) + 'deg');
         pending = false;
       });
     };
