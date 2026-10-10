@@ -348,20 +348,6 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
   .booking { padding: 2.5rem 1.25rem; gap: 2.25rem; }
 }
 
-/* MOBILE */
-@media (max-width: 760px) {
-  .essays-grid { grid-template-columns: 1fr; gap: 1.6rem; }
-  .essay-item {
-    display: grid;
-    grid-template-columns: 92px minmax(0, 1fr);
-    gap: 1rem;
-    align-items: start;
-  }
-  .essay-thumb { aspect-ratio: 1 / 1; }
-  .essay-content { margin-top: 0; gap: 0.25rem; }
-  .essay-title { font-size: 1.05rem; line-height: 1.3; }
-  .essay-desc { font-size: 0.78rem; line-height: 1.5; }
-}
 
 .service-list li::before { content: '✦'; position: absolute; left: 0; top: 0; font-family: var(--serif); font-size: 0.8em; line-height: 1.95; color: var(--headline); }
 @media (max-width: 560px) {
@@ -469,23 +455,24 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 
 /* pre-edited thumbnails keep their own colour */
 .essay-thumb.edited img { filter: none; }
-.essay-thumb.cutout { background: var(--paper); }
-.essay-thumb.cutout img { object-fit: contain; }
 
-/* pink duotone, as the thumbnails used to carry */
-.essay-thumb.tinted { isolation: isolate; }
+/* everything else takes the same pink ground as the Klein picture */
+.essay-thumb:not(.edited) { isolation: isolate; }
 
-.essay-thumb.tinted::before {
+.essay-thumb:not(.edited)::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: #d44237;
-  mix-blend-mode: screen;
+  background: #e4cdc7;
+  mix-blend-mode: multiply;
   pointer-events: none;
   z-index: 1;
 }
 
-.essay-thumb.tinted img { filter: grayscale(1) contrast(1.02); }
+.essay-thumb:not(.edited) img { filter: grayscale(1) contrast(1.02); }
+.essay-thumb.cutout { background: var(--paper); }
+.essay-thumb.cutout img { object-fit: contain; }
+
 
 .essay-thumb::after {
   content: '';
@@ -536,8 +523,22 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
   .essay-desc { font-size: 0.78rem; line-height: 1.55; }
 }
 
+/* MOBILE */
+@media (max-width: 760px) {
+  .archive { padding: 1rem 1.25rem 3.5rem; }
+  .archive-header { padding: 2.5rem 1.25rem 0; }
+  .essays-grid { grid-template-columns: 1fr; gap: 1.6rem; }
+  .essay-item {
+    display: grid;
+    grid-template-columns: 92px minmax(0, 1fr);
+    gap: 1rem;
+    align-items: start;
+  }
+  .essay-thumb { aspect-ratio: 1 / 1; }
+  .essay-content { margin-top: 0; gap: 0.25rem; }
+  .essay-title { font-size: 1.05rem; line-height: 1.3; }
+  .essay-desc { font-size: 0.78rem; line-height: 1.5; }
 }
-
 </style>
 
 <script type="application/ld+json">
