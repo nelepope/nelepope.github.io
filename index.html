@@ -501,10 +501,11 @@
     font-size: 2.4rem;
     line-height: 1;
     color: var(--headline);
-    transition: transform 0.9s var(--ease-out);
   }
 
-  .service-row:hover .service-star { transform: rotate(360deg); }
+  .service-row:hover .service-star { animation: starSpin 1.4s linear infinite; }
+
+  @keyframes starSpin { to { transform: rotate(360deg); } }
 
   .service-question {
     grid-column: 2;
@@ -626,6 +627,11 @@
     color: inherit;
   }
 
+  /* keep the underlined sentence on one line so the drawn underline tracks it */
+  @media (min-width: 981px) {
+    .annotate-line { white-space: nowrap; }
+  }
+
   .annotate { white-space: nowrap; }
 
   .annotate-marks,
@@ -667,6 +673,7 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
+    .service-row:hover .service-star { animation: none; }
     .annotate-marks,
     .annotate-underline { transition: none; }
   }
@@ -857,7 +864,11 @@
     font-size: 0.88rem;
     color: var(--ink-mid);
     line-height: 1.75;
-    max-width: 480px;
+    max-width: none;
+  }
+
+  @media (min-width: 981px) {
+    .commercial-on-request-sub { white-space: nowrap; }
   }
 
   .commercial-number {
@@ -1438,9 +1449,7 @@
   <figure class="testimonial">
     <blockquote class="testimonial-quote">
       <p class="testimonial-lead"><svg class="testimonial-mark" viewBox="0 0 122 81" aria-hidden="true" focusable="false" fill="currentColor"><g transform="rotate(180 61 40.5)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/><g transform="translate(66,0)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/></g></g></svg>Pen was <span class="annotate">a delight<img class="annotate-marks" src="Pics/annotate-marks.png" alt="" aria-hidden="true"></span> to work with.</p>
-      <p class="testimonial-body">She was incredibly professional and very fast in her turnaround of any work that we gave her. We really appreciated the level of critical thinking she applied to each of the briefs, working with our account managers when something doesn't quite look right and making excellent suggestions to keep things on track.</p>
-      <p class="testimonial-body"><span class="annotate-line">On top of that, the quality of the work is outstanding.<img class="annotate-underline" src="Pics/annotate-underline.png" alt="" aria-hidden="true"></span></p>
-      <p class="testimonial-body">She's always a pleasure to work with.</p>
+      <p class="testimonial-body">She was incredibly professional and very fast in her turnaround of any work that we gave her. We really appreciated the level of critical thinking she applied to each of the briefs, working with our account managers when something doesn't quite look right and making excellent suggestions to keep things on track. <span class="annotate-line">On top of that, the quality of the work is outstanding.<img class="annotate-underline" src="Pics/annotate-underline.png" alt="" aria-hidden="true"></span> She's always a pleasure to work with.</p>
     </blockquote>
     <figcaption class="testimonial-source">Ross Tavendale, <a href="https://typeamedia.net/" target="_blank" rel="noopener">Type A Media</a></figcaption>
   </figure>
