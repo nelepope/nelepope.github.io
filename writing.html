@@ -420,6 +420,21 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 .essay-thumb.cutout { background: var(--paper); }
 .essay-thumb.cutout img { object-fit: contain; }
 
+/* pink duotone, as the thumbnails used to carry */
+.essay-thumb.tinted { isolation: isolate; }
+
+.essay-thumb.tinted::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #d44237;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.essay-thumb.tinted img { filter: grayscale(1) contrast(1.02); }
+
 .essay-thumb::after {
   content: '';
   position: absolute;
@@ -512,8 +527,8 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 <section class="archive">
   <div class="essays-grid">
     <a href="attention-economy.html" class="essay-item">
-      <div class="essay-thumb edited cutout">
-        <img src="Pics/attention-economy-thumb.png" alt="A wild boar beside a pink tiered cake" loading="lazy">
+      <div class="essay-thumb edited">
+        <img src="Pics/attention-economy-thumb.jpg" alt="A wild boar beside a pink tiered cake" loading="lazy">
       </div>
       <div class="essay-content">
         <p class="essay-tag">Copywriting</p>
@@ -533,9 +548,9 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
       <span class="essay-arrow">Read →</span>
       </div>
     </a>
-    <a href="the-blue-epoch.html" class="essay-item no-duotone">
-      <div class="essay-thumb">
-        <img src="https://substackcdn.com/image/fetch/$s_!AHIq!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa83df400-622e-4eb1-b410-49be8a2c1f23_1600x1161.jpeg" alt="Yves Klein, 1961" loading="lazy">
+    <a href="the-blue-epoch.html" class="essay-item">
+      <div class="essay-thumb edited">
+        <img src="Pics/blue-epoch-thumb.jpg" alt="Yves Klein, 1961" loading="lazy">
       </div>
       <div class="essay-content">
         <p class="essay-tag">Art &amp; History</p>
@@ -545,7 +560,7 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
       </div>
     </a>
     <a href="retinoids.html" class="essay-item">
-      <div class="essay-thumb">
+      <div class="essay-thumb tinted">
         <img src="Pics/retinoids-hero.jpg" alt="Close-up of a face in soft golden light" loading="lazy">
       </div>
       <div class="essay-content">
