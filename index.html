@@ -1500,10 +1500,11 @@
   /* MOBILE TYPE SCALE */
   @media (max-width: 760px) {
     /* hero rhythm, measured off the mobile artwork */
-    .hero-headline { margin-bottom: 1.9rem; }
-    .hero-kicker { font-size: 1rem; margin-bottom: 1.1rem; }
-    .hero-statement { margin-bottom: 1.2rem; }
-    .hero-statement p { font-size: 1.18rem; line-height: 1.42; }
+    .hero { font-size: clamp(2.4rem, 16vw, 4.2rem); }
+    .hero-headline { max-width: 15.5rem; margin-bottom: 0.65rem; }
+    .hero-kicker { font-size: 1rem; margin-bottom: 0.45rem; }
+    .hero-statement { max-width: 15.5rem; margin-bottom: 1.35rem; }
+    .hero-statement p { font-size: 1.18rem; line-height: 1.36; }
     .hero-cta { font-size: 0.84rem; }
 
     .service-question { font-size: 1.18rem; line-height: 1.5; }
@@ -1714,6 +1715,16 @@
   </div>
 </section>
 
+
+<section class="testimonial-section reveal" id="testimonial-simonetta">
+  <figure class="testimonial">
+    <blockquote class="testimonial-quote">
+      <p class="testimonial-lead"><svg class="testimonial-mark" viewBox="0 0 122 81" aria-hidden="true" focusable="false" fill="currentColor"><g transform="rotate(180 61 40.5)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/><g transform="translate(66,0)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/></g></g></svg>Working with Pen has been beyond easy.</p>
+      <p class="testimonial-body">She asked the most interesting questions about my project and created something that conveys everything the project represents. In no time my website was ready to go with updates that make it far more engaging.</p>
+    </blockquote>
+    <figcaption class="testimonial-source">Simonetta Gibejova</figcaption>
+  </figure>
+</section>
 
 <div class="about-strip" id="about">
   <p class="section-label about-label">About</p>
