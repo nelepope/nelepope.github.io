@@ -1365,7 +1365,13 @@
   @media (max-width: 600px) { .hero-headline { white-space: normal; line-height: 1.05; } }
   @media (max-width: 600px) { .hero-kicker, .hero-actions, .hero-statement { margin-left: 0; } }
   @media (max-width: 900px) {
-    .hero-star { display: none; }
+    .hero-star {
+      position: static;
+      display: block;
+      width: 2.4rem;
+      height: 2.4rem;
+      margin: 0 0 1.1rem;
+    }
     .hero-statement { max-width: 42rem; }
     .hero-statement p { white-space: normal; line-height: 1.35; }
   }
