@@ -1302,6 +1302,30 @@
     body > footer { padding: 1.5rem 1.25rem; }
   }
 
+  /* MOBILE */
+  @media (max-width: 760px) {
+    /* no room for the asterisks beside the questions */
+    .service-star { display: none; }
+    .service-row { grid-template-columns: minmax(0, 1fr); }
+    .service-question,
+    .service-desc,
+    .service-name { grid-column: 1; }
+    .service-name { padding-left: 0; }
+
+    /* essays read as a list: small thumbnail, text alongside */
+    .essays-grid { grid-template-columns: 1fr; gap: 1.6rem; }
+    .essay-item {
+      display: grid;
+      grid-template-columns: 92px minmax(0, 1fr);
+      gap: 1rem;
+      align-items: start;
+    }
+    .essay-thumb { aspect-ratio: 1 / 1; }
+    .essay-content { margin-top: 0; gap: 0.25rem; }
+    .essay-title { font-size: 1.05rem; line-height: 1.3; }
+    .essay-desc { font-size: 0.78rem; line-height: 1.5; }
+  }
+
   /* Touch / no-hover devices: hide custom cursor */
   @media (hover: none), (pointer: coarse) {
     body { cursor: auto; }
