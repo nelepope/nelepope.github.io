@@ -550,6 +550,18 @@
     color: var(--headline);
   }
 
+  .services-more {
+    display: none;
+    margin-top: 2.25rem;
+    text-align: right;
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #d44237;
+    text-decoration: none;
+  }
+
   .service-caret {
     width: 0.62em;
     height: 0.74em;
@@ -1303,13 +1315,34 @@
 
   /* MOBILE */
   @media (max-width: 760px) {
-    /* no room for the asterisks beside the questions */
-    .service-star { display: none; }
-    .service-row { grid-template-columns: minmax(0, 1fr); }
-    .service-question,
+    /* services: highlighted questions, asterisk alongside */
+    .service-row { grid-template-columns: 2.4rem minmax(0, 1fr); column-gap: 0.9rem; }
+    .service-star { display: block; width: 2.1rem; height: 2.1rem; margin-top: 0.15rem; }
+    .service-question { grid-column: 2; }
     .service-desc,
-    .service-name { grid-column: 1; }
+    .service-name { grid-column: 2; }
     .service-name { padding-left: 0; }
+
+    .services-list { row-gap: 3.4rem; }
+    .service-question { font-size: 1.22rem; line-height: 1.45; }
+    .service-desc { font-size: 0.95rem; margin-top: 0.55rem; }
+    .service-name { font-size: 1rem; gap: 0.65rem; margin-top: 0.9rem; }
+
+    .service-question .hl {
+      background: #d44237;
+      color: #fff;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+      padding: 0.1em 0.3em;
+    }
+
+    .service-question em { text-decoration-color: rgba(255,255,255,0.85); }
+
+    /* SEO ahead of AI editing, as in the mobile layout */
+    .service-row:nth-child(2) { grid-row: 3; }
+    .service-row:nth-child(3) { grid-row: 2; }
+
+    .services-more { display: block; }
 
     /* essays read as a list: small thumbnail, text alongside */
     .essays-grid { grid-template-columns: 1fr; gap: 1.6rem; }
@@ -1434,6 +1467,28 @@
   /* mobile: no scroll cue */
   @media (max-width: 760px) {
     .hero-scroll { display: none; }
+
+    /* the name fills the width and breaks over three lines */
+    .hero { font-size: clamp(2.6rem, 19.5vw, 5rem); }
+    .hero-headline { white-space: normal; line-height: 1.04; }
+    .hero-first { display: block; }
+
+    /* the turning asterisk lives inside the O */
+    .hero-star { display: none; }
+    .hero-o-star {
+      color: #d44237;
+      width: 0.26em;
+      height: 0.26em;
+      transform: translate(-50%, -50%) rotate(var(--star-turn, 0deg));
+    }
+
+    .hero-cta {
+      background: #d44237;
+      color: #fff;
+      padding: 0.3rem 0.55rem 0.35rem;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
   }
 </style>
 </head>
@@ -1477,23 +1532,24 @@
   <div class="services-list">
     <a href="services.html" class="service-row reveal reveal-delay-1">
       <svg class="service-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M23 12 H1"/><path d="M21.53 17.5 L2.47 6.5"/><path d="M17.5 21.53 L6.5 2.47"/><path d="M12 23 V1"/><path d="M6.5 21.53 L17.5 2.47"/><path d="M2.47 17.5 L21.53 6.5"/></svg>
-      <p class="service-question">Want to know <em>where and how your website is holding you back</em> from converting visitors into customers?</p>
+      <p class="service-question"><span class="hl">Want to know <em>where and how your website is holding you back</em> from converting visitors into customers?</span></p>
       <p class="service-desc">I provide an objective review of your current website copy</p>
       <span class="service-name"><svg class="service-caret" viewBox="0 0 10 12" aria-hidden="true" focusable="false" fill="currentColor"><path d="M0 0 L10 6 L0 12 Z"/></svg>Web-copy auditing</span>
     </a>
     <a href="services.html#enquire" class="service-row reveal reveal-delay-2">
       <svg class="service-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M23 12 H1"/><path d="M21.53 17.5 L2.47 6.5"/><path d="M17.5 21.53 L6.5 2.47"/><path d="M12 23 V1"/><path d="M6.5 21.53 L17.5 2.47"/><path d="M2.47 17.5 L21.53 6.5"/></svg>
-      <p class="service-question">Want to transform your AI drafts into <em>engaging copy</em>?</p>
+      <p class="service-question"><span class="hl">Want to transform your AI drafts into <em>engaging copy</em>?</span></p>
       <p class="service-desc">I turn AI slop into something worth reading</p>
       <span class="service-name"><svg class="service-caret" viewBox="0 0 10 12" aria-hidden="true" focusable="false" fill="currentColor"><path d="M0 0 L10 6 L0 12 Z"/></svg>AI draft editing</span>
     </a>
     <a href="seo-copywriting.html" class="service-row reveal reveal-delay-3">
       <svg class="service-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M23 12 H1"/><path d="M21.53 17.5 L2.47 6.5"/><path d="M17.5 21.53 L6.5 2.47"/><path d="M12 23 V1"/><path d="M6.5 21.53 L17.5 2.47"/><path d="M2.47 17.5 L21.53 6.5"/></svg>
-      <p class="service-question">Want to <em>rank higher</em> in search results?</p>
+      <p class="service-question"><span class="hl">Want to <em>rank higher</em> in search results?</span></p>
       <p class="service-desc">I write compelling, engaging content and implement SEO strategies to help you show up in search engines</p>
       <span class="service-name"><svg class="service-caret" viewBox="0 0 10 12" aria-hidden="true" focusable="false" fill="currentColor"><path d="M0 0 L10 6 L0 12 Z"/></svg>SEO copywriting</span>
     </a>
   </div>
+  <a class="services-more" href="services.html">Read more &gt;</a>
 </section>
 
 
