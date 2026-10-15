@@ -352,10 +352,12 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 .service-list { max-width: 680px; margin: 0; padding-left: 0; list-style: none; }
 .service-list li { position: relative; padding-left: 1.6rem; font-size: 0.95rem; line-height: 1.75; color: var(--ink-mid); margin-bottom: 0.7rem; }
 .standout-lead {
+  display: block;
+  margin-bottom: 0.35rem;
   font-family: var(--sans);
   font-weight: 300;
-  font-size: 1.02rem;
-  color: var(--ink);
+  font-size: 0.92rem;
+  color: var(--ink-mid);
 }
 .u-pink {
   text-decoration: underline;
@@ -366,11 +368,15 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 .skel-standout {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(1.15rem, 2vw, 1.5rem);
-  line-height: 1.55;
+  font-size: clamp(1.25rem, 2.3vw, 1.7rem);
+  line-height: 1.5;
   color: #d44237;
-  margin: 2.5rem 0;
-  max-width: 44rem;
+  text-align: center;
+  max-width: 34rem;
+  margin: 3.5rem auto;
+  padding: 2rem 0;
+  border-top: 0.5px solid rgba(212, 66, 55, 0.3);
+  border-bottom: 0.5px solid rgba(212, 66, 55, 0.3);
 }
 .service-price-note { font-size: 0.88rem; color: var(--ink-mid); line-height: 1.7; margin-top: 0.5rem; max-width: 36rem; }
 .service-price { font-family: var(--serif-light); font-style: italic; font-weight: 400; font-size: clamp(1.15rem, 2.2vw, 1.5rem); color: var(--headline); line-height: 1.3; margin-top: 1.25rem; }
