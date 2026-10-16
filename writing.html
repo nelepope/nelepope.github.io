@@ -539,6 +539,94 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
   .essay-title { font-size: 1.05rem; line-height: 1.3; }
   .essay-desc { font-size: 0.78rem; line-height: 1.5; }
 }
+
+/* WRITERS' GROUP */
+.ffb {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 4rem 6rem;
+}
+
+.ffb .section-label {
+  font-family: var(--sans);
+  font-size: clamp(1rem, 1.45vw, 1.35rem);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--headline);
+  margin-bottom: 1.6rem;
+}
+
+.ffb-link {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 2rem;
+  align-items: center;
+  max-width: 44rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.ffb-thumb {
+  display: block;
+  aspect-ratio: 5 / 4;
+  overflow: hidden;
+  position: relative;
+}
+
+.ffb-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.ffb-thumb::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 0.5px solid var(--rule);
+  pointer-events: none;
+}
+
+.ffb-text { display: block; }
+
+.ffb-title {
+  display: block;
+  font-family: var(--serif-light);
+  font-size: 1.35rem;
+  line-height: 1.25;
+  color: var(--headline);
+  transition: font-style 0.2s;
+}
+
+.ffb-link:hover .ffb-title { font-style: italic; }
+
+.ffb-desc {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--ink-mid);
+}
+
+.ffb-cta {
+  display: inline-block;
+  margin-top: 0.9rem;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--headline);
+  border-bottom: 0.5px solid transparent;
+  padding-bottom: 0.2rem;
+  transition: border-color 0.3s var(--ease-out);
+}
+
+.ffb-link:hover .ffb-cta { border-color: var(--headline); }
+
+@media (max-width: 760px) {
+  .ffb { padding: 0 1.25rem 3.5rem; }
+  .ffb-link { grid-template-columns: 110px minmax(0, 1fr); gap: 1rem; align-items: start; }
+  .ffb-title { font-size: 1.1rem; }
+  .ffb-desc { font-size: 0.8rem; }
+  .ffb-cta { font-size: 0.88rem; margin-top: 0.6rem; }
+}
 </style>
 
 <script type="application/ld+json">
@@ -655,18 +743,19 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
       <span class="essay-arrow">Read →</span>
       </div>
     </a>
-    <a href="https://firstfewbooks.com" target="_blank" rel="noopener" class="essay-item">
-      <div class="essay-thumb edited">
-        <img src="Pics/first-few-books-quill.jpg" alt="A hand holding a quill" loading="lazy">
-      </div>
-      <div class="essay-content">
-        <p class="essay-tag">Writers' group</p>
-      <h2 class="essay-title">First Few Books</h2>
-      <p class="essay-desc">The writers' group I co-host in Primrose Hill &mdash; its members, their books and their writing.</p>
-      <span class="essay-arrow">Visit &rarr;</span>
-      </div>
-    </a>
   </div>
+</section>
+
+<section class="ffb">
+  <p class="section-label">Writers' group</p>
+  <a class="ffb-link" href="https://firstfewbooks.com" target="_blank" rel="noopener">
+    <span class="ffb-thumb"><img src="Pics/first-few-books-quill.jpg" alt="A hand holding a quill" loading="lazy"></span>
+    <span class="ffb-text">
+      <span class="ffb-title">First Few Books</span>
+      <span class="ffb-desc">The writers' group I co-host in Primrose Hill &mdash; its members, their books and their writing.</span>
+      <span class="ffb-cta">firstfewbooks.com &rarr;</span>
+    </span>
+  </a>
 </section>
 
 <footer>
