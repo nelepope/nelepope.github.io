@@ -347,6 +347,8 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 .audit-results[hidden], .audit-status[hidden] { display: none; }
 .audit-site { font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--headline); margin-bottom: 1.5rem; }
 .audit-shot { display: block; width: 100%; max-width: 820px; height: auto; border: 0.5px solid var(--rule); box-shadow: 0 12px 32px rgba(26,24,20,0.08); }
+.audit-emailed { margin-bottom: 2rem; font-family: var(--serif-light); font-style: italic; font-size: clamp(1.05rem, 1.8vw, 1.25rem); color: var(--headline); }
+.audit-emailed[hidden] { display: none; }
 .audit-purpose { max-width: 760px; margin-top: 3rem; font-family: var(--serif-light); font-style: italic; font-size: clamp(1.1rem, 2vw, 1.35rem); line-height: 1.5; color: var(--ink-mid); }
 .audit-purpose-label { display: block; margin-bottom: 0.6rem; font-family: var(--sans); font-style: normal; font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--headline); }
 .audit-heading { font-family: var(--serif-light); font-weight: 400; font-size: clamp(1.5rem, 3vw, 2rem); color: var(--headline); margin: 3rem 0 1.25rem; line-height: 1.2; }
@@ -409,6 +411,7 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 </section>
 
 <section class="audit-results" id="auditResults" hidden>
+  <p class="audit-emailed" id="auditEmailed" hidden></p>
   <p class="audit-site" id="auditSite"></p>
   <img class="audit-shot" id="auditShot" alt="">
 
@@ -543,6 +546,9 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
           return;
         }
         showAudit(result);
+        const emailed = document.getElementById('auditEmailed');
+        emailed.hidden = !result.emailed;
+        emailed.textContent = result.emailed ? 'A copy is on its way to ' + email.value.trim() + '.' : '';
         if (result.id) history.replaceState(null, '', '?audit=' + encodeURIComponent(result.id));
         results.scrollIntoView({ behavior: 'smooth' });
       } catch {
