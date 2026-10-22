@@ -397,12 +397,16 @@
     font-weight: 400;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--headline-deep);
+    color: #d44237;
     text-decoration: none;
-    transition: opacity 0.2s;
+    padding: 0.62em 1.2em;
+    border: 1px solid #d44237;
+    background: transparent;
+    transition: background-color 0.25s var(--ease-out), color 0.25s var(--ease-out);
   }
 
-  .hero-cta:hover { opacity: 0.55; }
+  .hero-cta:hover,
+  .hero-cta:focus-visible { background-color: #d44237; color: #fff5ef; }
 
   .hero-secondary {
     font-size: 0.68rem;
@@ -1527,6 +1531,7 @@
     .hero-cta {
       background: #d44237;
       color: #fff;
+      border: none;
       padding: 0.3rem 0.55rem 0.35rem;
       text-decoration: underline;
       text-underline-offset: 3px;
