@@ -206,7 +206,7 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .hero-star { opacity: 1; animation: none; transform: none; }
+    .hero-star { opacity: 1; animation: none; transform: translateX(-50%); }
     .nav-name { transition: none; }
   }
 
@@ -266,14 +266,14 @@
 
   /* HERO */
   .hero {
-    padding: 7.4vh 7.8% 4rem;
+    padding: 7.4vh 4rem 4rem;
     max-width: none;
     margin: 0;
     position: relative;
     display: grid;
     grid-template-columns: 1fr;
     align-content: start;
-    font-size: clamp(1.6rem, 9.75vw, 11rem);
+    font-size: clamp(2.4rem, 9.98vw, 9rem);
     min-height: calc(100vh - var(--nav-h, 84px));
     min-height: calc(100dvh - var(--nav-h, 84px));
   }
@@ -319,24 +319,37 @@
     pointer-events: none;
   }
   .hero-kicker {
-    font-size: clamp(0.82rem, 1.3vw, 1.45rem);
+    position: relative;
+    width: 100%;
+    font-family: var(--serif);
+    font-size: clamp(1.35rem, 6.16vw, 5.6rem);
     font-weight: 400;
-    letter-spacing: 0.16em;
+    line-height: 0.75;
+    letter-spacing: 0.035em;
     text-transform: uppercase;
     color: var(--headline-deep);
-    margin-left: 8.7vw;
-    margin-bottom: 1.7vh;
+    margin: 0.2em 0 0.78em;
   }
+
+  .hero-kicker span {
+    display: block;
+    animation: fadeUp 0.7s var(--ease-out) both;
+  }
+
+  .hero-kicker span:nth-child(1) { animation-delay: 0.45s; }
+  .hero-kicker span:nth-child(2) { animation-delay: 0.6s; }
+  .hero-kicker span:nth-child(3) { animation-delay: 0.75s; }
+  .hero-kicker span:nth-child(4) { animation-delay: 0.9s; }
   .hero-headline {
     font-family: var(--display);
     font-size: 1em;
     font-weight: 300;
     font-style: normal;
-    line-height: 1;
+    line-height: 0.61;
+    text-transform: uppercase;
     color: var(--headline-deep);
-    margin: 0 0 7.5vh;
+    margin: 0;
     letter-spacing: 0;
-    white-space: nowrap;
   }
   .hero-surname {
     font-style: normal;
@@ -349,79 +362,63 @@
     color: var(--headline);
     opacity: 0.78;
   }
-  .hero-statement {
-    position: relative;
-    margin-left: 11.8vw;
-    margin-bottom: 2.6vh;
-    max-width: 44rem;
-  }
-
   .hero-star {
     position: absolute;
-    left: -9.4rem;
-    top: -1.5rem;
-    width: 3.3rem;
-    height: 3.3rem;
+    left: 77%;
+    top: -0.1em;
+    width: 0.75em;
+    height: 0.75em;
     color: #d44237;
     pointer-events: none;
     transform-origin: 50% 50%;
     opacity: 0;
-    transform: rotate(var(--star-turn, 0deg));
-    animation: starIn 0.8s var(--ease-out) 3.95s forwards;
+    transform: translateX(-50%) rotate(var(--star-turn, 0deg));
+    animation: starIn 0.8s var(--ease-out) 1.4s forwards;
   }
 
   @keyframes starIn { to { opacity: 1; } }
-
-  .hero-statement .nb { white-space: nowrap; }
-
-  .hero-statement p {
-    text-wrap: pretty;
-    font-family: var(--serif-light);
-    font-size: clamp(1.15rem, 2.05vw, 2.1rem);
-    line-height: 1.45;
-    text-wrap: balance;
-    color: var(--headline-deep);
-  }
-
-  .hero-statement p + p { margin-top: 0.75rem; }
 
 
   .hero-actions {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    margin-left: 7.7vw;
+    justify-content: center;
+    width: 100%;
   }
   .hero-cta {
     display: inline-flex;
     align-items: center;
-    gap: 0.5em;
-    font-size: clamp(0.78rem, 1.25vw, 1.3rem);
+    gap: 0.9em;
+    font-size: clamp(0.8rem, 1.69vw, 1.6rem);
     font-style: italic;
     font-weight: 400;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #d44237;
+    color: var(--headline-deep);
     text-decoration: none;
   }
 
   .hero-cta-carets {
     display: inline-flex;
     flex: none;
-    color: #d44237;
+    color: var(--headline-deep);
     transition: transform 0.35s var(--ease-out);
   }
 
   .hero-cta-carets svg {
-    width: 0.56em;
-    height: 0.68em;
-    fill: currentColor;
+    width: 0.5em;
+    height: 0.95em;
   }
 
-  .hero-cta-carets svg + svg { margin-left: -0.16em; }
+  .hero-cta-carets svg + svg { margin-left: -0.02em; }
 
-  .hero-cta:hover .hero-cta-carets,
-  .hero-cta:focus-visible .hero-cta-carets { transform: translateX(0.28em); }
+  .hero-cta-carets--out { transform: scaleX(-1); }
+
+  .hero-cta:hover .hero-cta-carets--in,
+  .hero-cta:focus-visible .hero-cta-carets--in { transform: translateX(0.22em); }
+
+  .hero-cta:hover .hero-cta-carets--out,
+  .hero-cta:focus-visible .hero-cta-carets--out { transform: scaleX(-1) translateX(0.22em); }
 
   .hero-secondary {
     font-size: 0.68rem;
@@ -1285,9 +1282,7 @@
   }
 
   .hero-headline { animation: fadeUp 0.8s 0.1s var(--ease-out) both; }
-  .hero-kicker  { animation: fadeUp 0.7s 0.25s var(--ease-out) both; }
-  .hero-statement { animation: fadeUp 0.8s 1.95s var(--ease-out) both; }
-  .hero-actions { animation: fadeUp 0.8s 0.5s var(--ease-out) both; }
+  .hero-actions { animation: fadeUp 0.8s 1.1s var(--ease-out) both; }
 
   /* TABLET ≤ 900px */
   @media (max-width: 980px) {
@@ -1351,8 +1346,6 @@
     .hero { padding: 3rem 1.25rem 3rem; gap: var(--space-2); }
     .hero-portrait { width: 150px; }
     .hero { font-size: 2.2rem; }
-    .hero-headline { line-height: 1.1; }
-    .hero-kicker { font-size: 0.85rem; }
     section { padding: 2.5rem 1.25rem; }
 
     .essays-grid { grid-template-columns: 1fr; gap: 2rem; }
@@ -1444,36 +1437,10 @@
   #mainNav .nav-links a::after { display: none; }
 }
 
-  .hero-kicker {
-    overflow: hidden;
-    white-space: nowrap;
-    max-width: 0;
-    border-right: 2px solid currentColor;
-    animation: kickerType 1.8s steps(67) 0.4s forwards,
-               kickerCaret 0.7s step-end 0.4s 3,
-               kickerCaretOff 0.01s linear 2.9s forwards;
-  }
-  @keyframes kickerType { to { max-width: 48em; } }
-  @keyframes kickerCaret { 50% { border-right-color: transparent; } }
-  @keyframes kickerCaretOff { to { border-right-color: transparent; } }
-  .hero-first { font-style: italic; }
-  @media (max-width: 600px) { .hero-headline { white-space: normal; line-height: 1.05; } }
-  @media (max-width: 600px) { .hero-kicker, .hero-actions, .hero-statement { margin-left: 0; } }
+  .hero-first { display: block; font-style: italic; }
   @media (max-width: 900px) {
-    .hero-kicker {
-      white-space: normal;
-      max-width: 30rem;
-      border-right: 0;
-      animation: fadeUp 0.7s 0.25s var(--ease-out) both;
-    }
-    .hero-star {
-      position: static;
-      display: block;
-      width: 2.4rem;
-      height: 2.4rem;
-      margin: 0 0 1.1rem;
-    }
-    .hero-statement p { line-height: 1.38; }
+    .hero { padding: 7.4vh 1.75rem 3rem; }
+    .hero-star { display: none; }
   }
   .hero-o { position: relative; }
   .hero-o-star {
@@ -1487,13 +1454,11 @@
     pointer-events: none;
   }
   @media (prefers-reduced-motion: reduce) {
-    .hero-kicker { max-width: none; border-right: 0; animation: none; }
+    .hero-kicker span { animation: none; }
   }
   @media (max-width: 760px) {
-    /* the name fills the width and breaks over three lines */
-    .hero { font-size: clamp(2.6rem, 19.5vw, 5rem); }
-    .hero-headline { white-space: normal; line-height: 1.04; }
-    .hero-first { display: block; }
+    /* the name fills the width on two lines */
+    .hero { font-size: clamp(2rem, 16.5vw, 4.5rem); }
 
     /* the turning asterisk lives inside the O */
     .hero-star { display: none; }
@@ -1507,7 +1472,7 @@
     .hero-cta {
       background: #d44237;
       color: #fff;
-      padding: 0.3rem 0.55rem 0.35rem;
+      padding: 0.3rem 0.6rem 0.35rem;
     }
 
     .hero-cta-carets { color: #fff; }
@@ -1521,12 +1486,9 @@
   /* MOBILE TYPE SCALE */
   @media (max-width: 760px) {
     /* hero rhythm, measured off the mobile artwork */
-    .hero { font-size: clamp(2.4rem, 16vw, 4.2rem); }
-    .hero-headline { max-width: 15.5rem; margin-bottom: 0.65rem; line-height: 1.01; }
-    .hero-kicker { font-size: 1rem; margin-bottom: 0.45rem; }
-    .hero-statement { max-width: 15.5rem; margin-bottom: 1.35rem; }
-    .hero-statement p { font-size: 1.18rem; line-height: 1.36; }
-    .hero-cta { font-size: 0.84rem; }
+    .hero-headline { margin-bottom: 0.3em; }
+    .hero-kicker { font-size: clamp(1.05rem, 8vw, 2.4rem); letter-spacing: 0.04em; margin-bottom: 1em; }
+    .hero-cta { font-size: 0.95rem; }
 
     .audience-title { font-size: 1.12rem; }
     .audience-desc { font-size: 0.94rem; }
@@ -1588,13 +1550,15 @@
 <div class="hero">
   <div class="hero-text">
     <p class="hero-headline"><span class="hero-first">Penelope</span> <span class="hero-surname">Saint-Ge<span class="hero-o">O<svg class="hero-o-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M23 12 H1"/><path d="M21.53 17.5 L2.47 6.5"/><path d="M17.5 21.53 L6.5 2.47"/><path d="M12 23 V1"/><path d="M6.5 21.53 L17.5 2.47"/><path d="M2.47 17.5 L21.53 6.5"/></svg></span>rge</span></p>
-    <h1 class="hero-kicker">Content writer, editor, creative thinker and professional persuader</h1>
-    <div class="hero-statement">
+    <h1 class="hero-kicker">
+      <span>Copywriter</span>
+      <span>Editor</span>
+      <span>Creative thinker</span>
+      <span>Professional persuader</span>
       <svg class="hero-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M23 12 H1"/><path d="M21.53 17.5 L2.47 6.5"/><path d="M17.5 21.53 L6.5 2.47"/><path d="M12 23 V1"/><path d="M6.5 21.53 L17.5 2.47"/><path d="M2.47 17.5 L21.53 6.5"/></svg>
-      <p>I write for <span class="nb">purpose-led</span> brands and independent arts organisations.</p>
-    </div>
+    </h1>
     <div class="hero-actions">
-      <a href="#contact" class="hero-cta"><span class="hero-cta-carets" aria-hidden="true"><svg viewBox="0 0 10 12" focusable="false"><path d="M0 0 L10 6 L0 12 Z"/></svg><svg viewBox="0 0 10 12" focusable="false"><path d="M0 0 L10 6 L0 12 Z"/></svg></span><span class="hero-cta-label">Complimentary website review</span></a>
+      <a href="#contact" class="hero-cta"><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span><span class="hero-cta-label">Get a free website audit</span><span class="hero-cta-carets hero-cta-carets--out" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span></a>
     </div>
   </div>
 </div>
