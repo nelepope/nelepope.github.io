@@ -334,6 +334,12 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 
 /* AUDIT */
 .audit-form { max-width: 560px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.75rem; }
+.audit-optin { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.88rem; color: var(--ink-mid); cursor: pointer; }
+.audit-optin input { appearance: none; -webkit-appearance: none; flex: none; width: 1rem; height: 1rem; margin-top: 0.25rem; border: 0.5px solid var(--headline); border-radius: 2px; background: transparent; cursor: pointer; display: grid; place-content: center; }
+.audit-optin input::after { content: ''; width: 0.5rem; height: 0.5rem; background: var(--headline); transform: scale(0); transition: transform 0.15s var(--ease-out); }
+.audit-optin input:checked::after { transform: scale(1); }
+.audit-optin input:focus-visible { outline: 1px solid var(--headline); outline-offset: 2px; }
+.audit-privacy { margin-top: -0.75rem; font-size: 0.78rem; line-height: 1.6; color: var(--ink-light); }
 .audit-error { min-height: 1.5em; font-size: 0.85rem; color: #d44237; text-align: center; }
 .form-submit:disabled { opacity: 0.4; cursor: default; }
 .audit-status { text-align: center; font-family: var(--serif-light); font-style: italic; font-size: clamp(1.1rem, 2vw, 1.35rem); color: var(--headline); }
@@ -387,6 +393,15 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
       <label for="audit-domain">Your website</label>
       <input type="text" id="audit-domain" name="domain" placeholder="yourwebsite.com" autocomplete="url" inputmode="url" autocapitalize="off" spellcheck="false" required>
     </div>
+    <div class="form-group">
+      <label for="audit-email">Your email</label>
+      <input type="email" id="audit-email" name="email" placeholder="your@email.com" autocomplete="email" autocapitalize="off" spellcheck="false" required>
+    </div>
+    <label class="audit-optin">
+      <input type="checkbox" id="audit-optin" name="optIn">
+      <span>Happy to hear from Pen about copywriting now and then</span>
+    </label>
+    <p class="audit-privacy">I'll email you a copy of your audit and may follow up once about it. I won't share your details with anyone.</p>
     <p class="audit-error" id="auditError" role="alert"></p>
     <button type="submit" class="form-submit" id="auditSubmit">Audit my home page</button>
   </form>
@@ -442,6 +457,8 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
     const AUDIT_SERVICE = 'https://home-page-audit.vercel.app/api/audit';
     const form = document.getElementById('auditForm');
     const domain = document.getElementById('audit-domain');
+    const email = document.getElementById('audit-email');
+    const optIn = document.getElementById('audit-optin');
     const error = document.getElementById('auditError');
     const submit = document.getElementById('auditSubmit');
     const status = document.getElementById('auditStatus');
@@ -470,6 +487,10 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
         error.textContent = 'Pop your website address in first, e.g. yourwebsite.com.';
         return;
       }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+        error.textContent = 'Add your email address so I can send you a copy.';
+        return;
+      }
 
       submit.disabled = true;
       results.hidden = true;
@@ -480,7 +501,7 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
         const response = await fetch(AUDIT_SERVICE, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ domain: domain.value }),
+          body: JSON.stringify({ domain: domain.value, email: email.value, optIn: optIn.checked }),
         });
         const result = await response.json();
         if (!result.ok) {
