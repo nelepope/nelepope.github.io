@@ -464,6 +464,40 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
     const status = document.getElementById('auditStatus');
     const results = document.getElementById('auditResults');
 
+    function showAudit(result) {
+      const host = new URL(result.homePage).hostname;
+      document.getElementById('auditSite').textContent = host;
+      const shot = document.getElementById('auditShot');
+      shot.src = result.screenshot.dataUrl;
+      shot.alt = 'Screenshot of the home page of ' + host;
+      document.getElementById('auditPurpose').textContent = result.purpose;
+      renderItems(document.getElementById('auditIssues'), result.issues, item => [
+        ['p', item.problem],
+        ['p', item.fix, 'audit-fix'],
+      ]);
+      renderItems(document.getElementById('auditStrengths'), result.strengths, item => [['p', item.why]]);
+      results.hidden = false;
+    }
+
+    // Opening a saved audit from its private link (?audit=...).
+    const savedId = new URLSearchParams(location.search).get('audit');
+    if (savedId) {
+      status.hidden = false;
+      status.textContent = 'Opening your audit…';
+      fetch(AUDIT_SERVICE + '?id=' + encodeURIComponent(savedId))
+        .then(response => response.json())
+        .then(result => {
+          if (!result.ok) {
+            error.textContent = result.message;
+            return;
+          }
+          showAudit(result);
+          results.scrollIntoView({ behavior: 'smooth' });
+        })
+        .catch(() => { error.textContent = 'Something went wrong opening your audit. Please try again in a minute.'; })
+        .finally(() => { status.hidden = true; });
+    }
+
     function renderItems(list, items, body) {
       list.replaceChildren(...items.map(item => {
         const li = document.createElement('li');
@@ -508,17 +542,8 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
           error.textContent = result.message || 'Something went wrong. Please try again in a minute.';
           return;
         }
-        document.getElementById('auditSite').textContent = new URL(result.homePage).hostname;
-        const shot = document.getElementById('auditShot');
-        shot.src = result.screenshot.dataUrl;
-        shot.alt = 'Screenshot of the home page of ' + new URL(result.homePage).hostname;
-        document.getElementById('auditPurpose').textContent = result.purpose;
-        renderItems(document.getElementById('auditIssues'), result.issues, item => [
-          ['p', item.problem],
-          ['p', item.fix, 'audit-fix'],
-        ]);
-        renderItems(document.getElementById('auditStrengths'), result.strengths, item => [['p', item.why]]);
-        results.hidden = false;
+        showAudit(result);
+        if (result.id) history.replaceState(null, '', '?audit=' + encodeURIComponent(result.id));
         results.scrollIntoView({ behavior: 'smooth' });
       } catch {
         error.textContent = 'Something went wrong. Please try again in a minute.';
