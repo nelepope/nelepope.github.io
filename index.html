@@ -391,7 +391,9 @@
     margin-left: 7.7vw;
   }
   .hero-cta {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
     font-size: clamp(0.78rem, 1.25vw, 1.3rem);
     font-style: italic;
     font-weight: 400;
@@ -399,14 +401,25 @@
     text-transform: uppercase;
     color: #d44237;
     text-decoration: none;
-    padding: 0.62em 1.2em;
-    border: 1px solid #d44237;
-    background: transparent;
-    transition: background-color 0.25s var(--ease-out), color 0.25s var(--ease-out);
   }
 
-  .hero-cta:hover,
-  .hero-cta:focus-visible { background-color: #d44237; color: #fff5ef; }
+  .hero-cta-carets {
+    display: inline-flex;
+    flex: none;
+    color: #d44237;
+    transition: transform 0.35s var(--ease-out);
+  }
+
+  .hero-cta-carets svg {
+    width: 0.56em;
+    height: 0.68em;
+    fill: currentColor;
+  }
+
+  .hero-cta-carets svg + svg { margin-left: -0.16em; }
+
+  .hero-cta:hover .hero-cta-carets,
+  .hero-cta:focus-visible .hero-cta-carets { transform: translateX(0.28em); }
 
   .hero-secondary {
     font-size: 0.68rem;
@@ -1531,8 +1544,12 @@
     .hero-cta {
       background: #d44237;
       color: #fff;
-      border: none;
       padding: 0.3rem 0.55rem 0.35rem;
+    }
+
+    .hero-cta-carets { color: #fff; }
+
+    .hero-cta-label {
       text-decoration: underline;
       text-underline-offset: 3px;
     }
@@ -1614,7 +1631,7 @@
       <p>Content writer and professional persuader for purpose-led brands and independent arts and community organisations.</p>
     </div>
     <div class="hero-actions">
-      <a href="#contact" class="hero-cta">Complimentary website review</a>
+      <a href="#contact" class="hero-cta"><span class="hero-cta-carets" aria-hidden="true"><svg viewBox="0 0 10 12" focusable="false"><path d="M0 0 L10 6 L0 12 Z"/></svg><svg viewBox="0 0 10 12" focusable="false"><path d="M0 0 L10 6 L0 12 Z"/></svg></span><span class="hero-cta-label">Complimentary website review</span></a>
     </div>
   </div>
   <a class="hero-scroll" href="#writing">
