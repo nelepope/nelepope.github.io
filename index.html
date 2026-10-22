@@ -573,6 +573,34 @@
 
   .service-row:hover .service-caret { transform: translateX(4px); }
 
+  /* WHO I WORK WITH */
+  .audience-section {
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  .audience-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 3.5rem;
+    row-gap: 2.75rem;
+  }
+
+  .audience-title {
+    font-family: var(--serif);
+    font-size: clamp(1.15rem, 1.7vw, 1.55rem);
+    font-weight: 400;
+    line-height: 1.35;
+    color: var(--headline-deep);
+  }
+
+  .audience-desc {
+    margin-top: 0.6rem;
+    font-size: clamp(0.85rem, 1.15vw, 1.05rem);
+    line-height: 1.6;
+    color: var(--ink);
+  }
+
   /* TESTIMONIAL */
   .testimonial-section {
     max-width: 1180px;
@@ -719,11 +747,13 @@
   #writing .section-header,
   #projects .section-header,
   #services .section-header,
+  #audience .section-header,
   #about .about-label { align-items: baseline; margin-bottom: 1.6rem; }
 
   #writing .section-label,
   #projects .section-label,
   #services .section-label,
+  #audience .section-label,
   #about .about-label {
     font-family: var(--sans);
     font-size: clamp(1rem, 1.45vw, 1.35rem);
@@ -1265,6 +1295,7 @@
     .section-count { font-size: 0.78rem; }
 
     .essays-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem 1rem; }
+    .audience-list { grid-template-columns: 1fr; row-gap: 2rem; }
     .services-list { grid-template-columns: 1fr; row-gap: 2.75rem; }
     .service-row:nth-child(1) { grid-column: 1; grid-row: 1; }
     .service-row:nth-child(2) { grid-column: 1; grid-row: 2; }
@@ -1512,6 +1543,9 @@
     .hero-statement p { font-size: 1.18rem; line-height: 1.36; }
     .hero-cta { font-size: 0.84rem; }
 
+    .audience-title { font-size: 1.12rem; }
+    .audience-desc { font-size: 0.94rem; }
+
     .service-question { font-size: 1.18rem; line-height: 1.5; }
     .service-desc { font-size: 0.94rem; }
     .service-name { font-size: 0.95rem; }
@@ -1583,6 +1617,23 @@
     <span><i>scroll</i> <i>down</i> <i>for</i> <i>good</i> <i>things</i></span>
   </a>
 </div>
+
+
+<section class="audience-section reveal" id="audience">
+  <div class="section-header">
+    <p class="section-label">Who I work with</p>
+  </div>
+  <div class="audience-list">
+    <div class="audience-item reveal reveal-delay-1">
+      <p class="audience-title">Purpose-led independent brands</p>
+      <p class="audience-desc">Food, drink, beauty, fashion and homeware brands making things better: organic, refillable, recycled, fairly traded, cruelty-free or made in Britain.</p>
+    </div>
+    <div class="audience-item reveal reveal-delay-2">
+      <p class="audience-title">Private arts organisations</p>
+      <p class="audience-desc">Independent venues, theatres, galleries, festivals, concert series and studios.</p>
+    </div>
+  </div>
+</section>
 
 
 <section class="services-section reveal" id="services">
