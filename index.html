@@ -319,7 +319,7 @@
     pointer-events: none;
   }
   .hero-kicker {
-    font-size: clamp(0.95rem, 1.64vw, 1.8rem);
+    font-size: clamp(0.82rem, 1.3vw, 1.45rem);
     font-weight: 400;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -353,7 +353,7 @@
     position: relative;
     margin-left: 11.8vw;
     margin-bottom: 2.6vh;
-    max-width: 36rem;
+    max-width: 44rem;
   }
 
   .hero-star {
@@ -1449,17 +1449,23 @@
     white-space: nowrap;
     max-width: 0;
     border-right: 2px solid currentColor;
-    animation: kickerType 1.45s steps(19) 0.4s forwards,
+    animation: kickerType 1.8s steps(67) 0.4s forwards,
                kickerCaret 0.7s step-end 0.4s 3,
-               kickerCaretOff 0.01s linear 2.5s forwards;
+               kickerCaretOff 0.01s linear 2.9s forwards;
   }
-  @keyframes kickerType { to { max-width: 13.6em; } }
+  @keyframes kickerType { to { max-width: 48em; } }
   @keyframes kickerCaret { 50% { border-right-color: transparent; } }
   @keyframes kickerCaretOff { to { border-right-color: transparent; } }
   .hero-first { font-style: italic; }
   @media (max-width: 600px) { .hero-headline { white-space: normal; line-height: 1.05; } }
   @media (max-width: 600px) { .hero-kicker, .hero-actions, .hero-statement { margin-left: 0; } }
   @media (max-width: 900px) {
+    .hero-kicker {
+      white-space: normal;
+      max-width: 30rem;
+      border-right: 0;
+      animation: fadeUp 0.7s 0.25s var(--ease-out) both;
+    }
     .hero-star {
       position: static;
       display: block;
@@ -1608,10 +1614,10 @@
 <div class="hero">
   <div class="hero-text">
     <p class="hero-headline"><span class="hero-first">Penelope</span> <span class="hero-surname">Saint-Ge<span class="hero-o">O<svg class="hero-o-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M23 12 H1"/><path d="M21.53 17.5 L2.47 6.5"/><path d="M17.5 21.53 L6.5 2.47"/><path d="M12 23 V1"/><path d="M6.5 21.53 L17.5 2.47"/><path d="M2.47 17.5 L21.53 6.5"/></svg></span>rge</span></p>
-    <h1 class="hero-kicker">Copywriter &amp; Editor</h1>
+    <h1 class="hero-kicker">Content writer, editor, creative thinker and professional persuader</h1>
     <div class="hero-statement">
       <svg class="hero-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M23 12 H1"/><path d="M21.53 17.5 L2.47 6.5"/><path d="M17.5 21.53 L6.5 2.47"/><path d="M12 23 V1"/><path d="M6.5 21.53 L17.5 2.47"/><path d="M2.47 17.5 L21.53 6.5"/></svg>
-      <p>Content writer and professional persuader for <span class="nb">purpose-led</span> brands and independent arts organisations.</p>
+      <p>I write for <span class="nb">purpose-led</span> brands and independent arts organisations.</p>
     </div>
     <div class="hero-actions">
       <a href="#contact" class="hero-cta"><span class="hero-cta-carets" aria-hidden="true"><svg viewBox="0 0 10 12" focusable="false"><path d="M0 0 L10 6 L0 12 Z"/></svg><svg viewBox="0 0 10 12" focusable="false"><path d="M0 0 L10 6 L0 12 Z"/></svg></span><span class="hero-cta-label">Complimentary website review</span></a>
