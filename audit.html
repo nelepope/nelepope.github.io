@@ -341,6 +341,18 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 .audit-results[hidden], .audit-status[hidden] { display: none; }
 .audit-site { font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--headline); margin-bottom: 1.5rem; }
 .audit-shot { display: block; width: 100%; max-width: 820px; height: auto; border: 0.5px solid var(--rule); box-shadow: 0 12px 32px rgba(26,24,20,0.08); }
+.audit-heading { font-family: var(--serif-light); font-weight: 400; font-size: clamp(1.5rem, 3vw, 2rem); color: var(--headline); margin: 3rem 0 1.25rem; line-height: 1.2; }
+.audit-list { list-style: none; max-width: 760px; counter-reset: audit; }
+.audit-item { position: relative; padding: 1.4rem 0 1.4rem 2.6rem; border-top: 0.5px solid var(--rule); }
+.audit-item::before { position: absolute; left: 0; top: 1.4rem; font-family: var(--serif); font-style: italic; font-size: 1.35rem; line-height: 1.2; color: var(--headline); }
+.audit-issues .audit-item { counter-increment: audit; }
+.audit-issues .audit-item::before { content: counter(audit); color: #d44237; }
+.audit-strengths .audit-item::before { content: '\2726'; font-style: normal; font-size: 1rem; line-height: 1.9; }
+.audit-item h3 { font-family: var(--serif-light); font-weight: 400; font-size: clamp(1.15rem, 2vw, 1.35rem); line-height: 1.3; color: var(--ink); margin-bottom: 0.6rem; }
+.audit-quote { font-family: var(--serif); font-style: italic; font-weight: 300; color: var(--ink-mid); margin-bottom: 0.6rem; }
+.audit-item p { font-size: 0.98rem; line-height: 1.75; }
+.audit-item p + p { margin-top: 0.5rem; }
+.audit-fix { color: var(--headline); }
 @media (max-width: 980px) { .audit-results { padding: 2.5rem 1.5rem; } }
 </style>
 </head>
@@ -382,6 +394,12 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 <section class="audit-results" id="auditResults" hidden>
   <p class="audit-site" id="auditSite"></p>
   <img class="audit-shot" id="auditShot" alt="">
+
+  <h2 class="audit-heading">What's holding it back</h2>
+  <ol class="audit-list audit-issues" id="auditIssues"></ol>
+
+  <h2 class="audit-heading">What's working</h2>
+  <ul class="audit-list audit-strengths" id="auditStrengths"></ul>
 </section>
 
 <footer>
@@ -425,6 +443,22 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
     const status = document.getElementById('auditStatus');
     const results = document.getElementById('auditResults');
 
+    function renderItems(list, items, body) {
+      list.replaceChildren(...items.map(item => {
+        const li = document.createElement('li');
+        li.className = 'audit-item';
+        const parts = [['h3', item.title]];
+        if (item.quote) parts.push(['p', '\u201c' + item.quote + '\u201d', 'audit-quote']);
+        for (const [tag, text, className] of [...parts, ...body(item)]) {
+          const el = document.createElement(tag);
+          el.textContent = text;
+          if (className) el.className = className;
+          li.append(el);
+        }
+        return li;
+      }));
+    }
+
     form.addEventListener('submit', async e => {
       e.preventDefault();
       error.textContent = '';
@@ -436,7 +470,7 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
       submit.disabled = true;
       results.hidden = true;
       status.hidden = false;
-      status.textContent = 'Taking a look at your home page…';
+      status.textContent = 'Reading your home page… this takes about a minute.';
 
       try {
         const response = await fetch(AUDIT_SERVICE, {
@@ -453,6 +487,11 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
         const shot = document.getElementById('auditShot');
         shot.src = result.screenshot.dataUrl;
         shot.alt = 'Screenshot of the home page of ' + new URL(result.homePage).hostname;
+        renderItems(document.getElementById('auditIssues'), result.issues, item => [
+          ['p', item.problem],
+          ['p', item.fix, 'audit-fix'],
+        ]);
+        renderItems(document.getElementById('auditStrengths'), result.strengths, item => [['p', item.why]]);
         results.hidden = false;
         results.scrollIntoView({ behavior: 'smooth' });
       } catch {
