@@ -325,7 +325,7 @@
     width: 100%;
     font-family: var(--serif);
     font-size: clamp(1.1rem, 5.75vw, 5rem);
-    font-weight: 400;
+    font-weight: 300;
     line-height: 0.77;
     letter-spacing: 0.035em;
     text-transform: uppercase;
@@ -814,20 +814,9 @@
     filter: grayscale(1) contrast(1.02);
   }
 
-  /* green duotone across the row */
-  .essay-thumb img { filter: grayscale(1) contrast(1.04); }
+  .essay-thumb img { filter: none; }
   .essay-thumb.cutout { background: var(--paper); }
   .essay-thumb.cutout img { object-fit: contain; }
-
-  .essay-thumb::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: var(--headline);
-    mix-blend-mode: screen;
-    pointer-events: none;
-    z-index: 1;
-  }
 
   .essay-content {
     min-width: 0;
@@ -1791,15 +1780,60 @@
 
   // Scroll: nav shadow
   const nav = document.getElementById('mainNav');
-  /* one service open at a time */
-  document.querySelectorAll('.service').forEach(function (item) {
-    item.addEventListener('toggle', function () {
-      if (!item.open) return;
-      document.querySelectorAll('.service[open]').forEach(function (other) {
-        if (other !== item) other.open = false;
+  /* one service open at a time, sliding rather than snapping */
+  (function () {
+    const services = [...document.querySelectorAll('.service')];
+    const still = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const ease = 'cubic-bezier(0.22, 1, 0.36, 1)';
+    const running = new WeakMap();
+
+    function slide(item, open) {
+      const panel = item.querySelector('.service-panel');
+      if (!panel) { item.open = open; return; }
+      const current = running.get(item);
+      if (current) current.cancel();
+      if (still.matches) { item.open = open; return; }
+
+      const from = item.open ? panel.getBoundingClientRect().height : 0;
+      if (open) item.open = true;
+      const to = open ? panel.scrollHeight : 0;
+      panel.style.overflow = 'hidden';
+
+      const duration = open ? 380 : 300;
+      const animation = panel.animate(
+        [{ height: from + 'px', opacity: open ? 0 : 1 },
+         { height: to + 'px', opacity: open ? 1 : 0 }],
+        { duration: duration, easing: ease }
+      );
+      running.set(item, animation);
+
+      let settled = false;
+      function settle() {
+        if (settled) return;
+        settled = true;
+        if (running.get(item) === animation) running.delete(item);
+        panel.style.overflow = '';
+        if (!open) item.open = false;
+      }
+      animation.onfinish = settle;
+      animation.oncancel = function () { settled = true; panel.style.overflow = ''; };
+      /* a backgrounded tab paints no frames, so the animation may never finish */
+      setTimeout(settle, duration + 200);
+    }
+
+    services.forEach(function (item) {
+      const summary = item.querySelector('summary');
+      if (!summary) return;
+      summary.addEventListener('click', function (event) {
+        event.preventDefault();
+        const opening = !item.open;
+        if (opening) {
+          services.forEach(function (other) { if (other !== item && other.open) slide(other, false); });
+        }
+        slide(item, opening);
       });
     });
-  });
+  })();
 
   const heroName = document.querySelector('.hero-headline');
   const syncNav = () => {
