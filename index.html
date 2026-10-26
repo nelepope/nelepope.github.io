@@ -599,17 +599,17 @@
     font-family: var(--serif);
     font-size: clamp(1.1rem, 3.73vw, 3.25rem);
     font-weight: 400;
-    line-height: 0.92;
+    line-height: 0.83;
     letter-spacing: 0.02em;
     text-transform: uppercase;
     color: var(--headline-deep);
   }
 
   .audience-desc {
-    margin-top: 0.55em;
+    margin-top: 0.6em;
     font-family: var(--sans);
     font-size: clamp(0.82rem, 1.2vw, 1.1rem);
-    line-height: 1.5;
+    line-height: 1.72;
     color: var(--ink);
   }
 
@@ -657,8 +657,8 @@
     font-family: var(--sans);
     font-style: italic;
     font-weight: 500;
-    font-size: clamp(1.15rem, 3vw, 2.6rem);
-    line-height: 1.2;
+    font-size: clamp(1.05rem, 2.2vw, 1.95rem);
+    line-height: 1.3;
     color: var(--headline-deep);
   }
 
@@ -774,7 +774,7 @@
     overflow: hidden;
   }
 
-  #audience .section-header { margin-bottom: 0.9rem; }
+  #audience .section-header { margin-bottom: 1.2rem; }
 
   #audience .section-label {
     font-size: clamp(1.15rem, 3.5vw, 3.05rem);
@@ -1394,7 +1394,18 @@
   #mainNav .nav-links a::after { display: none; }
 }
 
-  .hero-first { display: block; font-style: italic; }
+  .hero-line { display: block; }
+  .hero-first { font-style: italic; }
+
+  .hero-mark {
+    display: inline-block;
+    height: 0.55em;
+    width: auto;
+    margin-right: 0.15em;
+    vertical-align: baseline;
+    position: relative;
+    top: 0.13em;
+  }
   @media (max-width: 900px) {
     .hero { padding: 7.4vh 1.75rem 3rem; }
     .hero-star { display: none; }
@@ -1463,7 +1474,7 @@
     .essay-desc { font-size: 0.78rem; }
     .commercial-title { font-size: 0.86rem; }
     .samples-sub { font-size: 0.94rem; }
-    .testimonial-lead { font-size: 1.25rem; }
+    .testimonial-lead { font-size: 1.12rem; }
     .testimonial-body { font-size: 0.92rem; }
     .testimonial-source { font-size: 0.82rem; }
 
@@ -1513,8 +1524,11 @@
 }
 :root[data-theme="dark"] nav,
 :root[data-theme="dark"] body > nav { background: rgba(31,31,31,0.9); background-color: rgba(31,31,31,0.9); }
-:root[data-theme="dark"] .nav-name img { filter: brightness(0) invert(1); }
+:root[data-theme="dark"] .nav-name img,
+:root[data-theme="dark"] .hero-mark { filter: brightness(0) invert(1); }
 :root[data-theme="dark"] .hero-o-star { color: var(--coral); }
+:root[data-theme="dark"] .cursor { background: #f4f2f0; mix-blend-mode: normal; }
+:root[data-theme="dark"] .cursor-ring { border-color: rgba(255,255,255,0.45); }
 :root[data-theme="dark"] .booking .booking-col + .booking-col { border-left-color: var(--rule); }
 :root[data-theme="dark"] .skel-standout { border-top-color: rgba(224,138,121,0.4); border-bottom-color: rgba(224,138,121,0.4); }
 :root[data-theme="dark"] .u-pink { text-decoration-color: rgba(224,138,121,0.6); }
@@ -1565,7 +1579,7 @@
 
 <div class="hero">
   <div class="hero-text">
-    <p class="hero-headline"><span class="hero-first">Penelope</span> <span class="hero-surname">Saint-Ge<span class="hero-o">O<svg class="hero-o-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M23 12 H1"/><path d="M21.53 17.5 L2.47 6.5"/><path d="M17.5 21.53 L6.5 2.47"/><path d="M12 23 V1"/><path d="M6.5 21.53 L17.5 2.47"/><path d="M2.47 17.5 L21.53 6.5"/></svg></span>rge</span></p>
+    <p class="hero-headline"><span class="hero-line"><img class="hero-mark" src="Pics/psg-monogram-green.png" alt="" aria-hidden="true"><span class="hero-first">Penelope</span></span><span class="hero-surname">Saint-Ge<span class="hero-o">O<svg class="hero-o-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M23 12 H1"/><path d="M21.53 17.5 L2.47 6.5"/><path d="M17.5 21.53 L6.5 2.47"/><path d="M12 23 V1"/><path d="M6.5 21.53 L17.5 2.47"/><path d="M2.47 17.5 L21.53 6.5"/></svg></span>rge</span></p>
     <h1 class="hero-kicker">
       <span>Copywriter</span>
       <span>Editor</span>
