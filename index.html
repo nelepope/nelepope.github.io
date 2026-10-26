@@ -128,6 +128,8 @@
     --accent: #9a9690;
     --headline: #2d6a35;
     --headline-deep: #1f4a27;
+    --sage: #98a492;
+    --band: #d8e1d7;
     --serif: 'Solance Serif', Georgia, serif;
     --serif-light: 'Solance Light', Georgia, serif;
     --display: 'Solance Serif', Georgia, serif;
@@ -266,20 +268,22 @@
 
   /* HERO */
   .hero {
-    padding: 7.4vh 4rem 4rem;
+    padding: 7.4vh 1.75rem 4rem;
     max-width: none;
     margin: 0;
     position: relative;
     display: grid;
     grid-template-columns: 1fr;
     align-content: start;
-    font-size: clamp(2.4rem, 9.98vw, 9rem);
+    font-size: clamp(2.2rem, 10.2vw, 8.9rem);
     min-height: calc(100vh - var(--nav-h, 84px));
     min-height: calc(100dvh - var(--nav-h, 84px));
   }
   .hero-text {
     position: relative;
     z-index: 2;
+    width: min(1060px, 100%);
+    margin-inline: auto;
     text-align: left;
     display: flex;
     flex-direction: column;
@@ -322,13 +326,13 @@
     position: relative;
     width: 100%;
     font-family: var(--serif);
-    font-size: clamp(1.35rem, 6.16vw, 5.6rem);
+    font-size: clamp(1.1rem, 5.75vw, 5rem);
     font-weight: 400;
-    line-height: 0.75;
+    line-height: 0.77;
     letter-spacing: 0.035em;
     text-transform: uppercase;
-    color: var(--headline-deep);
-    margin: 0.2em 0 0.78em;
+    color: var(--sage);
+    margin: 0.1em 0 1.1em;
   }
 
   .hero-kicker span {
@@ -364,7 +368,7 @@
   }
   .hero-star {
     position: absolute;
-    left: 77%;
+    left: 80%;
     top: -0.1em;
     width: 0.75em;
     height: 0.75em;
@@ -389,7 +393,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.9em;
-    font-size: clamp(0.8rem, 1.69vw, 1.6rem);
+    font-size: clamp(0.78rem, 1.4vw, 1.25rem);
     font-style: italic;
     font-weight: 400;
     letter-spacing: 0.1em;
@@ -450,8 +454,14 @@
 
   /* SECTION */
   section {
-    padding: 5.5rem 4rem;
+    padding: 6rem 1.75rem;
   }
+
+  .audience-section,
+  .services-section,
+  .samples-section,
+  #writing,
+  .commercial-section { max-width: 1060px; margin: 0 auto; }
 
   .section-header {
     position: relative;
@@ -459,22 +469,20 @@
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    margin-bottom: 3.5rem;
+    margin-bottom: 0.35em;
   }
 
   .section-label {
-    font-size: 0.62rem;
-    letter-spacing: 0.22em;
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 5.65vw, 4.9rem);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0.02em;
     text-transform: uppercase;
-    color: var(--headline);
+    color: var(--headline-deep);
   }
 
-  .section-count {
-    font-family: var(--serif);
-    font-size: 0.85rem;
-    color: var(--ink-light);
-    font-style: italic;
-  }
+  .section-count { display: none; }
 
   .section-more {
     text-decoration: none;
@@ -486,192 +494,191 @@
 
 
   /* SERVICES */
-  .services-section {
-    max-width: 1180px;
-    margin: 0 auto;
-  }
-
   .services-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 3.5rem;
-    row-gap: 3.5rem;
+    display: block;
   }
 
-  .service-row {
-    display: grid;
-    grid-template-columns: 3.2rem minmax(0, 1fr);
-    align-items: start;
-    color: inherit;
-    text-decoration: none;
+  .service {
+    position: relative;
   }
 
-  .service-row:nth-child(1) { grid-column: 1; grid-row: 1; }
-  .service-row:nth-child(2) { grid-column: 2; grid-row: 2; }
-  .service-row:nth-child(3) { grid-column: 1; grid-row: 3; }
+  .service + .service { margin-top: 0.42em; }
 
-  .service-star {
-    grid-column: 1;
-    grid-row: 1;
-    width: 2rem;
-    height: 2rem;
-    margin-top: 0.3rem;
-    color: var(--headline);
-    transform-origin: 50% 50%;
+  .service + .service::before {
+    content: '';
+    display: block;
+    width: 80%;
+    height: 1px;
+    margin-bottom: 0.42em;
+    background: var(--rule);
   }
 
-  .service-row:hover .service-star { animation: starSpin 1.4s linear infinite; }
+  .service summary {
+    display: flex;
+    align-items: baseline;
+    gap: 0.42em;
+    list-style: none;
+    cursor: pointer;
+  }
 
-  @keyframes starSpin { to { transform: rotate(360deg); } }
+  .service summary::-webkit-details-marker { display: none; }
 
-  .service-question {
-    grid-column: 2;
-    grid-row: 1;
+  .service-sign {
+    flex: none;
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 0.62em;
+    line-height: 1;
+    color: #d44237;
+  }
+
+  .service-sign::before { content: '+'; }
+  .service[open] .service-sign::before { content: '\2212'; }
+
+  .service-name {
     font-family: var(--serif);
-    font-size: clamp(1.1rem, 1.85vw, 1.7rem);
+    font-size: clamp(1.1rem, 3.73vw, 3.25rem);
     font-weight: 400;
-    line-height: 1.45;
+    line-height: 1.05;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
     color: var(--headline-deep);
+    transition: color 0.3s var(--ease-out);
   }
 
-  .service-question em {
-    font-style: normal;
-    text-decoration: underline;
-    text-decoration-color: rgba(212, 66, 55, 0.6);
-    text-underline-offset: 4px;
-    text-decoration-thickness: 1.5px;
+  .service summary { font-size: clamp(1.1rem, 3.73vw, 3.25rem); }
+  .service summary .service-name { font-size: 1em; }
+
+  .service summary:hover .service-name { color: var(--headline); }
+
+  .service-panel {
+    padding-top: 0.5em;
   }
 
   .service-desc {
-    grid-column: 2;
-    grid-row: 2;
-    margin-top: 0.45rem;
-    font-size: clamp(0.85rem, 1.15vw, 1.05rem);
-    line-height: 1.55;
-    color: var(--ink);
+    font-family: var(--sans);
+    font-size: clamp(0.88rem, 2.05vw, 1.8rem);
+    line-height: 1.35;
+    color: var(--headline-deep);
   }
 
-  .service-name {
-    grid-column: 1 / -1;
-    grid-row: 3;
-    display: flex;
+  .service-link {
+    display: inline-flex;
     align-items: center;
-    gap: 0.8rem;
-    margin-top: 1.1rem;
-    padding-left: 1.1rem;
+    gap: 0.7em;
+    margin-top: 0.75em;
     font-family: var(--sans);
-    font-weight: 400;
-    font-size: clamp(0.82rem, 1.1vw, 1rem);
-    letter-spacing: 0.16em;
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(0.78rem, 1.4vw, 1.25rem);
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--headline);
-  }
-
-  .services-more {
-    display: none;
-    margin-top: 2.25rem;
-    text-align: right;
-    font-family: var(--sans);
-    font-size: 0.95rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: #d44237;
+    color: var(--headline-deep);
     text-decoration: none;
   }
 
-  .service-caret {
-    width: 0.62em;
-    height: 0.74em;
-    flex: none;
-    color: var(--headline);
-    transition: transform 0.4s var(--ease-out);
-  }
+  .service-link .hero-cta-carets { color: var(--headline-deep); }
 
-  .service-row:hover .service-caret { transform: translateX(4px); }
+  .service-link:hover .hero-cta-carets { transform: translateX(0.22em); }
 
   /* WHO I WORK WITH */
-  .audience-section {
-    max-width: 1180px;
-    margin: 0 auto;
-  }
-
   .audience-list {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    column-gap: 3.5rem;
+    column-gap: 7%;
     row-gap: 2.75rem;
   }
 
   .audience-title {
     font-family: var(--serif);
-    font-size: clamp(1.15rem, 1.7vw, 1.55rem);
+    font-size: clamp(1.1rem, 3.73vw, 3.25rem);
     font-weight: 400;
-    line-height: 1.35;
+    line-height: 1.05;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
     color: var(--headline-deep);
   }
 
   .audience-desc {
-    margin-top: 0.6rem;
-    font-size: clamp(0.85rem, 1.15vw, 1.05rem);
-    line-height: 1.6;
+    margin-top: 0.45em;
+    font-family: var(--sans);
+    font-size: clamp(0.88rem, 1.76vw, 1.55rem);
+    line-height: 1.35;
     color: var(--ink);
   }
 
   /* TESTIMONIAL */
   .testimonial-section {
-    max-width: 1180px;
-    margin: 0 auto;
+    max-width: none;
+    margin: 0;
+    background: var(--band);
+    padding: 4.6rem 1.75rem 5rem;
   }
 
   .testimonial {
     position: relative;
-    max-width: 56rem;
+    width: min(1060px, 100%);
+    margin-inline: auto;
   }
 
   .testimonial-quote {
-    font-family: var(--serif);
+    font-family: var(--sans);
     color: var(--ink);
   }
 
   .testimonial-mark {
     position: absolute;
-    left: -1.7rem;
-    top: 0.08em;
-    width: clamp(3rem, 5vw, 4.6rem);
+    left: 0;
+    top: 0.22em;
+    width: clamp(1.5rem, 3.5vw, 3rem);
     height: auto;
-    color: var(--headline);
+    color: var(--headline-deep);
   }
 
-  .testimonial-lead:first-child { padding-left: 5.4rem; }
+  .testimonial-mark-close {
+    display: block;
+    width: clamp(1.5rem, 3.5vw, 3rem);
+    height: auto;
+    margin: 0.4em 0 0 auto;
+    color: var(--headline-deep);
+  }
+
+  .testimonial-lead,
+  .testimonial-body,
+  .testimonial-source { padding-left: 7%; }
 
   .testimonial-lead {
-    font-size: clamp(1.5rem, 3vw, 2.6rem);
-    line-height: 1.3;
-    color: var(--ink);
+    font-family: var(--sans);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(1.15rem, 3vw, 2.6rem);
+    line-height: 1.2;
+    color: var(--headline-deep);
   }
 
   .testimonial-body {
-    font-size: clamp(1rem, 1.62vw, 1.45rem);
-    line-height: 1.8;
+    font-size: clamp(0.92rem, 1.78vw, 1.55rem);
+    line-height: 1.63;
     text-align: left;
+    max-width: 87%;
     color: var(--ink);
   }
 
-  .testimonial-lead + .testimonial-body { margin-top: 0.6rem; }
+  .testimonial-lead + .testimonial-body { margin-top: 0.9em; }
 
   .testimonial-source {
-    margin-top: 1.75rem;
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: clamp(0.98rem, 1.3vw, 1.2rem);
+    margin-top: 1.6em;
+    font-family: var(--sans);
+    font-style: normal;
+    font-size: clamp(0.78rem, 1.57vw, 1.35rem);
     font-weight: 400;
-    letter-spacing: 0;
-    text-transform: none;
-    color: var(--headline);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--headline-deep);
   }
 
   .testimonial-source::before {
-    content: '\2014\00a0';
+    content: '\2013\00a0';
   }
 
   .testimonial-source a {
@@ -737,7 +744,6 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .service-row:hover .service-star { animation: none; }
     .annotate-marks,
     .annotate-underline { transition: none; }
   }
@@ -760,32 +766,21 @@
     overflow: hidden;
   }
 
-  #writing .section-header,
-  #projects .section-header,
-  #services .section-header,
-  #audience .section-header,
-  #about .about-label { align-items: baseline; margin-bottom: 1.6rem; }
-
-  #writing .section-label,
-  #projects .section-label,
-  #services .section-label,
-  #audience .section-label,
-  #about .about-label {
-    font-family: var(--sans);
-    font-size: clamp(1rem, 1.45vw, 1.35rem);
-    font-weight: 400;
-    line-height: 1.2;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--headline);
+  #audience .section-label {
+    font-size: clamp(1.15rem, 3.5vw, 3.05rem);
+    letter-spacing: 0.06em;
+    color: var(--sage);
   }
+
+  #writing .section-header,
+  #projects .section-header { margin-bottom: 0.3em; }
 
   .essays-grid {
     position: relative;
     z-index: 1;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
+    gap: 0;
   }
 
   .essay-item {
@@ -799,7 +794,7 @@
 
   .essay-thumb {
     width: 100%;
-    aspect-ratio: 5 / 4;
+    aspect-ratio: 253 / 177;
     overflow: hidden;
     background: var(--paper-deep);
     position: relative;
@@ -814,76 +809,54 @@
     filter: grayscale(1) contrast(1.02);
   }
 
-  /* blog thumbnails: black and white, bar the one that keeps its colour */
-  .essay-item.no-duotone .essay-thumb img { filter: grayscale(0.18) contrast(1.02); }
-  /* pre-edited thumbnails keep their own colour */
-  .essay-thumb.edited img { filter: none; }
+  /* green duotone across the row */
+  .essay-thumb img { filter: grayscale(1) contrast(1.04); }
   .essay-thumb.cutout { background: var(--paper); }
   .essay-thumb.cutout img { object-fit: contain; }
 
-  /* pink duotone, as the thumbnails used to carry */
-  .essay-thumb.tinted { isolation: isolate; }
-
-  .essay-thumb.tinted::before {
+  .essay-thumb::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: #d44237;
+    background: var(--headline);
     mix-blend-mode: screen;
     pointer-events: none;
     z-index: 1;
-  }
-
-  .essay-thumb.tinted img { filter: grayscale(1) contrast(1.02); }
-
-  .essay-thumb::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border: 0.5px solid var(--rule);
-    pointer-events: none;
-    z-index: 2;
   }
 
   .essay-content {
     min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.3rem;
-    margin-top: 0.85rem;
+    margin-top: 0.5rem;
+    padding-right: 0.9rem;
   }
 
-  .essay-tag { display: none; }
+  .essay-tag,
+  .essay-desc,
+  .essay-arrow { display: none; }
 
   .essay-title {
-    font-family: var(--serif-light);
-    font-size: 1.22rem;
+    font-family: var(--sans);
+    font-size: clamp(0.66rem, 1.07vw, 0.95rem);
     font-weight: 400;
-    line-height: 1.25;
-    color: var(--headline);
-    letter-spacing: 0;
-    transition: font-style 0.2s;
+    line-height: 1.3;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--headline-deep);
+    transition: opacity 0.2s;
   }
 
-  .essay-item:hover .essay-title { font-style: italic; }
-
-  .essay-desc {
-    font-size: 0.8rem;
-    color: var(--ink-mid);
-    line-height: 1.45;
-  }
-
-  .essay-arrow { display: none; }
+  .essay-item:hover .essay-title { opacity: 0.6; }
 
   /* COMMERCIAL */
   .commercial-section {
-    max-width: 1180px;
     margin: 0 auto;
   }
   .commercial-list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 3rem 2.25rem;
+    gap: 0;
     max-width: none;
   }
   .commercial-item {
@@ -897,7 +870,7 @@
   }
   .commercial-thumb {
     width: 100%;
-    aspect-ratio: 859 / 461;
+    aspect-ratio: 341 / 230;
     overflow: hidden;
     background: var(--paper-deep);
     position: relative;
@@ -912,26 +885,15 @@
     transition: filter 0.6s var(--ease-out), transform 1.2s var(--ease-out);
   }
 
-  .commercial-thumb::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border: 0.5px solid var(--rule);
-    pointer-events: none;
-  }
-
   .commercial-work:hover .commercial-thumb img {
     filter: grayscale(0) contrast(1);
     transform: scale(1.04);
   }
 
-  .commercial-work:hover .commercial-title { font-style: italic; }
+  .commercial-work:hover .commercial-title { opacity: 0.6; }
 
-  .commercial-url {
-    font-size: 0.8rem;
-    color: var(--headline);
-    margin-bottom: 0.5rem;
-  }
+  .commercial-url,
+  .commercial-type { display: none; }
 
   .commercial-on-request {
     font-family: var(--sans);
@@ -978,24 +940,50 @@
     opacity: 0.8;
   }
 
-  .commercial-content { margin-top: 1rem; }
+  .commercial-content { margin-top: 0.55rem; padding-right: 0.9rem; }
   .commercial-list > .commercial-item:not(.commercial-work) {
     grid-column: 1 / -1;
     padding-top: 2.5rem;
   }
   .commercial-title {
-    font-family: var(--serif-light);
-    font-size: 1.4rem;
+    font-family: var(--sans);
+    font-style: italic;
+    font-size: clamp(0.7rem, 1.2vw, 1.05rem);
     font-weight: 400;
-    color: var(--ink);
-    margin-bottom: 0.6rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--headline-deep);
     line-height: 1.3;
+    transition: opacity 0.2s;
   }
 
-  .commercial-type {
-    font-size: 0.78rem;
-    color: var(--ink-mid);
-    line-height: 1.6;
+  /* SAMPLES */
+  .samples-section { padding-top: 10rem; }
+
+  .samples-head {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 5.65vw, 4.9rem);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--headline-deep);
+  }
+
+  .samples-sub {
+    margin-top: 0.55em;
+    font-family: var(--sans);
+    font-size: clamp(0.88rem, 2.05vw, 1.8rem);
+    line-height: 1.4;
+    color: var(--ink);
+  }
+
+  .samples-sub a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--headline-deep);
   }
 
   /* ABOUT STRIP */
@@ -1114,9 +1102,9 @@
 
   /* CONTACT */
   .contact-section {
-    max-width: 1180px;
+    max-width: 1060px;
     margin: 0 auto;
-    padding: 7rem 4rem;
+    padding: 6rem 1.75rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 5rem;
@@ -1124,26 +1112,29 @@
   }
 
   .contact-left h2 {
-    font-family: var(--serif-light);
-    font-size: clamp(2.2rem, 4vw, 3.75rem);
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 5.65vw, 4.9rem);
     font-weight: 400;
-    line-height: 1.12;
-    margin-bottom: 1.75rem;
-    color: var(--headline);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    margin-bottom: 0.45em;
+    color: var(--headline-deep);
   }
 
   .contact-left h2 em { font-style: italic; color: var(--headline); opacity: 0.78; }
 
   .contact-left p {
-    font-size: 0.88rem;
-    color: var(--ink-mid);
-    line-height: 1.85;
-    max-width: 340px;
+    font-family: var(--sans);
+    font-size: clamp(0.88rem, 1.76vw, 1.55rem);
+    color: var(--ink);
+    line-height: 1.4;
+    max-width: 24em;
   }
 
   .contact-direct {
-    margin-top: 2rem;
-    font-size: 0.78rem;
+    margin-top: 1.4em;
+    font-size: clamp(0.8rem, 1.4vw, 1.25rem);
     color: var(--ink-mid);
   }
 
@@ -1305,21 +1296,12 @@
     .hero-portrait { width: clamp(150px, 26vw, 220px); }
     section { padding: 3rem 1.5rem; }
 
-    .section-header { margin-bottom: 2rem; }
-    .section-count { font-size: 0.78rem; }
+    .section-header { margin-bottom: 0.35em; }
 
-    .essays-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem 1rem; }
+    .essays-grid { grid-template-columns: repeat(2, 1fr); }
     .audience-list { grid-template-columns: 1fr; row-gap: 2rem; }
-    .services-list { grid-template-columns: 1fr; row-gap: 2.75rem; }
-    .service-row:nth-child(1) { grid-column: 1; grid-row: 1; }
-    .service-row:nth-child(2) { grid-column: 1; grid-row: 2; }
-    .service-row:nth-child(3) { grid-column: 1; grid-row: 3; }
-    .commercial-list { grid-template-columns: repeat(2, 1fr); gap: 2.5rem 1.75rem; }
-
     .commercial-list { grid-template-columns: 1fr; }
-    .commercial-item { padding: 1.75rem 0; border-right: none; border-bottom: 0.5px solid var(--rule); }
-    .commercial-item:last-child { padding-left: 0; }
-    .commercial-item:nth-child(2) { padding-left: 0; }
+    .commercial-item { padding: 0; }
 
 
     .about-strip { padding: 4rem 1.5rem; }
@@ -1328,7 +1310,6 @@
     .about-details { flex-wrap: wrap; gap: 1.25rem 1.75rem; }
 
     .contact-section { padding: 4rem 1.5rem; grid-template-columns: 1fr; gap: 2.5rem; }
-    .contact-left h2 { font-size: clamp(1.9rem, 7vw, 2.5rem); }
 
     body > footer { padding: 1.75rem 1.5rem; flex-direction: column; gap: 1.25rem; text-align: center; }
     .footer-links { flex-wrap: wrap; justify-content: center; gap: 1rem 1.75rem; }
@@ -1348,18 +1329,7 @@
     .hero { font-size: 2.2rem; }
     section { padding: 2.5rem 1.25rem; }
 
-    .essays-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .services-list { grid-template-columns: 1fr; row-gap: 2.5rem; }
-    .testimonial-mark { left: 0; }
-    .testimonial-lead:first-child { padding-left: 3.6rem; }
-    .service-row { grid-template-columns: 2.25rem minmax(0, 1fr); }
-    .service-row:nth-child(1) { grid-column: 1; grid-row: 1; }
-    .service-row:nth-child(2) { grid-column: 1; grid-row: 2; }
-    .service-row:nth-child(3) { grid-column: 1; grid-row: 3; }
-    .service-star { width: 1.6rem; height: 1.6rem; }
-    .commercial-list { grid-template-columns: 1fr; gap: 2.25rem; }
-    .essay-title { font-size: 1.15rem; }
-    .essay-desc { font-size: 0.78rem; line-height: 1.55; }
+    .commercial-list { grid-template-columns: 1fr; }
 
     .about-strip { padding: 3rem 1.25rem; }
     .about-inner { grid-template-columns: 1fr; gap: 1.75rem; }
@@ -1370,47 +1340,27 @@
 
   /* MOBILE */
   @media (max-width: 760px) {
-    /* services: highlighted questions, asterisk alongside */
-    .service-row { grid-template-columns: 2.4rem minmax(0, 1fr); column-gap: 0.9rem; }
-    .service-star { display: block; width: 2.1rem; height: 2.1rem; margin-top: 0.15rem; }
-    .service-question { grid-column: 2; }
-    .service-desc,
-    .service-name { grid-column: 2; }
-    .service-name { padding-left: 0; }
-
-    .services-list { row-gap: 3.4rem; }
-    .service-question { font-size: 1.22rem; line-height: 1.45; }
-    .service-desc { font-size: 0.95rem; margin-top: 0.55rem; }
-    .service-name { font-size: 1rem; gap: 0.65rem; margin-top: 0.9rem; }
-
-    .service-question .hl {
-      background: #d44237;
-      color: #fff;
-      box-decoration-break: clone;
-      -webkit-box-decoration-break: clone;
-      padding: 0.1em 0.3em;
-    }
-
-    .service-question em { text-decoration-color: rgba(255,255,255,0.85); }
-
-    /* SEO ahead of AI editing, as in the mobile layout */
-    .service-row:nth-child(2) { grid-row: 3; }
-    .service-row:nth-child(3) { grid-row: 2; }
-
-    .services-more { display: block; }
-
-    /* essays read as a list: small thumbnail, text alongside */
-    .essays-grid { grid-template-columns: 1fr; gap: 1.6rem; }
+    /* the blog row reads as a list: small thumbnail, title alongside */
+    .essays-grid { grid-template-columns: 1fr; gap: 1.4rem; }
     .essay-item {
       display: grid;
-      grid-template-columns: 92px minmax(0, 1fr);
+      grid-template-columns: 110px minmax(0, 1fr);
       gap: 1rem;
-      align-items: start;
+      align-items: center;
     }
     .essay-thumb { aspect-ratio: 1 / 1; }
-    .essay-content { margin-top: 0; gap: 0.25rem; }
-    .essay-title { font-size: 1.05rem; line-height: 1.3; }
-    .essay-desc { font-size: 0.78rem; line-height: 1.5; }
+    .essay-content { margin-top: 0; padding-right: 0; }
+
+    .commercial-list { grid-template-columns: 1fr; gap: 1.6rem; }
+    .commercial-content { padding-right: 0; }
+
+    .testimonial-lead,
+    .testimonial-body,
+    .testimonial-source { padding-left: 0; }
+    .testimonial-mark { position: static; display: block; margin-bottom: 0.5rem; }
+    .testimonial-body { max-width: none; }
+
+    .service + .service::before { width: 100%; }
   }
 
   /* Touch / no-hover devices: hide custom cursor */
@@ -1490,21 +1440,24 @@
     .hero-kicker { font-size: clamp(1.05rem, 8vw, 2.4rem); letter-spacing: 0.04em; margin-bottom: 1em; }
     .hero-cta { font-size: 0.95rem; }
 
-    .audience-title { font-size: 1.12rem; }
-    .audience-desc { font-size: 0.94rem; }
+    .section-label,
+    .samples-head,
+    .contact-left h2 { font-size: clamp(1.5rem, 9vw, 2.6rem); }
+    #audience .section-label { font-size: clamp(1.15rem, 6.4vw, 1.8rem); }
 
-    .service-question { font-size: 1.18rem; line-height: 1.5; }
-    .service-desc { font-size: 0.94rem; }
-    .service-name { font-size: 0.95rem; }
-    .services-more { font-size: 0.88rem; }
+    .audience-title,
+    .service summary { font-size: clamp(1.1rem, 6.4vw, 1.9rem); }
+    .audience-desc { font-size: 0.98rem; }
 
-    .essay-title { font-size: 1.06rem; }
-    .essay-desc { font-size: 0.9rem; line-height: 1.5; }
+    .service-desc { font-size: 1.02rem; }
+    .service-link { font-size: 0.86rem; }
 
-    .commercial-title { font-size: 1.25rem; }
-    .commercial-url { font-size: 0.9rem; }
-    .commercial-type { font-size: 0.9rem; line-height: 1.6; }
-    .commercial-on-request-sub { font-size: 0.94rem; }
+    .essay-title { font-size: 0.8rem; }
+    .commercial-title { font-size: 0.86rem; }
+    .samples-sub { font-size: 1.02rem; }
+    .testimonial-lead { font-size: 1.25rem; }
+    .testimonial-body { font-size: 0.98rem; }
+    .testimonial-source { font-size: 0.82rem; }
 
     .testimonial-lead { font-size: 1.38rem; line-height: 1.3; }
     .testimonial-body { font-size: 0.98rem; line-height: 1.7; }
@@ -1566,46 +1519,18 @@
 
 <section class="audience-section reveal" id="audience">
   <div class="section-header">
-    <p class="section-label">Who I work with</p>
+    <p class="section-label">I work for</p>
   </div>
   <div class="audience-list">
     <div class="audience-item reveal reveal-delay-1">
-      <p class="audience-title">Purpose-led independent brands</p>
-      <p class="audience-desc">Food, drink, beauty, fashion and homeware brands making things better: organic, refillable, recycled, fairly traded, cruelty-free or made in Britain.</p>
-    </div>
-    <div class="audience-item reveal reveal-delay-2">
       <p class="audience-title">Private arts organisations</p>
       <p class="audience-desc">Independent venues, theatres, galleries, festivals, concert series and studios.</p>
     </div>
+    <div class="audience-item reveal reveal-delay-2">
+      <p class="audience-title">Purpose-led independent brands</p>
+      <p class="audience-desc">Brands using sustainable solutions, fair trade, cruelty-free formulas, and things made in Britain.</p>
+    </div>
   </div>
-</section>
-
-
-<section class="services-section reveal" id="services">
-  <div class="section-header">
-    <p class="section-label">Services</p>
-  </div>
-  <div class="services-list">
-    <a href="services.html" class="service-row reveal reveal-delay-1">
-      <svg class="service-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M23 12 H1"/><path d="M21.53 17.5 L2.47 6.5"/><path d="M17.5 21.53 L6.5 2.47"/><path d="M12 23 V1"/><path d="M6.5 21.53 L17.5 2.47"/><path d="M2.47 17.5 L21.53 6.5"/></svg>
-      <p class="service-question"><span class="hl">Want to know <em>where and how your website is holding you back</em> from converting visitors into customers?</span></p>
-      <p class="service-desc">I provide an objective review of your current website copy</p>
-      <span class="service-name"><svg class="service-caret" viewBox="0 0 10 12" aria-hidden="true" focusable="false" fill="currentColor"><path d="M0 0 L10 6 L0 12 Z"/></svg>Web-copy auditing</span>
-    </a>
-    <a href="ai-draft-editing.html" class="service-row reveal reveal-delay-2">
-      <svg class="service-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M23 12 H1"/><path d="M21.53 17.5 L2.47 6.5"/><path d="M17.5 21.53 L6.5 2.47"/><path d="M12 23 V1"/><path d="M6.5 21.53 L17.5 2.47"/><path d="M2.47 17.5 L21.53 6.5"/></svg>
-      <p class="service-question"><span class="hl">Want to transform your AI drafts into <em>engaging copy</em>?</span></p>
-      <p class="service-desc">I turn AI slop into something worth reading</p>
-      <span class="service-name"><svg class="service-caret" viewBox="0 0 10 12" aria-hidden="true" focusable="false" fill="currentColor"><path d="M0 0 L10 6 L0 12 Z"/></svg>AI draft editing</span>
-    </a>
-    <a href="seo-copywriting.html" class="service-row reveal reveal-delay-3">
-      <svg class="service-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M23 12 H1"/><path d="M21.53 17.5 L2.47 6.5"/><path d="M17.5 21.53 L6.5 2.47"/><path d="M12 23 V1"/><path d="M6.5 21.53 L17.5 2.47"/><path d="M2.47 17.5 L21.53 6.5"/></svg>
-      <p class="service-question"><span class="hl">Want to <em>rank higher</em> in search results?</span></p>
-      <p class="service-desc">I write compelling, engaging content and implement SEO strategies to help you show up in search engines</p>
-      <span class="service-name"><svg class="service-caret" viewBox="0 0 10 12" aria-hidden="true" focusable="false" fill="currentColor"><path d="M0 0 L10 6 L0 12 Z"/></svg>SEO copywriting</span>
-    </a>
-  </div>
-  <a class="services-more" href="services.html">Read more &gt;</a>
 </section>
 
 
@@ -1614,19 +1539,57 @@
     <blockquote class="testimonial-quote">
       <p class="testimonial-lead"><svg class="testimonial-mark" viewBox="0 0 122 81" aria-hidden="true" focusable="false" fill="currentColor"><g transform="rotate(180 61 40.5)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/><g transform="translate(66,0)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/></g></g></svg>Pen was <span class="annotate">a delight<img class="annotate-marks" src="Pics/annotate-marks.png" alt="" aria-hidden="true"></span> to work with.</p>
       <p class="testimonial-body">She was incredibly professional and very fast in her turnaround of any work that we gave her. We really appreciated the level of critical thinking she applied to each of the briefs, working with our account managers when something doesn't quite look right and making excellent suggestions to keep things on track. <span class="annotate-line">On top of that, the quality of the work is outstanding.<img class="annotate-underline" src="Pics/annotate-underline.png" alt="" aria-hidden="true"></span> She's always a pleasure to work with.</p>
+      <svg class="testimonial-mark-close" viewBox="0 0 122 81" aria-hidden="true" focusable="false" fill="currentColor"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/><g transform="translate(66,0)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/></g></svg>
     </blockquote>
     <figcaption class="testimonial-source">Ross Tavendale, <a href="https://typeamedia.net/" target="_blank" rel="noopener">Type A Media</a></figcaption>
   </figure>
 </section>
 
+
+<section class="services-section reveal" id="services">
+  <div class="services-list">
+    <details class="service reveal" open>
+      <summary><span class="service-sign" aria-hidden="true"></span><span class="service-name">Website auditing</span></summary>
+      <div class="service-panel">
+        <p class="service-desc">Want to know where and how your website is holding you back?</p>
+        <a class="service-link" href="services.html"><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span><span>Get a website audit</span></a>
+      </div>
+    </details>
+    <details class="service reveal">
+      <summary><span class="service-sign" aria-hidden="true"></span><span class="service-name">AI draft editing</span></summary>
+      <div class="service-panel">
+        <p class="service-desc">Want to transform your AI drafts into engaging copy?</p>
+        <a class="service-link" href="ai-draft-editing.html"><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span><span>See AI draft editing</span></a>
+      </div>
+    </details>
+    <details class="service reveal">
+      <summary><span class="service-sign" aria-hidden="true"></span><span class="service-name">Website content &amp; SEO</span></summary>
+      <div class="service-panel">
+        <p class="service-desc">Want to rank higher in search results?</p>
+        <a class="service-link" href="seo-copywriting.html"><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span><span>See content &amp; SEO</span></a>
+      </div>
+    </details>
+    <details class="service reveal">
+      <summary><span class="service-sign" aria-hidden="true"></span><span class="service-name">Other</span></summary>
+      <div class="service-panel">
+        <p class="service-desc">Brand strategy, tone of voice, editorial — and everything in between.</p>
+        <a class="service-link" href="#contact"><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span><span>Get in touch</span></a>
+      </div>
+    </details>
+  </div>
+</section>
+
+
+
+
 <section id="writing">
   <div class="section-header reveal">
-    <p class="section-label">Essays &amp; Long-Form</p>
+    <p class="section-label">Latest blogs</p>
     <a class="section-count section-more" href="writing.html">All writing &#8594;</a>
   </div>
   <div class="essays-grid">
     <a href="attention-economy.html" class="essay-item reveal reveal-delay-1">
-      <div class="essay-thumb edited">
+      <div class="essay-thumb">
         <img src="Pics/attention-economy-thumb.jpg" alt="A wild boar beside a pink tiered cake" loading="lazy">
       </div>
       <div class="essay-content">
@@ -1637,7 +1600,7 @@
       </div>
     </a>
     <a href="will-ai-ever-replace-writers.html" class="essay-item reveal reveal-delay-1">
-      <div class="essay-thumb edited">
+      <div class="essay-thumb">
         <img src="Pics/will-ai-thumb.jpg" alt="Lead image for Will AI Ever Replace Writers?" loading="lazy">
       </div>
       <div class="essay-content">
@@ -1648,7 +1611,7 @@
       </div>
     </a>
     <a href="the-blue-epoch.html" class="essay-item reveal reveal-delay-2">
-      <div class="essay-thumb edited">
+      <div class="essay-thumb">
         <img src="Pics/blue-epoch-thumb.jpg" alt="Yves Klein, 1961" loading="lazy">
       </div>
       <div class="essay-content">
@@ -1659,7 +1622,7 @@
       </div>
     </a>
     <a href="retinoids.html" class="essay-item reveal reveal-delay-3">
-      <div class="essay-thumb tinted">
+      <div class="essay-thumb">
         <img src="Pics/retinoids-hero.jpg" alt="Close-up of a face in soft golden light" loading="lazy">
       </div>
       <div class="essay-content">
@@ -1679,6 +1642,16 @@
     <span class="section-count">Portfolio</span>
   </div>
   <div class="commercial-list">
+    <a href="https://www.studioaegis.co.uk/" target="_blank" rel="noopener" class="commercial-item commercial-work">
+      <div class="commercial-thumb">
+        <img src="Pics/studio-aegis.png" alt="Homepage of Studio Aegis, an art studio" loading="lazy">
+      </div>
+      <div class="commercial-content">
+        <p class="commercial-title">Ægis Bodycasting</p>
+        <p class="commercial-url">studioaegis.co.uk</p>
+        <p class="commercial-type">Copy and website design for an art studio.</p>
+      </div>
+    </a>
     <a href="https://healthisaprivilege.com" target="_blank" rel="noopener" class="commercial-item commercial-work">
       <div class="commercial-thumb">
         <img src="Pics/health-is-a-privilege.png" alt="Landing page for the play Health Is A Privilege" loading="lazy">
@@ -1687,16 +1660,6 @@
         <p class="commercial-title">Health Is A Privilege</p>
         <p class="commercial-url">healthisaprivilege.com</p>
         <p class="commercial-type">Copy and website design for a theatre play.</p>
-      </div>
-    </a>
-    <a href="https://www.studioaegis.co.uk/" target="_blank" rel="noopener" class="commercial-item commercial-work">
-      <div class="commercial-thumb">
-        <img src="Pics/studio-aegis.png" alt="Homepage of Studio Aegis, an art studio" loading="lazy">
-      </div>
-      <div class="commercial-content">
-        <p class="commercial-title">Studio Aegis</p>
-        <p class="commercial-url">studioaegis.co.uk</p>
-        <p class="commercial-type">Copy and website design for an art studio.</p>
       </div>
     </a>
     <a href="https://firstdraftofanything.app" target="_blank" rel="noopener" class="commercial-item commercial-work">
@@ -1709,11 +1672,13 @@
         <p class="commercial-type">A writing app with no backspace. No deleting, no fiddling, no going back.</p>
       </div>
     </a>
-    <div class="commercial-item">
-      <p class="commercial-on-request">Samples available on request.</p>
-      <p class="commercial-on-request-sub">Get in touch for a tailored portfolio &mdash; <a href="seo-copywriting.html" style="color:var(--ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--rule);">SEO articles</a>, web copy, brand strategy, and editorial.</p>
-    </div>
   </div>
+</section>
+
+
+<section class="samples-section reveal" id="samples">
+  <p class="samples-head">Samples available on request.</p>
+  <p class="samples-sub"><a href="#contact">Get in touch</a> for SEO and brand strategy samples</p>
 </section>
 
 
@@ -1722,6 +1687,7 @@
     <blockquote class="testimonial-quote">
       <p class="testimonial-lead"><svg class="testimonial-mark" viewBox="0 0 122 81" aria-hidden="true" focusable="false" fill="currentColor"><g transform="rotate(180 61 40.5)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/><g transform="translate(66,0)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/></g></g></svg>Working with Pen has been beyond easy.</p>
       <p class="testimonial-body">She asked the most interesting questions about my project and created something that conveys everything the project represents. In no time my website was ready to go with updates that make it far more engaging.</p>
+      <svg class="testimonial-mark-close" viewBox="0 0 122 81" aria-hidden="true" focusable="false" fill="currentColor"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/><g transform="translate(66,0)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/></g></svg>
     </blockquote>
     <figcaption class="testimonial-source">Simonetta Gibejova</figcaption>
   </figure>
@@ -1804,6 +1770,16 @@
 
   // Scroll: nav shadow
   const nav = document.getElementById('mainNav');
+  /* one service open at a time */
+  document.querySelectorAll('.service').forEach(function (item) {
+    item.addEventListener('toggle', function () {
+      if (!item.open) return;
+      document.querySelectorAll('.service[open]').forEach(function (other) {
+        if (other !== item) other.open = false;
+      });
+    });
+  });
+
   const heroName = document.querySelector('.hero-headline');
   const syncNav = () => {
     nav.classList.toggle('scrolled', window.scrollY > 20);
