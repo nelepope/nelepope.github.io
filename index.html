@@ -717,9 +717,9 @@
   }
 
   .annotate-marks {
-    left: -9%;
-    top: -1.5em;
-    width: 202%;
+    left: -6%;
+    top: -1.66em;
+    width: 175%;
     height: auto;
     clip-path: inset(0 0 0 0);
     transform-origin: 20% 80%;
@@ -728,10 +728,10 @@
   }
 
   .annotate-underline {
-    left: 48%;
-    top: 0.72em;
-    width: 56%;
-    height: auto;
+    left: 0;
+    top: 1.05em;
+    width: 100%;
+    height: 0.8em;
     clip-path: inset(0 100% 0 0);
     transition: opacity 0.2s linear 0.3s, clip-path 0.5s var(--ease-out) 0.3s;
   }
@@ -838,8 +838,15 @@
   }
 
   .essay-tag,
-  .essay-desc,
   .essay-arrow { display: none; }
+
+  .essay-desc {
+    margin-top: 0.4rem;
+    font-family: var(--sans);
+    font-size: clamp(0.78rem, 1.05vw, 0.95rem);
+    line-height: 1.5;
+    color: var(--ink-mid);
+  }
 
   .essay-title {
     font-family: var(--sans);
@@ -1459,6 +1466,7 @@
     .service-link { font-size: 0.86rem; }
 
     .essay-title { font-size: 0.8rem; }
+    .essay-desc { font-size: 0.78rem; }
     .commercial-title { font-size: 0.86rem; }
     .samples-sub { font-size: 0.96rem; }
     .testimonial-lead { font-size: 1.25rem; }
@@ -1487,6 +1495,11 @@
     .footer-links a { font-size: 0.74rem; }
     .nav-links a { font-size: 0.8rem; }
   }
+
+  .nav-name img { display: block; height: 2.1rem; width: auto; }
+  .nav-links a.nav-audit { color: #d44237; }
+  .nav-links a.nav-audit::after { background: #d44237; }
+  @media (max-width: 560px) { .nav-name img { height: 1.75rem; } }
 </style>
 </head>
 <body>
@@ -1495,12 +1508,12 @@
 <div class="cursor-ring" id="cursorRing"></div>
 
 <nav id="mainNav">
-  <a href="#" class="nav-name">Saint-George</a>
+  <a href="#" class="nav-name" aria-label="Penelope Saint-George"><img src="Pics/psg-monogram-green.png" alt="Penelope Saint-George"></a>
   <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
   <ul class="nav-links" id="navLinks">
+    <li><a class="nav-audit" href="audit.html">Free website audit</a></li>
     <li><a href="writing.html">Writing</a></li>
     <li><a href="website-copywriting/">Services</a></li>
-    <li><a href="audit.html">Free website audit</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="https://x.com/pensaintgeorge" target="_blank" rel="noopener">X</a></li>

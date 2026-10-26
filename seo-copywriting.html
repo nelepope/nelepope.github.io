@@ -361,17 +361,22 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
   #mainNav .nav-links li:last-child a { border-bottom: 0; }
   #mainNav .nav-links a::after { display: none; }
 }
+
+  .nav-name img { display: block; height: 2.1rem; width: auto; }
+  .nav-links a.nav-audit { color: #d44237; }
+  .nav-links a.nav-audit::after { background: #d44237; }
+  @media (max-width: 560px) { .nav-name img { height: 1.75rem; } }
 </style>
 </head>
 <body>
 
 <nav id="mainNav">
-  <a href="index.html" class="nav-name">Saint-George</a>
+  <a href="index.html" class="nav-name" aria-label="Penelope Saint-George"><img src="Pics/psg-monogram-green.png" alt="Penelope Saint-George"></a>
   <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
   <ul class="nav-links" id="navLinks">
+    <li><a class="nav-audit" href="audit.html">Free website audit</a></li>
     <li><a href="writing.html">Writing</a></li>
     <li><a href="website-copywriting/">Services</a></li>
-    <li><a href="audit.html">Free website audit</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="index.html#contact">Contact</a></li>
     <li><a href="https://x.com/pensaintgeorge" target="_blank" rel="noopener">X</a></li>
