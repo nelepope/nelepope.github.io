@@ -633,20 +633,22 @@
     color: var(--ink);
   }
 
+  .testimonial-quote { padding-top: 4.2em; }
+
   .testimonial-mark {
     position: absolute;
     left: 0;
-    top: 0.22em;
-    width: clamp(1.1rem, 2.4vw, 2.1rem);
+    top: 0;
+    width: 2.9em;
     height: auto;
     color: var(--headline-deep);
   }
 
   .testimonial-mark-close {
-    display: block;
-    width: clamp(1.1rem, 2.4vw, 2.1rem);
+    float: right;
+    width: 2.9em;
     height: auto;
-    margin: -2.2rem 0 0 auto;
+    margin: 0.5em 0 0 1.5em;
     color: var(--headline-deep);
   }
 
@@ -656,27 +658,26 @@
 
   .testimonial-lead {
     font-family: var(--sans);
-    font-style: normal;
+    font-style: italic;
     font-weight: 300;
     font-size: clamp(0.85rem, 1.22vw, 1.1rem);
-    line-height: 1.7;
+    line-height: 1.85;
     color: var(--ink);
   }
 
   .testimonial-body {
     font-size: clamp(0.85rem, 1.22vw, 1.1rem);
-    line-height: 1.7;
+    line-height: 1.85;
     text-align: left;
     max-width: 87%;
     color: var(--ink);
   }
 
-  .testimonial-lead + .testimonial-body { margin-top: 0.7em; }
-
-  .testimonial-body + .testimonial-body { margin-top: 1.75em; }
+  .testimonial-lead + .testimonial-body,
+  .testimonial-body + .testimonial-body { margin-top: 0; }
 
   .testimonial-source {
-    margin-top: 1.6em;
+    margin-top: 2.2em;
     font-family: var(--sans);
     font-style: normal;
     font-size: clamp(0.78rem, 1.57vw, 1.35rem);
@@ -723,9 +724,9 @@
   }
 
   .annotate-marks {
-    left: 11%;
-    top: -1.66em;
-    width: 175%;
+    left: -5%;
+    top: -2.38em;
+    width: 230%;
     height: auto;
     clip-path: inset(0 0 0 0);
     transform-origin: 20% 80%;
@@ -1364,7 +1365,8 @@
     .testimonial-lead,
     .testimonial-body,
     .testimonial-source { padding-left: 0; }
-    .testimonial-mark { position: static; display: block; margin-bottom: 0.5rem; }
+    .testimonial-quote { padding-top: 0; }
+    .testimonial-mark { position: static; display: block; width: 2.9em; margin-bottom: 0.8rem; }
     .testimonial-mark-close { margin-top: 0.4em; }
     .testimonial-body { max-width: none; }
 
@@ -1615,7 +1617,7 @@
     <blockquote class="testimonial-quote">
       <p class="testimonial-lead"><svg class="testimonial-mark" viewBox="0 0 122 81" aria-hidden="true" focusable="false" fill="currentColor"><g transform="rotate(180 61 40.5)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/><g transform="translate(66,0)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/></g></g></svg>Pen was <span class="annotate">a delight<img class="annotate-marks" src="Pics/annotate-marks.png" alt="" aria-hidden="true"></span> to work with.</p>
       <p class="testimonial-body">She was incredibly professional and very fast in her turnaround of any work that we gave her. We really appreciated the level of critical thinking she applied to each of the briefs, working with our account managers when something doesn't quite look right and making excellent suggestions to keep things on track. </p>
-      <p class="testimonial-body"><span class="annotate-line">On top of that, the quality of the work is outstanding.<img class="annotate-underline" src="Pics/annotate-underline.png" alt="" aria-hidden="true"></span> She's always a pleasure to work with.</p>
+      <p class="testimonial-body"><span class="annotate-line">On top of that, the quality of the work is outstanding.<img class="annotate-underline" src="Pics/annotate-underline.png" alt="" aria-hidden="true"></span><br>She's always a pleasure to work with.</p>
       <svg class="testimonial-mark-close" viewBox="0 0 122 81" aria-hidden="true" focusable="false" fill="currentColor"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/><g transform="translate(66,0)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/></g></svg>
     </blockquote>
     <figcaption class="testimonial-source">Ross Tavendale, <a href="https://typeamedia.net/" target="_blank" rel="noopener">Type A Media</a></figcaption>
