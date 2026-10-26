@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem('psg-theme');document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 <title>Saint-George — Freelance Copywriter & Essayist, London</title>
 <meta name="description" content="Freelance copywriter and essayist based in London. Science, culture, and commercial content. Available for SEO articles, web copy, and long-form writing.">
 <meta name="author" content="Saint-George">
@@ -118,6 +119,7 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
+  --coral: #d44237;
     --ink: #1a1814;
     --ink-mid: #5a5751;
     --ink-light: #9a9690;
@@ -370,7 +372,7 @@
     top: -0.1em;
     width: 0.75em;
     height: 0.75em;
-    color: #d44237;
+    color: var(--coral);
     pointer-events: none;
     transform-origin: 50% 50%;
     opacity: 0;
@@ -533,7 +535,7 @@
     font-weight: 300;
     font-size: 0.62em;
     line-height: 1;
-    color: #d44237;
+    color: var(--coral);
   }
 
   .service-sign::before { content: '+'; }
@@ -1418,14 +1420,14 @@
     /* the turning asterisk lives inside the O */
     .hero-star { display: none; }
     .hero-o-star {
-      color: #d44237;
+      color: var(--coral);
       width: 0.26em;
       height: 0.26em;
       transform: translate(-50%, -50%) rotate(var(--star-turn, 0deg));
     }
 
     .hero-cta {
-      background: #d44237;
+      background: var(--coral);
       color: #fff;
       padding: 0.3rem 0.6rem 0.35rem;
     }
@@ -1489,9 +1491,57 @@
   }
 
   .nav-name img { display: block; height: 1.7rem; width: auto; }
-  .nav-links a.nav-audit { color: #d44237; }
-  .nav-links a.nav-audit::after { background: #d44237; }
+  .nav-links a.nav-audit { color: var(--coral); }
+  .nav-links a.nav-audit::after { background: var(--coral); }
   @media (max-width: 560px) { .nav-name img { height: 1.45rem; } }
+
+/* DARK MODE */
+:root[data-theme="dark"] {
+  --ink: #f4f2f0;
+  --ink-mid: #bdbab6;
+  --ink-light: #8f8f8f;
+  --paper: #1f1f1f;
+  --paper-warm: #262626;
+  --paper-deep: #2b2b2b;
+  --rule: rgba(255,255,255,0.16);
+  --accent: #8f8f8f;
+  --headline: #ffffff;
+  --headline-deep: #ffffff;
+  --sage: #aaaaaa;
+  --band: #424242;
+  --coral: #e08a79;
+}
+:root[data-theme="dark"] nav,
+:root[data-theme="dark"] body > nav { background: rgba(31,31,31,0.9); background-color: rgba(31,31,31,0.9); }
+:root[data-theme="dark"] .nav-name img { filter: brightness(0) invert(1); }
+:root[data-theme="dark"] .hero-o-star { color: var(--coral); }
+:root[data-theme="dark"] .booking .booking-col + .booking-col { border-left-color: var(--rule); }
+:root[data-theme="dark"] .skel-standout { border-top-color: rgba(224,138,121,0.4); border-bottom-color: rgba(224,138,121,0.4); }
+:root[data-theme="dark"] .u-pink { text-decoration-color: rgba(224,138,121,0.6); }
+:root[data-theme="dark"] input,
+:root[data-theme="dark"] select,
+:root[data-theme="dark"] textarea { background: transparent; color: var(--ink); }
+:root[data-theme="dark"] select option { background: #1f1f1f; color: #f4f2f0; }
+
+.theme-toggle {
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.theme-toggle:hover { color: var(--headline); }
+
+@media (max-width: 760px) {
+  #mainNav .nav-links .theme-toggle,
+  nav .nav-links .theme-toggle { display: block; width: 100%; padding: 0.9rem 0; font-size: 0.78rem; letter-spacing: 0.16em; text-align: left; }
+}
 </style>
 </head>
 <body>
@@ -1509,6 +1559,7 @@
     <li><a href="about.html">About</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="https://x.com/pensaintgeorge" target="_blank" rel="noopener">X</a></li>
+    <li><button type="button" class="theme-toggle" id="themeToggle">Light mode</button></li>
   </ul>
 </nav>
 
@@ -1896,6 +1947,26 @@
     nav.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => setOpen(false)));
     document.addEventListener('click', e => { if (!nav.contains(e.target)) setOpen(false); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
+  })();
+</script>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('themeToggle');
+    var meta = document.querySelector('meta[name="theme-color"]');
+    function paint() {
+      var dark = root.getAttribute('data-theme') === 'dark';
+      if (btn) btn.textContent = dark ? 'Light mode' : 'Dark mode';
+      if (meta) meta.setAttribute('content', dark ? '#1f1f1f' : '#fff9f5');
+    }
+    paint();
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('psg-theme', next); } catch (e) {}
+      paint();
+    });
   })();
 </script>
 </body>
