@@ -522,6 +522,26 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
   #mainNav .nav-links .theme-toggle,
   nav .nav-links .theme-toggle { display: block; width: 100%; padding: 0.9rem 0; font-size: 0.78rem; letter-spacing: 0.16em; text-align: left; }
 }
+
+/* links inside body copy: coral and underlined, never the browser's blue/purple */
+.skel-body a,
+.service-list a,
+.about-body a,
+.skel-intro a {
+  color: var(--coral);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: opacity 0.2s;
+}
+.skel-body a:visited,
+.service-list a:visited,
+.about-body a:visited,
+.skel-intro a:visited { color: var(--coral); }
+.skel-body a:hover,
+.service-list a:hover,
+.about-body a:hover,
+.skel-intro a:hover { opacity: 0.7; }
 </style>
 
 <script type="application/ld+json">
