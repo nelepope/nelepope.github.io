@@ -566,7 +566,9 @@
     height: 0.78em;
     color: var(--headline);
     transform-origin: 50% 50%;
-    align-self: center;
+    /* sits on the text baseline, so the flourish beside it cannot shift it */
+    align-self: baseline;
+    transform: translateY(0.035em);
   }
 
   .service:hover .service-star { animation: starSpin 1.6s linear infinite; }
@@ -611,6 +613,34 @@
   .service-link .hero-cta-carets { color: var(--headline-deep); }
 
   .service-link:hover .hero-cta-carets { transform: translateX(0.22em); }
+
+  /* I WORK FOR */
+  .audience-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 7%;
+    row-gap: 2.75rem;
+  }
+
+  .audience-title {
+    font-family: var(--sans);
+    font-size: clamp(1.05rem, 2.4vw, 2.1rem);
+    font-weight: 300;
+    line-height: 0.93;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    max-width: 13em;
+    color: var(--headline-deep);
+  }
+
+  .audience-desc {
+    margin-top: 0.7em;
+    font-family: var(--sans);
+    font-size: clamp(0.82rem, 1.2vw, 1.1rem);
+    line-height: 1.3;
+    max-width: 24em;
+    color: var(--ink);
+  }
 
   /* TESTIMONIAL */
   .testimonial-section {
