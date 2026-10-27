@@ -666,7 +666,7 @@
     color: var(--ink);
   }
 
-  .testimonial-quote { padding-top: 4.2em; }
+  .testimonial-quote { padding-top: 6.6em; }
 
   .testimonial-mark {
     position: absolute;
@@ -757,13 +757,15 @@
   }
 
   .annotate-marks {
-    left: -5%;
-    top: -2.38em;
-    width: 230%;
+    left: 50%;
+    top: 50%;
+    width: 460%;
     height: auto;
     clip-path: inset(0 0 0 0);
-    transform-origin: 20% 80%;
-    transform: scale(0.96);
+    /* the ring sits at 29.2% / 68.1% of the drawing, so translating by that
+       much puts it over the word, whatever the drawing is scaled to */
+    transform-origin: 29.2% 68.1%;
+    transform: translate(-26.8%, -68.1%) scale(0.96);
     transition: opacity 0.35s var(--ease-out), transform 0.5s var(--ease-out);
   }
 
@@ -778,7 +780,7 @@
 
   .testimonial:hover .annotate-marks {
     opacity: 1;
-    transform: scale(1);
+    transform: translate(-26.8%, -68.1%) scale(1);
   }
 
   .testimonial:hover .annotate-underline {
@@ -797,7 +799,7 @@
 
     .testimonial.marked .annotate-marks {
       opacity: 1;
-      transform: scale(1);
+      transform: translate(-26.8%, -68.1%) scale(1);
     }
   }
 
