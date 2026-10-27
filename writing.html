@@ -44,12 +44,6 @@
 @font-face { font-family: 'Solance Serif'; src: url('fonts/solance-light-italic.woff2') format('woff2'), url('fonts/solance-light-italic.woff') format('woff'); font-weight: 300; font-style: italic; font-display: swap; }
 @font-face { font-family: 'Solance Light'; src: url('fonts/solance-light.woff2') format('woff2'), url('fonts/solance-light.woff') format('woff'); font-weight: 400; font-style: normal; font-display: swap; }
 @font-face { font-family: 'Solance Light'; src: url('fonts/solance-light-italic.woff2') format('woff2'), url('fonts/solance-light-italic.woff') format('woff'); font-weight: 400; font-style: italic; font-display: swap; }
-@font-face { font-family: 'Editors Note Light'; src: url('fonts/editorsnotetext-thin-webfont.woff2') format('woff2'), url('fonts/editorsnotetext-thin-webfont.woff') format('woff'); font-weight: 400; font-style: normal; font-display: swap; }
-@font-face { font-family: 'Editors Note Light'; src: url('fonts/editorsnotetext-thinitalic-webfont.woff2') format('woff2'), url('fonts/editorsnotetext-thinitalic-webfont.woff') format('woff'); font-weight: 400; font-style: italic; font-display: swap; }
-@font-face { font-family: 'Editors Note Text'; src: url('fonts/editorsnotetext-regular-webfont.woff2') format('woff2'), url('fonts/editorsnotetext-regular-webfont.woff') format('woff'); font-weight: 400; font-style: normal; font-display: swap; }
-@font-face { font-family: 'Editors Note Text'; src: url('fonts/editorsnotetext-italic-webfont.woff2') format('woff2'), url('fonts/editorsnotetext-italic-webfont.woff') format('woff'); font-weight: 400; font-style: italic; font-display: swap; }
-@font-face { font-family: 'Editors Note Text'; src: url('fonts/editorsnotetext-bold-webfont.woff2') format('woff2'), url('fonts/editorsnotetext-bold-webfont.woff') format('woff'); font-weight: 700; font-style: normal; font-display: swap; }
-@font-face { font-family: 'Editors Note Text'; src: url('fonts/editorsnotetext-bolditalic-webfont.woff2') format('woff2'), url('fonts/editorsnotetext-bolditalic-webfont.woff') format('woff'); font-weight: 700; font-style: italic; font-display: swap; }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -439,7 +433,7 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 
 .essay-thumb {
   width: 100%;
-  aspect-ratio: 5 / 4;
+  aspect-ratio: 253 / 177;
   overflow: hidden;
   background: var(--paper-deep);
   position: relative;
@@ -451,70 +445,43 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
   height: 100%;
   object-fit: cover;
   display: block;
-  filter: grayscale(1) contrast(1.02);
+  filter: none;
 }
 
-.essay-item.no-duotone .essay-thumb img { filter: grayscale(0.18) contrast(1.02); }
-
-/* pre-edited thumbnails keep their own colour */
-.essay-thumb.edited img { filter: none; }
-
-/* everything else takes the same pink ground as the Klein picture */
-.essay-thumb:not(.edited) { isolation: isolate; }
-
-.essay-thumb:not(.edited)::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: #e4cdc7;
-  mix-blend-mode: multiply;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.essay-thumb:not(.edited) img { filter: grayscale(1) contrast(1.02); }
 .essay-thumb.cutout { background: var(--paper); }
 .essay-thumb.cutout img { object-fit: contain; }
-
-
-.essay-thumb::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border: 0.5px solid var(--rule);
-  pointer-events: none;
-  z-index: 2;
-}
 
 .essay-content {
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
-  margin-top: 0.85rem;
+  margin-top: 0.5rem;
+  padding-right: 0.9rem;
 }
 
-.essay-tag { display: none; }
+.essay-tag,
+.essay-arrow { display: none; }
 
 .essay-title {
-  font-family: var(--serif-light);
-  font-size: 1.22rem;
+  font-family: var(--sans);
+  font-size: clamp(0.66rem, 1.07vw, 0.95rem);
   font-weight: 400;
-  line-height: 1.25;
-  color: var(--headline);
-  letter-spacing: 0;
-  transition: font-style 0.2s;
+  line-height: 1.3;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--headline-deep);
+  transition: opacity 0.2s;
 }
 
-.essay-item:hover .essay-title { font-style: italic; }
+.essay-item:hover .essay-title { opacity: 0.6; }
 
 .essay-desc {
-  font-size: 0.8rem;
+  margin-top: 0.4rem;
+  font-family: var(--sans);
+  font-size: clamp(0.78rem, 1.05vw, 0.95rem);
+  line-height: 1.5;
   color: var(--ink-mid);
-  line-height: 1.45;
 }
-
-.essay-arrow { display: none; }
 
 @media (max-width: 980px) {
   .essays-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem 1rem; }
@@ -745,8 +712,8 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 <section class="archive">
   <div class="essays-grid">
     <a href="attention-economy.html" class="essay-item">
-      <div class="essay-thumb edited">
-        <img src="Pics/attention-economy-thumb.jpg" alt="A wild boar beside a pink tiered cake" loading="lazy">
+      <div class="essay-thumb">
+        <img src="Pics/attention-economy.jpg" alt="A wild boar beside a pink tiered cake" loading="lazy">
       </div>
       <div class="essay-content">
         <p class="essay-tag">Copywriting</p>
@@ -756,8 +723,8 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
       </div>
     </a>
     <a href="will-ai-ever-replace-writers.html" class="essay-item">
-      <div class="essay-thumb edited">
-        <img src="Pics/will-ai-thumb.jpg" alt="Lead image for Will AI Ever Replace Writers?" loading="lazy">
+      <div class="essay-thumb">
+        <img src="Pics/will-ai-header.jpg" alt="Lead image for Will AI Ever Replace Writers?" loading="lazy">
       </div>
       <div class="essay-content">
         <p class="essay-tag">Writing &amp; AI</p>
@@ -767,8 +734,8 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
       </div>
     </a>
     <a href="the-blue-epoch.html" class="essay-item">
-      <div class="essay-thumb edited">
-        <img src="Pics/blue-epoch-thumb.jpg" alt="Yves Klein, 1961" loading="lazy">
+      <div class="essay-thumb">
+        <img src="Pics/blue-epoch-hero.jpg" alt="Yves Klein, 1961" loading="lazy">
       </div>
       <div class="essay-content">
         <p class="essay-tag">Art &amp; History</p>
@@ -778,7 +745,7 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
       </div>
     </a>
     <a href="retinoids.html" class="essay-item">
-      <div class="essay-thumb tinted">
+      <div class="essay-thumb">
         <img src="Pics/retinoids-hero.jpg" alt="Close-up of a face in soft golden light" loading="lazy">
       </div>
       <div class="essay-content">

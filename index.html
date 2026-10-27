@@ -104,13 +104,7 @@
 <style>
 @font-face { font-family: 'Solance Light'; src: url('fonts/solance-light.woff2') format('woff2'), url('fonts/solance-light.woff') format('woff'); font-weight: 400; font-style: normal; font-display: swap; }
 @font-face { font-family: 'Solance Light'; src: url('fonts/solance-light-italic.woff2') format('woff2'), url('fonts/solance-light-italic.woff') format('woff'); font-weight: 400; font-style: italic; font-display: swap; }
-  @font-face { font-family: 'Editors Note Text'; src: url('fonts/editorsnotetext-regular-webfont.woff2') format('woff2'), url('fonts/editorsnotetext-regular-webfont.woff') format('woff'); font-weight: 400; font-style: normal; font-display: swap; }
-  @font-face { font-family: 'Editors Note Text'; src: url('fonts/editorsnotetext-italic-webfont.woff2') format('woff2'), url('fonts/editorsnotetext-italic-webfont.woff') format('woff'); font-weight: 400; font-style: italic; font-display: swap; }
-  @font-face { font-family: 'Editors Note Text'; src: url('fonts/editorsnotetext-bold-webfont.woff2') format('woff2'), url('fonts/editorsnotetext-bold-webfont.woff') format('woff'); font-weight: 700; font-style: normal; font-display: swap; }
-  @font-face { font-family: 'Editors Note Text'; src: url('fonts/editorsnotetext-bolditalic-webfont.woff2') format('woff2'), url('fonts/editorsnotetext-bolditalic-webfont.woff') format('woff'); font-weight: 700; font-style: italic; font-display: swap; }
-  @font-face { font-family: 'Editors Note Light'; src: url('fonts/editorsnotetext-thin-webfont.woff2') format('woff2'), url('fonts/editorsnotetext-thin-webfont.woff') format('woff'); font-weight: 400; font-style: normal; font-display: swap; }
-  @font-face { font-family: 'Editors Note Light'; src: url('fonts/editorsnotetext-thinitalic-webfont.woff2') format('woff2'), url('fonts/editorsnotetext-thinitalic-webfont.woff') format('woff'); font-weight: 400; font-style: italic; font-display: swap; }
-
+            
   @font-face { font-family: 'Solance Serif'; src: url('fonts/solance-light.woff2') format('woff2'), url('fonts/solance-light.woff') format('woff'); font-weight: 300; font-style: normal; font-display: swap; }
   @font-face { font-family: 'Solance Serif'; src: url('fonts/solance-light-italic.woff2') format('woff2'), url('fonts/solance-light-italic.woff') format('woff'); font-weight: 300; font-style: italic; font-display: swap; }
   @font-face { font-family: 'Solance Serif'; src: url('fonts/solance-regular.woff2') format('woff2'), url('fonts/solance-regular.woff') format('woff'); font-weight: 400; font-style: normal; font-display: swap; }
@@ -420,10 +414,11 @@
   .hero-cta-carets--out { transform: scaleX(-1); }
 
   /* the call to action glitches every few seconds, and on hover */
-  .hero-cta-label { position: relative; display: inline-block; }
+  .hero-cta-label,
+  .cta-label { position: relative; display: inline-block; }
 
-  .hero-cta-label::before,
-  .hero-cta-label::after {
+  .cta-label::before,
+  .cta-label::after {
     content: attr(data-text);
     position: absolute;
     left: 0;
@@ -433,8 +428,8 @@
     pointer-events: none;
   }
 
-  .hero-cta-label::before { color: #7af6ff; }
-  .hero-cta-label::after { color: #ff61d2; }
+  .cta-label::before { color: #7af6ff; }
+  .cta-label::after { color: #ff61d2; }
 
   @keyframes ctaGlitchA {
     0%, 88%, 100% { opacity: 0; transform: none; clip-path: inset(0 0 100% 0); }
@@ -453,12 +448,22 @@
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    .hero-cta-label::before { animation: ctaGlitchA 6.5s steps(1) infinite; }
-    .hero-cta-label::after { animation: ctaGlitchB 6.5s steps(1) 0.1s infinite; }
-    .hero-cta:hover .hero-cta-label::before,
-    .hero-cta:focus-visible .hero-cta-label::before { animation-duration: 1.2s; }
-    .hero-cta:hover .hero-cta-label::after,
-    .hero-cta:focus-visible .hero-cta-label::after { animation-duration: 1.2s; }
+    .cta-label::before { animation: ctaGlitchA 5s steps(1) infinite; }
+    .cta-label::after { animation: ctaGlitchB 5s steps(1) 0.1s infinite; }
+    .service:nth-child(2) .cta-label::before,
+    .service:nth-child(2) .cta-label::after { animation-delay: 1.2s; }
+    .service:nth-child(3) .cta-label::before,
+    .service:nth-child(3) .cta-label::after { animation-delay: 2.4s; }
+    .service:nth-child(4) .cta-label::before,
+    .service:nth-child(4) .cta-label::after { animation-delay: 3.6s; }
+    .hero-cta:hover .cta-label::before,
+    .hero-cta:focus-visible .cta-label::before,
+    .service-link:hover .cta-label::before,
+    .service-link:focus-visible .cta-label::before { animation-duration: 1.2s; }
+    .hero-cta:hover .cta-label::after,
+    .hero-cta:focus-visible .cta-label::after,
+    .service-link:hover .cta-label::after,
+    .service-link:focus-visible .cta-label::after { animation-duration: 1.2s; }
   }
 
   .hero-cta:hover .hero-cta-carets--in,
@@ -1639,7 +1644,7 @@
       <svg class="hero-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M23 12 H1"/><path d="M21.53 17.5 L2.47 6.5"/><path d="M17.5 21.53 L6.5 2.47"/><path d="M12 23 V1"/><path d="M6.5 21.53 L17.5 2.47"/><path d="M2.47 17.5 L21.53 6.5"/></svg>
     </h1>
     <div class="hero-actions">
-      <a href="audit.html" class="hero-cta"><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span><span class="hero-cta-label" data-text="Get a free website audit">Get a free website audit</span><span class="hero-cta-carets hero-cta-carets--out" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span></a>
+      <a href="audit.html" class="hero-cta"><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span><span class="hero-cta-label cta-label" data-text="Get a free website audit">Get a free website audit</span><span class="hero-cta-carets hero-cta-carets--out" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span></a>
     </div>
   </div>
 </div>
@@ -1683,21 +1688,21 @@
     <div class="service reveal reveal-delay-1">
       <p class="service-name"><svg class="service-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M23 12 H1"/><path d="M21.53 17.5 L2.47 6.5"/><path d="M17.5 21.53 L6.5 2.47"/><path d="M12 23 V1"/><path d="M6.5 21.53 L17.5 2.47"/><path d="M2.47 17.5 L21.53 6.5"/></svg><span>Website auditing</span><span class="service-flourish">on me!</span></p>
       <p class="service-desc">Want to know where and how your website is holding you back?</p>
-      <a class="service-link" href="audit.html"><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span><span>Get a free website audit</span><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span></a>
+      <a class="service-link" href="audit.html"><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span><span class="cta-label" data-text="Get a free website audit">Get a free website audit</span><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span></a>
     </div>
     <div class="service reveal reveal-delay-2">
       <p class="service-name"><svg class="service-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M23 12 H1"/><path d="M21.53 17.5 L2.47 6.5"/><path d="M17.5 21.53 L6.5 2.47"/><path d="M12 23 V1"/><path d="M6.5 21.53 L17.5 2.47"/><path d="M2.47 17.5 L21.53 6.5"/></svg><span>Website content &amp; SEO</span></p>
       <p class="service-desc">Want high quality content and to rank higher in search results?</p>
-      <a class="service-link" href="website-copywriting/"><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span><span>Learn more</span><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span></a>
+      <a class="service-link" href="website-copywriting/"><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span><span class="cta-label" data-text="Learn more">Learn more</span><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span></a>
     </div>
     <div class="service reveal reveal-delay-3">
       <p class="service-name"><svg class="service-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M23 12 H1"/><path d="M21.53 17.5 L2.47 6.5"/><path d="M17.5 21.53 L6.5 2.47"/><path d="M12 23 V1"/><path d="M6.5 21.53 L17.5 2.47"/><path d="M2.47 17.5 L21.53 6.5"/></svg><span>AI draft editing</span></p>
       <p class="service-desc">Want to transform your AI drafts into engaging copy?</p>
-      <a class="service-link" href="ai-draft-editing.html"><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span><span>Learn more</span><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span></a>
+      <a class="service-link" href="ai-draft-editing.html"><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span><span class="cta-label" data-text="Learn more">Learn more</span><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span></a>
     </div>
     <div class="service reveal reveal-delay-4">
       <p class="service-name"><svg class="service-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M23 12 H1"/><path d="M21.53 17.5 L2.47 6.5"/><path d="M17.5 21.53 L6.5 2.47"/><path d="M12 23 V1"/><path d="M6.5 21.53 L17.5 2.47"/><path d="M2.47 17.5 L21.53 6.5"/></svg><span>Other</span></p>
-      <a class="service-link" href="#contact"><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span><span>See what else I can offer</span><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span></a>
+      <a class="service-link" href="#contact"><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span><span class="cta-label" data-text="See what else I can offer">See what else I can offer</span><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span></a>
     </div>
   </div>
 </section>
@@ -1713,7 +1718,7 @@
   <div class="essays-grid">
     <a href="attention-economy.html" class="essay-item reveal reveal-delay-1">
       <div class="essay-thumb">
-        <img src="Pics/attention-economy-thumb.jpg" alt="A wild boar beside a pink tiered cake" loading="lazy">
+        <img src="Pics/blog-attention-economy.jpg" alt="A wild boar beside a pink tiered cake" loading="lazy">
       </div>
       <div class="essay-content">
         <p class="essay-tag">Copywriting</p>
@@ -1724,7 +1729,7 @@
     </a>
     <a href="will-ai-ever-replace-writers.html" class="essay-item reveal reveal-delay-1">
       <div class="essay-thumb">
-        <img src="Pics/will-ai-thumb.jpg" alt="Lead image for Will AI Ever Replace Writers?" loading="lazy">
+        <img src="Pics/blog-will-ai.jpg" alt="Lead image for Will AI Ever Replace Writers?" loading="lazy">
       </div>
       <div class="essay-content">
         <p class="essay-tag">Writing &amp; AI</p>
@@ -1735,7 +1740,7 @@
     </a>
     <a href="the-blue-epoch.html" class="essay-item reveal reveal-delay-2">
       <div class="essay-thumb">
-        <img src="Pics/blue-epoch-thumb.jpg" alt="Yves Klein, 1961" loading="lazy">
+        <img src="Pics/blog-blue-epoch.jpg" alt="Yves Klein, 1961" loading="lazy">
       </div>
       <div class="essay-content">
         <p class="essay-tag">Art &amp; History</p>
@@ -1746,7 +1751,7 @@
     </a>
     <a href="retinoids.html" class="essay-item reveal reveal-delay-3">
       <div class="essay-thumb">
-        <img src="Pics/retinoids-hero.jpg" alt="Close-up of a face in soft golden light" loading="lazy">
+        <img src="Pics/blog-retinoids.jpg" alt="Close-up of a face in soft golden light" loading="lazy">
       </div>
       <div class="essay-content">
         <p class="essay-tag">Beauty Science</p>
