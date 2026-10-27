@@ -39,7 +39,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Jost:wght@300;400&display=swap" rel="stylesheet">
 
 <!-- Structured data: Person -->
 <script type="application/ld+json">
@@ -543,83 +543,65 @@
 
 
   /* SERVICES */
-  .services-list {
-    display: block;
-  }
+  .services-list { display: block; }
 
-  .service {
-    position: relative;
-  }
-
-  .service + .service { margin-top: 1.3rem; }
-
-  .service + .service::before {
-    content: '';
-    display: block;
-    width: 80%;
-    height: 1px;
-    margin-bottom: 1.3rem;
-    background: var(--rule);
-  }
-
-  .service summary {
-    display: flex;
-    align-items: baseline;
-    gap: 0.42em;
-    list-style: none;
-    cursor: pointer;
-  }
-
-  .service summary::-webkit-details-marker { display: none; }
-
-  .service-sign {
-    flex: none;
-    font-family: var(--sans);
-    font-weight: 300;
-    font-size: 0.62em;
-    line-height: 1;
-    color: var(--coral);
-  }
-
-  .service-sign::before { content: '+'; }
-  .service[open] .service-sign::before { content: '\2212'; }
+  .service + .service { margin-top: 2.6rem; }
 
   .service-name {
-    font-family: var(--serif);
-    font-size: clamp(1rem, 3.32vw, 2.9rem);
-    font-weight: 400;
-    line-height: 1.05;
-    letter-spacing: 0.02em;
+    display: flex;
+    align-items: baseline;
+    gap: 0.55em;
+    font-family: var(--sans);
+    font-size: clamp(1rem, 2vw, 1.75rem);
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--headline-deep);
-    transition: color 0.3s var(--ease-out);
   }
 
-  .service summary { font-size: clamp(1rem, 3.32vw, 2.9rem); }
-  .service summary .service-name { font-size: 1em; }
+  .service-star {
+    flex: none;
+    width: 0.78em;
+    height: 0.78em;
+    color: var(--headline);
+    transform-origin: 50% 50%;
+    align-self: center;
+  }
 
-  .service summary:hover .service-name { color: var(--headline); }
+  .service:hover .service-star { animation: starSpin 1.6s linear infinite; }
 
-  .service-panel {
-    padding-top: 0.1em;
+  @keyframes starSpin { to { transform: rotate(360deg); } }
+
+  .service-flourish {
+    font-family: 'Caveat', var(--sans);
+    font-size: 1.5em;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--coral);
+    transform: rotate(-4deg);
+    display: inline-block;
   }
 
   .service-desc {
+    margin-top: 0.75em;
     font-family: var(--sans);
-    font-size: clamp(0.85rem, 1.35vw, 1.2rem);
-    line-height: 1.45;
-    color: var(--headline-deep);
+    font-size: clamp(0.82rem, 1.2vw, 1.1rem);
+    line-height: 1.5;
+    color: var(--ink);
   }
 
   .service-link {
     display: inline-flex;
     align-items: center;
     gap: 0.7em;
-    margin-top: 0.4em;
+    margin-top: 0.9em;
     font-family: var(--sans);
     font-style: italic;
     font-weight: 500;
-    font-size: clamp(0.78rem, 1.4vw, 1.25rem);
+    font-size: clamp(0.78rem, 1.25vw, 1.1rem);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--headline-deep);
@@ -629,34 +611,6 @@
   .service-link .hero-cta-carets { color: var(--headline-deep); }
 
   .service-link:hover .hero-cta-carets { transform: translateX(0.22em); }
-
-  /* WHO I WORK WITH */
-  .audience-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 7%;
-    row-gap: 2.75rem;
-  }
-
-  .audience-title {
-    font-family: var(--sans);
-    font-size: clamp(1.05rem, 2.4vw, 2.1rem);
-    font-weight: 300;
-    line-height: 0.93;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    max-width: 13em;
-    color: var(--headline-deep);
-  }
-
-  .audience-desc {
-    margin-top: 0.7em;
-    font-family: var(--sans);
-    font-size: clamp(0.82rem, 1.2vw, 1.1rem);
-    line-height: 1.3;
-    max-width: 24em;
-    color: var(--ink);
-  }
 
   /* TESTIMONIAL */
   .testimonial-section {
@@ -1414,7 +1368,6 @@
     .testimonial-mark-close { margin-top: 0.4em; }
     .testimonial-body { max-width: none; }
 
-    .service + .service::before { width: 100%; }
   }
 
   /* Touch / no-hover devices: hide custom cursor */
@@ -1508,8 +1461,8 @@
     .contact-left h2 { font-size: clamp(1.5rem, 9vw, 2.6rem); }
     #audience .section-label { font-size: clamp(1.15rem, 6.4vw, 1.8rem); }
 
-    .audience-title,
-    .service summary { font-size: clamp(1.1rem, 6.4vw, 1.9rem); }
+    .audience-title { font-size: clamp(1.1rem, 6.4vw, 1.9rem); }
+    .service-name { font-size: clamp(0.95rem, 4.6vw, 1.35rem); }
     .audience-desc { font-size: 0.92rem; }
 
     .service-desc { font-size: 0.94rem; }
@@ -1670,35 +1623,29 @@
 
 
 <section class="services-section reveal" id="services">
+  <div class="section-header">
+    <p class="section-label">What I can do for you</p>
+  </div>
   <div class="services-list">
-    <details class="service reveal" open>
-      <summary><span class="service-sign" aria-hidden="true"></span><span class="service-name">Website copywriting</span></summary>
-      <div class="service-panel">
-        <p class="service-desc">Does your website struggle to attract visitors and turn them into customers?</p>
-        <a class="service-link" href="website-copywriting/"><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span><span>See website copywriting</span></a>
-      </div>
-    </details>
-    <details class="service reveal">
-      <summary><span class="service-sign" aria-hidden="true"></span><span class="service-name">AI draft editing</span></summary>
-      <div class="service-panel">
-        <p class="service-desc">Want to transform your AI drafts into engaging copy?</p>
-        <a class="service-link" href="ai-draft-editing.html"><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span><span>See AI draft editing</span></a>
-      </div>
-    </details>
-    <details class="service reveal">
-      <summary><span class="service-sign" aria-hidden="true"></span><span class="service-name">Website content &amp; SEO</span></summary>
-      <div class="service-panel">
-        <p class="service-desc">Want to rank higher in search results?</p>
-        <a class="service-link" href="seo-copywriting.html"><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span><span>See content &amp; SEO</span></a>
-      </div>
-    </details>
-    <details class="service reveal">
-      <summary><span class="service-sign" aria-hidden="true"></span><span class="service-name">Other</span></summary>
-      <div class="service-panel">
-        <p class="service-desc">Brand strategy, tone of voice, editorial — and everything in between.</p>
-        <a class="service-link" href="#contact"><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span><span>Get in touch</span></a>
-      </div>
-    </details>
+    <div class="service reveal reveal-delay-1">
+      <p class="service-name"><svg class="service-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M23 12 H1"/><path d="M21.53 17.5 L2.47 6.5"/><path d="M17.5 21.53 L6.5 2.47"/><path d="M12 23 V1"/><path d="M6.5 21.53 L17.5 2.47"/><path d="M2.47 17.5 L21.53 6.5"/></svg><span>Website auditing</span><span class="service-flourish">on me!</span></p>
+      <p class="service-desc">Want to know where and how your website is holding you back?</p>
+      <a class="service-link" href="audit.html"><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span><span>Get a free website audit</span><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span></a>
+    </div>
+    <div class="service reveal reveal-delay-2">
+      <p class="service-name"><svg class="service-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M23 12 H1"/><path d="M21.53 17.5 L2.47 6.5"/><path d="M17.5 21.53 L6.5 2.47"/><path d="M12 23 V1"/><path d="M6.5 21.53 L17.5 2.47"/><path d="M2.47 17.5 L21.53 6.5"/></svg><span>Website content &amp; SEO</span></p>
+      <p class="service-desc">Want high quality content and to rank higher in search results?</p>
+      <a class="service-link" href="website-copywriting/"><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span><span>Learn more</span><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span></a>
+    </div>
+    <div class="service reveal reveal-delay-3">
+      <p class="service-name"><svg class="service-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M23 12 H1"/><path d="M21.53 17.5 L2.47 6.5"/><path d="M17.5 21.53 L6.5 2.47"/><path d="M12 23 V1"/><path d="M6.5 21.53 L17.5 2.47"/><path d="M2.47 17.5 L21.53 6.5"/></svg><span>AI draft editing</span></p>
+      <p class="service-desc">Want to transform your AI drafts into engaging copy?</p>
+      <a class="service-link" href="ai-draft-editing.html"><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span><span>Learn more</span><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span></a>
+    </div>
+    <div class="service reveal reveal-delay-4">
+      <p class="service-name"><svg class="service-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M23 12 H1"/><path d="M21.53 17.5 L2.47 6.5"/><path d="M17.5 21.53 L6.5 2.47"/><path d="M12 23 V1"/><path d="M6.5 21.53 L17.5 2.47"/><path d="M2.47 17.5 L21.53 6.5"/></svg><span>Other</span></p>
+      <a class="service-link" href="#contact"><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span><span>See what else I can offer</span><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span></a>
+    </div>
   </div>
 </section>
 
@@ -1893,61 +1840,6 @@
 
   // Scroll: nav shadow
   const nav = document.getElementById('mainNav');
-  /* one service open at a time, sliding rather than snapping */
-  (function () {
-    const services = [...document.querySelectorAll('.service')];
-    const still = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const ease = 'cubic-bezier(0.22, 1, 0.36, 1)';
-    const running = new WeakMap();
-
-    function slide(item, open) {
-      const panel = item.querySelector('.service-panel');
-      if (!panel) { item.open = open; return; }
-      const current = running.get(item);
-      if (current) current.cancel();
-      if (still.matches) { item.open = open; return; }
-
-      const from = item.open ? panel.getBoundingClientRect().height : 0;
-      if (open) item.open = true;
-      const to = open ? panel.scrollHeight : 0;
-      panel.style.overflow = 'hidden';
-
-      const duration = open ? 380 : 300;
-      const animation = panel.animate(
-        [{ height: from + 'px', opacity: open ? 0 : 1 },
-         { height: to + 'px', opacity: open ? 1 : 0 }],
-        { duration: duration, easing: ease }
-      );
-      running.set(item, animation);
-
-      let settled = false;
-      function settle() {
-        if (settled) return;
-        settled = true;
-        if (running.get(item) === animation) running.delete(item);
-        panel.style.overflow = '';
-        if (!open) item.open = false;
-      }
-      animation.onfinish = settle;
-      animation.oncancel = function () { settled = true; panel.style.overflow = ''; };
-      /* a backgrounded tab paints no frames, so the animation may never finish */
-      setTimeout(settle, duration + 200);
-    }
-
-    services.forEach(function (item) {
-      const summary = item.querySelector('summary');
-      if (!summary) return;
-      summary.addEventListener('click', function (event) {
-        event.preventDefault();
-        const opening = !item.open;
-        if (opening) {
-          services.forEach(function (other) { if (other !== item && other.open) slide(other, false); });
-        }
-        slide(item, opening);
-      });
-    });
-  })();
-
   const heroName = document.querySelector('.hero-headline');
   const syncNav = () => {
     nav.classList.toggle('scrolled', window.scrollY > 20);
