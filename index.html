@@ -415,7 +415,8 @@
 
   .hero-cta-carets--out { transform: scaleX(-1); }
 
-  /* a cyan/magenta shadow sits behind the label, as in the artwork */
+  /* a coral and green shadow sits behind the label, as in the artwork:
+     coral just above the glyphs, green just below */
   .hero-cta-label,
   .cta-label {
     position: relative;
@@ -436,20 +437,20 @@
   }
 
   .cta-label::before {
-    color: #7af6ff;
-    transform: translate(-0.1em, 0.03em);
+    color: #d28672;
+    transform: translateY(-0.05em);
   }
 
   .cta-label::after {
-    color: #ff61d2;
-    transform: translate(0.1em, -0.03em);
+    color: #628d56;
+    transform: translateY(0.05em);
   }
 
   .hero-cta:hover .cta-label::before,
-  .service-link:hover .cta-label::before { transform: translate(-0.16em, 0.05em); }
+  .service-link:hover .cta-label::before { transform: translateY(-0.09em); }
 
   .hero-cta:hover .cta-label::after,
-  .service-link:hover .cta-label::after { transform: translate(0.16em, -0.05em); }
+  .service-link:hover .cta-label::after { transform: translateY(0.09em); }
 
   .hero-cta-carets svg {
     width: 0.5em;
