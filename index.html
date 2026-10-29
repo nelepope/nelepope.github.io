@@ -739,72 +739,67 @@
 
   .testimonial-source a:hover { text-decoration-color: var(--headline); }
 
-  /* hover annotation on the quote — the marks are the artwork itself */
-  .annotate,
-  .annotate-line {
+  /* hover annotation on the quote — the marks are the artwork itself.
+     The ring and the note are placed separately, at the sizes and the
+     offsets measured off the artwork: the ring hugs 'a delight to', the
+     note sits well up and to the right of it. Every length is a share of
+     the ringed phrase's own width, so the pair tracks the type. */
+  .annotate {
     position: relative;
+    white-space: nowrap;
     color: inherit;
   }
 
-  /* keep the underlined sentence on one line so the drawn underline tracks it */
-  @media (min-width: 981px) {
-    .annotate-line { white-space: nowrap; }
-  }
-
-  .annotate { white-space: nowrap; }
-
-  .annotate-marks,
-  .annotate-underline {
+  .annotate-ring,
+  .annotate-note {
     position: absolute;
+    top: 50%;
+    height: auto;
     pointer-events: none;
     opacity: 0;
-    transition: opacity 0.35s var(--ease-out), clip-path 0.55s var(--ease-out);
-  }
-
-  .annotate-marks {
-    left: 50%;
-    top: 50%;
-    width: 212%;
-    height: auto;
-    clip-path: inset(0 0 0 0);
-    /* the ring sits at 29.2% / 68.1% of the drawing, so translating by that
-       much puts it over the word, whatever the drawing is scaled to */
-    transform-origin: 29.2% 68.1%;
-    transform: translate(-26.8%, -68.1%) scale(0.96);
     transition: opacity 0.35s var(--ease-out), transform 0.5s var(--ease-out);
   }
 
-  .annotate-underline {
-    left: 0;
-    top: 1.05em;
-    width: 100%;
-    height: 0.8em;
-    clip-path: inset(0 100% 0 0);
-    transition: opacity 0.2s linear 0.3s, clip-path 0.5s var(--ease-out) 0.3s;
+  .annotate-ring {
+    left: -3.2%;
+    width: 109.1%;
+    transform-origin: 50% 50%;
+    transform: translateY(-50.3%) scale(0.94);
   }
 
-  .testimonial:hover .annotate-marks {
-    opacity: 1;
-    transform: translate(-26.8%, -68.1%) scale(1);
+  .annotate-note {
+    left: 120.5%;
+    width: 144.5%;
+    transform-origin: 0% 100%;
+    transform: translateY(-132.2%) scale(0.94);
   }
 
-  .testimonial:hover .annotate-underline {
+  .testimonial:hover .annotate-ring {
     opacity: 1;
-    clip-path: inset(0 0 0 0);
+    transform: translateY(-50.3%) scale(1);
+  }
+
+  .testimonial:hover .annotate-note {
+    opacity: 1;
+    transform: translateY(-132.2%) scale(1);
+    transition-delay: 0.12s;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .annotate-marks,
-    .annotate-underline { transition: none; }
+    .annotate-ring,
+    .annotate-note { transition: none; }
   }
 
   /* touch screens have no hover, so the ring and note come in on scroll */
   @media (max-width: 760px), (hover: none) {
-    .annotate-underline { display: none; }
-
-    .testimonial.marked .annotate-marks {
+    .testimonial.marked .annotate-ring {
       opacity: 1;
-      transform: translate(-26.8%, -68.1%) scale(1);
+      transform: translateY(-50.3%) scale(1);
+    }
+
+    .testimonial.marked .annotate-note {
+      opacity: 1;
+      transform: translateY(-132.2%) scale(1);
     }
   }
 
@@ -1667,9 +1662,9 @@
 <section class="testimonial-section reveal" id="testimonial">
   <figure class="testimonial">
     <blockquote class="testimonial-quote">
-      <p class="testimonial-lead"><svg class="testimonial-mark" viewBox="0 0 122 81" aria-hidden="true" focusable="false" fill="currentColor"><g transform="rotate(180 61 40.5)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/><g transform="translate(66,0)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/></g></g></svg>Pen was <span class="annotate">a delight<img class="annotate-marks" src="Pics/annotate-marks.png" alt="" aria-hidden="true"></span> to work with.</p>
+      <p class="testimonial-lead"><svg class="testimonial-mark" viewBox="0 0 122 81" aria-hidden="true" focusable="false" fill="currentColor"><g transform="rotate(180 61 40.5)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/><g transform="translate(66,0)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/></g></g></svg>Pen was <span class="annotate">a delight to<img class="annotate-ring" src="Pics/annotate-ring.png" alt="" aria-hidden="true"><img class="annotate-note" src="Pics/annotate-note.png" alt="" aria-hidden="true"></span> work with.</p>
       <p class="testimonial-body">She was incredibly professional and very fast in her turnaround of any work that we gave her. We really appreciated the level of critical thinking she applied to each of the briefs, working with our account managers when something doesn't quite look right and making excellent suggestions to keep things on track. </p>
-      <p class="testimonial-body"><span class="annotate-line">On top of that, the quality of the work is outstanding.<img class="annotate-underline" src="Pics/annotate-underline.png" alt="" aria-hidden="true"></span><br>She's always a pleasure to work with.</p>
+      <p class="testimonial-body">On top of that, the quality of the work is outstanding.<br>She's always a pleasure to work with.</p>
       <svg class="testimonial-mark-close" viewBox="0 0 122 81" aria-hidden="true" focusable="false" fill="currentColor"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/><g transform="translate(66,0)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/></g></svg>
     </blockquote>
     <figcaption class="testimonial-source">Ross Tavendale, <a href="https://typeamedia.net/" target="_blank" rel="noopener">Type A Media</a></figcaption>
