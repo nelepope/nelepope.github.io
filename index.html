@@ -438,19 +438,19 @@
 
   .cta-label::before {
     color: #d28672;
-    transform: translateY(-0.05em);
+    transform: translateY(-0.11em);
   }
 
   .cta-label::after {
     color: #628d56;
-    transform: translateY(0.05em);
+    transform: translateY(0.11em);
   }
 
   .hero-cta:hover .cta-label::before,
-  .service-link:hover .cta-label::before { transform: translateY(-0.09em); }
+  .service-link:hover .cta-label::before { transform: translateY(-0.16em); }
 
   .hero-cta:hover .cta-label::after,
-  .service-link:hover .cta-label::after { transform: translateY(0.09em); }
+  .service-link:hover .cta-label::after { transform: translateY(0.16em); }
 
   .hero-cta-carets svg {
     width: 0.5em;
@@ -710,7 +710,8 @@
     color: var(--ink);
   }
 
-  .testimonial-lead + .testimonial-body,
+  /* the lead sentence stands on its own, one clear line above the body */
+  .testimonial-lead + .testimonial-body { margin-top: 1.85em; }
   .testimonial-body + .testimonial-body { margin-top: 0; }
 
   .testimonial-source {
@@ -763,7 +764,7 @@
   .annotate-marks {
     left: 50%;
     top: 50%;
-    width: 460%;
+    width: 212%;
     height: auto;
     clip-path: inset(0 0 0 0);
     /* the ring sits at 29.2% / 68.1% of the drawing, so translating by that
