@@ -332,6 +332,8 @@
 
   .hero-kicker span {
     display: block;
+    word-spacing: 0.04em;
+    -webkit-text-stroke: 0.012em var(--paper);
     animation: fadeUp 0.7s var(--ease-out) both;
   }
 
@@ -413,9 +415,13 @@
 
   .hero-cta-carets--out { transform: scaleX(-1); }
 
-  /* the call to action glitches every few seconds, and on hover */
+  /* a cyan/magenta shadow sits behind the label, as in the artwork */
   .hero-cta-label,
-  .cta-label { position: relative; display: inline-block; }
+  .cta-label {
+    position: relative;
+    display: inline-block;
+    isolation: isolate;
+  }
 
   .cta-label::before,
   .cta-label::after {
@@ -424,47 +430,35 @@
     left: 0;
     top: 0;
     width: 100%;
-    opacity: 0;
+    z-index: -1;
     pointer-events: none;
+    transition: transform 0.35s var(--ease-out);
   }
 
-  .cta-label::before { color: #7af6ff; }
-  .cta-label::after { color: #ff61d2; }
-
-  @keyframes ctaGlitchA {
-    0%, 88%, 100% { opacity: 0; transform: none; clip-path: inset(0 0 100% 0); }
-    89% { opacity: 0.85; transform: translate(-2px, -1px); clip-path: inset(4% 0 62% 0); }
-    91% { opacity: 0.85; transform: translate(3px, 1px); clip-path: inset(56% 0 16% 0); }
-    93% { opacity: 0.85; transform: translate(-3px, 0); clip-path: inset(28% 0 44% 0); }
-    95% { opacity: 0; }
+  .cta-label::before {
+    color: #7af6ff;
+    transform: translate(-0.1em, 0.03em);
   }
 
-  @keyframes ctaGlitchB {
-    0%, 88%, 100% { opacity: 0; transform: none; clip-path: inset(0 0 100% 0); }
-    89.5% { opacity: 0.8; transform: translate(2px, 1px); clip-path: inset(50% 0 22% 0); }
-    91.5% { opacity: 0.8; transform: translate(-3px, -1px); clip-path: inset(10% 0 58% 0); }
-    93.5% { opacity: 0.8; transform: translate(2px, -1px); clip-path: inset(70% 0 8% 0); }
-    95.5% { opacity: 0; }
+  .cta-label::after {
+    color: #ff61d2;
+    transform: translate(0.1em, -0.03em);
   }
 
-  @media (prefers-reduced-motion: no-preference) {
-    .cta-label::before { animation: ctaGlitchA 5s steps(1) infinite; }
-    .cta-label::after { animation: ctaGlitchB 5s steps(1) 0.1s infinite; }
-    .service:nth-child(2) .cta-label::before,
-    .service:nth-child(2) .cta-label::after { animation-delay: 1.2s; }
-    .service:nth-child(3) .cta-label::before,
-    .service:nth-child(3) .cta-label::after { animation-delay: 2.4s; }
-    .service:nth-child(4) .cta-label::before,
-    .service:nth-child(4) .cta-label::after { animation-delay: 3.6s; }
-    .hero-cta:hover .cta-label::before,
-    .hero-cta:focus-visible .cta-label::before,
-    .service-link:hover .cta-label::before,
-    .service-link:focus-visible .cta-label::before { animation-duration: 1.2s; }
-    .hero-cta:hover .cta-label::after,
-    .hero-cta:focus-visible .cta-label::after,
-    .service-link:hover .cta-label::after,
-    .service-link:focus-visible .cta-label::after { animation-duration: 1.2s; }
+  .hero-cta:hover .cta-label::before,
+  .service-link:hover .cta-label::before { transform: translate(-0.16em, 0.05em); }
+
+  .hero-cta:hover .cta-label::after,
+  .service-link:hover .cta-label::after { transform: translate(0.16em, -0.05em); }
+
+  .hero-cta-carets svg {
+    width: 0.5em;
+    height: 0.95em;
   }
+
+  .hero-cta-carets svg + svg { margin-left: -0.02em; }
+
+  .hero-cta-carets--out { transform: scaleX(-1); }
 
   .hero-cta:hover .hero-cta-carets--in,
   .hero-cta:focus-visible .hero-cta-carets--in { transform: translateX(0.22em); }
@@ -634,17 +628,17 @@
 
   .audience-title {
     font-family: var(--sans);
-    font-size: clamp(1.05rem, 2.4vw, 2.1rem);
-    font-weight: 300;
-    line-height: 0.93;
-    letter-spacing: 0.02em;
+    font-size: clamp(0.95rem, 1.75vw, 1.5rem);
+    font-weight: 400;
+    line-height: 1.25;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     max-width: 13em;
     color: var(--headline-deep);
   }
 
   .audience-desc {
-    margin-top: 0.7em;
+    margin-top: 0.55em;
     font-family: var(--sans);
     font-size: clamp(0.82rem, 1.2vw, 1.1rem);
     line-height: 1.3;
@@ -673,8 +667,9 @@
 
   .testimonial-quote { padding-top: 4.2em; }
 
-  /* only Ross's quote carries the drawing, so only it needs the headroom */
-  #testimonial .testimonial-quote { padding-top: 6.6em; }
+  /* the drawing needs headroom, but it is given to the band, not to the
+     quote, so the mark sits the same distance from the text in both */
+  #testimonial { padding-top: 9.5rem; }
 
   .testimonial-mark {
     position: absolute;
@@ -819,7 +814,7 @@
     overflow: hidden;
   }
 
-  #audience .section-header { margin-bottom: 0.35rem; }
+  #audience .section-header { margin-bottom: 0.9rem; }
 
   #writing .section-header,
   #projects .section-header { margin-bottom: 0.7rem; }
@@ -1499,7 +1494,7 @@
     .samples-head,
     .contact-left h2 { font-size: clamp(1.15rem, 6.4vw, 1.8rem); }
 
-    .audience-title { font-size: clamp(1.1rem, 6.4vw, 1.9rem); }
+    .audience-title { font-size: clamp(1rem, 4.8vw, 1.4rem); }
     .service-name { font-size: clamp(1rem, 4.8vw, 1.4rem); }
     .audience-desc { font-size: 0.92rem; }
 
