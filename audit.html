@@ -578,6 +578,20 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
     const status = document.getElementById('auditStatus');
     const results = document.getElementById('auditResults');
 
+    // A random ID kept in this browser, so the one-audit-a-day limit can recognise it.
+    function deviceId() {
+      try {
+        let id = localStorage.getItem('auditDevice');
+        if (!id) {
+          id = Array.from(crypto.getRandomValues(new Uint8Array(16)), b => b.toString(16).padStart(2, '0')).join('');
+          localStorage.setItem('auditDevice', id);
+        }
+        return id;
+      } catch {
+        return undefined;
+      }
+    }
+
     function showAudit(result) {
       const host = new URL(result.homePage).hostname;
       document.getElementById('auditSite').textContent = host;
@@ -795,7 +809,7 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
         const response = await fetch(AUDIT_SERVICE, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ domain: domain.value, email: email.value, optIn: optIn.checked }),
+          body: JSON.stringify({ domain: domain.value, email: email.value, optIn: optIn.checked, deviceId: deviceId() }),
         });
         const result = await response.json();
         if (!result.ok) {
