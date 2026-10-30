@@ -638,6 +638,9 @@
     color: var(--headline-deep);
   }
 
+  /* the asterisk beside the second audience is a phone-only flourish */
+  .audience-star { display: none; }
+
   .audience-desc {
     margin-top: 0.55em;
     font-family: var(--sans);
@@ -1525,6 +1528,154 @@
     .nav-links a { font-size: 0.8rem; }
   }
 
+  /* ---------------------------------------------------------------
+     PHONE LAYOUT, measured off the 1080-wide artwork.
+     Every length below is that artwork's pixels over 1080, so the
+     proportions hold at any phone width.
+     --------------------------------------------------------------- */
+  @media (max-width: 760px) {
+    /* the menu button is a plus, set in from the corner */
+    nav { padding: 2.6vw 2.5vw; }
+    /* nothing but the plus sits over the name, until the page scrolls */
+    :root[data-theme="dark"] body > nav:not(.scrolled),
+    body > nav:not(.scrolled) {
+      background: none;
+      background-color: transparent;
+      border-bottom-color: transparent;
+    }
+    .nav-toggle {
+      position: relative;
+      width: 11vw;
+      height: 11vw;
+      max-width: 48px;
+      max-height: 48px;
+      gap: 0;
+      margin-right: 0;
+      padding: 0;
+    }
+    .nav-toggle span {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 100%;
+      height: 2.5px;
+      background: var(--ink-light);
+      transform: translate(-50%, -50%);
+    }
+    .nav-toggle span:nth-child(2) { transform: translate(-50%, -50%) rotate(90deg); }
+    .nav-toggle span:nth-child(3) { display: none; }
+    #mainNav.open .nav-toggle span:nth-child(1) { transform: translate(-50%, -50%) rotate(45deg); }
+    #mainNav.open .nav-toggle span:nth-child(2) { opacity: 1; transform: translate(-50%, -50%) rotate(-45deg); }
+
+    /* HERO — the name runs almost to both edges */
+    .hero { padding: 6.2vw 2.8vw 0; gap: 0; }
+    .hero { font-size: 17.3vw; }
+    .hero-headline { line-height: 0.715; margin-bottom: 0; }
+    .hero-kicker {
+      font-size: 15.7vw;
+      line-height: 0.713;
+      letter-spacing: 0.01em;
+      margin: 0.02em 0 0;
+    }
+    .hero-kicker span { -webkit-text-stroke: 0; }
+    /* a role too long for one line keeps its first word left and hangs
+       the second flush right, as drawn */
+    .hero-kicker .hero-role-split {
+      text-align: justify;
+      text-align-last: right;
+    }
+    .hero-actions { width: 100%; margin-top: 31.4vw; }
+    .hero-cta {
+      display: block;
+      width: 100%;
+      background: none;
+      color: var(--headline);
+      padding: 0;
+      font-size: 5vw;
+      text-align: center;
+    }
+    .hero-cta-carets { display: none; }
+    .hero-cta-label { text-decoration: none; }
+
+    /* I WORK FOR */
+    .audience-section { padding-inline: 10.2vw; }
+    .audience-section .section-label { font-size: 10.33vw; line-height: 1; }
+    .audience-section .section-header { margin-bottom: 4.8vw; }
+    .audience-list { row-gap: 8.8vw; }
+    .audience-title { font-size: 6.43vw; line-height: 1.11; letter-spacing: 0.04em; max-width: none; }
+    .audience-desc { font-size: 3.19vw; line-height: 1.28; max-width: 17em; margin-top: 0.75em; }
+
+    /* the second audience is set to the right of a big coral asterisk */
+    .audience-item:nth-child(2) {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      column-gap: 2vw;
+      text-align: right;
+    }
+    .audience-item:nth-child(2) .audience-title { grid-area: 1 / 2; }
+    .audience-item:nth-child(2) .audience-desc { grid-area: 2 / 2; margin-left: auto; }
+    .audience-star {
+      display: block;
+      grid-area: 1 / 1;
+      align-self: center;
+      width: 12.5vw;
+      height: 12.5vw;
+      margin-left: 14.5%;
+      color: var(--coral);
+    }
+
+    /* THE QUOTE — no band, no quote marks, the drawing is a wave */
+    .testimonial-section { background: none; padding: 1.5rem 10.2vw 3rem; }
+    .testimonial-mark,
+    .testimonial-mark-close { display: none; }
+    .testimonial-lead,
+    .testimonial-body {
+      font-style: italic;
+      font-size: 5vw;
+      line-height: 1.72;
+      max-width: none;
+    }
+    .testimonial-lead + .testimonial-body { margin-top: 0; }
+    /* the two body paragraphs run together into one flow */
+    .testimonial-body { display: inline; }
+    .quote-aside { display: none; }
+    .annotate-ring,
+    .annotate-note { display: none; }
+
+    .testimonial-source {
+      margin-top: 13vw;
+      font-size: 4.5vw;
+      line-height: 1.44;
+      text-align: right;
+    }
+    .testimonial-source::before { content: none; }
+    /* name on one line, company on the next, as drawn */
+    .testimonial-source a { display: block; text-decoration: none; }
+  }
+
+  /* the hand-drawn wave under a word; phone only, where there is no hover */
+  .wave { position: relative; }
+
+  @media (max-width: 760px) {
+    .wave::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -0.08em;
+      width: 100%;
+      height: 0.204em;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 11'%3E%3Cpath d='M0 5.5 Q5.5 -1.5 11 5.5 T22 5.5 T33 5.5 T44 5.5' fill='none' stroke='%23e08a79' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: repeat-x;
+      background-size: 0.815em 0.204em;
+      pointer-events: none;
+    }
+
+    :root[data-theme="light"] .wave::after {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 11'%3E%3Cpath d='M0 5.5 Q5.5 -1.5 11 5.5 T22 5.5 T33 5.5 T44 5.5' fill='none' stroke='%23d44237' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E");
+    }
+  }
+
+
   .nav-name img { display: block; height: 1.7rem; width: auto; }
   .nav-links a.nav-audit { color: var(--coral); }
   .nav-links a.nav-audit::after { background: var(--coral); }
@@ -1627,8 +1778,8 @@
     <h1 class="hero-kicker">
       <span>Copywriter</span>
       <span>Editor</span>
-      <span>Creative thinker</span>
-      <span>Professional persuader</span>
+      <span class="hero-role-split">Creative thinker</span>
+      <span class="hero-role-split">Professional persuader</span>
       <svg class="hero-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M23 12 H1"/><path d="M21.53 17.5 L2.47 6.5"/><path d="M17.5 21.53 L6.5 2.47"/><path d="M12 23 V1"/><path d="M6.5 21.53 L17.5 2.47"/><path d="M2.47 17.5 L21.53 6.5"/></svg>
     </h1>
     <div class="hero-actions">
@@ -1648,6 +1799,7 @@
       <p class="audience-desc">Independent venues, theatres, galleries, festivals, concert series and studios.</p>
     </div>
     <div class="audience-item reveal reveal-delay-2">
+      <svg class="audience-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2.15"><path d="M12 1 V23"/><path d="M1 12 H23"/><path d="M4.22 4.22 L19.78 19.78"/><path d="M19.78 4.22 L4.22 19.78"/></svg>
       <p class="audience-title">Purpose-led independent brands</p>
       <p class="audience-desc">Brands using sustainable solutions, fair trade, cruelty-free formulas, and things made in Britain.</p>
     </div>
@@ -1658,9 +1810,9 @@
 <section class="testimonial-section reveal" id="testimonial">
   <figure class="testimonial">
     <blockquote class="testimonial-quote">
-      <p class="testimonial-lead"><svg class="testimonial-mark" viewBox="0 0 122 81" aria-hidden="true" focusable="false" fill="currentColor"><g transform="rotate(180 61 40.5)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/><g transform="translate(66,0)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/></g></g></svg>Pen was <span class="annotate">a delight to<img class="annotate-ring" src="Pics/annotate-ring.png" alt="" aria-hidden="true"><img class="annotate-note" src="Pics/annotate-note.png" alt="" aria-hidden="true"></span> work with.</p>
-      <p class="testimonial-body">She was incredibly professional and very fast in her turnaround of any work that we gave her. We really appreciated the level of critical thinking she applied to each of the briefs, working with our account managers when something doesn't quite look right and making excellent suggestions to keep things on track. </p>
-      <p class="testimonial-body">On top of that, the quality of the work is outstanding.<br>She's always a pleasure to work with.</p>
+      <p class="testimonial-lead"><svg class="testimonial-mark" viewBox="0 0 122 81" aria-hidden="true" focusable="false" fill="currentColor"><g transform="rotate(180 61 40.5)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/><g transform="translate(66,0)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/></g></g></svg>Pen was <span class="annotate">a <span class="wave">delight</span> to<img class="annotate-ring" src="Pics/annotate-ring.png" alt="" aria-hidden="true"><img class="annotate-note" src="Pics/annotate-note.png" alt="" aria-hidden="true"></span> work with.</p>
+      <p class="testimonial-body">She was incredibly professional and very fast in her turnaround of any work that we gave her. <span class="quote-aside">We really appreciated the level of critical thinking she applied to each of the briefs, working with our account managers when something doesn't quite look right and making excellent suggestions to keep things on track.</span></p>
+      <p class="testimonial-body">On top of that, the quality of the work is <span class="wave">outstanding</span>.<span class="quote-aside"><br>She's always a pleasure to work with.</span></p>
       <svg class="testimonial-mark-close" viewBox="0 0 122 81" aria-hidden="true" focusable="false" fill="currentColor"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/><g transform="translate(66,0)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/></g></svg>
     </blockquote>
     <figcaption class="testimonial-source">Ross Tavendale, <a href="https://typeamedia.net/" target="_blank" rel="noopener">Type A Media</a></figcaption>
