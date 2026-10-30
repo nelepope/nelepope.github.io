@@ -1515,6 +1515,10 @@
      proportions hold at any phone width.
      --------------------------------------------------------------- */
   @media (max-width: 760px) {
+    /* one margin for the whole page, the artwork's 110 of 1080.
+       The hero is the one exception: it runs nearly edge to edge. */
+    :root { --gutter: 10.2vw; }
+
     /* the menu button is a plus, set in from the corner */
     nav { padding: calc(2.6vw + env(safe-area-inset-top, 0px)) 2.5vw 2.6vw; }
     /* nothing but the plus sits over the name, until the page scrolls */
@@ -1586,7 +1590,6 @@
     .hero-cta-label { text-decoration: none; }
 
     /* I WORK FOR */
-    .audience-section { padding-inline: 10.2vw; }
     .audience-section .section-label { font-size: 10.33vw; line-height: 1; }
     .audience-section .section-header { margin-bottom: 4.8vw; }
     .audience-list { row-gap: 8.8vw; }
@@ -1613,7 +1616,7 @@
     }
 
     /* THE QUOTE — no band, no quote marks, the drawing is a wave */
-    .testimonial-section { background: none; padding: 1.5rem 10.2vw 3rem; }
+    .testimonial-section { background: none; padding: 1.5rem var(--gutter) 3rem; }
     .testimonial-lead,
     .testimonial-body {
       font-style: italic;
