@@ -438,19 +438,19 @@
 
   .cta-label::before {
     color: #d28672;
-    transform: translateY(-0.085em);
+    transform: translateY(-0.055em);
   }
 
   .cta-label::after {
     color: #628d56;
-    transform: translateY(0.085em);
+    transform: translateY(0.055em);
   }
 
   .hero-cta:hover .cta-label::before,
-  .service-link:hover .cta-label::before { transform: translateY(-0.125em); }
+  .service-link:hover .cta-label::before { transform: translateY(-0.085em); }
 
   .hero-cta:hover .cta-label::after,
-  .service-link:hover .cta-label::after { transform: translateY(0.125em); }
+  .service-link:hover .cta-label::after { transform: translateY(0.085em); }
 
   .hero-cta-carets svg {
     width: 0.5em;
@@ -669,24 +669,9 @@
     color: var(--ink);
   }
 
-  .testimonial-quote { padding-top: 4.2em; }
-
-  .testimonial-mark {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 2.9em;
-    height: auto;
-    color: var(--headline-deep);
-  }
-
-  .testimonial-mark-close {
-    float: right;
-    width: 2.9em;
-    height: auto;
-    margin: 0.5em 0 0 1.5em;
-    color: var(--headline-deep);
-  }
+  /* plain quotation marks, set at the size of the quote itself */
+  .testimonial-lead::before { content: '\201C'; }
+  .testimonial-quote > .testimonial-body:last-of-type::after { content: '\201D'; }
 
   .testimonial-lead,
   .testimonial-body,
@@ -1394,9 +1379,6 @@
     .testimonial-lead,
     .testimonial-body,
     .testimonial-source { padding-left: 0; }
-    .testimonial-quote { padding-top: 0; }
-    .testimonial-mark { position: static; display: block; width: 2.9em; margin-bottom: 0.8rem; }
-    .testimonial-mark-close { margin-top: 0.4em; }
     .testimonial-body { max-width: none; }
 
   }
@@ -1534,7 +1516,7 @@
      --------------------------------------------------------------- */
   @media (max-width: 760px) {
     /* the menu button is a plus, set in from the corner */
-    nav { padding: 2.6vw 2.5vw; }
+    nav { padding: calc(2.6vw + env(safe-area-inset-top, 0px)) 2.5vw 2.6vw; }
     /* nothing but the plus sits over the name, until the page scrolls */
     :root[data-theme="dark"] body > nav:not(.scrolled),
     body > nav:not(.scrolled) {
@@ -1566,8 +1548,15 @@
     #mainNav.open .nav-toggle span:nth-child(1) { transform: translate(-50%, -50%) rotate(45deg); }
     #mainNav.open .nav-toggle span:nth-child(2) { opacity: 1; transform: translate(-50%, -50%) rotate(-45deg); }
 
-    /* HERO — the name runs almost to both edges */
-    .hero { padding: 6.2vw 2.8vw 0; gap: 0; }
+    /* HERO — the name runs almost to both edges, and the whole thing
+       holds the first screen so the next section starts below the fold.
+       16.2vw is the bar above it: 11vw of plus between 2.6vw of padding. */
+    .hero {
+      box-sizing: border-box;
+      min-height: calc(100lvh - 16.2vw);
+      padding: 12vw 2.8vw 8vw;
+      gap: 0;
+    }
     .hero { font-size: 17.3vw; }
     .hero-headline { line-height: 0.715; margin-bottom: 0; }
     .hero-kicker {
@@ -1648,6 +1637,13 @@
     .testimonial-source::before { content: none; }
     /* name on one line, company on the next, as drawn */
     .testimonial-source a { display: block; text-decoration: none; }
+  }
+
+  /* on a short screen the call to action pulls up so it still lands
+     above the fold */
+  @media (max-width: 760px) and (max-height: 700px) {
+    .hero { padding-top: 9vw; }
+    .hero-actions { margin-top: 18vw; }
   }
 
   /* the hand-drawn wave under a word; phone only, where there is no hover */
@@ -1807,11 +1803,10 @@
 <section class="testimonial-section reveal" id="testimonial">
   <figure class="testimonial">
     <blockquote class="testimonial-quote">
-      <p class="testimonial-lead"><svg class="testimonial-mark" viewBox="0 0 122 81" aria-hidden="true" focusable="false" fill="currentColor"><g transform="rotate(180 61 40.5)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/><g transform="translate(66,0)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/></g></g></svg>Pen was <span class="annotate">a <span class="wave">delight</span> to<img class="annotate-ring" src="Pics/annotate-ring.png" alt="" aria-hidden="true"><img class="annotate-note" src="Pics/annotate-note.png" alt="" aria-hidden="true"></span> work with.</p>
+      <p class="testimonial-lead">Pen was <span class="annotate">a <span class="wave">delight</span> to<img class="annotate-ring" src="Pics/annotate-ring.png" alt="" aria-hidden="true"><img class="annotate-note" src="Pics/annotate-note.png" alt="" aria-hidden="true"></span> work with.</p>
       <p class="testimonial-body">She was incredibly professional and very fast in her turnaround of any work that we gave her. <span class="quote-aside">We really appreciated the level of critical thinking she applied to each of the briefs, working with our account managers when something doesn't quite look right and making excellent suggestions to keep things on track.</span></p>
       <p class="testimonial-body">On top of that, the quality of the work is <span class="wave">outstanding</span>.<span class="quote-aside"><br>She's always a pleasure to work with.</span></p>
-      <svg class="testimonial-mark-close" viewBox="0 0 122 81" aria-hidden="true" focusable="false" fill="currentColor"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/><g transform="translate(66,0)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/></g></svg>
-    </blockquote>
+      </blockquote>
     <figcaption class="testimonial-source">Ross Tavendale, <a href="https://typeamedia.net/" target="_blank" rel="noopener">Type A Media</a></figcaption>
   </figure>
 </section>
@@ -1950,10 +1945,9 @@
 <section class="testimonial-section reveal" id="testimonial-simonetta">
   <figure class="testimonial">
     <blockquote class="testimonial-quote">
-      <p class="testimonial-lead"><svg class="testimonial-mark" viewBox="0 0 122 81" aria-hidden="true" focusable="false" fill="currentColor"><g transform="rotate(180 61 40.5)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/><g transform="translate(66,0)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/></g></g></svg>Working with Pen has been beyond easy.</p>
+      <p class="testimonial-lead">Working with Pen has been beyond easy.</p>
       <p class="testimonial-body">She asked the most interesting questions about my project and created something that conveys everything the project represents. In no time my website was ready to go with updates that make it far more engaging.</p>
-      <svg class="testimonial-mark-close" viewBox="0 0 122 81" aria-hidden="true" focusable="false" fill="currentColor"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/><g transform="translate(66,0)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/></g></svg>
-    </blockquote>
+      </blockquote>
     <figcaption class="testimonial-source">Simonetta Gibejova</figcaption>
   </figure>
 </section>
