@@ -638,8 +638,26 @@
     color: var(--headline-deep);
   }
 
-  /* the asterisk beside the second audience is a phone-only flourish */
-  .audience-star { display: none; }
+  /* a coral asterisk in front of each title, centred on it.
+     53px against a 51px title in the artwork, set 18px off it. */
+  .audience-item {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: 0.35em;
+    font-size: clamp(0.95rem, 1.75vw, 1.5rem);
+  }
+
+  .audience-star {
+    grid-area: 1 / 1;
+    align-self: center;
+    width: 1.03em;
+    height: 1.03em;
+    stroke-width: 1.81;
+    color: var(--coral);
+  }
+
+  .audience-title { grid-area: 1 / 2; }
+  .audience-desc { grid-area: 2 / 2; }
 
   .audience-desc {
     margin-top: 0.55em;
@@ -1651,7 +1669,11 @@
     .audience-title { font-size: 6.43vw; line-height: 1.11; letter-spacing: 0.04em; max-width: none; }
     .audience-desc { font-size: 3.19vw; line-height: 1.28; max-width: 17em; margin-top: 0.75em; }
 
-    /* the second audience is set to the right of a big coral asterisk */
+    /* the second audience is set to the right of a big coral asterisk;
+       the first has none here */
+    .audience-item { display: block; font-size: inherit; }
+    .audience-item:nth-child(1) .audience-star { display: none; }
+
     .audience-item:nth-child(2) {
       display: grid;
       grid-template-columns: auto minmax(0, 1fr);
@@ -1660,14 +1682,11 @@
     }
     .audience-item:nth-child(2) .audience-title { grid-area: 1 / 2; }
     .audience-item:nth-child(2) .audience-desc { grid-area: 2 / 2; margin-left: auto; }
-    .audience-star {
-      display: block;
-      grid-area: 1 / 1;
-      align-self: center;
+    .audience-item:nth-child(2) .audience-star {
       width: 12.5vw;
       height: 12.5vw;
       margin-left: 14.5%;
-      color: var(--coral);
+      stroke-width: 2.15;
     }
 
     /* THE QUOTE — no band, no quote marks, the drawing is a wave */
@@ -1853,6 +1872,7 @@
   </div>
   <div class="audience-list">
     <div class="audience-item reveal reveal-delay-1">
+      <svg class="audience-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2.15"><path d="M12 1 V23"/><path d="M1 12 H23"/><path d="M4.22 4.22 L19.78 19.78"/><path d="M19.78 4.22 L4.22 19.78"/></svg>
       <p class="audience-title">Private arts organisations</p>
       <p class="audience-desc">Independent venues, theatres, galleries, festivals, concert series and studios.</p>
     </div>
@@ -1882,7 +1902,7 @@
   </div>
   <div class="services-list">
     <div class="service reveal reveal-delay-1">
-      <p class="service-name"><svg class="service-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M23 12 H1"/><path d="M21.53 17.5 L2.47 6.5"/><path d="M17.5 21.53 L6.5 2.47"/><path d="M12 23 V1"/><path d="M6.5 21.53 L17.5 2.47"/><path d="M2.47 17.5 L21.53 6.5"/></svg><span>Website auditing</span><span class="service-flourish">on me!</span></p>
+      <p class="service-name"><svg class="service-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M23 12 H1"/><path d="M21.53 17.5 L2.47 6.5"/><path d="M17.5 21.53 L6.5 2.47"/><path d="M12 23 V1"/><path d="M6.5 21.53 L17.5 2.47"/><path d="M2.47 17.5 L21.53 6.5"/></svg><span>Free website audit</span></p>
       <p class="service-desc">Want to know where and how your website is holding you back?</p>
       <a class="service-link" href="audit.html"><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span><span class="cta-label" data-text="Get a free website audit">Get a free website audit</span><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span></a>
     </div>
