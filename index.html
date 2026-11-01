@@ -669,9 +669,24 @@
     color: var(--ink);
   }
 
-  /* plain quotation marks, set at the size of the quote itself */
-  .testimonial-lead::before { content: '\201C'; }
-  .testimonial-quote > .testimonial-body:last-of-type::after { content: '\201D'; }
+  .testimonial-quote { padding-top: 4.2em; }
+
+  .testimonial-mark {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2.9em;
+    height: auto;
+    color: var(--headline-deep);
+  }
+
+  .testimonial-mark-close {
+    float: right;
+    width: 2.9em;
+    height: auto;
+    margin: 0.3em 0 0 1.5em;
+    color: var(--headline-deep);
+  }
 
   .testimonial-lead,
   .testimonial-body,
@@ -682,13 +697,13 @@
     font-style: italic;
     font-weight: 300;
     font-size: clamp(0.85rem, 1.22vw, 1.1rem);
-    line-height: 1.85;
+    line-height: 1.65;
     color: var(--ink);
   }
 
   .testimonial-body {
     font-size: clamp(0.85rem, 1.22vw, 1.1rem);
-    line-height: 1.85;
+    line-height: 1.65;
     text-align: left;
     max-width: 87%;
     color: var(--ink);
@@ -707,6 +722,7 @@
     font-weight: 400;
     letter-spacing: 0.1em;
     text-transform: uppercase;
+    text-align: right;
     color: var(--headline-deep);
   }
 
@@ -745,28 +761,52 @@
     transition: opacity 0.35s var(--ease-out), transform 0.5s var(--ease-out);
   }
 
+  .annotate-line { position: relative; }
+
+  /* keep the underlined clause on one line so the drawn stroke tracks it */
+  @media (min-width: 981px) {
+    .annotate-line { white-space: nowrap; }
+  }
+
+  .annotate-underline {
+    position: absolute;
+    left: 0;
+    top: 1.05em;
+    width: 100%;
+    height: 0.8em;
+    pointer-events: none;
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+    transition: opacity 0.2s linear 0.3s, clip-path 0.5s var(--ease-out) 0.3s;
+  }
+
+  .testimonial:hover .annotate-underline {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+
   .annotate-ring {
-    left: -3.2%;
-    width: 109.1%;
+    left: -2%;
+    width: 121.4%;
     transform-origin: 50% 50%;
-    transform: translateY(-50.3%) scale(0.94);
+    transform: translateY(-56.3%) scale(0.94);
   }
 
   .annotate-note {
-    left: 120.5%;
-    width: 144.5%;
+    left: 112.2%;
+    width: 208.2%;
     transform-origin: 0% 100%;
-    transform: translateY(-132.2%) scale(0.94);
+    transform: translateY(-111.7%) scale(0.94);
   }
 
   .testimonial:hover .annotate-ring {
     opacity: 1;
-    transform: translateY(-50.3%) scale(1);
+    transform: translateY(-56.3%) scale(1);
   }
 
   .testimonial:hover .annotate-note {
     opacity: 1;
-    transform: translateY(-132.2%) scale(1);
+    transform: translateY(-111.7%) scale(1);
     transition-delay: 0.12s;
   }
 
@@ -979,6 +1019,14 @@
     line-height: 1.3;
     transition: opacity 0.2s;
   }
+
+  /* the way through to the rest of the writing */
+  .writing-more {
+    grid-column: 1 / -1;
+    margin-top: 2.2rem;
+  }
+
+  .writing-more .service-link { margin-top: 0; }
 
   /* SAMPLES */
   .samples-section { padding-bottom: 7rem; }
@@ -1618,6 +1666,13 @@
 
     /* THE QUOTE — no band, no quote marks, the drawing is a wave */
     .testimonial-section { background: none; padding: 1.5rem var(--gutter) 3rem; }
+    .testimonial-quote { padding-top: 0; }
+    .testimonial-mark,
+    .testimonial-mark-close,
+    .annotate-underline { display: none; }
+    .testimonial-lead::before { content: '\201C'; }
+    .testimonial-quote > .testimonial-body:last-of-type::after { content: '\201D'; }
+
     .testimonial-lead,
     .testimonial-body {
       font-style: italic;
@@ -1626,8 +1681,6 @@
       max-width: none;
     }
     .testimonial-lead + .testimonial-body { margin-top: 0; }
-    /* the two body paragraphs run together into one flow */
-    .testimonial-body { display: inline; }
     .quote-aside { display: none; }
     .annotate-ring,
     .annotate-note { display: none; }
@@ -1807,9 +1860,8 @@
 <section class="testimonial-section reveal" id="testimonial">
   <figure class="testimonial">
     <blockquote class="testimonial-quote">
-      <p class="testimonial-lead">Pen was <span class="annotate">a <span class="wave">delight</span> to<img class="annotate-ring" src="Pics/annotate-ring.png" alt="" aria-hidden="true"><img class="annotate-note" src="Pics/annotate-note.png" alt="" aria-hidden="true"></span> work with.</p>
-      <p class="testimonial-body">She was incredibly professional and very fast in her turnaround of any work that we gave her. <span class="quote-aside">We really appreciated the level of critical thinking she applied to each of the briefs, working with our account managers when something doesn't quite look right and making excellent suggestions to keep things on track.</span></p>
-      <p class="testimonial-body">On top of that, the quality of the work is <span class="wave">outstanding</span>.<span class="quote-aside"><br>She's always a pleasure to work with.</span></p>
+      <p class="testimonial-lead"><svg class="testimonial-mark" viewBox="0 0 122 81" aria-hidden="true" focusable="false" fill="currentColor"><g transform="rotate(180 61 40.5)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/><g transform="translate(66,0)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/></g></g></svg>Pen was <span class="annotate">a <span class="wave">delight</span><img class="annotate-ring" src="Pics/annotate-ring.png" alt="" aria-hidden="true"><img class="annotate-note" src="Pics/annotate-note.png" alt="" aria-hidden="true"></span> to work with.</p>
+      <p class="testimonial-body">She was incredibly professional and very fast in her turnaround of any work that we gave her. <span class="quote-aside">We really appreciated the level of critical thinking she applied to each of the briefs, working with our account managers when something doesn't quite look right and making excellent suggestions to keep things on track. </span>On top of that, <span class="annotate-line">the quality of the work is <span class="wave">outstanding</span><img class="annotate-underline" src="Pics/annotate-underline.png" alt="" aria-hidden="true"></span>.<svg class="testimonial-mark-close" viewBox="0 0 122 81" aria-hidden="true" focusable="false" fill="currentColor"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/><g transform="translate(66,0)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/></g></svg></p>
       </blockquote>
     <figcaption class="testimonial-source">Ross Tavendale, <a href="https://typeamedia.net/" target="_blank" rel="noopener">Type A Media</a></figcaption>
   </figure>
@@ -1896,6 +1948,9 @@
       <span class="essay-arrow">Read →</span>
       </div>
     </a>
+  <div class="writing-more reveal">
+    <a class="service-link" href="writing.html"><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span><span class="cta-label" data-text="Read more">Read more</span><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span></a>
+  </div>
 </div>
 </section>
 
@@ -1949,8 +2004,8 @@
 <section class="testimonial-section reveal" id="testimonial-simonetta">
   <figure class="testimonial">
     <blockquote class="testimonial-quote">
-      <p class="testimonial-lead">Working with Pen has been beyond easy.</p>
-      <p class="testimonial-body">She asked the most interesting questions about my project and created something that conveys everything the project represents. In no time my website was ready to go with updates that make it far more engaging.</p>
+      <p class="testimonial-lead"><svg class="testimonial-mark" viewBox="0 0 122 81" aria-hidden="true" focusable="false" fill="currentColor"><g transform="rotate(180 61 40.5)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/><g transform="translate(66,0)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/></g></g></svg>Working with Pen has been beyond easy.</p>
+      <p class="testimonial-body">She asked the most interesting questions about my project and created something that conveys everything the project represents. In no time my website was ready to go with updates that make it far more engaging.<svg class="testimonial-mark-close" viewBox="0 0 122 81" aria-hidden="true" focusable="false" fill="currentColor"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/><g transform="translate(66,0)"><path d="M30 2 C14 2 2 14 2 30 C2 44 13 54 27 54 C31 54 35 53 38 51 C34 63 25 69 15 72 L18 79 C40 73 54 55 54 32 C54 13 45 2 30 2 Z"/></g></svg></p>
       </blockquote>
     <figcaption class="testimonial-source">Simonetta Gibejova</figcaption>
   </figure>
