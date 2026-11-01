@@ -714,7 +714,13 @@
   .testimonial-body + .testimonial-body { margin-top: 0; }
 
   .testimonial-source {
-    margin-top: 2.2em;
+    /* the signature hangs on the body's right edge, below the floated
+       closing mark. The gap is padding, because clearance swallows a
+       margin. */
+    margin-top: 0.5em;
+    padding-top: 1.7em;
+    max-width: 87%;
+    clear: right;
     font-family: var(--sans);
     font-style: normal;
     /* the same size as the quote it signs, caps and tracking apart */
@@ -1687,6 +1693,8 @@
 
     .testimonial-source {
       margin-top: 13vw;
+      padding-top: 0;
+      max-width: none;
       font-size: 4vw;
       line-height: 1.44;
       text-align: right;
