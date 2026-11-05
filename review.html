@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem('psg-theme');document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
+<title>Home page review — Penelope Saint-George</title>
+<meta name="description" content="Pop in your domain and get an instant review of your home page copy: what's holding it back from turning visitors into customers.">
+<meta name="author" content="Saint-George">
+<!-- Hidden until launch (ticket 09): remove noindex and add the nav link then. -->
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#fff9f5">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+@font-face { font-family: 'Solance Serif'; src: url('fonts/solance-regular.woff2') format('woff2'), url('fonts/solance-regular.woff') format('woff'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Solance Serif'; src: url('fonts/solance-light-italic.woff2') format('woff2'), url('fonts/solance-light-italic.woff') format('woff'); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Solance Serif'; src: url('fonts/solance-light.woff2') format('woff2'), url('fonts/solance-light.woff') format('woff'); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Solance Serif'; src: url('fonts/solance-light-italic.woff2') format('woff2'), url('fonts/solance-light-italic.woff') format('woff'); font-weight: 300; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Solance Light'; src: url('fonts/solance-light.woff2') format('woff2'), url('fonts/solance-light.woff') format('woff'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Solance Light'; src: url('fonts/solance-light-italic.woff2') format('woff2'), url('fonts/solance-light-italic.woff') format('woff'); font-weight: 400; font-style: italic; font-display: swap; }
+
+
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --gutter: clamp(1.5rem, 5vw, 4rem);
+  --coral: #d44237;
+  --ink: #1a1814; --ink-mid: #5a5751; --ink-light: #9a9690;
+  --paper: #fff9f5; --paper-warm: #f3f0e8; --paper-deep: #ece9e0;
+  --rule: rgba(26,24,20,0.1); --accent: #9a9690;
+  --headline: #2d6a35;
+  --strength: #2d6a35;
+  --serif: 'Solance Serif', Georgia, serif;
+  --serif-light: 'Solance Light', Georgia, serif;
+  --sans: 'Jost', sans-serif;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  background-color: var(--paper);
+  color: var(--ink); font-family: var(--sans); font-weight: 300; line-height: 1.7; min-height: 100vh;
+}
+::selection { background: var(--headline); color: var(--paper); }
+
+body > nav { display: flex; justify-content: space-between; align-items: center; padding: 1.05rem var(--gutter); border-bottom: 0.5px solid var(--rule); position: sticky; top: 0; background: rgba(255,249,245,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); z-index: 100; transition: box-shadow 0.3s; }
+body > nav.scrolled { box-shadow: 0 1px 0 var(--rule), 0 8px 24px rgba(26,24,20,0.04); }
+.nav-name { font-family: var(--sans); font-size: 0.72rem; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; color: var(--headline); text-decoration: none; }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; flex-wrap: wrap; justify-content: flex-end; row-gap: 0.35rem; }
+.nav-links a { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--headline); text-decoration: none; transition: color 0.2s; position: relative; }
+.nav-links a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 0.5px; background: var(--headline); transition: width 0.3s var(--ease-out); }
+.nav-links a:hover { color: var(--ink); }
+.nav-links a:hover::after { width: 100%; }
+.nav-links a.current { color: var(--ink); }
+.nav-links a.current::after { width: 100%; }
+
+/* PAGE HEADER */
+.page-header {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 6rem var(--gutter) 3rem;
+  text-align: center;
+}
+
+.page-kicker {
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--headline);
+  margin-bottom: 1.5rem;
+}
+
+.service-index {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem 2.25rem;
+  list-style: none;
+  margin: 0 0 2.25rem;
+}
+.service-index a {
+  font-family: var(--serif-light);
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  color: var(--headline);
+  text-decoration: none;
+  border-bottom: 0.5px solid transparent;
+  padding-bottom: 0.25rem;
+  transition: border-color 0.3s var(--ease-out), font-style 0.2s;
+}
+.service-index a:hover { border-color: var(--headline); }
+.service-index a.current { font-style: italic; border-color: var(--rule); }
+@media (max-width: 600px) {
+  .service-index { gap: 0.4rem 1.5rem; margin-bottom: 1.75rem; }
+}
+
+.page-title {
+  font-family: var(--serif-light);
+  font-weight: 400;
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: var(--headline);
+  margin-bottom: 1.5rem;
+}
+
+/* SKELETON SECTIONS */
+.skel-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3.5rem var(--gutter);
+  border-top: 0.5px solid var(--rule);
+}
+
+.skel-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--headline);
+  margin-bottom: 1.5rem;
+}
+
+.skel-heading {
+  font-family: var(--serif-light);
+  font-weight: 400;
+  margin-top: 3rem;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: var(--headline);
+  margin-bottom: 1.25rem;
+  line-height: 1.2;
+}
+
+.skel-body {
+  color: var(--ink);
+  line-height: 1.9;
+  font-size: 1.02rem;
+}
+
+.skel-body p + p { margin-top: 1.25em; }
+
+.skel-stat {
+  text-align: center;
+  margin: 2.75rem 0;
+  padding: 1rem 0;
+}
+
+.skel-stat-number {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(2.4rem, 6vw, 3.4rem);
+  color: var(--headline);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.skel-stat-bar {
+  width: 100%;
+  max-width: 420px;
+  height: 10px;
+  background: var(--paper-deep);
+  border-radius: 999px;
+  margin: 0 auto 1.25rem;
+  overflow: hidden;
+}
+
+.skel-stat-bar-fill {
+  width: 60%;
+  height: 100%;
+  background: var(--headline);
+  border-radius: 999px;
+}
+
+.skel-stat-caption {
+  font-size: 0.85rem;
+  color: var(--ink-mid);
+  max-width: 320px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.t-pink { color: var(--coral); }
+
+.skel-quote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1.4rem, 3vw, 1.85rem);
+  line-height: 1.4;
+  color: var(--headline);
+  text-align: center;
+  max-width: 680px;
+  margin: 3rem auto;
+}
+
+/* CONTACT FORM */
+.skel-contact {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 3.5rem var(--gutter);
+  border-top: 0.5px solid var(--rule);
+}
+
+.skel-contact-heading {
+  font-family: var(--serif-light);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.6rem, 3.5vw, 2.1rem);
+  color: var(--headline);
+  text-align: center;
+  margin-bottom: 2.25rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--headline);
+}
+
+.form-group input,
+.form-group textarea {
+  background: transparent;
+  border: none;
+  border-bottom: 0.5px solid var(--rule);
+  padding: 0.65rem 0;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.3s;
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: var(--ink-light); font-size: 0.85rem; }
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-bottom-color: var(--headline);
+}
+
+.form-group textarea { resize: none; min-height: 90px; }
+
+.form-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--headline);
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--sans);
+  transition: opacity 0.2s, gap 0.3s var(--ease-out), letter-spacing 0.3s var(--ease-out);
+  align-self: center;
+}
+
+.form-submit::after {
+  content: '→';
+  font-size: 1rem;
+  font-weight: 300;
+  transition: transform 0.3s var(--ease-out);
+}
+
+.form-submit:hover {
+  opacity: 0.6;
+  gap: 1.25rem;
+  letter-spacing: 0.22em;
+}
+
+.form-submit:hover::after { transform: translateX(3px); }
+
+body > footer { max-width: 1180px; margin: 0 auto; border-top: 0.5px solid var(--rule); padding: 2.25rem var(--gutter); display: flex; justify-content: space-between; align-items: center; }
+body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.08em; }
+.footer-links { display: flex; gap: 2.25rem; list-style: none; }
+.footer-links a { font-size: 0.63rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--headline); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--ink-mid); }
+
+@media (max-width: 980px) {
+  body > nav { padding: 1.25rem var(--gutter); }
+  .nav-links { gap: 1.2rem; }
+  .nav-links a { font-size: 0.62rem; letter-spacing: 0.12em; }
+  .page-header { padding: 3.5rem var(--gutter) 2rem; }
+  .skel-section { padding: 2.5rem var(--gutter); }
+  .skel-contact { padding: 2.5rem var(--gutter); }
+  body > footer { padding: 1.75rem var(--gutter); flex-direction: column; gap: 1.25rem; text-align: center; }
+  .footer-links { flex-wrap: wrap; justify-content: center; gap: 1rem 1.75rem; }
+}
+
+/* Mobile menu */
+.nav-toggle { display: none; }
+@media (max-width: 600px) {
+  #mainNav { position: sticky; top: 0; align-items: center; }
+  #mainNav .nav-name { white-space: nowrap; }
+  .nav-toggle { display: flex; flex-direction: column; justify-content: center; gap: 5px; width: 40px; height: 40px; margin-right: -8px; padding: 0 8px; background: none; border: 0; cursor: pointer; }
+  .nav-toggle span { display: block; height: 1px; background: var(--headline); transition: transform 0.3s var(--ease-out), opacity 0.2s; }
+  #mainNav.open .nav-toggle span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  #mainNav.open .nav-toggle span:nth-child(2) { opacity: 0; }
+  #mainNav.open .nav-toggle span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+  #mainNav .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; row-gap: 0; padding: 0.25rem var(--gutter) 0.75rem; background: var(--paper); border-bottom: 0.5px solid var(--rule); box-shadow: 0 12px 24px rgba(26,24,20,0.06); }
+  #mainNav.open .nav-links { display: flex; }
+  #mainNav .nav-links a { display: block; padding: 0.9rem 0; font-size: 0.78rem; letter-spacing: 0.16em; border-bottom: 0.5px solid var(--rule); }
+  #mainNav .nav-links li:last-child a { border-bottom: 0; }
+  #mainNav .nav-links a::after { display: none; }
+}
+
+/* AUDIT */
+.audit-form { max-width: 560px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.75rem; }
+.audit-optin { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.88rem; color: var(--ink-mid); cursor: pointer; }
+.audit-optin input { appearance: none; -webkit-appearance: none; flex: none; width: 1rem; height: 1rem; margin-top: 0.25rem; border: 0.5px solid var(--headline); border-radius: 2px; background: transparent; cursor: pointer; display: grid; place-content: center; }
+.audit-optin input::after { content: ''; width: 0.5rem; height: 0.5rem; background: var(--headline); transform: scale(0); transition: transform 0.15s var(--ease-out); }
+.audit-optin input:checked::after { transform: scale(1); }
+.audit-optin input:focus-visible { outline: 1px solid var(--headline); outline-offset: 2px; }
+.audit-privacy { margin-top: -0.75rem; font-size: 0.78rem; line-height: 1.6; color: var(--ink-light); }
+.audit-error { min-height: 1.5em; font-size: 0.85rem; color: var(--coral); text-align: center; }
+.form-submit:disabled { opacity: 0.4; cursor: default; }
+.audit-status { text-align: center; font-family: var(--serif-light); font-style: italic; font-size: clamp(1.1rem, 2vw, 1.35rem); color: var(--headline); }
+.audit-results { max-width: 1100px; margin: 0 auto; padding: 3.5rem var(--gutter); }
+.audit-results[hidden], .audit-status[hidden], .audit-form[hidden] { display: none; }
+.audit-title { font-family: var(--serif-light); font-weight: 400; font-size: clamp(2.6rem, 7vw, 5.2rem); line-height: 1.1; text-transform: uppercase; color: var(--headline); margin-bottom: 1rem; }
+.audit-subtitle { font-family: var(--serif-light); font-size: clamp(1.1rem, 2vw, 1.35rem); line-height: 1.5; color: var(--ink-mid); overflow-wrap: anywhere; }
+.audit-shot { display: block; width: 100%; height: auto; border: 0.5px solid var(--rule); box-shadow: 0 12px 32px rgba(26,24,20,0.08); }
+.audit-board { position: relative; margin-top: 2.5rem; }
+.audit-shot-wrap { position: relative; }
+.audit-marks { position: absolute; inset: 0; pointer-events: none; }
+.audit-mark { position: absolute; border: 1.5px solid var(--coral); border-radius: 3px; background: rgba(212,66,55,0.06); transition: background 0.2s, box-shadow 0.2s; }
+.audit-mark.strength { border-color: var(--strength); background: rgba(45,106,53,0.06); }
+.audit-mark.active { background: rgba(212,66,55,0.16); box-shadow: 0 0 0 3px rgba(212,66,55,0.18); }
+.audit-mark.strength.active { background: rgba(45,106,53,0.16); box-shadow: 0 0 0 3px rgba(45,106,53,0.18); }
+.audit-dot { position: absolute; top: -11px; left: -11px; width: 22px; height: 22px; border-radius: 50%; display: grid; place-content: center; background: var(--coral); color: var(--paper); font-family: var(--sans); font-size: 0.7rem; font-weight: 400; box-shadow: 0 2px 6px rgba(26,24,20,0.2); }
+.audit-mark.strength .audit-dot { background: var(--strength); font-size: 0.65rem; }
+.audit-notes, .audit-arrows { display: none; }
+.audit-note { position: absolute; left: 0; right: 0; padding: 1rem 1.1rem; background: var(--paper); border: 0.5px solid var(--rule); border-left: 2px solid var(--coral); box-shadow: 0 6px 18px rgba(26,24,20,0.05); transition: box-shadow 0.2s; }
+.audit-note.strength { border-left-color: var(--strength); }
+.audit-note.active { box-shadow: 0 8px 24px rgba(26,24,20,0.12); }
+.audit-note h3 { display: flex; gap: 0.6rem; font-family: var(--serif); font-weight: 400; font-size: 1.3rem; line-height: 1.25; color: var(--headline); margin-bottom: 0.55rem; }
+.audit-note-num { flex: none; font-family: var(--serif); font-style: italic; color: var(--coral); }
+.audit-note.strength .audit-note-num { font-style: normal; color: var(--strength); }
+.audit-note p { font-size: 0.86rem; line-height: 1.6; }
+.audit-note p + p { margin-top: 0.4rem; }
+.audit-note .audit-quote { margin-bottom: 0; font-size: 0.92rem; }
+.audit-arrows { position: absolute; top: 0; left: 0; pointer-events: none; overflow: visible; }
+.audit-arrows path { fill: none; stroke-width: 1.25; opacity: 0.7; transition: opacity 0.2s, stroke-width 0.2s; }
+.audit-arrows path.active { opacity: 1; stroke-width: 2; }
+@media (min-width: 900px) {
+  .audit-results { max-width: 1280px; }
+  .audit-board { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 4.5rem; align-items: start; }
+  .audit-notes { display: block; position: relative; }
+  .audit-arrows { display: block; }
+  .audit-lists { display: none; }
+}
+/* Solance has no bold cut, so a hairline outline thickens these headlines. */
+.audit-note h3, .audit-item h3, .audit-heading, .audit-main-list li { -webkit-text-stroke: 0.35px currentColor; }
+.audit-main { margin-top: 2rem; }
+.audit-main-label { margin-bottom: 0.9rem; font-family: var(--sans); font-weight: 400; font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--headline); }
+.audit-main-list { list-style: none; counter-reset: main; }
+.audit-main-list li { counter-increment: main; display: flex; gap: 0.8rem; padding: 0.3rem 0; font-family: var(--serif); font-size: clamp(1.25rem, 2.4vw, 1.6rem); line-height: 1.3; color: var(--headline); }
+.audit-main-list li::before { content: counter(main); flex: none; font-style: italic; color: var(--coral); }
+.audit-emailed { margin-top: 2rem; font-family: var(--serif-light); font-style: italic; font-size: clamp(1.05rem, 1.8vw, 1.25rem); color: var(--headline); }
+.audit-emailed[hidden] { display: none; }
+.audit-heading { font-family: var(--serif); font-weight: 400; font-size: clamp(1.5rem, 3vw, 2rem); color: var(--headline); margin: 3rem 0 1.25rem; line-height: 1.2; }
+.audit-list { list-style: none; max-width: 760px; counter-reset: audit; }
+.audit-item { position: relative; padding: 1.4rem 0 1.4rem 2.6rem; border-top: 0.5px solid var(--rule); }
+.audit-item::before { position: absolute; left: 0; top: 1.4rem; font-family: var(--serif); font-style: italic; font-size: 1.35rem; line-height: 1.2; color: var(--headline); }
+.audit-issues .audit-item { counter-increment: audit; }
+.audit-issues .audit-item::before { content: counter(audit); color: var(--coral); }
+.audit-strengths .audit-item::before { content: '\2726'; font-style: normal; font-size: 1rem; line-height: 1.9; }
+.audit-item h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.3rem, 2.2vw, 1.5rem); line-height: 1.25; color: var(--headline); margin-bottom: 0.6rem; }
+.audit-quote { font-family: var(--serif); font-style: italic; font-weight: 300; color: var(--ink-mid); margin-bottom: 0.6rem; }
+.audit-item p { font-size: 0.98rem; line-height: 1.75; }
+.audit-item p + p { margin-top: 0.5rem; }
+.audit-fix { color: var(--headline); }
+.audit-cta-wrap { margin-top: 4rem; padding-top: 3rem; border-top: 0.5px solid var(--rule); text-align: center; }
+.audit-cta { display: inline-flex; align-items: center; gap: 0.9em; font-size: clamp(0.78rem, 1.4vw, 1.25rem); font-style: italic; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--headline); text-decoration: none; }
+.audit-cta-carets { display: inline-flex; flex: none; transition: transform 0.35s var(--ease-out); }
+.audit-cta-carets svg { width: 0.5em; height: 0.95em; }
+.audit-cta-carets svg + svg { margin-left: -0.02em; }
+.audit-cta-carets--out { transform: scaleX(-1); }
+.audit-cta:hover .audit-cta-carets--in, .audit-cta:focus-visible .audit-cta-carets--in { transform: translateX(0.22em); }
+.audit-cta:hover .audit-cta-carets--out, .audit-cta:focus-visible .audit-cta-carets--out { transform: scaleX(-1) translateX(0.22em); }
+@media (max-width: 980px) { .audit-results { padding: 2.5rem var(--gutter); } }
+
+  .nav-name img { display: block; height: 1.7rem; width: auto; }
+  .nav-links a.nav-audit { color: var(--coral); }
+  .nav-links a.nav-audit::after { background: var(--coral); }
+  @media (max-width: 560px) { .nav-name img { height: 1.45rem; } }
+
+/* DARK MODE */
+:root[data-theme="dark"] {
+  --ink: #f4f2f0;
+  --ink-mid: #bdbab6;
+  --ink-light: #8f8f8f;
+  --paper: #201f22;
+  --paper-warm: #262626;
+  --paper-deep: #2b2b2b;
+  --rule: rgba(255,255,255,0.16);
+  --accent: #8f8f8f;
+  --headline: #ffffff;
+  --headline-deep: #ffffff;
+  --sage: #aaaaaa;
+  --band: #424242;
+  --coral: #e08a79;
+  --strength: #8fc79a;
+}
+:root[data-theme="dark"] nav,
+:root[data-theme="dark"] body > nav { background: rgba(32,31,34,0.9); background-color: rgba(32,31,34,0.9); }
+:root[data-theme="dark"] .nav-name img { filter: brightness(0) invert(1); }
+:root[data-theme="dark"] .hero-o-star { color: var(--coral); }
+:root[data-theme="dark"] .booking .booking-col + .booking-col { border-left-color: var(--rule); }
+:root[data-theme="dark"] .skel-standout { border-top-color: rgba(224,138,121,0.4); border-bottom-color: rgba(224,138,121,0.4); }
+:root[data-theme="dark"] .u-pink { text-decoration-color: rgba(224,138,121,0.6); }
+:root[data-theme="dark"] input,
+:root[data-theme="dark"] select,
+:root[data-theme="dark"] textarea { background: transparent; color: var(--ink); }
+:root[data-theme="dark"] select option { background: #201f22; color: #f4f2f0; }
+
+.theme-toggle {
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.theme-toggle:hover { color: var(--headline); }
+
+@media (max-width: 760px) {
+  #mainNav .nav-links .theme-toggle,
+  nav .nav-links .theme-toggle { display: block; width: 100%; padding: 0.9rem 0; font-size: 0.78rem; letter-spacing: 0.16em; text-align: left; }
+}
+
+/* links inside body copy: coral and underlined, never the browser's blue/purple */
+.skel-body a,
+.service-list a,
+.about-body a,
+.skel-intro a {
+  color: var(--coral);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: opacity 0.2s;
+}
+.skel-body a:visited,
+.service-list a:visited,
+.about-body a:visited,
+.skel-intro a:visited { color: var(--coral); }
+.skel-body a:hover,
+.service-list a:hover,
+.about-body a:hover,
+.skel-intro a:hover { opacity: 0.7; }
+</style>
+</head>
+<body>
+
+<nav id="mainNav">
+  <a href="index.html" class="nav-name" aria-label="Penelope Saint-George"><img src="Pics/psg-monogram-green.png" alt="Penelope Saint-George"></a>
+  <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="navLinks">
+    <li><a class="nav-audit" href="review.html">Free website review</a></li>
+    <li><a href="writing.html">Writing</a></li>
+    <li><a href="website-copywriting/">Services</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+    <li><a href="https://x.com/pensaintgeorge" target="_blank" rel="noopener">X</a></li>
+    <li><button type="button" class="theme-toggle" id="themeToggle">Light mode</button></li>
+  </ul>
+</nav>
+
+<!-- PLACEHOLDER COPY: Pen to rewrite (ticket 09). -->
+<div class="page-header" id="auditIntro">
+  <p class="page-kicker">Review</p>
+  <h1 class="page-title">Is your home page losing you customers?</h1>
+  <div class="skel-body">
+    <p>Pop in your website and I'll show you, in about a minute, what's holding your home page back.</p>
+  </div>
+</div>
+
+<section class="skel-section" id="auditFormSection">
+  <form class="audit-form" id="auditForm" novalidate>
+    <div class="form-group">
+      <label for="audit-domain">Your website</label>
+      <input type="text" id="audit-domain" name="domain" placeholder="yourwebsite.com" autocomplete="url" inputmode="url" autocapitalize="off" spellcheck="false" required>
+    </div>
+    <div class="form-group">
+      <label for="audit-email">Your email</label>
+      <input type="email" id="audit-email" name="email" placeholder="your@email.com" autocomplete="email" autocapitalize="off" spellcheck="false" required>
+    </div>
+    <label class="audit-optin">
+      <input type="checkbox" id="audit-optin" name="optIn">
+      <span>Happy to hear from Pen about copywriting now and then</span>
+    </label>
+    <p class="audit-privacy">I'll email you a copy of your review and may follow up once about it. I won't share your details with anyone.</p>
+    <p class="audit-error" id="auditError" role="alert"></p>
+    <button type="submit" class="form-submit" id="auditSubmit">Review my home page</button>
+  </form>
+  <p class="audit-status" id="auditStatus" role="status" hidden></p>
+</section>
+
+<section class="audit-results" id="auditResults" hidden>
+  <h1 class="audit-title" aria-label="Your landing page review"><i>Yo</i>ur Land<i>i</i>ng <i>Page</i> Rev<i>ie</i>w</h1>
+  <p class="audit-subtitle">What's working on <span id="auditSite"></span>, and what's holding it back.</p>
+  <div class="audit-main">
+    <h2 class="audit-main-label">Main issues to resolve</h2>
+    <ol class="audit-main-list" id="auditMain"></ol>
+  </div>
+  <p class="audit-emailed" id="auditEmailed" hidden></p>
+
+  <!-- Wide screens: notes beside the screenshot with arrows. Narrow screens: numbered marks, notes listed below. -->
+  <div class="audit-board" id="auditBoard">
+    <div class="audit-shot-wrap">
+      <img class="audit-shot" id="auditShot" alt="">
+      <div class="audit-marks" id="auditMarks" aria-hidden="true"></div>
+    </div>
+    <div class="audit-notes" id="auditNotes"></div>
+    <svg class="audit-arrows" id="auditArrows" aria-hidden="true"></svg>
+  </div>
+
+  <div class="audit-lists">
+    <h2 class="audit-heading">What's holding it back</h2>
+    <ol class="audit-list audit-issues" id="auditIssues"></ol>
+
+    <h2 class="audit-heading">What's working</h2>
+    <ul class="audit-list audit-strengths" id="auditStrengths"></ul>
+  </div>
+
+  <!-- Where the button goes: change the href here to repoint it. -->
+  <p class="audit-cta-wrap">
+    <a class="audit-cta" href="website-copywriting/"><span class="audit-cta-carets audit-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span><span>Get Pen to spruce this up</span><span class="audit-cta-carets audit-cta-carets--out" aria-hidden="true"><svg viewBox="0 0 8 16" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span></a>
+  </p>
+</section>
+
+<footer>
+  <p>&copy; 2026 Penelope Saint-George</p>
+  <ul class="footer-links">
+    <li><a href="https://nelepope.substack.com" target="_blank" rel="noopener">Substack</a></li>
+    <li><a href="https://www.linkedin.com/in/penelope-richmond/" target="_blank" rel="noopener">LinkedIn</a></li>
+  </ul>
+</footer>
+
+<script>
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+</script>
+
+<script>
+  (() => {
+    const nav = document.getElementById('mainNav');
+    const toggle = nav.querySelector('.nav-toggle');
+    const setOpen = open => {
+      nav.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    };
+    toggle.addEventListener('click', () => setOpen(!nav.classList.contains('open')));
+    nav.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+    document.addEventListener('click', e => { if (!nav.contains(e.target)) setOpen(false); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
+  })();
+</script>
+
+<script>
+  (() => {
+    const AUDIT_SERVICE = 'https://home-page-audit.vercel.app/api/audit';
+    const form = document.getElementById('auditForm');
+    const domain = document.getElementById('audit-domain');
+    const email = document.getElementById('audit-email');
+    const optIn = document.getElementById('audit-optin');
+    const error = document.getElementById('auditError');
+    const submit = document.getElementById('auditSubmit');
+    const status = document.getElementById('auditStatus');
+    const results = document.getElementById('auditResults');
+
+    // PLACEHOLDER COPY: Pen to rewrite. Shown in turn while the audit runs, on a timer
+    // rather than tracking the real work, so the last line stays up until it's done.
+    const WAITING_MESSAGES = [
+      'Reading your home page… this takes about a minute.',
+      'Looking at your headline…',
+      'Checking how clearly you ask people to get in touch…',
+      'Looking for what’s working well…',
+      'Writing up what I found…',
+    ];
+    const WAITING_INTERVAL = 10000;
+    // How many issues are listed under the subtitle.
+    const MAIN_ISSUES = 3;
+
+    // A random ID kept in this browser, so the one-audit-a-day limit can recognise it.
+    function deviceId() {
+      try {
+        let id = localStorage.getItem('auditDevice');
+        if (!id) {
+          id = Array.from(crypto.getRandomValues(new Uint8Array(16)), b => b.toString(16).padStart(2, '0')).join('');
+          localStorage.setItem('auditDevice', id);
+        }
+        return id;
+      } catch {
+        return undefined;
+      }
+    }
+
+    function showAudit(result) {
+      // The results take over the page: the intro and form have done their job.
+      document.getElementById('auditIntro').hidden = true;
+      document.getElementById('auditFormSection').hidden = true;
+      const host = new URL(result.homePage).hostname;
+      document.getElementById('auditSite').textContent = host.replace(/^www\./, '');
+      // Issues arrive most damaging first, so the top few are the main ones.
+      document.getElementById('auditMain').replaceChildren(...result.issues.slice(0, MAIN_ISSUES).map(item => {
+        const li = document.createElement('li');
+        li.textContent = item.title;
+        return li;
+      }));
+      const shot = document.getElementById('auditShot');
+      shot.alt = 'Screenshot of the home page of ' + host;
+      current = {
+        width: result.screenshot.width,
+        items: [
+          ...result.issues.map((item, i) => ({ ...item, kind: 'issue', label: String(i + 1) })),
+          ...result.strengths.map(item => ({ ...item, kind: 'strength', label: '\u2726' })),
+        ],
+      };
+      renderBoard();
+      shot.onload = layoutBoard;
+      shot.src = result.screenshot.dataUrl;
+      renderItems(document.getElementById('auditIssues'), result.issues, item => [
+        ['p', item.problem],
+        ['p', item.fix, 'audit-fix'],
+      ]);
+      renderItems(document.getElementById('auditStrengths'), result.strengths, item => [['p', item.why]]);
+      results.hidden = false;
+    }
+
+    // THE BOARD: screenshot with a mark on each element the audit talks about,
+    // and (on wide screens) a note beside it joined to its mark by an arrow.
+    let current = null;
+    const board = document.getElementById('auditBoard');
+    const marks = document.getElementById('auditMarks');
+    const notes = document.getElementById('auditNotes');
+    const arrows = document.getElementById('auditArrows');
+    const SVG = 'http://www.w3.org/2000/svg';
+    const COLOURS = { issue: 'var(--coral)', strength: 'var(--strength)' };
+
+    function renderBoard() {
+      marks.replaceChildren();
+      notes.replaceChildren();
+      current.items.forEach((item, i) => {
+        const mark = document.createElement('div');
+        mark.className = 'audit-mark ' + item.kind;
+        const dot = document.createElement('span');
+        dot.className = 'audit-dot';
+        dot.textContent = item.label;
+        mark.append(dot);
+        marks.append(mark);
+
+        const note = document.createElement('div');
+        note.className = 'audit-note ' + item.kind;
+        const title = document.createElement('h3');
+        const num = document.createElement('span');
+        num.className = 'audit-note-num';
+        num.textContent = item.label;
+        title.append(num, document.createTextNode(item.title));
+        note.append(title);
+        const quote = item.quote ? [['“' + item.quote + '”', 'audit-quote']] : [];
+        const lines = [...quote, ...(item.kind === 'issue' ? [[item.problem], [item.fix, 'audit-fix']] : [[item.why]])];
+        for (const [text, className] of lines) {
+          if (!text) continue;
+          const el = document.createElement('p');
+          el.textContent = text;
+          if (className) el.className = className;
+          note.append(el);
+        }
+        note.addEventListener('mouseenter', () => highlight(i, true));
+        note.addEventListener('mouseleave', () => highlight(i, false));
+        notes.append(note);
+      });
+    }
+
+    function highlight(i, on) {
+      marks.children[i]?.classList.toggle('active', on);
+      notes.children[i]?.classList.toggle('active', on);
+      arrows.querySelector('[data-i="' + i + '"]')?.classList.toggle('active', on);
+    }
+
+    function layoutBoard() {
+      if (!current) return;
+      const shot = document.getElementById('auditShot');
+      const scale = shot.clientWidth / current.width;
+      const shotHeight = shot.clientHeight;
+      const boxes = current.items.map(item => {
+        const b = item.box;
+        const top = Math.min(b.y * scale, shotHeight - 8);
+        return {
+          left: Math.max(0, b.x * scale),
+          top,
+          width: Math.max(12, Math.min(b.width * scale, shot.clientWidth - b.x * scale)),
+          height: Math.max(8, Math.min(b.height * scale, shotHeight - top)),
+        };
+      });
+      boxes.forEach((box, i) => Object.assign(marks.children[i].style, {
+        left: box.left + 'px', top: box.top + 'px', width: box.width + 'px', height: box.height + 'px',
+      }));
+
+      arrows.replaceChildren();
+      if (getComputedStyle(notes).display === 'none') return;
+
+      // Put notes in the same top-to-bottom order as their marks, centred on them where
+      // there's room. Notes that would overlap form a group, centred on its marks as a
+      // whole, so a crowded stretch spreads up as well as down.
+      const NOTE_GAP = 14;
+      const centre = i => boxes[i].top + boxes[i].height / 2;
+      const order = current.items.map((_, i) => i).sort((a, b) => centre(a) - centre(b) || a - b);
+      const heights = current.items.map((_, i) => notes.children[i].offsetHeight);
+      const groupHeight = group => group.reduce((sum, i) => sum + heights[i] + NOTE_GAP, -NOTE_GAP);
+      const groupTop = group => {
+        let offset = 0;
+        let total = 0;
+        for (const i of group) {
+          total += centre(i) - heights[i] / 2 - offset;
+          offset += heights[i] + NOTE_GAP;
+        }
+        return Math.max(0, total / group.length);
+      };
+      const groups = [];
+      for (const i of order) {
+        let group = [i];
+        while (groups.length) {
+          const above = groups[groups.length - 1];
+          if (groupTop(above) + groupHeight(above) + NOTE_GAP <= groupTop(group)) break;
+          group = [...groups.pop(), ...group];
+        }
+        groups.push(group);
+      }
+      const tops = [];
+      let bottom = 0;
+      for (const group of groups) {
+        let top = groupTop(group);
+        for (const i of group) {
+          tops[i] = top;
+          notes.children[i].style.top = top + 'px';
+          top += heights[i] + NOTE_GAP;
+        }
+        bottom = top - NOTE_GAP;
+      }
+      notes.style.height = Math.max(bottom, shotHeight) + 'px';
+
+      // Arrows run in board coordinates, from each note's left edge to the right edge of its mark.
+      const boardRect = board.getBoundingClientRect();
+      const shotRect = shot.getBoundingClientRect();
+      const notesRect = notes.getBoundingClientRect();
+      arrows.setAttribute('width', boardRect.width);
+      arrows.setAttribute('height', board.scrollHeight);
+      const defs = document.createElementNS(SVG, 'defs');
+      for (const [kind, colour] of Object.entries(COLOURS)) {
+        const marker = document.createElementNS(SVG, 'marker');
+        marker.setAttribute('id', 'arrow-' + kind);
+        marker.setAttribute('viewBox', '0 0 10 10');
+        marker.setAttribute('refX', '9');
+        marker.setAttribute('refY', '5');
+        marker.setAttribute('markerWidth', '7');
+        marker.setAttribute('markerHeight', '7');
+        marker.setAttribute('orient', 'auto-start-reverse');
+        const head = document.createElementNS(SVG, 'path');
+        head.setAttribute('d', 'M0,0 L10,5 L0,10 z');
+        head.setAttribute('fill', colour);
+        head.style.stroke = 'none';
+        marker.append(head);
+        defs.append(marker);
+      }
+      arrows.append(defs);
+      // Each arrow leaves its note level with its mark if the note reaches that far, which
+      // gives a straight line. Otherwise it leaves the nearest point of the note and bends
+      // once in the gap beside the screenshot.
+      const shotRight = shotRect.right - boardRect.left;
+      const gap = notesRect.left - shotRect.right;
+      const connectors = order.map(i => {
+        const endY = shotRect.top - boardRect.top + boxes[i].top + boxes[i].height / 2;
+        const noteTop = notesRect.top - boardRect.top + tops[i];
+        const startY = Math.min(Math.max(endY, noteTop + 16), noteTop + heights[i] - 16);
+        return { i, startY, endY };
+      });
+
+      // Bends that share a stretch of height need their own lanes, ordered so they never
+      // cross: when arrows run down from mark to note the top one takes the rightmost lane,
+      // and when they run up it takes the leftmost.
+      const laneOf = new Map();
+      for (const runsDown of [true, false]) {
+        const bent = connectors.filter(c => Math.abs(c.startY - c.endY) >= 1 && c.startY > c.endY === runsDown);
+        let run = [];
+        let runBottom = -Infinity;
+        const placeRun = () => {
+          const spacing = Math.min(8, (gap - 24) / Math.max(1, run.length - 1));
+          const left = shotRight + gap / 2 - spacing * (run.length - 1) / 2;
+          run.forEach((c, n) => laneOf.set(c.i, left + (runsDown ? run.length - 1 - n : n) * spacing));
+        };
+        for (const c of bent) {
+          if (run.length && Math.min(c.startY, c.endY) > runBottom) {
+            placeRun();
+            run = [];
+            runBottom = -Infinity;
+          }
+          run.push(c);
+          runBottom = Math.max(runBottom, c.startY, c.endY);
+        }
+        if (run.length) placeRun();
+      }
+
+      connectors.forEach(({ i, startY, endY }) => {
+        const item = current.items[i];
+        const startX = notesRect.left - boardRect.left;
+        const endX = shotRect.left - boardRect.left + boxes[i].left + boxes[i].width + 2;
+        const laneX = laneOf.get(i);
+        const path = document.createElementNS(SVG, 'path');
+        path.setAttribute('d', laneX === undefined
+          ? `M${startX},${endY} L${endX},${endY}`
+          : `M${startX},${startY} L${laneX},${startY} L${laneX},${endY} L${endX},${endY}`);
+        path.setAttribute('stroke', COLOURS[item.kind]);
+        path.setAttribute('marker-end', 'url(#arrow-' + item.kind + ')');
+        path.dataset.i = i;
+        arrows.append(path);
+      });
+    }
+
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(layoutBoard, 120);
+    });
+
+    // Opening a saved review from its private link (?review=..., or ?audit=... in older emails).
+    const params = new URLSearchParams(location.search);
+    const savedId = params.get('review') ?? params.get('audit');
+    if (savedId) {
+      form.hidden = true;
+      status.hidden = false;
+      status.textContent = 'Opening your review…';
+      fetch(AUDIT_SERVICE + '?id=' + encodeURIComponent(savedId))
+        .then(response => response.json())
+        .then(result => {
+          if (!result.ok) {
+            error.textContent = result.message;
+            return;
+          }
+          showAudit(result);
+          window.scrollTo({ top: 0 });
+        })
+        .catch(() => { error.textContent = 'Something went wrong opening your review. Please try again in a minute.'; })
+        .finally(() => {
+          status.hidden = true;
+          form.hidden = false; // An expired link's message sits in the form, with the way to run a new one.
+        });
+    }
+
+    function renderItems(list, items, body) {
+      list.replaceChildren(...items.map(item => {
+        const li = document.createElement('li');
+        li.className = 'audit-item';
+        const parts = [['h3', item.title]];
+        if (item.quote) parts.push(['p', '\u201c' + item.quote + '\u201d', 'audit-quote']);
+        for (const [tag, text, className] of [...parts, ...body(item)]) {
+          const el = document.createElement(tag);
+          el.textContent = text;
+          if (className) el.className = className;
+          li.append(el);
+        }
+        return li;
+      }));
+    }
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      error.textContent = '';
+      if (!domain.value.trim()) {
+        error.textContent = 'Pop your website address in first, e.g. yourwebsite.com.';
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+        error.textContent = 'Add your email address so I can send you a copy.';
+        return;
+      }
+
+      submit.disabled = true;
+      results.hidden = true;
+      status.hidden = false;
+      let waitingStep = 0;
+      status.textContent = WAITING_MESSAGES[0];
+      const waitingTimer = setInterval(() => {
+        waitingStep = Math.min(waitingStep + 1, WAITING_MESSAGES.length - 1);
+        status.textContent = WAITING_MESSAGES[waitingStep];
+      }, WAITING_INTERVAL);
+
+      try {
+        const response = await fetch(AUDIT_SERVICE, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ domain: domain.value, email: email.value, optIn: optIn.checked, deviceId: deviceId() }),
+        });
+        const result = await response.json();
+        if (!result.ok) {
+          error.textContent = result.message || 'Something went wrong. Please try again in a minute.';
+          return;
+        }
+        showAudit(result);
+        const emailed = document.getElementById('auditEmailed');
+        emailed.hidden = !result.emailed;
+        emailed.textContent = result.emailed ? 'A copy is on its way to ' + email.value.trim() + '.' : '';
+        if (result.id) history.replaceState(null, '', '?review=' + encodeURIComponent(result.id));
+        window.scrollTo({ top: 0 });
+      } catch {
+        error.textContent = 'Something went wrong. Please try again in a minute.';
+      } finally {
+        clearInterval(waitingTimer);
+        status.hidden = true;
+        submit.disabled = false;
+      }
+    });
+  })();
+</script>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('themeToggle');
+    var meta = document.querySelector('meta[name="theme-color"]');
+    function paint() {
+      var dark = root.getAttribute('data-theme') === 'dark';
+      if (btn) btn.textContent = dark ? 'Light mode' : 'Dark mode';
+      if (meta) meta.setAttribute('content', dark ? '#201f22' : '#fff9f5');
+    }
+    paint();
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('psg-theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+</body>
+</html>
