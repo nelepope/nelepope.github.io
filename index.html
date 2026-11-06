@@ -543,14 +543,24 @@
 
 
   /* SERVICES */
-  .services-list { display: block; }
+  .services-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 7%;
+    row-gap: 3.5rem;
+  }
 
-  .service + .service { margin-top: 2.9rem; }
+  /* star in its own column, so the description and link line up under the name */
+  .service {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 0.75rem;
+    align-items: baseline;
+    align-content: start;
+  }
 
   .service-name {
-    display: flex;
-    align-items: baseline;
-    gap: 0.55em;
+    display: contents;
     font-family: var(--sans);
     font-size: clamp(0.95rem, 1.75vw, 1.5rem);
     font-weight: 400;
@@ -591,6 +601,9 @@
     transform: rotate(-4deg);
     display: inline-block;
   }
+
+  .service-desc,
+  .service-link { grid-column: 2; justify-self: start; }
 
   .service-desc {
     margin-top: 0.55em;
@@ -1395,6 +1408,7 @@
 
     .essays-grid { grid-template-columns: repeat(2, 1fr); }
     .audience-list { grid-template-columns: 1fr; row-gap: 2rem; }
+    .services-list { grid-template-columns: 1fr; row-gap: 2.9rem; }
     .commercial-list { grid-template-columns: 1fr; }
     .commercial-item { padding: 0; }
 
@@ -1902,13 +1916,13 @@
   </div>
   <div class="services-list">
     <div class="service reveal reveal-delay-1">
-      <p class="service-name"><svg class="service-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M23 12 H1"/><path d="M21.53 17.5 L2.47 6.5"/><path d="M17.5 21.53 L6.5 2.47"/><path d="M12 23 V1"/><path d="M6.5 21.53 L17.5 2.47"/><path d="M2.47 17.5 L21.53 6.5"/></svg><span>Free website review</span></p>
-      <p class="service-desc">Want to know where and how your website is holding you back?</p>
-      <a class="service-link" href="review.html"><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span><span class="cta-label" data-text="Get a free website review">Get a free website review</span><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span></a>
+      <p class="service-name"><svg class="service-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M23 12 H1"/><path d="M21.53 17.5 L2.47 6.5"/><path d="M17.5 21.53 L6.5 2.47"/><path d="M12 23 V1"/><path d="M6.5 21.53 L17.5 2.47"/><path d="M2.47 17.5 L21.53 6.5"/></svg><span>Free website auditing</span></p>
+      <p class="service-desc">Want to know where and how your website is holding you back? I can show you in one minute.</p>
+      <a class="service-link" href="review.html"><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span><span class="cta-label" data-text="Get a free website audit">Get a free website audit</span><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span></a>
     </div>
     <div class="service reveal reveal-delay-2">
       <p class="service-name"><svg class="service-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M23 12 H1"/><path d="M21.53 17.5 L2.47 6.5"/><path d="M17.5 21.53 L6.5 2.47"/><path d="M12 23 V1"/><path d="M6.5 21.53 L17.5 2.47"/><path d="M2.47 17.5 L21.53 6.5"/></svg><span>Website content &amp; SEO</span></p>
-      <p class="service-desc">Want high quality content and to rank higher in search results?</p>
+      <p class="service-desc">Want high quality content and to rank higher in search results? I can make it happen.</p>
       <a class="service-link" href="website-copywriting/"><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span><span class="cta-label" data-text="Learn more">Learn more</span><span class="hero-cta-carets hero-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span></a>
     </div>
     <div class="service reveal reveal-delay-3">
@@ -1989,16 +2003,6 @@
     <span class="section-count">Portfolio</span>
   </div>
   <div class="commercial-list">
-    <a href="https://www.studioaegis.co.uk/" target="_blank" rel="noopener" class="commercial-item commercial-work">
-      <div class="commercial-thumb">
-        <img src="Pics/studio-aegis.png" alt="Homepage of Studio Aegis, an art studio" loading="lazy">
-      </div>
-      <div class="commercial-content">
-        <p class="commercial-title">Ægis Bodycasting</p>
-        <p class="commercial-url">studioaegis.co.uk</p>
-        <p class="commercial-type">Copy and website design for an art studio.</p>
-      </div>
-    </a>
     <a href="https://healthisaprivilege.com" target="_blank" rel="noopener" class="commercial-item commercial-work">
       <div class="commercial-thumb">
         <img src="Pics/health-is-a-privilege.png" alt="Landing page for the play Health Is A Privilege" loading="lazy">
