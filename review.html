@@ -355,6 +355,7 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 .audit-mark.strength.active { background: rgba(45,106,53,0.16); box-shadow: 0 0 0 3px rgba(45,106,53,0.18); }
 .audit-dot { position: absolute; top: -11px; left: -11px; width: 22px; height: 22px; border-radius: 50%; display: grid; place-content: center; background: var(--coral); color: var(--paper); font-family: var(--sans); font-size: 0.7rem; font-weight: 400; box-shadow: 0 2px 6px rgba(26,24,20,0.2); }
 .audit-mark.strength .audit-dot { background: var(--strength); font-size: 0.65rem; }
+.audit-mark.issue .audit-dot { width: 14px; height: 14px; top: -7px; left: -7px; }
 .audit-notes, .audit-arrows { display: none; }
 .audit-note { position: absolute; left: 0; right: 0; padding: 1rem 1.1rem; background: var(--paper); border: 0.5px solid var(--rule); border-left: 2px solid var(--coral); box-shadow: 0 6px 18px rgba(26,24,20,0.05); transition: box-shadow 0.2s; }
 .audit-note.strength { border-left-color: var(--strength); }
@@ -380,6 +381,10 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 .audit-emailed { margin-top: 2rem; font-family: var(--serif-light); font-style: italic; font-size: clamp(1.05rem, 1.8vw, 1.25rem); color: var(--headline); }
 .audit-emailed[hidden] { display: none; }
 .audit-thanks { max-width: 560px; margin: 0 auto; text-align: center; }
+.audit-main { margin-top: 2.5rem; max-width: 760px; padding: 1.4rem 1.6rem; border-left: 2px solid var(--coral); background: rgba(212,66,55,0.06); font-family: var(--serif); font-size: clamp(1.05rem, 1.8vw, 1.25rem); line-height: 1.6; color: var(--coral); }
+.audit-main[hidden] { display: none; }
+.audit-main ul { margin: 0.5rem 0 0.5rem 1.4rem; list-style: disc; }
+.audit-main li { margin: 0.15rem 0; }
 .upload-for { font-size: 0.95rem; color: var(--ink-mid); }
 .upload-file { font-size: 0.88rem; color: var(--ink-mid); }
 .upload-file input { display: block; margin-top: 0.6rem; font: inherit; color: var(--ink-mid); max-width: 100%; }
@@ -387,8 +392,7 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 .audit-list { list-style: none; max-width: 760px; counter-reset: audit; }
 .audit-item { position: relative; padding: 1.4rem 0 1.4rem 2.6rem; border-top: 0.5px solid var(--rule); }
 .audit-item::before { position: absolute; left: 0; top: 1.4rem; font-family: var(--serif); font-style: italic; font-size: 1.35rem; line-height: 1.2; color: var(--headline); }
-.audit-issues .audit-item { counter-increment: audit; }
-.audit-issues .audit-item::before { content: counter(audit); color: var(--coral); }
+.audit-issues .audit-item::before { content: '\2022'; font-style: normal; color: var(--coral); }
 .audit-strengths .audit-item::before { content: '\2726'; font-style: normal; font-size: 1rem; line-height: 1.9; }
 .audit-item h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.3rem, 2.2vw, 1.5rem); line-height: 1.25; color: var(--headline); margin-bottom: 0.6rem; }
 .audit-quote { font-family: var(--serif); font-style: italic; font-weight: 300; color: var(--ink-mid); margin-bottom: 0.6rem; }
@@ -548,6 +552,7 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
   <h1 class="audit-title" aria-label="Your home page review"><i>Yo</i>ur H<i>o</i>me <i>Page</i> Rev<i>ie</i>w</h1>
   <p class="audit-subtitle">What's working on <span id="auditSite"></span>, and what isn't</p>
   <p class="audit-emailed" id="auditEmailed" hidden></p>
+  <div class="audit-main" id="auditMain" hidden></div>
 
   <!-- Wide screens: notes beside the screenshot with arrows. Narrow screens: numbered marks, notes listed below. -->
   <div class="audit-board" id="auditBoard">
@@ -649,10 +654,11 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
       current = {
         width: result.screenshot.width,
         items: [
-          ...result.issues.map((item, i) => ({ ...item, kind: 'issue', label: String(i + 1) })),
+          ...result.issues.map(item => ({ ...item, kind: 'issue', label: '' })),
           ...result.strengths.map(item => ({ ...item, kind: 'strength', label: '\u2726' })),
         ],
       };
+      renderMain(result.mainComment);
       renderBoard();
       shot.onload = layoutBoard;
       shot.src = result.screenshot.dataUrl;
@@ -666,6 +672,27 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
       renderItems(document.getElementById('auditSmallFixes'), smallFixes, item => [['p', item.note]]);
       document.getElementById('auditSmallFixesWrap').hidden = smallFixes.length === 0;
       results.hidden = false;
+    }
+
+    // An optional main comment Pen adds by hand, shown above the screenshot:
+    // { text, points: [...], after }.
+    function renderMain(main) {
+      const box = document.getElementById('auditMain');
+      box.replaceChildren();
+      box.hidden = !main;
+      if (!main) return;
+      for (const line of paragraphs(main.text)) box.append(Object.assign(document.createElement('p'), { textContent: line }));
+      if (main.points?.length) {
+        const ul = document.createElement('ul');
+        for (const point of main.points) ul.append(Object.assign(document.createElement('li'), { textContent: point }));
+        box.append(ul);
+      }
+      for (const line of paragraphs(main.after)) box.append(Object.assign(document.createElement('p'), { textContent: line }));
+    }
+
+    // Text with line breaks becomes one paragraph per line.
+    function paragraphs(text) {
+      return String(text ?? '').split('\n').map(line => line.trim()).filter(Boolean);
     }
 
     // THE BOARD: screenshot with a mark on each element the audit talks about,
@@ -693,19 +720,23 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
         const note = document.createElement('div');
         note.className = 'audit-note ' + item.kind;
         const title = document.createElement('h3');
-        const num = document.createElement('span');
-        num.className = 'audit-note-num';
-        num.textContent = item.label;
-        title.append(num, document.createTextNode(item.title));
+        if (item.label) {
+          const num = document.createElement('span');
+          num.className = 'audit-note-num';
+          num.textContent = item.label;
+          title.append(num);
+        }
+        title.append(document.createTextNode(item.title));
         note.append(title);
         const quote = item.quote ? [['“' + item.quote + '”', 'audit-quote']] : [];
         const lines = [...quote, ...(item.kind === 'issue' ? [[item.problem], [item.fix, 'audit-fix']] : [[item.why]])];
         for (const [text, className] of lines) {
-          if (!text) continue;
-          const el = document.createElement('p');
-          el.textContent = text;
-          if (className) el.className = className;
-          note.append(el);
+          for (const line of paragraphs(text)) {
+            const el = document.createElement('p');
+            el.textContent = line;
+            if (className) el.className = className;
+            note.append(el);
+          }
         }
         note.addEventListener('mouseenter', () => highlight(i, true));
         note.addEventListener('mouseleave', () => highlight(i, false));
@@ -1011,10 +1042,12 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
         const parts = item.title ? [['h3', item.title]] : [];
         if (item.quote) parts.push(['p', '\u201c' + item.quote + '\u201d', 'audit-quote']);
         for (const [tag, text, className] of [...parts, ...body(item)]) {
-          const el = document.createElement(tag);
-          el.textContent = text;
-          if (className) el.className = className;
-          li.append(el);
+          for (const line of tag === 'p' ? paragraphs(text) : [text]) {
+            const el = document.createElement(tag);
+            el.textContent = line;
+            if (className) el.className = className;
+            li.append(el);
+          }
         }
         return li;
       }));
