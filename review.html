@@ -378,6 +378,7 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 .audit-note h3, .audit-item h3, .audit-heading { -webkit-text-stroke: 0.35px currentColor; }
 .audit-emailed { margin-top: 2rem; font-family: var(--serif-light); font-style: italic; font-size: clamp(1.05rem, 1.8vw, 1.25rem); color: var(--headline); }
 .audit-emailed[hidden] { display: none; }
+.audit-thanks { max-width: 560px; margin: 0 auto; text-align: center; }
 .audit-heading { font-family: var(--serif); font-weight: 400; font-size: clamp(1.5rem, 3vw, 2rem); color: var(--headline); margin: 3rem 0 1.25rem; line-height: 1.2; }
 .audit-list { list-style: none; max-width: 760px; counter-reset: audit; }
 .audit-item { position: relative; padding: 1.4rem 0 1.4rem 2.6rem; border-top: 0.5px solid var(--rule); }
@@ -498,7 +499,7 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
   <p class="page-kicker">Review</p>
   <h1 class="page-title">Find out what's working<br><em>and what isn't</em></h1>
   <div class="skel-body">
-    <p>Pop in your website and I'll show you, in about a minute, what's holding your home page back.</p>
+    <p>Pop in your website and I'll email you a review of what's holding your home page back, and what's working.</p>
   </div>
 </div>
 
@@ -521,6 +522,8 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
     <button type="submit" class="form-submit" id="auditSubmit">Review my home page</button>
   </form>
   <p class="audit-status" id="auditStatus" role="status" hidden></p>
+  <!-- PLACEHOLDER COPY: Pen to rewrite. -->
+  <p class="audit-emailed audit-thanks" id="auditThanks" role="status" hidden></p>
 </section>
 
 <section class="audit-results" id="auditResults" hidden>
@@ -926,12 +929,11 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
           error.textContent = result.message || 'Something went wrong. Please try again in a minute.';
           return;
         }
-        showAudit(result);
-        const emailed = document.getElementById('auditEmailed');
-        emailed.hidden = !result.emailed;
-        emailed.textContent = result.emailed ? 'A copy is on its way to ' + email.value.trim() + '.' : '';
-        if (result.id) history.replaceState(null, '', '?review=' + encodeURIComponent(result.id));
-        window.scrollTo({ top: 0 });
+        // The review goes to Pen to read and edit first; the visitor is just thanked.
+        form.hidden = true;
+        const thanks = document.getElementById('auditThanks');
+        thanks.textContent = 'Thanks! I\u2019m reading through your home page now. I\u2019ll email your review to ' + email.value.trim() + ' soon.';
+        thanks.hidden = false;
       } catch {
         error.textContent = 'Something went wrong. Please try again in a minute.';
       } finally {
