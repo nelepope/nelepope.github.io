@@ -379,6 +379,9 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 .audit-emailed { margin-top: 2rem; font-family: var(--serif-light); font-style: italic; font-size: clamp(1.05rem, 1.8vw, 1.25rem); color: var(--headline); }
 .audit-emailed[hidden] { display: none; }
 .audit-thanks { max-width: 560px; margin: 0 auto; text-align: center; }
+.upload-for { font-size: 0.95rem; color: var(--ink-mid); }
+.upload-file { font-size: 0.88rem; color: var(--ink-mid); }
+.upload-file input { display: block; margin-top: 0.6rem; font: inherit; color: var(--ink-mid); max-width: 100%; }
 .audit-heading { font-family: var(--serif); font-weight: 400; font-size: clamp(1.5rem, 3vw, 2rem); color: var(--headline); margin: 3rem 0 1.25rem; line-height: 1.2; }
 .audit-list { list-style: none; max-width: 760px; counter-reset: audit; }
 .audit-item { position: relative; padding: 1.4rem 0 1.4rem 2.6rem; border-top: 0.5px solid var(--rule); }
@@ -524,6 +527,20 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
   <p class="audit-status" id="auditStatus" role="status" hidden></p>
   <!-- PLACEHOLDER COPY: Pen to rewrite. -->
   <p class="audit-emailed audit-thanks" id="auditThanks" role="status" hidden></p>
+</section>
+
+<!-- Pen only: reached from the private link in a "Screenshot needed" email, for sites whose bot check keeps the review tool out. -->
+<section class="skel-section" id="uploadSection" hidden>
+  <form class="audit-form" id="uploadForm" novalidate>
+    <p class="upload-for" id="uploadFor"></p>
+    <p class="audit-privacy">This site blocks automated visitors. Open it in your own browser on a computer, take a full-page screenshot (in Chrome: open the developer tools, press Cmd+Shift+P and run Capture full size screenshot), and upload it here. The review is written from the screenshot and emailed to you.</p>
+    <label class="upload-file">Full-page screenshot (PNG or JPEG)
+      <input type="file" id="uploadFile" accept="image/png,image/jpeg">
+    </label>
+    <p class="audit-error" id="uploadError" role="alert"></p>
+    <button type="submit" class="form-submit" id="uploadSubmit">Write the review</button>
+  </form>
+  <p class="audit-status" id="uploadStatus" role="status" hidden></p>
 </section>
 
 <section class="audit-results" id="auditResults" hidden>
@@ -878,6 +895,129 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
           status.hidden = true;
           form.hidden = false; // An expired link's message sits in the form, with the way to run a new one.
         });
+    }
+
+    // Pen's private upload link: ?upload=...&key=... from a "Screenshot needed" email.
+    const uploadId = params.get('upload');
+    const uploadKey = params.get('key');
+    if (uploadId && uploadKey) startUpload(uploadId, uploadKey);
+
+    function startUpload(id, key) {
+      const section = document.getElementById('uploadSection');
+      const uploadForm = document.getElementById('uploadForm');
+      const file = document.getElementById('uploadFile');
+      const uploadError = document.getElementById('uploadError');
+      const uploadStatus = document.getElementById('uploadStatus');
+      const uploadSubmit = document.getElementById('uploadSubmit');
+      document.getElementById('auditIntro').hidden = true;
+      document.getElementById('auditFormSection').hidden = true;
+      section.hidden = false;
+      uploadForm.hidden = true;
+      uploadStatus.hidden = false;
+      uploadStatus.textContent = 'Opening\u2026';
+
+      let visitorEmail = '';
+      fetch(AUDIT_SERVICE + '?id=' + encodeURIComponent(id) + '&key=' + encodeURIComponent(key))
+        .then(response => response.json())
+        .then(info => {
+          uploadStatus.hidden = true;
+          if (!info.ok) {
+            uploadStatus.hidden = false;
+            uploadStatus.textContent = info.message;
+            return;
+          }
+          visitorEmail = info.email;
+          document.getElementById('uploadFor').textContent = 'Screenshot review of ' + new URL(info.homePage).hostname + ', for ' + info.email + '.' + (info.reviewed ? ' You\u2019ve already reviewed this one; uploading again writes a fresh review.' : '');
+          uploadForm.hidden = false;
+        })
+        .catch(() => { uploadStatus.textContent = 'Something went wrong opening this link. Please try again in a minute.'; });
+
+      uploadForm.addEventListener('submit', async e => {
+        e.preventDefault();
+        uploadError.textContent = '';
+        const chosen = file.files[0];
+        if (!chosen || !/^image\/(png|jpeg)$/.test(chosen.type)) {
+          uploadError.textContent = 'Choose a PNG or JPEG screenshot first.';
+          return;
+        }
+        uploadSubmit.disabled = true;
+        uploadStatus.hidden = false;
+        uploadStatus.textContent = 'Preparing the screenshot\u2026';
+        let waitingTimer;
+        try {
+          const screenshot = await prepareScreenshot(chosen);
+          let waitingStep = 0;
+          uploadStatus.textContent = 'Writing the review\u2026 this takes about a minute.';
+          waitingTimer = setInterval(() => {
+            waitingStep = Math.min(waitingStep + 1, WAITING_MESSAGES.length - 1);
+            uploadStatus.textContent = WAITING_MESSAGES[waitingStep];
+          }, WAITING_INTERVAL);
+          const response = await fetch(AUDIT_SERVICE, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'screenshot', id, key, screenshot }),
+          });
+          const result = await response.json();
+          if (!result.ok) {
+            uploadError.textContent = result.message || 'Something went wrong. Please try again in a minute.';
+            return;
+          }
+          section.hidden = true;
+          showAudit(result);
+          const emailed = document.getElementById('auditEmailed');
+          emailed.hidden = false;
+          emailed.textContent = result.emailed
+            ? 'This review is in your inbox too. Edit it there and send it on to ' + visitorEmail + '.'
+            : 'The email to you didn\u2019t send, so copy the review from this page before sending it on to ' + visitorEmail + '.';
+          window.scrollTo({ top: 0 });
+        } catch (error) {
+          uploadError.textContent = error.message || 'Something went wrong. Please try again in a minute.';
+        } finally {
+          clearInterval(waitingTimer);
+          uploadStatus.hidden = true;
+          uploadSubmit.disabled = false;
+        }
+      });
+    }
+
+    // Scales the screenshot to 1280px wide (the width the review tool works at),
+    // trims anything below 8000px, and cuts it into 1280px-tall JPEG slices for
+    // Claude, lowering the quality until the whole upload is under about 4MB.
+    async function prepareScreenshot(chosen) {
+      const SHOT_WIDTH = 1280, SLICE = 1280, MAX_HEIGHT = 8000, MAX_CHARS = 4000000;
+      let image;
+      try {
+        image = await createImageBitmap(chosen);
+      } catch {
+        throw new Error('That file couldn\u2019t be read as an image.');
+      }
+      if (image.width < 800) throw new Error('That screenshot looks like it was taken on a phone. Take it on a computer instead.');
+      const scale = SHOT_WIDTH / image.width;
+      const height = Math.min(Math.round(image.height * scale), MAX_HEIGHT);
+      if (height < 100) throw new Error('That screenshot is too short to review.');
+      const canvas = document.createElement('canvas');
+      canvas.width = SHOT_WIDTH;
+      canvas.height = height;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#fff';
+      ctx.fillRect(0, 0, SHOT_WIDTH, height);
+      ctx.drawImage(image, 0, 0, image.width, height / scale, 0, 0, SHOT_WIDTH, height);
+
+      for (const quality of [0.8, 0.7, 0.6, 0.5, 0.4, 0.3]) {
+        const dataUrl = canvas.toDataURL('image/jpeg', quality);
+        const slices = [];
+        for (let top = 0; top < height; top += SLICE) {
+          const sliceHeight = Math.min(SLICE, height - top);
+          const piece = document.createElement('canvas');
+          piece.width = SHOT_WIDTH;
+          piece.height = sliceHeight;
+          piece.getContext('2d').drawImage(canvas, 0, top, SHOT_WIDTH, sliceHeight, 0, 0, SHOT_WIDTH, sliceHeight);
+          slices.push({ top, height: sliceHeight, dataUrl: piece.toDataURL('image/jpeg', quality) });
+        }
+        const size = dataUrl.length + slices.reduce((sum, slice) => sum + slice.dataUrl.length, 0);
+        if (size < MAX_CHARS) return { dataUrl, width: SHOT_WIDTH, height, slices };
+      }
+      throw new Error('That screenshot is too big to upload. Try a shorter one.');
     }
 
     function renderItems(list, items, body) {
