@@ -294,6 +294,7 @@ body > nav.scrolled { box-shadow: 0 1px 0 var(--rule), 0 8px 24px rgba(26,24,20,
 }
 
 .form-submit:hover::after { transform: translateX(3px); }
+.form-submit:disabled { opacity: 0.4; cursor: default; pointer-events: none; }
 
 body > footer { max-width: 1180px; margin: 0 auto; border-top: 0.5px solid var(--rule); padding: 2.25rem var(--gutter); display: flex; justify-content: space-between; align-items: center; }
 body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.08em; }
@@ -622,16 +623,6 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
     const status = document.getElementById('auditStatus');
     const results = document.getElementById('auditResults');
 
-    // PLACEHOLDER COPY: Pen to rewrite. Shown in turn while the audit runs, on a timer
-    // rather than tracking the real work, so the last line stays up until it's done.
-    const WAITING_MESSAGES = [
-      'Reading your home page… this takes about a minute.',
-      'Looking at your headline…',
-      'Checking how clearly you ask people to get in touch…',
-      'Looking for what’s working well…',
-      'Writing up what I found…',
-    ];
-    const WAITING_INTERVAL = 10000;
 
     // A random ID kept in this browser, so the one-audit-a-day limit can recognise it.
     function deviceId() {
@@ -943,15 +934,9 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
         uploadSubmit.disabled = true;
         uploadStatus.hidden = false;
         uploadStatus.textContent = 'Preparing the screenshot\u2026';
-        let waitingTimer;
         try {
           const screenshot = await prepareScreenshot(chosen);
-          let waitingStep = 0;
           uploadStatus.textContent = 'Writing the review\u2026 this takes about a minute.';
-          waitingTimer = setInterval(() => {
-            waitingStep = Math.min(waitingStep + 1, WAITING_MESSAGES.length - 1);
-            uploadStatus.textContent = WAITING_MESSAGES[waitingStep];
-          }, WAITING_INTERVAL);
           const response = await fetch(AUDIT_SERVICE, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -973,7 +958,6 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
         } catch (error) {
           uploadError.textContent = error.message || 'Something went wrong. Please try again in a minute.';
         } finally {
-          clearInterval(waitingTimer);
           uploadStatus.hidden = true;
           uploadSubmit.disabled = false;
         }
@@ -1050,13 +1034,6 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 
       submit.disabled = true;
       results.hidden = true;
-      status.hidden = false;
-      let waitingStep = 0;
-      status.textContent = WAITING_MESSAGES[0];
-      const waitingTimer = setInterval(() => {
-        waitingStep = Math.min(waitingStep + 1, WAITING_MESSAGES.length - 1);
-        status.textContent = WAITING_MESSAGES[waitingStep];
-      }, WAITING_INTERVAL);
 
       try {
         const response = await fetch(AUDIT_SERVICE, {
@@ -1077,8 +1054,6 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
       } catch {
         error.textContent = 'Something went wrong. Please try again in a minute.';
       } finally {
-        clearInterval(waitingTimer);
-        status.hidden = true;
         submit.disabled = false;
       }
     });
