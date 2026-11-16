@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>(function(){try{var t=localStorage.getItem('psg-theme');document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
-<title>Home page review — Penelope Saint-George</title>
-<meta name="description" content="Pop in your domain and get an instant review of your home page copy: what's holding it back from turning visitors into customers.">
+<title>Website review — Penelope Saint-George</title>
+<meta name="description" content="Pop in any page of your website and get a review of its copy: what's holding it back from turning visitors into customers.">
 <meta name="author" content="Saint-George">
 <meta name="theme-color" content="#fff9f5">
 
@@ -507,15 +507,15 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
   <p class="page-kicker">Review</p>
   <h1 class="page-title">Find out what's working<br><em>and what isn't</em></h1>
   <div class="skel-body">
-    <p>Pop in your website and I'll email you a review of what's holding your home page back, and what's working.</p>
+    <p>Pop in any page of your website (your home page, about page, a service or product page) and I'll email you a review of what's holding it back, and what's working.</p>
   </div>
 </div>
 
 <section class="skel-section" id="auditFormSection">
   <form class="audit-form" id="auditForm" novalidate>
     <div class="form-group">
-      <label for="audit-domain">Your website</label>
-      <input type="text" id="audit-domain" name="domain" placeholder="yourwebsite.com" autocomplete="url" inputmode="url" autocapitalize="off" spellcheck="false" required>
+      <label for="audit-domain">Your web page</label>
+      <input type="text" id="audit-domain" name="domain" placeholder="yourwebsite.com/about" autocomplete="url" inputmode="url" autocapitalize="off" spellcheck="false" required>
     </div>
     <div class="form-group">
       <label for="audit-email">Your email</label>
@@ -527,7 +527,7 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
     </label>
     <p class="audit-privacy">I'll email you a copy of your review and may follow up once about it. I won't share your details with anyone.</p>
     <p class="audit-error" id="auditError" role="alert"></p>
-    <button type="submit" class="form-submit" id="auditSubmit">Review my home page</button>
+    <button type="submit" class="form-submit" id="auditSubmit">Review my page</button>
   </form>
   <p class="audit-status" id="auditStatus" role="status" hidden></p>
   <!-- PLACEHOLDER COPY: Pen to rewrite. -->
@@ -549,7 +549,7 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 </section>
 
 <section class="audit-results" id="auditResults" hidden>
-  <h1 class="audit-title" aria-label="Your home page review"><i>Yo</i>ur H<i>o</i>me <i>Page</i> Rev<i>ie</i>w</h1>
+  <h1 class="audit-title" aria-label="Your page review"><i>Yo</i>ur <i>Page</i> Rev<i>ie</i>w</h1>
   <p class="audit-subtitle">What's working on <span id="auditSite"></span>, and what isn't</p>
   <p class="audit-emailed" id="auditEmailed" hidden></p>
   <div class="audit-main" id="auditMain" hidden></div>
@@ -647,10 +647,12 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
       // The results take over the page: the intro and form have done their job.
       document.getElementById('auditIntro').hidden = true;
       document.getElementById('auditFormSection').hidden = true;
-      const host = new URL(result.homePage).hostname;
-      document.getElementById('auditSite').textContent = host.replace(/^www\./, '');
+      const pageUrl = new URL(result.homePage);
+      const host = pageUrl.hostname;
+      const path = pageUrl.pathname === '/' && !pageUrl.search ? '' : pageUrl.pathname + pageUrl.search;
+      document.getElementById('auditSite').textContent = host.replace(/^www\./, '') + path;
       const shot = document.getElementById('auditShot');
-      shot.alt = 'Screenshot of the home page of ' + host;
+      shot.alt = 'Screenshot of ' + host + (path || ' (home page)');
       current = {
         width: result.screenshot.width,
         items: [
@@ -1082,7 +1084,7 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
         // The review goes to Pen to read and edit first; the visitor is just thanked.
         form.hidden = true;
         const thanks = document.getElementById('auditThanks');
-        thanks.textContent = 'Thanks! I\u2019m reading through your home page now. I\u2019ll email your review to ' + email.value.trim() + ' soon.';
+        thanks.textContent = 'Thanks! I\u2019m reading through your page now. I\u2019ll email your review to ' + email.value.trim() + ' soon.';
         thanks.hidden = false;
       } catch {
         error.textContent = 'Something went wrong. Please try again in a minute.';
