@@ -356,7 +356,6 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 .audit-mark.strength.active { background: rgba(45,106,53,0.16); box-shadow: 0 0 0 3px rgba(45,106,53,0.18); }
 .audit-dot { position: absolute; top: -11px; left: -11px; width: 22px; height: 22px; border-radius: 50%; display: grid; place-content: center; background: var(--coral); color: var(--paper); font-family: var(--sans); font-size: 0.7rem; font-weight: 400; box-shadow: 0 2px 6px rgba(26,24,20,0.2); }
 .audit-mark.strength .audit-dot { background: var(--strength); font-size: 0.65rem; }
-.audit-mark.issue .audit-dot { width: 14px; height: 14px; top: -7px; left: -7px; }
 .audit-notes, .audit-arrows { display: none; }
 .audit-note { position: absolute; left: 0; right: 0; padding: 1rem 1.1rem; background: var(--paper); border: 0.5px solid var(--rule); border-left: 2px solid var(--coral); box-shadow: 0 6px 18px rgba(26,24,20,0.05); transition: box-shadow 0.2s; }
 .audit-note.strength { border-left-color: var(--strength); }
@@ -396,7 +395,8 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 .audit-list { list-style: none; max-width: 760px; counter-reset: audit; }
 .audit-item { position: relative; padding: 1.4rem 0 1.4rem 2.6rem; border-top: 0.5px solid var(--rule); }
 .audit-item::before { position: absolute; left: 0; top: 1.4rem; font-family: var(--serif); font-style: italic; font-size: 1.35rem; line-height: 1.2; color: var(--headline); }
-.audit-issues .audit-item::before { content: '\2022'; font-style: normal; color: var(--coral); }
+.audit-issues .audit-item { counter-increment: audit; }
+.audit-issues .audit-item::before { content: counter(audit); color: var(--coral); }
 .audit-strengths .audit-item::before { content: '\2726'; font-style: normal; font-size: 1rem; line-height: 1.9; }
 .audit-item h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.3rem, 2.2vw, 1.5rem); line-height: 1.25; color: var(--headline); margin-bottom: 0.6rem; }
 .audit-quote { font-family: var(--serif); font-style: italic; font-weight: 300; color: var(--ink-mid); margin-bottom: 0.6rem; }
@@ -716,7 +716,7 @@ body.editing { padding-bottom: 7rem; }
       current = {
         width: review.screenshot.width,
         items: [
-          ...review.issues.map((item, index) => ({ ...item, kind: 'issue', label: '', list: 'issues', index })),
+          ...review.issues.map((item, index) => ({ ...item, kind: 'issue', label: String(index + 1), list: 'issues', index })),
           ...review.strengths.map((item, index) => ({ ...item, kind: 'strength', label: '\u2726', list: 'strengths', index })),
         ],
       };
