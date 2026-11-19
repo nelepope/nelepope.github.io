@@ -371,8 +371,11 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 .audit-arrows path.active { opacity: 1; stroke-width: 2; }
 @media (min-width: 900px) {
   .audit-results { max-width: 1280px; }
-  .audit-board { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 4.5rem; align-items: start; }
-  .audit-notes { display: block; position: relative; }
+  /* Notes on the left, screenshot on the right. */
+  .audit-board { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 4.5rem; align-items: start; }
+  .audit-notes { display: block; position: relative; order: -1; }
+  .audit-note { border-left: 0.5px solid var(--rule); border-right: 2px solid var(--coral); }
+  .audit-note.strength { border-right-color: var(--strength); }
   .audit-arrows { display: block; }
   .audit-lists { display: none; }
 }
@@ -595,7 +598,7 @@ body.editing { padding-bottom: 7rem; }
   <p class="audit-emailed" id="auditEmailed" hidden></p>
   <div class="audit-main" id="auditMain" hidden></div>
 
-  <!-- Wide screens: notes beside the screenshot with arrows. Narrow screens: numbered marks, notes listed below. -->
+  <!-- Wide screens: notes to the left of the screenshot, with arrows. Narrow screens: numbered marks, notes listed below. -->
   <div class="audit-board" id="auditBoard">
     <div class="audit-shot-wrap">
       <img class="audit-shot" id="auditShot" alt="">
@@ -871,7 +874,7 @@ body.editing { padding-bottom: 7rem; }
       }
       notes.style.height = Math.max(bottom, shotHeight) + 'px';
 
-      // Arrows run in board coordinates, from each note's left edge to the right edge of its mark.
+      // Arrows run in board coordinates, from each note's right edge to the left edge of its mark.
       const boardRect = board.getBoundingClientRect();
       const shotRect = shot.getBoundingClientRect();
       const notesRect = notes.getBoundingClientRect();
@@ -898,8 +901,8 @@ body.editing { padding-bottom: 7rem; }
       // Each arrow leaves its note level with its mark if the note reaches that far, which
       // gives a straight line. Otherwise it leaves the nearest point of the note and bends
       // once in the gap beside the screenshot.
-      const shotRight = shotRect.right - boardRect.left;
-      const gap = notesRect.left - shotRect.right;
+      const notesRight = notesRect.right - boardRect.left;
+      const gap = shotRect.left - notesRect.right;
       const connectors = order.map(i => {
         const endY = shotRect.top - boardRect.top + boxes[i].top + boxes[i].height / 2;
         const noteTop = notesRect.top - boardRect.top + tops[i];
@@ -908,8 +911,8 @@ body.editing { padding-bottom: 7rem; }
       });
 
       // Bends that share a stretch of height need their own lanes, ordered so they never
-      // cross: when arrows run down from mark to note the top one takes the rightmost lane,
-      // and when they run up it takes the leftmost.
+      // cross: when arrows run down from mark to note the top one takes the leftmost lane,
+      // and when they run up it takes the rightmost.
       const laneOf = new Map();
       for (const runsDown of [true, false]) {
         const bent = connectors.filter(c => Math.abs(c.startY - c.endY) >= 1 && c.startY > c.endY === runsDown);
@@ -917,8 +920,8 @@ body.editing { padding-bottom: 7rem; }
         let runBottom = -Infinity;
         const placeRun = () => {
           const spacing = Math.min(8, (gap - 24) / Math.max(1, run.length - 1));
-          const left = shotRight + gap / 2 - spacing * (run.length - 1) / 2;
-          run.forEach((c, n) => laneOf.set(c.i, left + (runsDown ? run.length - 1 - n : n) * spacing));
+          const left = notesRight + gap / 2 - spacing * (run.length - 1) / 2;
+          run.forEach((c, n) => laneOf.set(c.i, left + (runsDown ? n : run.length - 1 - n) * spacing));
         };
         for (const c of bent) {
           if (run.length && Math.min(c.startY, c.endY) > runBottom) {
@@ -934,8 +937,8 @@ body.editing { padding-bottom: 7rem; }
 
       connectors.forEach(({ i, startY, endY }) => {
         const item = current.items[i];
-        const startX = notesRect.left - boardRect.left;
-        const endX = shotRect.left - boardRect.left + boxes[i].left + boxes[i].width + 2;
+        const startX = notesRight;
+        const endX = shotRect.left - boardRect.left + boxes[i].left - 2;
         const laneX = laneOf.get(i);
         const path = document.createElementNS(SVG, 'path');
         path.setAttribute('d', laneX === undefined
