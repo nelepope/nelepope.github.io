@@ -344,7 +344,7 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 .audit-status { text-align: center; font-family: var(--serif-light); font-style: italic; font-size: clamp(1.1rem, 2vw, 1.35rem); color: var(--headline); }
 .audit-results { max-width: 1100px; margin: 0 auto; padding: 3.5rem var(--gutter); }
 .audit-results[hidden], .audit-status[hidden], .audit-form[hidden] { display: none; }
-.audit-title { font-family: var(--serif-light); font-weight: 400; font-size: clamp(2.6rem, 7vw, 5.2rem); line-height: 1.1; text-transform: uppercase; color: var(--headline); margin-bottom: 1rem; }
+.audit-title { font-family: var(--serif-light); font-weight: 400; font-size: clamp(2.6rem, 7vw, 5.2rem); line-height: 1.1; text-transform: uppercase; color: var(--headline); margin-bottom: 1rem; overflow-wrap: anywhere; }
 .audit-subtitle { font-family: var(--serif-light); font-size: clamp(1.1rem, 2vw, 1.35rem); line-height: 1.5; color: var(--ink-mid); overflow-wrap: anywhere; }
 .audit-shot { display: block; width: 100%; height: auto; border: 0.5px solid var(--rule); box-shadow: 0 12px 32px rgba(26,24,20,0.08); }
 .audit-board { display: none; position: relative; margin-top: 1.5rem; }
@@ -608,8 +608,8 @@ body.editing { padding-bottom: 7rem; }
 </section>
 
 <section class="audit-results" id="auditResults" hidden>
-  <h1 class="audit-title">What&rsquo;s working, <i>and what isn&rsquo;t</i></h1>
-  <p class="audit-subtitle"><span id="auditSite"></span></p>
+  <h1 class="audit-title"><span id="auditSite"></span></h1>
+  <p class="audit-subtitle">What&rsquo;s working, and what isn&rsquo;t</p>
   <p class="audit-emailed" id="auditEmailed" hidden></p>
   <div class="audit-main" id="auditMain" hidden></div>
 
