@@ -416,6 +416,47 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
   .nav-links a.nav-audit::after { background: var(--coral); }
   @media (max-width: 560px) { .nav-name img { height: 1.45rem; } }
 
+/* EDIT MODE (Pen only) */
+.audit-mark { color: var(--coral); }
+.audit-mark.strength { color: var(--strength); }
+.audit-handle { display: none; position: absolute; right: -7px; bottom: -7px; width: 13px; height: 13px; background: var(--paper); border: 1.5px solid currentColor; border-radius: 2px; cursor: nwse-resize; }
+.editing .audit-mark { pointer-events: auto; cursor: move; touch-action: none; }
+.editing .audit-handle { display: block; }
+.editing .audit-note, .editing .audit-item, .editing .audit-main { cursor: pointer; }
+.editing .audit-note:hover, .editing .audit-item:hover, .editing .audit-main:hover { outline: 1px dashed var(--ink-light); outline-offset: 4px; }
+.editing .selected.audit-note, .editing .selected.audit-item, .editing .selected.audit-main { outline: 2px solid var(--headline); outline-offset: 4px; }
+.editing .selected.audit-mark { box-shadow: 0 0 0 3px var(--headline); }
+body.editing { padding-bottom: 7rem; }
+.edit-start, .edit-bar button, .edit-panel button { font-family: var(--sans); font-size: 0.7rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; }
+.edit-start { position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 60; padding: 0.85rem 1.3rem; background: var(--headline); color: var(--paper); border: 0; box-shadow: 0 6px 18px rgba(26,24,20,0.18); }
+.edit-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.6rem; padding: 0.75rem var(--gutter); background: var(--paper); border-top: 0.5px solid var(--rule); box-shadow: 0 -6px 18px rgba(26,24,20,0.08); }
+.edit-bar-label { font-family: var(--serif); font-style: italic; font-size: 1.1rem; color: var(--coral); margin-right: 0.4rem; }
+.edit-bar button, .edit-panel button { padding: 0.55rem 0.8rem; background: none; border: 0.5px solid var(--rule); color: var(--ink); }
+.edit-bar button:hover, .edit-panel button:hover { border-color: var(--ink-light); }
+.edit-bar .edit-save { background: var(--headline); border-color: var(--headline); color: var(--paper); }
+.edit-status { flex: 1 1 16rem; font-size: 0.8rem; line-height: 1.5; color: var(--ink-mid); }
+.edit-bar .edit-link { padding: 0; border: 0; font-size: inherit; letter-spacing: 0; text-transform: none; color: var(--coral); text-decoration: underline; text-underline-offset: 3px; }
+.edit-panel { position: fixed; top: 0; right: 0; bottom: 0; z-index: 61; width: min(400px, 100%); overflow-y: auto; padding: 1.5rem; background: var(--paper); border-left: 0.5px solid var(--rule); box-shadow: -8px 0 24px rgba(26,24,20,0.1); display: flex; flex-direction: column; gap: 1rem; }
+.edit-panel[hidden] { display: none; }
+.edit-panel-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.edit-panel-head h2 { font-family: var(--serif); font-weight: 400; font-size: 1.5rem; color: var(--headline); }
+.edit-panel-head button { background: var(--headline); border-color: var(--headline); color: var(--paper); }
+#editFields { display: flex; flex-direction: column; gap: 1rem; }
+.edit-field { display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-mid); }
+.edit-field input, .edit-field textarea { width: 100%; padding: 0.6rem 0.7rem; font-family: var(--sans); font-size: 0.92rem; font-weight: 300; line-height: 1.55; letter-spacing: 0; text-transform: none; color: var(--ink); background: transparent; border: 0.5px solid var(--rule); border-radius: 2px; resize: vertical; }
+.edit-field input:focus, .edit-field textarea:focus { outline: none; border-color: var(--headline); }
+.edit-hint { font-size: 0.72rem; letter-spacing: 0; text-transform: none; color: var(--ink-light); }
+.edit-panel-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: auto; padding-top: 1rem; border-top: 0.5px solid var(--rule); }
+.edit-panel-actions button[hidden] { display: none; }
+.edit-panel-actions #editDelete { margin-left: auto; color: var(--coral); }
+@media (min-width: 1100px) {
+  body.edit-panel-open { padding-right: 400px; }
+  body.edit-panel-open .edit-bar { right: 400px; }
+}
+@media (max-width: 1099px) {
+  .edit-panel { top: auto; width: 100%; max-height: 62vh; border-left: 0; border-top: 0.5px solid var(--rule); box-shadow: 0 -8px 24px rgba(26,24,20,0.12); }
+}
+
 /* DARK MODE */
 :root[data-theme="dark"] {
   --ink: #f4f2f0;
@@ -616,6 +657,7 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
   })();
 </script>
 
+<!-- BAKED REVIEW -->
 <script>
   (() => {
     const AUDIT_SERVICE = 'https://home-page-audit.vercel.app/api/audit';
@@ -643,37 +685,49 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
       }
     }
 
+    // The review on show. Edit mode changes this object and calls renderReview() again.
+    let review = null;
+
     function showAudit(result) {
       // The results take over the page: the intro and form have done their job.
       document.getElementById('auditIntro').hidden = true;
       document.getElementById('auditFormSection').hidden = true;
+      review = result;
+      review.issues ??= [];
+      review.strengths ??= [];
+      review.smallFixes ??= []; // Reviews saved before version 2 have none.
       const pageUrl = new URL(result.homePage);
       const host = pageUrl.hostname;
       const path = pageUrl.pathname === '/' && !pageUrl.search ? '' : pageUrl.pathname + pageUrl.search;
       document.getElementById('auditSite').textContent = host.replace(/^www\./, '') + path;
       const shot = document.getElementById('auditShot');
       shot.alt = 'Screenshot of ' + host + (path || ' (home page)');
-      current = {
-        width: result.screenshot.width,
-        items: [
-          ...result.issues.map(item => ({ ...item, kind: 'issue', label: '' })),
-          ...result.strengths.map(item => ({ ...item, kind: 'strength', label: '\u2726' })),
-        ],
-      };
-      renderMain(result.mainComment);
-      renderBoard();
+      renderReview();
       shot.onload = layoutBoard;
       shot.src = result.screenshot.dataUrl;
-      renderItems(document.getElementById('auditIssues'), result.issues, item => [
+      results.hidden = false;
+    }
+
+    function renderReview() {
+      current = {
+        width: review.screenshot.width,
+        items: [
+          ...review.issues.map((item, index) => ({ ...item, kind: 'issue', label: '', list: 'issues', index })),
+          ...review.strengths.map((item, index) => ({ ...item, kind: 'strength', label: '\u2726', list: 'strengths', index })),
+        ],
+      };
+      renderMain(review.mainComment);
+      renderBoard();
+      const shot = document.getElementById('auditShot');
+      if (shot.complete && shot.naturalWidth) layoutBoard();
+      renderItems(document.getElementById('auditIssues'), review.issues, item => [
         ['p', item.problem],
         ['p', item.fix, 'audit-fix'],
-      ]);
-      renderItems(document.getElementById('auditStrengths'), result.strengths, item => [['p', item.why]]);
-      // Typos and missing punctuation. Reviews saved before version 2 have none.
-      const smallFixes = result.smallFixes ?? [];
-      renderItems(document.getElementById('auditSmallFixes'), smallFixes, item => [['p', item.note]]);
-      document.getElementById('auditSmallFixesWrap').hidden = smallFixes.length === 0;
-      results.hidden = false;
+      ], 'issues');
+      renderItems(document.getElementById('auditStrengths'), review.strengths, item => [['p', item.why]], 'strengths');
+      // Typos and missing punctuation.
+      renderItems(document.getElementById('auditSmallFixes'), review.smallFixes, item => [['p', item.note]], 'smallFixes');
+      document.getElementById('auditSmallFixesWrap').hidden = review.smallFixes.length === 0;
     }
 
     // An optional main comment Pen adds by hand, shown above the screenshot:
@@ -716,7 +770,10 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
         const dot = document.createElement('span');
         dot.className = 'audit-dot';
         dot.textContent = item.label;
-        mark.append(dot);
+        const handle = document.createElement('span');
+        handle.className = 'audit-handle'; // Edit mode only: drag to resize.
+        mark.append(dot, handle);
+        mark.dataset.i = i;
         marks.append(mark);
 
         const note = document.createElement('div');
@@ -897,9 +954,345 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
       resizeTimer = setTimeout(layoutBoard, 120);
     });
 
-    // Opening a saved review from its private link (?review=..., or ?audit=... in older emails).
+    // EDIT MODE (Pen only). Click a note to change its wording, drag a box on the
+    // screenshot to move it (or its corner to resize it), add or delete notes, then
+    // "Save as page" writes the finished review as a page of its own for reviews/.
+    // Edits are kept in this browser as a draft until then, so a refresh loses nothing.
+    let editing = null;
+    const EDIT_FIELDS = {
+      issues: { name: 'Issue', fields: [['title', 'Headline'], ['quote', 'Quote from their page'], ['problem', 'What’s wrong', 7], ['fix', 'The fix (optional)', 4]] },
+      strengths: { name: 'Strength', fields: [['title', 'Headline'], ['quote', 'Quote from their page'], ['why', 'Why it works', 7]] },
+      smallFixes: { name: 'Small fix', fields: [['quote', 'Quote from their page'], ['note', 'The fix', 3]] },
+      main: { name: 'Main comment', fields: [['text', 'Opening', 6], ['points', 'Bullet points (one per line)', 4], ['after', 'After the bullets', 3]] },
+    };
+
+    function showEditButton(key) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'edit-start';
+      button.textContent = 'Edit this review';
+      button.addEventListener('click', () => { button.remove(); startEditing(key); });
+      document.body.append(button);
+    }
+
+    function startEditing(key) {
+      if (editing) return;
+      editing = { key: 'reviewDraft:' + key, selected: null, dirty: false, original: JSON.stringify(editableParts()) };
+      document.body.classList.add('editing');
+      document.body.insertAdjacentHTML('beforeend', `
+        <div class="edit-bar" id="editBar">
+          <span class="edit-bar-label">Editing</span>
+          <button type="button" data-add="main">Main comment</button>
+          <button type="button" data-add="issues">+ Issue</button>
+          <button type="button" data-add="strengths">+ Strength</button>
+          <button type="button" data-add="smallFixes">+ Small fix</button>
+          <span class="edit-status" id="editStatus" role="status">Click any note to change it. Drag a box on the screenshot to move it.</span>
+          <button type="button" class="edit-save" id="editSave">Save as page</button>
+        </div>
+        <aside class="edit-panel" id="editPanel" hidden>
+          <div class="edit-panel-head">
+            <h2 id="editPanelTitle"></h2>
+            <button type="button" id="editDone">Done</button>
+          </div>
+          <div id="editFields"></div>
+          <div class="edit-panel-actions">
+            <button type="button" id="editUp">Move up</button>
+            <button type="button" id="editDown">Move down</button>
+            <button type="button" id="editDelete">Delete</button>
+          </div>
+        </aside>`);
+      document.querySelectorAll('#editBar [data-add]').forEach(b => b.addEventListener('click', () => addItem(b.dataset.add)));
+      document.getElementById('editSave').addEventListener('click', savePage);
+      document.getElementById('editDone').addEventListener('click', closeEditor);
+      document.getElementById('editUp').addEventListener('click', () => moveItem(-1));
+      document.getElementById('editDown').addEventListener('click', () => moveItem(1));
+      document.getElementById('editDelete').addEventListener('click', deleteItem);
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeEditor(); });
+      window.addEventListener('beforeunload', e => { if (editing.dirty) e.preventDefault(); });
+
+      try {
+        const draft = JSON.parse(localStorage.getItem(editing.key));
+        if (draft && JSON.stringify(draft) !== editing.original) {
+          applyParts(draft);
+          renderReview();
+          setEditStatus('Picked up your unsaved edits from last time. ', 'Start again from the original', () => {
+            if (!confirm('Throw away all your edits to this review?')) return;
+            applyParts(JSON.parse(editing.original));
+            try { localStorage.removeItem(editing.key); } catch {}
+            closeEditor();
+            renderReview();
+            setEditStatus('Back to the original.');
+          });
+        }
+      } catch {}
+    }
+
+    function editableParts() {
+      return { mainComment: review.mainComment ?? null, issues: review.issues, strengths: review.strengths, smallFixes: review.smallFixes };
+    }
+    function applyParts(parts) {
+      review.mainComment = parts.mainComment ?? undefined;
+      review.issues = parts.issues ?? [];
+      review.strengths = parts.strengths ?? [];
+      review.smallFixes = parts.smallFixes ?? [];
+    }
+
+    function setEditStatus(text, linkText, onLink) {
+      const el = document.getElementById('editStatus');
+      el.textContent = text;
+      if (linkText) {
+        const link = document.createElement('button');
+        link.type = 'button';
+        link.className = 'edit-link';
+        link.textContent = linkText;
+        link.addEventListener('click', onLink);
+        el.append(link);
+      }
+    }
+
+    let draftTimer;
+    function changed() {
+      editing.dirty = true;
+      renderReview();
+      markSelected();
+      clearTimeout(draftTimer);
+      draftTimer = setTimeout(() => {
+        try { localStorage.setItem(editing.key, JSON.stringify(editableParts())); } catch {}
+      }, 300);
+    }
+
+    function selectedItem() {
+      const sel = editing.selected;
+      if (!sel) return null;
+      return sel.list === 'main' ? review.mainComment : review[sel.list][sel.index];
+    }
+
+    function openEditor(sel) {
+      editing.selected = sel;
+      const item = selectedItem();
+      if (!item) return closeEditor();
+      const spec = EDIT_FIELDS[sel.list];
+      document.getElementById('editPanelTitle').textContent = spec.name;
+      const fields = document.getElementById('editFields');
+      fields.replaceChildren(...spec.fields.map(([key, label, rows]) => {
+        const wrap = document.createElement('label');
+        wrap.className = 'edit-field';
+        wrap.append(label);
+        const input = document.createElement(rows ? 'textarea' : 'input');
+        if (rows) input.rows = rows;
+        input.value = key === 'points' ? (item.points ?? []).join('\n') : item[key] ?? '';
+        input.addEventListener('input', () => {
+          item[key] = key === 'points' ? input.value.split('\n').map(p => p.trim()).filter(Boolean) : input.value;
+          changed();
+        });
+        wrap.append(input);
+        if (rows && key !== 'points') {
+          const hint = document.createElement('span');
+          hint.className = 'edit-hint';
+          hint.textContent = 'A new line starts a new paragraph.';
+          wrap.append(hint);
+        }
+        return wrap;
+      }));
+      const inList = sel.list !== 'main';
+      document.getElementById('editUp').hidden = !inList || sel.index === 0;
+      document.getElementById('editDown').hidden = !inList || sel.index === review[sel.list].length - 1;
+      document.getElementById('editPanel').hidden = false;
+      document.body.classList.add('edit-panel-open');
+      layoutBoard();
+      markSelected();
+      fields.querySelector('input, textarea')?.focus({ preventScroll: true });
+    }
+
+    function closeEditor() {
+      if (!editing) return;
+      editing.selected = null;
+      document.getElementById('editPanel').hidden = true;
+      document.body.classList.remove('edit-panel-open');
+      layoutBoard();
+      markSelected();
+    }
+
+    function markSelected() {
+      document.querySelectorAll('.selected').forEach(el => el.classList.remove('selected'));
+      const sel = editing?.selected;
+      if (!sel) return;
+      if (sel.list === 'main') return document.getElementById('auditMain').classList.add('selected');
+      const i = current.items.findIndex(item => item.list === sel.list && item.index === sel.index);
+      if (i >= 0) {
+        marks.children[i]?.classList.add('selected');
+        notes.children[i]?.classList.add('selected');
+      }
+      document.querySelector(`.audit-item[data-list="${sel.list}"][data-index="${sel.index}"]`)?.classList.add('selected');
+    }
+
+    function addItem(list) {
+      if (list === 'main') {
+        review.mainComment ??= { text: '', points: [], after: '' };
+        changed();
+        return openEditor({ list: 'main' });
+      }
+      const blank = {
+        issues: { title: 'New issue', quote: '', problem: '', fix: '' },
+        strengths: { title: 'New strength', quote: '', why: '' },
+        smallFixes: { quote: '', note: '' },
+      }[list];
+      if (list !== 'smallFixes') {
+        // A box in the part of the screenshot on screen now, ready to drag into place.
+        const shot = document.getElementById('auditShot');
+        const scale = shot.clientWidth / current.width;
+        const top = (window.innerHeight / 3 - shot.getBoundingClientRect().top) / scale;
+        blank.box = { x: 40, y: Math.round(Math.min(Math.max(0, top), review.screenshot.height - 120)), width: 400, height: 120 };
+      }
+      review[list].push(blank);
+      changed();
+      openEditor({ list, index: review[list].length - 1 });
+      if (list === 'smallFixes') document.getElementById('auditSmallFixesWrap').scrollIntoView({ block: 'center' });
+    }
+
+    function moveItem(step) {
+      const sel = editing.selected;
+      const list = review[sel.list];
+      const to = sel.index + step;
+      if (to < 0 || to >= list.length) return;
+      [list[sel.index], list[to]] = [list[to], list[sel.index]];
+      changed();
+      openEditor({ list: sel.list, index: to });
+    }
+
+    function deleteItem() {
+      const sel = editing.selected;
+      if (!sel || !confirm('Delete this ' + EDIT_FIELDS[sel.list].name.toLowerCase() + '?')) return;
+      if (sel.list === 'main') review.mainComment = undefined;
+      else review[sel.list].splice(sel.index, 1);
+      closeEditor();
+      changed();
+    }
+
+    // Clicking a note, a list item or the main comment opens it for editing.
+    results.addEventListener('click', e => {
+      if (!editing || e.target.closest('a')) return;
+      const note = e.target.closest('.audit-note');
+      const li = e.target.closest('.audit-item');
+      if (note) {
+        const item = current.items[[...notes.children].indexOf(note)];
+        if (item) openEditor({ list: item.list, index: item.index });
+      } else if (li) {
+        openEditor({ list: li.dataset.list, index: Number(li.dataset.index) });
+      } else if (e.target.closest('#auditMain')) {
+        openEditor({ list: 'main' });
+      }
+    });
+
+    // Dragging a box moves it; dragging its corner resizes it; a plain click opens its note.
+    marks.addEventListener('pointerdown', e => {
+      const mark = e.target.closest('.audit-mark');
+      if (!editing || !mark) return;
+      e.preventDefault();
+      const item = current.items[Number(mark.dataset.i)];
+      const box = review[item.list][item.index].box;
+      const resizing = e.target.classList.contains('audit-handle');
+      const scale = document.getElementById('auditShot').clientWidth / current.width;
+      const start = { x: e.clientX, y: e.clientY, box: { ...box } };
+      let moved = false;
+      let frame;
+      mark.setPointerCapture(e.pointerId);
+      const onMove = ev => {
+        if (!moved && Math.hypot(ev.clientX - start.x, ev.clientY - start.y) < 4) return;
+        moved = true;
+        const dx = (ev.clientX - start.x) / scale;
+        const dy = (ev.clientY - start.y) / scale;
+        if (resizing) {
+          box.width = Math.round(Math.min(Math.max(20, start.box.width + dx), current.width - box.x));
+          box.height = Math.round(Math.min(Math.max(12, start.box.height + dy), review.screenshot.height - box.y));
+        } else {
+          box.x = Math.round(Math.min(Math.max(0, start.box.x + dx), current.width - box.width));
+          box.y = Math.round(Math.min(Math.max(0, start.box.y + dy), review.screenshot.height - box.height));
+        }
+        cancelAnimationFrame(frame);
+        frame = requestAnimationFrame(layoutBoard);
+      };
+      const onUp = () => {
+        mark.removeEventListener('pointermove', onMove);
+        mark.removeEventListener('pointerup', onUp);
+        mark.removeEventListener('pointercancel', onUp);
+        if (moved) changed();
+        else openEditor({ list: item.list, index: item.index });
+      };
+      mark.addEventListener('pointermove', onMove);
+      mark.addEventListener('pointerup', onUp);
+      mark.addEventListener('pointercancel', onUp);
+    });
+
+    // SAVE AS PAGE: this page's own code with the review baked in, ready for reviews/.
+    async function savePage() {
+      setEditStatus('Saving…');
+      let template;
+      try {
+        const response = await fetch('/review.html', { cache: 'no-store' });
+        if (!response.ok) throw new Error();
+        template = await response.text();
+      } catch {
+        return setEditStatus('Couldn’t save: this only works on penelopesaintgeorge.com (or a local preview of it). Your edits are kept in this browser.');
+      }
+      const host = new URL(review.homePage).hostname.replace(/^www\./, '');
+      const data = {};
+      for (const key of ['ok', 'homePage', 'fromScreenshot', 'purpose', 'title', 'mainComment', 'issues', 'strengths', 'smallFixes']) {
+        if (review[key] !== undefined) data[key] = review[key];
+      }
+      const { dataUrl, width, height } = review.screenshot;
+      data.screenshot = { dataUrl, width, height };
+      const main = data.mainComment;
+      if (main && !main.text?.trim() && !main.points?.length && !main.after?.trim()) delete data.mainComment;
+
+      const html = bakePage(template, data, (review.title || host + ' review') + ' - Penelope Saint-George');
+      const onBakedPage = Boolean(baked);
+      const name = onBakedPage ? decodeURIComponent(location.pathname.split('/').pop())
+        : host.replace(/\.(co\.uk|org\.uk|ac\.uk|com|co|org|net|uk|io|shop|store)$/, '').replace(/[^a-z0-9]+/gi, '-').toLowerCase() + '.html';
+      let savedAs = name;
+      try {
+        if (window.showSaveFilePicker) {
+          const handle = await window.showSaveFilePicker({ suggestedName: name, types: [{ description: 'Web page', accept: { 'text/html': ['.html'] } }] });
+          const writable = await handle.createWritable();
+          await writable.write(html);
+          await writable.close();
+          savedAs = handle.name;
+        } else {
+          const link = Object.assign(document.createElement('a'), { href: URL.createObjectURL(new Blob([html], { type: 'text/html' })), download: name });
+          link.click();
+          setTimeout(() => URL.revokeObjectURL(link.href), 10000);
+        }
+      } catch (err) {
+        return setEditStatus(err.name === 'AbortError' ? 'Not saved. Your edits are still here.' : 'Couldn’t save the file. Your edits are kept in this browser.');
+      }
+      editing.dirty = false;
+      setEditStatus('Saved ' + savedAs + '. Put it in the reviews folder of your website and ask Claude to publish it. It will then be at penelopesaintgeorge.com/reviews/' + savedAs + '.');
+    }
+
+    function bakePage(template, data, title) {
+      const json = JSON.stringify(data).replace(/</g, '\\u003c');
+      const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+      return template
+        // The page lives one folder down, in reviews/, so its relative links need ../
+        .replace(/(href|src)=(")(?![a-z]+:|\/|#|\.\.\/)/g, '$1=$2../')
+        .replace(/url\(\'(?![a-z]+:|\/|#|\.\.\/)/g, () => 'url' + '(\'../')
+        .replace('<meta charset="UTF-8">', '<meta charset="UTF-8">\n<meta name="robots" content="noindex, nofollow">')
+        .replace(/<title>[\s\S]*?<\/title>/, () => '<title>' + esc(title) + '</title>')
+        .replace('<!-- BAKED REVIEW -->', () => '<script type="application/json" id="bakedReview">' + json + '<\/script>');
+    }
+
+    // A finished review saved as its own page (reviews/....html) carries its review here.
+    // Add ?edit to that page's address to change it.
     const params = new URLSearchParams(location.search);
-    const savedId = params.get('review') ?? params.get('audit');
+    const baked = document.getElementById('bakedReview');
+    const savedId = baked ? null : params.get('review') ?? params.get('audit');
+    if (baked) {
+      showAudit(JSON.parse(baked.textContent));
+      if (params.has('edit')) startEditing(location.pathname);
+    }
+
+    // Opening a saved review from its private link (?review=..., or ?audit=... in older emails).
+    // Only Pen gets these links now, so they come with the Edit button.
     if (savedId) {
       form.hidden = true;
       status.hidden = false;
@@ -913,6 +1306,8 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
           }
           showAudit(result);
           window.scrollTo({ top: 0 });
+          if (params.has('edit')) startEditing('review:' + savedId);
+          else showEditButton('review:' + savedId);
         })
         .catch(() => { error.textContent = 'Something went wrong opening your review. Please try again in a minute.'; })
         .finally(() => {
@@ -982,11 +1377,13 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
           }
           section.hidden = true;
           showAudit(result);
+          showEditButton('review:' + id);
           const emailed = document.getElementById('auditEmailed');
           emailed.hidden = false;
-          emailed.textContent = result.emailed
-            ? 'This review is in your inbox too. Edit it there and send it on to ' + visitorEmail + '.'
-            : 'The email to you didn\u2019t send, so copy the review from this page before sending it on to ' + visitorEmail + '.';
+          emailed.textContent = (result.emailed
+            ? 'This review is in your inbox too. '
+            : 'The email to you didn\u2019t send, but the review is all here. ')
+            + 'Use \u201cEdit this review\u201d to change it and save it as a page, then send the link on to ' + visitorEmail + '.';
           window.scrollTo({ top: 0 });
         } catch (error) {
           uploadError.textContent = error.message || 'Something went wrong. Please try again in a minute.';
@@ -1037,10 +1434,12 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
       throw new Error('That screenshot is too big to upload. Try a shorter one.');
     }
 
-    function renderItems(list, items, body) {
-      list.replaceChildren(...items.map(item => {
+    function renderItems(list, items, body, name) {
+      list.replaceChildren(...items.map((item, index) => {
         const li = document.createElement('li');
         li.className = 'audit-item';
+        li.dataset.list = name;
+        li.dataset.index = index;
         const parts = item.title ? [['h3', item.title]] : [];
         if (item.quote) parts.push(['p', '\u201c' + item.quote + '\u201d', 'audit-quote']);
         for (const [tag, text, className] of [...parts, ...body(item)]) {
