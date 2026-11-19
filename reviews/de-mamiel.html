@@ -413,7 +413,6 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 .audit-item-text { max-width: 640px; }
 .audit-snap { position: relative; overflow: hidden; margin: 0; background: #fff; border: 0.5px solid var(--rule); box-shadow: 0 10px 28px rgba(26,24,20,0.08); }
 .audit-snap-img { position: absolute; display: block; max-width: none; height: auto; }
-.audit-snap .audit-mark { pointer-events: none; }
 @media (min-width: 900px) {
   .audit-item.has-snap { grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 3.5rem; align-items: start; }
 }
@@ -459,6 +458,8 @@ body.editing { padding-bottom: 7rem; }
 .edit-panel-head h2 { font-family: var(--serif); font-weight: 400; font-size: 1.5rem; color: var(--headline); }
 .edit-panel-head button { background: var(--headline); border-color: var(--headline); color: var(--paper); }
 #editFields { display: flex; flex-direction: column; gap: 1rem; }
+.edit-snap-buttons { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.audit-snap-own img { display: block; width: 100%; height: auto; }
 .edit-field { display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-mid); }
 .edit-field input, .edit-field textarea { width: 100%; padding: 0.6rem 0.7rem; font-family: var(--sans); font-size: 0.92rem; font-weight: 300; line-height: 1.55; letter-spacing: 0; text-transform: none; color: var(--ink); background: transparent; border: 0.5px solid var(--rule); border-radius: 2px; resize: vertical; }
 .edit-field input:focus, .edit-field textarea:focus { outline: none; border-color: var(--headline); }
@@ -612,7 +613,7 @@ body.editing { padding-bottom: 7rem; }
   <p class="audit-emailed" id="auditEmailed" hidden></p>
   <div class="audit-main" id="auditMain" hidden></div>
 
-  <!-- Each issue and strength comes with a snapshot: the part of the screenshot it's about, with its box drawn on. -->
+  <!-- Each issue and strength comes with a snapshot: the part of the screenshot it's about. -->
   <div class="audit-lists">
     <h2 class="audit-heading">What's holding it back</h2>
     <ol class="audit-list audit-issues" id="auditIssues"></ol>
@@ -744,8 +745,8 @@ body.editing { padding-bottom: 7rem; }
       renderItems(document.getElementById('auditIssues'), review.issues, item => [
         ['p', item.problem],
         ['p', item.fix, 'audit-fix'],
-      ], 'issues', (item, i) => snapshot(item, 'issue', String(i + 1)));
-      renderItems(document.getElementById('auditStrengths'), review.strengths, item => [['p', item.why]], 'strengths', item => snapshot(item, 'strength', '\u2726'));
+      ], 'issues', snapshot);
+      renderItems(document.getElementById('auditStrengths'), review.strengths, item => [['p', item.why]], 'strengths', snapshot);
       // Typos and missing punctuation.
       renderItems(document.getElementById('auditSmallFixes'), review.smallFixes, item => [['p', item.note]], 'smallFixes');
       document.getElementById('auditSmallFixesWrap').hidden = review.smallFixes.length === 0;
@@ -1008,6 +1009,7 @@ body.editing { padding-bottom: 7rem; }
           <button type="button" data-add="issues">+ Issue</button>
           <button type="button" data-add="strengths">+ Strength</button>
           <button type="button" data-add="smallFixes">+ Small fix</button>
+          <button type="button" id="editShot">Replace screenshot</button>
           <span class="edit-status" id="editStatus" role="status">Click any note to change it. To move a box, drag it on the full screenshot at the bottom.</span>
           <button type="button" class="edit-save" id="editSave">Save as page</button>
         </div>
@@ -1029,6 +1031,7 @@ body.editing { padding-bottom: 7rem; }
       document.getElementById('editUp').addEventListener('click', () => moveItem(-1));
       document.getElementById('editDown').addEventListener('click', () => moveItem(1));
       document.getElementById('editDelete').addEventListener('click', deleteItem);
+      document.getElementById('editShot').addEventListener('click', () => pickImage(replaceScreenshot));
       document.addEventListener('keydown', e => { if (e.key === 'Escape') closeEditor(); });
       window.addEventListener('beforeunload', e => { if (editing.dirty) e.preventDefault(); });
 
@@ -1079,7 +1082,11 @@ body.editing { padding-bottom: 7rem; }
       markSelected();
       clearTimeout(draftTimer);
       draftTimer = setTimeout(() => {
-        try { localStorage.setItem(editing.key, JSON.stringify(editableParts())); } catch {}
+        try {
+          localStorage.setItem(editing.key, JSON.stringify(editableParts()));
+        } catch {
+          setEditStatus('Your images are too big to keep as a draft in this browser, so save as page before you close this tab.');
+        }
       }, 300);
     }
 
@@ -1116,6 +1123,7 @@ body.editing { padding-bottom: 7rem; }
         }
         return wrap;
       }));
+      if (sel.list === 'issues' || sel.list === 'strengths') fields.append(snapshotControls(item));
       const inList = sel.list !== 'main';
       document.getElementById('editUp').hidden = !inList || sel.index === 0;
       document.getElementById('editDown').hidden = !inList || sel.index === review[sel.list].length - 1;
@@ -1456,11 +1464,100 @@ body.editing { padding-bottom: 7rem; }
       throw new Error('That screenshot is too big to upload. Try a shorter one.');
     }
 
-    // A snapshot: the stretch of the screenshot around an item's box, with the box drawn
-    // on it. Cut with percentages, so it scales with the page and needs no layout code.
-    function snapshot(item, kind, label) {
+    // CHANGING THE PICTURES (edit mode). Pen can swap in her own full-page screenshot,
+    // or give one issue or strength an image of its own instead of its crop.
+    function snapshotControls(item) {
+      const wrap = document.createElement('div');
+      wrap.className = 'edit-field';
+      wrap.append('Snapshot');
+      const row = document.createElement('div');
+      row.className = 'edit-snap-buttons';
+      const own = Object.assign(document.createElement('button'), { type: 'button', textContent: item.image ? 'Use a different image' : 'Use my own image' });
+      own.addEventListener('click', () => pickImage(async file => {
+        item.image = (await imageToDataUrl(file, 1400)).dataUrl;
+        changed();
+        openEditor(editing.selected);
+      }));
+      row.append(own);
+      if (item.image) {
+        const back = Object.assign(document.createElement('button'), { type: 'button', textContent: 'Back to the screenshot crop' });
+        back.addEventListener('click', () => {
+          delete item.image;
+          changed();
+          openEditor(editing.selected);
+        });
+        row.append(back);
+      }
+      const hint = document.createElement('span');
+      hint.className = 'edit-hint';
+      hint.textContent = item.image
+        ? 'Showing your own image. The box on the full screenshot is no longer used for this one.'
+        : 'Showing a crop of the screenshot around this one\u2019s box. Drag the box on the full screenshot to change it.';
+      wrap.append(row, hint);
+      return wrap;
+    }
+
+    function pickImage(use) {
+      const input = Object.assign(document.createElement('input'), { type: 'file', accept: 'image/png,image/jpeg,image/webp' });
+      input.addEventListener('change', async () => {
+        const file = input.files[0];
+        if (!file) return;
+        try {
+          setEditStatus('Adding the image\u2026');
+          await use(file);
+          if (document.getElementById('editStatus').textContent === 'Adding the image\u2026') setEditStatus('Image added.');
+        } catch (err) {
+          setEditStatus(err.message || 'That image couldn\u2019t be used.');
+        }
+      });
+      input.click();
+    }
+
+    // Any image as a JPEG, scaled to the given width (only ever down, unless exact is set)
+    // and cut off at 8000px tall. Returns { dataUrl, width, height }.
+    async function imageToDataUrl(file, width, { exact = false, minWidth = 0 } = {}) {
+      let image;
+      try {
+        image = await createImageBitmap(file);
+      } catch {
+        throw new Error('That file couldn\u2019t be read as an image.');
+      }
+      if (image.width < minWidth) throw new Error('That screenshot looks like it was taken on a phone. Take it on a computer instead.');
+      const scale = exact ? width / image.width : Math.min(1, width / image.width);
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.round(image.width * scale);
+      canvas.height = Math.min(Math.round(image.height * scale), 8000);
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#fff';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(image, 0, 0, image.width, canvas.height / scale, 0, 0, canvas.width, canvas.height);
+      return { dataUrl: canvas.toDataURL('image/jpeg', 0.8), width: canvas.width, height: canvas.height };
+    }
+
+    // A new full-page screenshot, scaled to the review tool's width so the boxes keep their places.
+    async function replaceScreenshot(file) {
+      const shot = await imageToDataUrl(file, review.screenshot.width, { exact: true, minWidth: 800 });
+      review.screenshot = shot;
+      for (const item of [...review.issues, ...review.strengths]) {
+        if (item.box) item.box.y = Math.min(item.box.y, Math.max(0, shot.height - item.box.height));
+      }
+      document.getElementById('auditShot').src = shot.dataUrl;
+      changed();
+      setEditStatus('New screenshot in. Check the boxes on the full screenshot still sit over the right things, then save as page. A new screenshot isn\u2019t kept in the draft, so save before you close this tab.');
+    }
+
+    // A snapshot: the stretch of the screenshot around an item's box (the box itself is
+    // only drawn in edit mode, on the full screenshot). Cut with percentages, so it
+    // scales with the page and needs no layout code.
+    function snapshot(item) {
       const b = item.box;
       const { width: W, height: H, dataUrl } = review.screenshot;
+      if (item.image) {
+        const figure = document.createElement('figure');
+        figure.className = 'audit-snap audit-snap-own';
+        figure.append(Object.assign(document.createElement('img'), { src: item.image, alt: '' }));
+        return figure;
+      }
       if (!b || !dataUrl) return null;
       const PAD = 60, MIN_WIDTH = 640, MAX_HEIGHT = 900;
       const w = Math.min(W, Math.max(MIN_WIDTH, b.width + PAD * 2));
@@ -1477,17 +1574,7 @@ body.editing { padding-bottom: 7rem; }
       img.alt = '';
       img.src = dataUrl;
       Object.assign(img.style, { width: pct(W / w), left: pct(-x / w), top: pct(-y / h) });
-      const mark = document.createElement('div');
-      mark.className = 'audit-mark ' + kind;
-      Object.assign(mark.style, {
-        left: pct((b.x - x) / w), top: pct((b.y - y) / h),
-        width: pct(Math.max(12, b.width) / w), height: pct(Math.max(8, b.height) / h),
-      });
-      const dot = document.createElement('span');
-      dot.className = 'audit-dot';
-      dot.textContent = label;
-      mark.append(dot);
-      figure.append(img, mark);
+      figure.append(img);
       return figure;
     }
 
