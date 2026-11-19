@@ -347,7 +347,11 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 .audit-title { font-family: var(--serif-light); font-weight: 400; font-size: clamp(2.6rem, 7vw, 5.2rem); line-height: 1.1; text-transform: uppercase; color: var(--headline); margin-bottom: 1rem; }
 .audit-subtitle { font-family: var(--serif-light); font-size: clamp(1.1rem, 2vw, 1.35rem); line-height: 1.5; color: var(--ink-mid); overflow-wrap: anywhere; }
 .audit-shot { display: block; width: 100%; height: auto; border: 0.5px solid var(--rule); box-shadow: 0 12px 32px rgba(26,24,20,0.08); }
-.audit-board { position: relative; margin-top: 2.5rem; }
+.audit-board { display: none; position: relative; margin-top: 1.5rem; }
+.audit-board-heading, .audit-board-help { display: none; }
+.editing .audit-board { display: block; }
+.editing .audit-board-heading { display: block; margin-top: 4rem; }
+.editing .audit-board-help { display: block; max-width: 760px; font-size: 0.9rem; color: var(--ink-mid); }
 .audit-shot-wrap { position: relative; }
 .audit-marks { position: absolute; inset: 0; pointer-events: none; }
 .audit-mark { position: absolute; border: 1.5px solid var(--coral); border-radius: 3px; background: rgba(212,66,55,0.06); transition: background 0.2s, box-shadow 0.2s; }
@@ -372,12 +376,11 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 @media (min-width: 900px) {
   .audit-results { max-width: 1280px; }
   /* Notes on the left, screenshot on the right. */
-  .audit-board { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 4.5rem; align-items: start; }
+  .editing .audit-board { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 4.5rem; align-items: start; }
   .audit-notes { display: block; position: relative; order: -1; }
   .audit-note { border-left: 0.5px solid var(--rule); border-right: 2px solid var(--coral); }
   .audit-note.strength { border-right-color: var(--strength); }
   .audit-arrows { display: block; }
-  .audit-lists { display: none; }
 }
 /* Solance has no bold cut, so a hairline outline thickens these headlines. */
 .audit-note h3, .audit-item h3, .audit-heading { -webkit-text-stroke: 0.35px currentColor; }
@@ -404,6 +407,16 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 .audit-item p + p { margin-top: 0.5rem; }
 .audit-fix { color: var(--headline); }
 .audit-small-fixes .audit-item { padding-left: 0; }
+/* Snapshots: each issue or strength beside the part of the page it's about. */
+.audit-issues, .audit-strengths { max-width: none; }
+.audit-item.has-snap { display: grid; gap: 1.25rem; }
+.audit-item-text { max-width: 640px; }
+.audit-snap { position: relative; overflow: hidden; margin: 0; background: #fff; border: 0.5px solid var(--rule); box-shadow: 0 10px 28px rgba(26,24,20,0.08); }
+.audit-snap-img { position: absolute; display: block; max-width: none; height: auto; }
+.audit-snap .audit-mark { pointer-events: none; }
+@media (min-width: 900px) {
+  .audit-item.has-snap { grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 3.5rem; align-items: start; }
+}
 .audit-small-fixes .audit-quote { margin-bottom: 0.25rem; }
 .audit-cta-wrap { margin-top: 4rem; padding-top: 3rem; border-top: 0.5px solid var(--rule); text-align: center; }
 .audit-cta { display: inline-flex; align-items: center; gap: 0.9em; font-size: clamp(0.78rem, 1.4vw, 1.25rem); font-style: italic; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--headline); text-decoration: none; }
@@ -424,8 +437,8 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 .audit-mark { color: var(--coral); }
 .audit-mark.strength { color: var(--strength); }
 .audit-handle { display: none; position: absolute; right: -7px; bottom: -7px; width: 13px; height: 13px; background: var(--paper); border: 1.5px solid currentColor; border-radius: 2px; cursor: nwse-resize; }
-.editing .audit-mark { pointer-events: auto; cursor: move; touch-action: none; }
-.editing .audit-handle { display: block; }
+.editing .audit-marks .audit-mark { pointer-events: auto; cursor: move; touch-action: none; }
+.editing .audit-marks .audit-handle { display: block; }
 .editing .audit-note, .editing .audit-item, .editing .audit-main { cursor: pointer; }
 .editing .audit-note:hover, .editing .audit-item:hover, .editing .audit-main:hover { outline: 1px dashed var(--ink-light); outline-offset: 4px; }
 .editing .selected.audit-note, .editing .selected.audit-item, .editing .selected.audit-main { outline: 2px solid var(--headline); outline-offset: 4px; }
@@ -599,16 +612,7 @@ body.editing { padding-bottom: 7rem; }
   <p class="audit-emailed" id="auditEmailed" hidden></p>
   <div class="audit-main" id="auditMain" hidden></div>
 
-  <!-- Wide screens: notes to the left of the screenshot, with arrows. Narrow screens: numbered marks, notes listed below. -->
-  <div class="audit-board" id="auditBoard">
-    <div class="audit-shot-wrap">
-      <img class="audit-shot" id="auditShot" alt="">
-      <div class="audit-marks" id="auditMarks" aria-hidden="true"></div>
-    </div>
-    <div class="audit-notes" id="auditNotes"></div>
-    <svg class="audit-arrows" id="auditArrows" aria-hidden="true"></svg>
-  </div>
-
+  <!-- Each issue and strength comes with a snapshot: the part of the screenshot it's about, with its box drawn on. -->
   <div class="audit-lists">
     <h2 class="audit-heading">What's holding it back</h2>
     <ol class="audit-list audit-issues" id="auditIssues"></ol>
@@ -621,6 +625,19 @@ body.editing { padding-bottom: 7rem; }
   <div class="audit-small-fixes-wrap" id="auditSmallFixesWrap" hidden>
     <h2 class="audit-heading">Small fixes</h2>
     <ul class="audit-list audit-small-fixes" id="auditSmallFixes"></ul>
+  </div>
+
+  <!-- Edit mode only: the whole screenshot, for dragging the boxes the snapshots are cut around.
+       Wide screens: notes to the left of the screenshot, with arrows. -->
+  <h2 class="audit-heading audit-board-heading">Full screenshot</h2>
+  <p class="audit-board-help">Only you see this, while editing. Drag a box to move it, or its corner to resize it, and the snapshots above follow.</p>
+  <div class="audit-board" id="auditBoard">
+    <div class="audit-shot-wrap">
+      <img class="audit-shot" id="auditShot" alt="">
+      <div class="audit-marks" id="auditMarks" aria-hidden="true"></div>
+    </div>
+    <div class="audit-notes" id="auditNotes"></div>
+    <svg class="audit-arrows" id="auditArrows" aria-hidden="true"></svg>
   </div>
 
   <!-- Where the button goes: change the href here to repoint it. -->
@@ -727,8 +744,8 @@ body.editing { padding-bottom: 7rem; }
       renderItems(document.getElementById('auditIssues'), review.issues, item => [
         ['p', item.problem],
         ['p', item.fix, 'audit-fix'],
-      ], 'issues');
-      renderItems(document.getElementById('auditStrengths'), review.strengths, item => [['p', item.why]], 'strengths');
+      ], 'issues', (item, i) => snapshot(item, 'issue', String(i + 1)));
+      renderItems(document.getElementById('auditStrengths'), review.strengths, item => [['p', item.why]], 'strengths', item => snapshot(item, 'strength', '\u2726'));
       // Typos and missing punctuation.
       renderItems(document.getElementById('auditSmallFixes'), review.smallFixes, item => [['p', item.note]], 'smallFixes');
       document.getElementById('auditSmallFixesWrap').hidden = review.smallFixes.length === 0;
@@ -983,6 +1000,7 @@ body.editing { padding-bottom: 7rem; }
       if (editing) return;
       editing = { key: 'reviewDraft:' + key, selected: null, dirty: false, original: JSON.stringify(editableParts()) };
       document.body.classList.add('editing');
+      layoutBoard(); // The full screenshot only shows while editing.
       document.body.insertAdjacentHTML('beforeend', `
         <div class="edit-bar" id="editBar">
           <span class="edit-bar-label">Editing</span>
@@ -990,7 +1008,7 @@ body.editing { padding-bottom: 7rem; }
           <button type="button" data-add="issues">+ Issue</button>
           <button type="button" data-add="strengths">+ Strength</button>
           <button type="button" data-add="smallFixes">+ Small fix</button>
-          <span class="edit-status" id="editStatus" role="status">Click any note to change it. Drag a box on the screenshot to move it.</span>
+          <span class="edit-status" id="editStatus" role="status">Click any note to change it. To move a box, drag it on the full screenshot at the bottom.</span>
           <button type="button" class="edit-save" id="editSave">Save as page</button>
         </div>
         <aside class="edit-panel" id="editPanel" hidden>
@@ -1438,12 +1456,55 @@ body.editing { padding-bottom: 7rem; }
       throw new Error('That screenshot is too big to upload. Try a shorter one.');
     }
 
-    function renderItems(list, items, body, name) {
+    // A snapshot: the stretch of the screenshot around an item's box, with the box drawn
+    // on it. Cut with percentages, so it scales with the page and needs no layout code.
+    function snapshot(item, kind, label) {
+      const b = item.box;
+      const { width: W, height: H, dataUrl } = review.screenshot;
+      if (!b || !dataUrl) return null;
+      const PAD = 60, MIN_WIDTH = 640, MAX_HEIGHT = 900;
+      const w = Math.min(W, Math.max(MIN_WIDTH, b.width + PAD * 2));
+      const h = Math.min(H, MAX_HEIGHT, Math.max(b.height + PAD * 2, w * 0.4));
+      const x = Math.min(Math.max(0, b.x + b.width / 2 - w / 2), W - w);
+      // A box taller than the snapshot shows its top, not its middle.
+      const y = Math.min(Math.max(0, b.height + PAD * 2 > h ? b.y - PAD : b.y + b.height / 2 - h / 2), H - h);
+      const pct = n => n * 100 + '%';
+      const figure = document.createElement('figure');
+      figure.className = 'audit-snap';
+      figure.style.aspectRatio = w + ' / ' + h;
+      const img = document.createElement('img');
+      img.className = 'audit-snap-img';
+      img.alt = '';
+      img.src = dataUrl;
+      Object.assign(img.style, { width: pct(W / w), left: pct(-x / w), top: pct(-y / h) });
+      const mark = document.createElement('div');
+      mark.className = 'audit-mark ' + kind;
+      Object.assign(mark.style, {
+        left: pct((b.x - x) / w), top: pct((b.y - y) / h),
+        width: pct(Math.max(12, b.width) / w), height: pct(Math.max(8, b.height) / h),
+      });
+      const dot = document.createElement('span');
+      dot.className = 'audit-dot';
+      dot.textContent = label;
+      mark.append(dot);
+      figure.append(img, mark);
+      return figure;
+    }
+
+    function renderItems(list, items, body, name, snap) {
       list.replaceChildren(...items.map((item, index) => {
         const li = document.createElement('li');
         li.className = 'audit-item';
         li.dataset.list = name;
         li.dataset.index = index;
+        const textBox = document.createElement('div');
+        textBox.className = 'audit-item-text';
+        li.append(textBox);
+        const figure = snap?.(item, index);
+        if (figure) {
+          li.classList.add('has-snap');
+          li.append(figure);
+        }
         const parts = item.title ? [['h3', item.title]] : [];
         if (item.quote) parts.push(['p', '\u201c' + item.quote + '\u201d', 'audit-quote']);
         for (const [tag, text, className] of [...parts, ...body(item)]) {
@@ -1451,7 +1512,7 @@ body.editing { padding-bottom: 7rem; }
             const el = document.createElement(tag);
             el.textContent = line;
             if (className) el.className = className;
-            li.append(el);
+            textBox.append(el);
           }
         }
         return li;
