@@ -410,12 +410,25 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 .audit-issues, .audit-strengths { max-width: none; }
 .audit-item.has-snap { display: grid; gap: 1.25rem; }
 .audit-item-text { max-width: 640px; }
-.audit-snap { position: relative; overflow: hidden; margin: 0; background: #fff; border: 0.5px solid var(--rule); box-shadow: 0 10px 28px rgba(26,24,20,0.08); }
+/* The hairline is a shadow, not a border: a border would make the inside of the crop a
+   different shape from its aspect ratio, and the picture would drift on long pages. */
+.audit-snap { position: relative; overflow: hidden; margin: 0; background: #fff; box-shadow: 0 0 0 0.5px var(--rule), 0 10px 28px rgba(26,24,20,0.08); }
 .audit-snap-img { position: absolute; display: block; max-width: none; height: auto; }
+.audit-snap-outline { position: absolute; border: 2px solid var(--coral); border-radius: 4px; box-shadow: 0 0 0 3px rgba(212,66,55,0.15); }
 @media (min-width: 900px) {
   .audit-item.has-snap { grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 3.5rem; align-items: start; }
 }
 .audit-small-fixes .audit-quote { margin-bottom: 0.25rem; }
+.audit-small-fixes .audit-item.has-snap { grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 900px) {
+  .audit-small-fixes { max-width: none; }
+  .audit-small-fixes .audit-item.has-snap { grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); }
+}
+/* Grammar fixes on the full screenshot (edit mode): grey, so they don't compete with issues. */
+.audit-mark.fix { border-color: var(--ink-mid); background: rgba(90,87,81,0.06); color: var(--ink-mid); }
+.audit-mark.fix .audit-dot { background: var(--ink-mid); font-size: 0.7rem; }
+.audit-note.fix { border-left-color: var(--ink-mid); }
+.audit-note.fix .audit-note-num { font-style: normal; color: var(--ink-mid); }
 .audit-cta-wrap { margin-top: 4rem; padding-top: 3rem; border-top: 0.5px solid var(--rule); text-align: center; }
 .audit-cta { display: inline-flex; align-items: center; gap: 0.9em; font-size: clamp(0.78rem, 1.4vw, 1.25rem); font-style: italic; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--headline); text-decoration: none; }
 .audit-cta-carets { display: inline-flex; flex: none; transition: transform 0.35s var(--ease-out); }
@@ -620,9 +633,10 @@ body.editing { padding-bottom: 7rem; }
     <ul class="audit-list audit-strengths" id="auditStrengths"></ul>
   </div>
 
-  <!-- Typos and missing punctuation: shown at every screen width, as they have no note on the screenshot. -->
+  <!-- Typos, spelling and punctuation, each with a snapshot of where it is on the page
+       (reviews saved before version 4 may have fixes with no box, and so no snapshot). -->
   <div class="audit-small-fixes-wrap" id="auditSmallFixesWrap" hidden>
-    <h2 class="audit-heading">Small fixes</h2>
+    <h2 class="audit-heading">Grammar fixes</h2>
     <ul class="audit-list audit-small-fixes" id="auditSmallFixes"></ul>
   </div>
 
@@ -734,6 +748,8 @@ body.editing { padding-bottom: 7rem; }
         items: [
           ...review.issues.map((item, index) => ({ ...item, kind: 'issue', label: String(index + 1), list: 'issues', index })),
           ...review.strengths.map((item, index) => ({ ...item, kind: 'strength', label: '\u2726', list: 'strengths', index })),
+          ...review.smallFixes.map((item, index) => ({ ...item, title: 'Grammar fix', kind: 'fix', label: '\u270e', list: 'smallFixes', index }))
+            .filter(item => item.box),
         ],
       };
       renderMain(review.mainComment);
@@ -746,7 +762,7 @@ body.editing { padding-bottom: 7rem; }
       ], 'issues', snapshot);
       renderItems(document.getElementById('auditStrengths'), review.strengths, item => [['p', item.why]], 'strengths', snapshot);
       // Typos and missing punctuation.
-      renderItems(document.getElementById('auditSmallFixes'), review.smallFixes, item => [['p', item.note]], 'smallFixes');
+      renderItems(document.getElementById('auditSmallFixes'), review.smallFixes, item => [['p', item.note]], 'smallFixes', fixSnapshot);
       document.getElementById('auditSmallFixesWrap').hidden = review.smallFixes.length === 0;
     }
 
@@ -779,7 +795,7 @@ body.editing { padding-bottom: 7rem; }
     const notes = document.getElementById('auditNotes');
     const arrows = document.getElementById('auditArrows');
     const SVG = 'http://www.w3.org/2000/svg';
-    const COLOURS = { issue: 'var(--coral)', strength: 'var(--strength)' };
+    const COLOURS = { issue: 'var(--coral)', strength: 'var(--strength)', fix: 'var(--ink-mid)' };
 
     function renderBoard() {
       marks.replaceChildren();
@@ -808,7 +824,7 @@ body.editing { padding-bottom: 7rem; }
         title.append(document.createTextNode(item.title));
         note.append(title);
         const quote = item.quote ? [['“' + item.quote + '”', 'audit-quote']] : [];
-        const lines = [...quote, ...(item.kind === 'issue' ? [[item.problem], [item.fix, 'audit-fix']] : [[item.why]])];
+        const lines = [...quote, ...(item.kind === 'issue' ? [[item.problem], [item.fix, 'audit-fix']] : item.kind === 'fix' ? [[item.note]] : [[item.why]])];
         for (const [text, className] of lines) {
           for (const line of paragraphs(text)) {
             const el = document.createElement('p');
@@ -982,7 +998,7 @@ body.editing { padding-bottom: 7rem; }
     const EDIT_FIELDS = {
       issues: { name: 'Issue', fields: [['title', 'Headline'], ['quote', 'Quote from their page'], ['problem', 'What’s wrong', 7], ['fix', 'The fix (optional)', 4]] },
       strengths: { name: 'Strength', fields: [['title', 'Headline'], ['quote', 'Quote from their page'], ['why', 'Why it works', 7]] },
-      smallFixes: { name: 'Small fix', fields: [['quote', 'Quote from their page'], ['note', 'The fix', 3]] },
+      smallFixes: { name: 'Grammar fix', fields: [['quote', 'Quote from their page'], ['note', 'The fix', 3]] },
       main: { name: 'Main comment', fields: [['text', 'Opening', 6], ['points', 'Bullet points (one per line)', 4], ['after', 'After the bullets', 3]] },
     };
 
@@ -1006,7 +1022,7 @@ body.editing { padding-bottom: 7rem; }
           <button type="button" data-add="main">Main comment</button>
           <button type="button" data-add="issues">+ Issue</button>
           <button type="button" data-add="strengths">+ Strength</button>
-          <button type="button" data-add="smallFixes">+ Small fix</button>
+          <button type="button" data-add="smallFixes">+ Grammar fix</button>
           <button type="button" id="editShot">Replace screenshot</button>
           <span class="edit-status" id="editStatus" role="status">Click any note to change it. To move a box, drag it on the full screenshot at the bottom.</span>
           <button type="button" class="edit-save" id="editSave">Save as page</button>
@@ -1121,7 +1137,7 @@ body.editing { padding-bottom: 7rem; }
         }
         return wrap;
       }));
-      if (sel.list === 'issues' || sel.list === 'strengths') fields.append(snapshotControls(item));
+      if (sel.list !== 'main') fields.append(snapshotControls(item));
       const inList = sel.list !== 'main';
       document.getElementById('editUp').hidden = !inList || sel.index === 0;
       document.getElementById('editDown').hidden = !inList || sel.index === review[sel.list].length - 1;
@@ -1165,13 +1181,13 @@ body.editing { padding-bottom: 7rem; }
         strengths: { title: 'New strength', quote: '', why: '' },
         smallFixes: { quote: '', note: '' },
       }[list];
-      if (list !== 'smallFixes') {
-        // A box in the part of the screenshot on screen now, ready to drag into place.
-        const shot = document.getElementById('auditShot');
-        const scale = shot.clientWidth / current.width;
-        const top = (window.innerHeight / 3 - shot.getBoundingClientRect().top) / scale;
-        blank.box = { x: 40, y: Math.round(Math.min(Math.max(0, top), review.screenshot.height - 120)), width: 400, height: 120 };
-      }
+      // A box in the part of the screenshot on screen now, ready to drag into place.
+      // A grammar fix's starts small, as it usually marks a single line.
+      const shot = document.getElementById('auditShot');
+      const scale = shot.clientWidth / current.width;
+      const top = (window.innerHeight / 3 - shot.getBoundingClientRect().top) / scale;
+      const [w, h] = list === 'smallFixes' ? [300, 40] : [400, 120];
+      blank.box = { x: 40, y: Math.round(Math.min(Math.max(0, top), review.screenshot.height - h)), width: w, height: h };
       review[list].push(blank);
       changed();
       openEditor({ list, index: review[list].length - 1 });
@@ -1536,7 +1552,7 @@ body.editing { padding-bottom: 7rem; }
     async function replaceScreenshot(file) {
       const shot = await imageToDataUrl(file, review.screenshot.width, { exact: true, minWidth: 800 });
       review.screenshot = shot;
-      for (const item of [...review.issues, ...review.strengths]) {
+      for (const item of [...review.issues, ...review.strengths, ...review.smallFixes]) {
         if (item.box) item.box.y = Math.min(item.box.y, Math.max(0, shot.height - item.box.height));
       }
       document.getElementById('auditShot').src = shot.dataUrl;
@@ -1546,8 +1562,13 @@ body.editing { padding-bottom: 7rem; }
 
     // A snapshot: the stretch of the screenshot around an item's box (the box itself is
     // only drawn in edit mode, on the full screenshot). Cut with percentages, so it
-    // scales with the page and needs no layout code.
-    function snapshot(item) {
+    // scales with the page and needs no layout code. A grammar fix gets a tighter crop
+    // with its words outlined, as the slip is usually a few words in a long line.
+    function fixSnapshot(item) {
+      return snapshot(item, { pad: 36, minWidth: 520, ratio: 0.28, outline: true });
+    }
+
+    function snapshot(item, { pad = 60, minWidth = 640, ratio = 0.4, outline = false } = {}) {
       const b = item.box;
       const { width: W, height: H, dataUrl } = review.screenshot;
       if (item.image) {
@@ -1557,9 +1578,9 @@ body.editing { padding-bottom: 7rem; }
         return figure;
       }
       if (!b || !dataUrl) return null;
-      const PAD = 60, MIN_WIDTH = 640, MAX_HEIGHT = 900;
-      const w = Math.min(W, Math.max(MIN_WIDTH, b.width + PAD * 2));
-      const h = Math.min(H, MAX_HEIGHT, Math.max(b.height + PAD * 2, w * 0.4));
+      const PAD = pad, MAX_HEIGHT = 900;
+      const w = Math.min(W, Math.max(minWidth, b.width + PAD * 2));
+      const h = Math.min(H, MAX_HEIGHT, Math.max(b.height + PAD * 2, w * ratio));
       const x = Math.min(Math.max(0, b.x + b.width / 2 - w / 2), W - w);
       // A box taller than the snapshot shows its top, not its middle.
       const y = Math.min(Math.max(0, b.height + PAD * 2 > h ? b.y - PAD : b.y + b.height / 2 - h / 2), H - h);
@@ -1573,6 +1594,12 @@ body.editing { padding-bottom: 7rem; }
       img.src = dataUrl;
       Object.assign(img.style, { width: pct(W / w), left: pct(-x / w), top: pct(-y / h) });
       figure.append(img);
+      if (outline) {
+        const mark = document.createElement('span');
+        mark.className = 'audit-snap-outline';
+        Object.assign(mark.style, { left: pct((b.x - x) / w), top: pct((b.y - y) / h), width: pct(b.width / w), height: pct(b.height / h) });
+        figure.append(mark);
+      }
       return figure;
     }
 
