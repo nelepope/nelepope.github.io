@@ -629,16 +629,17 @@ body.editing { padding-bottom: 7rem; }
     <h2 class="audit-heading">What's holding it back</h2>
     <ol class="audit-list audit-issues" id="auditIssues"></ol>
 
+    <!-- Typos, spelling and punctuation, each with a snapshot of where it is on the page
+         (reviews saved before version 4 may have fixes with no box, and so no snapshot). -->
+    <div class="audit-small-fixes-wrap" id="auditSmallFixesWrap" hidden>
+      <h2 class="audit-heading">Grammar fixes</h2>
+      <ul class="audit-list audit-small-fixes" id="auditSmallFixes"></ul>
+    </div>
+
     <h2 class="audit-heading">What's working</h2>
     <ul class="audit-list audit-strengths" id="auditStrengths"></ul>
   </div>
 
-  <!-- Typos, spelling and punctuation, each with a snapshot of where it is on the page
-       (reviews saved before version 4 may have fixes with no box, and so no snapshot). -->
-  <div class="audit-small-fixes-wrap" id="auditSmallFixesWrap" hidden>
-    <h2 class="audit-heading">Grammar fixes</h2>
-    <ul class="audit-list audit-small-fixes" id="auditSmallFixes"></ul>
-  </div>
 
   <!-- Edit mode only: the whole screenshot, for dragging the boxes the snapshots are cut around.
        Wide screens: notes to the left of the screenshot, with arrows. -->
