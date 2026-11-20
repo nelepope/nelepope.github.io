@@ -414,7 +414,8 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
    different shape from its aspect ratio, and the picture would drift on long pages. */
 .audit-snap { position: relative; overflow: hidden; margin: 0; background: #fff; box-shadow: 0 0 0 0.5px var(--rule), 0 10px 28px rgba(26,24,20,0.08); }
 .audit-snap-img { position: absolute; display: block; max-width: none; height: auto; }
-.audit-snap-outline { position: absolute; border: 2px solid var(--coral); border-radius: 4px; box-shadow: 0 0 0 3px rgba(212,66,55,0.15); }
+/* A grammar fix's box sits tight round the words that need changing; they're underlined. */
+.audit-snap-underline { position: absolute; height: 3px; margin-top: 2px; background: var(--coral); border-radius: 2px; }
 @media (min-width: 900px) {
   .audit-item.has-snap { grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 3.5rem; align-items: start; }
 }
@@ -1582,12 +1583,12 @@ body.editing { padding-bottom: 7rem; }
     // A snapshot: the stretch of the screenshot around an item's box (the box itself is
     // only drawn in edit mode, on the full screenshot). Cut with percentages, so it
     // scales with the page and needs no layout code. A grammar fix gets a tighter crop
-    // with its words outlined, as the slip is usually a few words in a long line.
+    // with the words that need changing underlined (its box sits tight round them).
     function fixSnapshot(item) {
-      return snapshot(item, { pad: 36, minWidth: 520, ratio: 0.28, outline: true });
+      return snapshot(item, { pad: 36, minWidth: 520, ratio: 0.28, underline: true });
     }
 
-    function snapshot(item, { pad = 60, minWidth = 640, ratio = 0.4, outline = false } = {}) {
+    function snapshot(item, { pad = 60, minWidth = 640, ratio = 0.4, underline = false } = {}) {
       const b = item.box;
       const { width: W, height: H, dataUrl } = review.screenshot;
       if (item.image) {
@@ -1613,10 +1614,10 @@ body.editing { padding-bottom: 7rem; }
       img.src = dataUrl;
       Object.assign(img.style, { width: pct(W / w), left: pct(-x / w), top: pct(-y / h) });
       figure.append(img);
-      if (outline) {
+      if (underline) {
         const mark = document.createElement('span');
-        mark.className = 'audit-snap-outline';
-        Object.assign(mark.style, { left: pct((b.x - x) / w), top: pct((b.y - y) / h), width: pct(b.width / w), height: pct(b.height / h) });
+        mark.className = 'audit-snap-underline';
+        Object.assign(mark.style, { left: pct((b.x - x) / w), top: pct((b.y + b.height - y) / h), width: pct(b.width / w) });
         figure.append(mark);
       }
       return figure;
