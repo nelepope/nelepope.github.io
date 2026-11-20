@@ -1049,21 +1049,39 @@ body.editing { padding-bottom: 7rem; }
       document.addEventListener('keydown', e => { if (e.key === 'Escape') closeEditor(); });
       window.addEventListener('beforeunload', e => { if (editing.dirty) e.preventDefault(); });
 
+      // A draft is the edits made in this browser and not yet saved as a page. It records
+      // the version of the review it started from, and is only put back on that version:
+      // on a newer one (say after Pen's saved page went live) it would undo the newer edits.
       try {
-        const draft = JSON.parse(localStorage.getItem(editing.key));
+        const saved = JSON.parse(localStorage.getItem(editing.key));
+        const draft = saved?.parts ?? saved; // Drafts kept before 20 Nov 2026 have no base.
+        const sameBase = saved?.base === editing.original;
         if (draft && JSON.stringify(draft) !== editing.original) {
-          applyParts(draft);
-          renderReview();
-          setEditStatus('Picked up your unsaved edits from last time. ', 'Start again from the original', () => {
-            if (!confirm('Throw away all your edits to this review?')) return;
-            applyParts(JSON.parse(editing.original));
-            try { localStorage.removeItem(editing.key); } catch {}
-            closeEditor();
-            renderReview();
-            setEditStatus('Back to the original.');
-          });
+          if (sameBase) {
+            useDraft(draft);
+          } else {
+            setEditStatus('This browser has unsaved edits from an older version of this review. They aren\u2019t loaded, so you\u2019re editing what\u2019s live. ', 'Load the old edits instead', () => {
+              if (!confirm('Replace what\u2019s live with your older unsaved edits? Anything changed since then will be lost.')) return;
+              useDraft(draft);
+            });
+          }
         }
       } catch {}
+    }
+
+    function useDraft(draft) {
+      applyParts(draft);
+      editing.dirty = true;
+      renderReview();
+      setEditStatus('Picked up your unsaved edits from last time. ', 'Start again from the original', () => {
+        if (!confirm('Throw away all your edits to this review?')) return;
+        applyParts(JSON.parse(editing.original));
+        try { localStorage.removeItem(editing.key); } catch {}
+        editing.dirty = false;
+        closeEditor();
+        renderReview();
+        setEditStatus('Back to the original.');
+      });
     }
 
     function editableParts() {
@@ -1097,7 +1115,7 @@ body.editing { padding-bottom: 7rem; }
       clearTimeout(draftTimer);
       draftTimer = setTimeout(() => {
         try {
-          localStorage.setItem(editing.key, JSON.stringify(editableParts()));
+          localStorage.setItem(editing.key, JSON.stringify({ base: editing.original, parts: editableParts() }));
         } catch {
           setEditStatus('Your images are too big to keep as a draft in this browser, so save as page before you close this tab.');
         }
