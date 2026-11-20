@@ -1280,6 +1280,9 @@ body.editing { padding-bottom: 7rem; }
         mark.removeEventListener('pointermove', onMove);
         mark.removeEventListener('pointerup', onUp);
         mark.removeEventListener('pointercancel', onUp);
+        // A fix underlining words split over two lines has a mark for each; once its box is
+        // moved by hand, the underline just follows the box.
+        if (moved) delete review[item.list][item.index].marks;
         if (moved) changed();
         else openEditor({ list: item.list, index: item.index });
       };
@@ -1615,10 +1618,12 @@ body.editing { padding-bottom: 7rem; }
       Object.assign(img.style, { width: pct(W / w), left: pct(-x / w), top: pct(-y / h) });
       figure.append(img);
       if (underline) {
-        const mark = document.createElement('span');
-        mark.className = 'audit-snap-underline';
-        Object.assign(mark.style, { left: pct((b.x - x) / w), top: pct((b.y + b.height - y) / h), width: pct(b.width / w) });
-        figure.append(mark);
+        for (const m of item.marks ?? [b]) {
+          const mark = document.createElement('span');
+          mark.className = 'audit-snap-underline';
+          Object.assign(mark.style, { left: pct((m.x - x) / w), top: pct((m.y + m.height - y) / h), width: pct(m.width / w) });
+          figure.append(mark);
+        }
       }
       return figure;
     }
