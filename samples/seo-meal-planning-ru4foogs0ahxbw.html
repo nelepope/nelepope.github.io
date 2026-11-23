@@ -206,7 +206,8 @@ footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.08em; }
 
 /* sample pages */
 .brief-label { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-light); margin: 0 0 -1rem !important; }
-.essay-body .brief-label + h2 { margin-top: 1.5rem; }
+.essay-body h1.brief-title { font-family: var(--serif-light); font-weight: 400; font-size: 1.85rem; line-height: 1.2; color: #1a1a1a; margin: 1.5rem 0 1.5rem; letter-spacing: -0.005em; }
+.essay-body h1.brief-title em { font-style: italic; color: var(--ink-mid); }
 .brief { background: var(--paper-warm); border-left: 1px solid var(--headline); padding: 1.25rem 1.5rem; margin: 0 0 2.5rem; font-size: 0.92rem; line-height: 1.6; }
 .brief dt { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--headline); margin-top: 0.9rem; font-weight: 400; }
 .brief dt:first-child { margin-top: 0; }
@@ -214,7 +215,7 @@ footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.08em; }
 .sample-note { font-size: 0.9rem; color: var(--ink-mid); border-top: 0.5px solid var(--rule); border-bottom: 0.5px solid var(--rule); padding: 1rem 0; margin-bottom: 3rem; }
 .sample-note p { margin: 0 !important; }
 .essay-body .copy-h2 { font-family: var(--serif); font-weight: 400; font-size: 1.35rem; line-height: 1.3; color: var(--ink); text-transform: none; letter-spacing: 0; margin: 2.5rem 0 1rem; }
-.essay-body .copy-h3 { font-family: var(--sans); font-weight: 400; font-size: 1rem; line-height: 1.5; color: var(--ink); margin: 1.75rem 0 0.4rem; }
+.essay-body .copy-h3 { text-transform: none; letter-spacing: 0; font-family: var(--sans); font-weight: 400; font-size: 1rem; line-height: 1.5; color: var(--ink); margin: 1.75rem 0 0.4rem; }
 .essay-body ul { margin: 0 0 1.4em 1.2em; }
 .essay-body li { margin-bottom: 0.35em; font-weight: 300; }
 .essay-body ul.stars { list-style: none; margin-left: 0; }
@@ -241,6 +242,17 @@ nav, body > nav { background: #ffffff !important; }
 .progress, .theme-toggle { display: none !important; }
 .essay-body p.dropcap::first-letter { all: unset; }
 .essay-body h2, .essay-body h2 em { color: #1a1a1a !important; }
+/* left-hand contents menu */
+.essay-body h1.brief-title { scroll-margin-top: 7rem; }
+.toc { max-width: 660px; margin: 0 auto 2rem; padding: 0 2rem; }
+.toc-title { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 0.6rem; }
+.toc ol { list-style: none; border-left: 0.5px solid var(--rule); }
+.toc a { display: block; padding: 0.3rem 0 0.3rem 1rem; margin-left: -0.5px; border-left: 1px solid transparent; font-size: 0.85rem; line-height: 1.4; color: var(--ink-mid); text-decoration: none; }
+.toc a:hover { color: var(--ink); }
+.toc a.active { color: var(--ink); border-left-color: var(--ink); }
+@media (min-width: 1120px) {
+  .toc { position: fixed; top: 7rem; left: var(--gutter); width: 200px; max-height: calc(100vh - 9rem); overflow-y: auto; margin: 0; padding: 0; }
+}
 </style>
 </head>
 <body>
@@ -271,6 +283,18 @@ nav, body > nav { background: #ffffff !important; }
   </div>
 </header>
 
+<aside class="toc" aria-label="Contents">
+  <p class="toc-title">Briefs</p>
+  <ol>
+    <li><a href="#brief-1">Low FODMAP meal plan</a></li>
+    <li><a href="#brief-2">Carnivore meal plan</a></li>
+    <li><a href="#brief-3">Anti-inflammatory meal plan</a></li>
+    <li><a href="#brief-4">Runner's meal plan</a></li>
+    <li><a href="#brief-5">Weight loss meal plan</a></li>
+    <li><a href="#brief-6">Low cholesterol meal plan</a></li>
+  </ol>
+</aside>
+
 <article class="essay-body">
 
   <div class="sample-note">
@@ -278,7 +302,7 @@ nav, body > nav { background: #ffffff !important; }
   </div>
 
   <p class="brief-label">Brief 1</p>
-  <h2>Low FODMAP <em>meal plan</em></h2>
+  <h1 class="brief-title" id="brief-1">Low FODMAP <em>meal plan</em></h1>
   <dl class="brief">
     <dt>Meta title</dt><dd>Low FODMAP Meal Plan | Personalized Plans for IBS Relief</dd>
     <dt>Meta description</dt><dd>Generate personalized low FODMAP diet meal plans with XXX. Avoid trigger foods, simplify meal prep, and stay consistent with automated planning.</dd>
@@ -286,7 +310,7 @@ nav, body > nav { background: #ffffff !important; }
     <dt>Supporting keywords</dt><dd>low fodmap diet meal plan · 7-day low fodmap meal plan · fodmap meal plan · low fodmap meal plans · fodmap elimination diet meal plan · ibs meal plan · low fodmap diet meal plan for beginners</dd>
   </dl>
 
-  <h3 class="copy-h2">About the Low-FODMAP Diet</h3>
+  <h2 class="copy-h2">About the Low-FODMAP Diet</h2>
   <p>A low-FODMAP diet eliminates hard-to-digest carbohydrates that can trigger digestive symptoms in people with sensitive stomachs. FODMAPs (fermentable oligosaccharides, disaccharides, monosaccharides, and polyols) are a group of carbohydrates found in foods like wheat, onion, garlic, dairy, legumes, and certain fruits. Because these carbohydrates are poorly absorbed in the small intestine, they can end up fermenting in the large intestine, causing bloating, pain, gas, diarrhea, and constipation.</p>
   <p>Many people follow a low-FODMAP diet to manage irritable bowel syndrome (IBS) or other digestive conditions. The diet typically begins with an elimination phase (2–6 weeks) to reduce symptoms, followed by a structured reintroduction phase to identify which foods you can tolerate.</p>
   <p>Our automated meal planner makes following a low-FODMAP diet simpler by:</p>
@@ -297,32 +321,32 @@ nav, body > nav { background: #ffffff !important; }
     <li>Supporting both the elimination and reintroduction phases with separate meal plans and shopping lists</li>
   </ul>
 
-  <h3 class="copy-h2">Results From Real Users</h3>
+  <h2 class="copy-h2">Results From Real Users</h2>
   <p class="placeholder">User testimonials section</p>
 
-  <h3 class="copy-h2">Low-FODMAP Plan FAQ</h3>
-  <h4 class="copy-h3">How does XXX keep my low-FODMAP plan within elimination phase guidelines?</h4>
+  <h2 class="copy-h2">Low-FODMAP Plan FAQ</h2>
+  <h3 class="copy-h3">How does XXX keep my low-FODMAP plan within elimination phase guidelines?</h3>
   <p>The planner automatically excludes all known high-FODMAP ingredients and focuses on foods that are safe for the elimination phase. You can also add your own exclusions if there are specific ingredients you want to avoid or are allergic to.</p>
-  <h4 class="copy-h3">Does the automated grocery list account for hidden FODMAPs in common ingredients?</h4>
+  <h3 class="copy-h3">Does the automated grocery list account for hidden FODMAPs in common ingredients?</h3>
   <p>Yes. The planner prioritizes whole, unprocessed foods and lists all recipe ingredients clearly, which helps reduce exposure to hidden FODMAPs. For packaged items, we recommend choosing single-ingredient foods or products with verified low-FODMAP labels where possible.</p>
-  <h4 class="copy-h3">Is it possible to generate budget-friendly low-FODMAP meal plans with XXX?</h4>
+  <h3 class="copy-h3">Is it possible to generate budget-friendly low-FODMAP meal plans with XXX?</h3>
   <p>Yes. You can steer the planner toward more affordable options by prioritizing budget-friendly protein sources, seasonal vegetables, and low-FODMAP staples like rice and quinoa. The planner builds your meals and grocery lists around whatever preferences you set.</p>
-  <h4 class="copy-h3">What does FODMAP stand for?</h4>
+  <h3 class="copy-h3">What does FODMAP stand for?</h3>
   <p>FODMAP stands for fermentable oligosaccharides, disaccharides, monosaccharides, and polyols. These carbohydrates are poorly absorbed in the small intestine. When they reach the large intestine, gut bacteria ferment them, producing gas and drawing in excess water. This can cause bloating, abdominal pain, diarrhea, and constipation, particularly in people with IBS or a sensitive gut.</p>
-  <h4 class="copy-h3">How long should I follow the low-FODMAP elimination phase?</h4>
+  <h3 class="copy-h3">How long should I follow the low-FODMAP elimination phase?</h3>
   <p>The elimination phase typically lasts between two and six weeks. The goal is to remove high-FODMAP foods long enough to see whether your symptoms improve. It's not intended as a permanent way of eating. If you don't notice improvement within that window, it's recommended that you speak to a doctor or dietitian.</p>
-  <h4 class="copy-h3">Are there any risks associated with following a low-FODMAP diet long-term?</h4>
+  <h3 class="copy-h3">Are there any risks associated with following a low-FODMAP diet long-term?</h3>
   <p>The low-FODMAP diet is designed as a short-term tool, not a permanent diet. Many high-FODMAP foods are also prebiotics that support healthy gut bacteria, so long-term restriction can reduce fiber intake and gut microbiome diversity. For that reason, it's best followed under the guidance of a dietitian, with a plan to reintroduce foods after the elimination phase.</p>
-  <h4 class="copy-h3">What are examples of common high-FODMAP foods I should avoid?</h4>
+  <h3 class="copy-h3">What are examples of common high-FODMAP foods I should avoid?</h3>
   <p>Common high-FODMAP foods to avoid include wheat, rye, onion, and garlic (oligosaccharides); milk, yogurt, and soft cheeses containing lactose (disaccharides); apples, pears, mango, honey, and high-fructose corn syrup (excess fructose); and avocado, mushrooms, cauliflower, stone fruits, and sugar-free sweeteners containing sorbitol or mannitol (polyols).</p>
 
-  <h3 class="copy-h2">Take Your Plan Anywhere</h3>
-  <h3 class="copy-h2">Browse Other Diet Plans</h3>
+  <h2 class="copy-h2">Take Your Plan Anywhere</h2>
+  <h2 class="copy-h2">Browse Other Diet Plans</h2>
 
   <div class="section-break"><span>✦</span></div>
 
   <p class="brief-label">Brief 2</p>
-  <h2>Carnivore <em>meal plan</em></h2>
+  <h1 class="brief-title" id="brief-2">Carnivore <em>meal plan</em></h1>
   <dl class="brief">
     <dt>Meta title</dt><dd>Carnivore Meal Plan Generator: Zero Carb Menus in Seconds</dd>
     <dt>Meta description</dt><dd>Looking for a strict carnivore diet plan? Our smart generator builds a unique menu of beef, eggs, and fish tailored to your calorie needs. Try it for free.</dd>
@@ -330,7 +354,7 @@ nav, body > nav { background: #ffffff !important; }
     <dt>Supporting keywords</dt><dd>carnivore diet meal plan · carnivore diet 7-day meal plan · zero carb diet meal plan · all meat diet menu · carnivore diet food list · carnivore diet menu · high protein no carb meal plan</dd>
   </dl>
 
-  <h3 class="copy-h2">About the Carnivore Diet</h3>
+  <h2 class="copy-h2">About the Carnivore Diet</h2>
   <p>The carnivore diet limits foods exclusively to animal products: meat, fish, eggs, and some dairy products. All plant-based foods are removed, including vegetables, fruits, grains, nuts, and seeds.</p>
   <p>The rule is simple: if it didn't walk, swim, or fly, then it's not on the menu. The goal is to reach a state of ketosis while eliminating potential anti-nutrients (like oxalates and lectins) found in plants that may cause inflammation or autoimmune issues in sensitive individuals.</p>
   <p>Our planner builds carnivore-friendly meals by:</p>
@@ -341,28 +365,28 @@ nav, body > nav { background: #ffffff !important; }
     <li>Generating grocery lists based on your meal plan</li>
   </ul>
 
-  <h3 class="copy-h2">Results From Real Users</h3>
+  <h2 class="copy-h2">Results From Real Users</h2>
   <p class="placeholder">User testimonials section</p>
 
-  <h3 class="copy-h2">Carnivore Meal Plan FAQ</h3>
-  <h4 class="copy-h3">Can XXX track zero-carb macros accurately?</h4>
+  <h2 class="copy-h2">Carnivore Meal Plan FAQ</h2>
+  <h3 class="copy-h3">Can XXX track zero-carb macros accurately?</h3>
   <p>Yes. When you select the Carnivore diet, our planner prioritizes protein and fat while keeping carbohydrates near zero. You can adjust your specific macro percentages (e.g., higher fat for ketosis) in the user settings.</p>
-  <h4 class="copy-h3">How do I exclude dairy or pork from my carnivore plan?</h4>
+  <h3 class="copy-h3">How do I exclude dairy or pork from my carnivore plan?</h3>
   <p>In your food preferences, simply check the 'exclusion' boxes for dairy, pork, or any other specific animal product. The generator will instantly rebuild your meal plan using only the allowed protein sources, such as beef and fish.</p>
-  <h4 class="copy-h3">Does the generator support OMAD (One Meal A Day) for the Carnivore Diet?</h4>
+  <h3 class="copy-h3">Does the generator support OMAD (One Meal A Day) for the Carnivore Diet?</h3>
   <p>Absolutely. You can set your meal frequency to '1 meal' in the planner settings. The system will generate a single, nutrient-dense feast that meets your entire daily calorie goal.</p>
-  <h4 class="copy-h3">What can you eat on a carnivore diet?</h4>
+  <h3 class="copy-h3">What can you eat on a carnivore diet?</h3>
   <p>The diet consists of ruminant meats (beef, lamb, bison), pork, poultry, fish, eggs, and animal fats (tallow, lard, butter). Some variations allow for hard cheeses and heavy cream, while strict versions use only beef, salt, and water.</p>
-  <h4 class="copy-h3">Is coffee allowed on the carnivore diet?</h4>
+  <h3 class="copy-h3">Is coffee allowed on the carnivore diet?</h3>
   <p>Strict purists avoid coffee due to it being a plant extract. However, many people modify the diet to include black coffee or tea. XXX allows you to include or exclude drinks based on your personal strictness.</p>
 
-  <h3 class="copy-h2">Take Your Plan Anywhere</h3>
-  <h3 class="copy-h2">Browse Other Diet Plans</h3>
+  <h2 class="copy-h2">Take Your Plan Anywhere</h2>
+  <h2 class="copy-h2">Browse Other Diet Plans</h2>
 
   <div class="section-break"><span>✦</span></div>
 
   <p class="brief-label">Brief 3</p>
-  <h2>Anti-inflammatory <em>meal plan</em></h2>
+  <h1 class="brief-title" id="brief-3">Anti-inflammatory <em>meal plan</em></h1>
   <dl class="brief">
     <dt>Meta title</dt><dd>Anti-Inflammatory Diet Meal Plan | Custom Plans &amp; Recipes</dd>
     <dt>Meta description</dt><dd>Create automated weekly anti-inflammatory meal plans that fit your lifestyle. Plan meals, avoid inflammatory foods, and stay consistent with ease.</dd>
@@ -370,7 +394,7 @@ nav, body > nav { background: #ffffff !important; }
     <dt>Supporting keywords</dt><dd>anti inflammatory meal plan · anti inflammatory diet plan · anti-inflammatory diet meal plan · simple anti inflammatory meal plan · free anti inflammatory meal plan · anti-inflammatory meal plan · anti inflammatory diet menu</dd>
   </dl>
 
-  <h3 class="copy-h2">About the Anti-Inflammatory Diet</h3>
+  <h2 class="copy-h2">About the Anti-Inflammatory Diet</h2>
   <p>An anti-inflammatory diet focuses on foods that help reduce chronic inflammation, which is linked to conditions like heart disease, type 2 diabetes, and autoimmune disorders. It's a flexible approach to eating that emphasizes whole, nutrient-dense foods and limits processed and refined foods.</p>
   <p>Meals are built around vegetables, fruits, whole grains, legumes, and healthy fats like olive oil and avocado, alongside lean proteins and omega-3-rich fish like salmon and mackerel. Foods high in added sugar, refined carbohydrates, trans fats, and certain vegetable oils are limited or avoided.</p>
   <p>Many people follow an anti-inflammatory diet to manage a specific condition (like rheumatoid arthritis or inflammatory bowel disease), while others adopt it as a long-term approach to supporting overall health and well-being.</p>
@@ -382,27 +406,27 @@ nav, body > nav { background: #ffffff !important; }
     <li>Building balanced meals that fit your calorie and nutrition goals</li>
   </ul>
 
-  <h3 class="copy-h2">Results From Real Users</h3>
+  <h2 class="copy-h2">Results From Real Users</h2>
   <p class="placeholder">User testimonials section</p>
 
-  <h3 class="copy-h2">Anti-Inflammatory Meal Plan FAQs</h3>
-  <h4 class="copy-h3">Can I customize my anti-inflammatory meal plan to include specific anti-inflammatory superfoods daily?</h4>
+  <h2 class="copy-h2">Anti-Inflammatory Meal Plan FAQs</h2>
+  <h3 class="copy-h3">Can I customize my anti-inflammatory meal plan to include specific anti-inflammatory superfoods daily?</h3>
   <p>Yes. You can set ingredient preferences to make sure specific foods appear in your plan regularly, such as omega-3-rich fish like salmon, or anti-inflammatory spices like turmeric and ginger. The planner builds your meals around whatever preferences you set.</p>
-  <h4 class="copy-h3">Does XXX create anti-inflammatory grocery lists that are budget-friendly?</h4>
+  <h3 class="copy-h3">Does XXX create anti-inflammatory grocery lists that are budget-friendly?</h3>
   <p>Yes. Your grocery list is built directly from your meal plan, which helps reduce waste by providing exact ingredient quantities. You can also swap ingredients for more affordable alternatives (like frozen vegetables) without compromising the anti-inflammatory focus of your plan.</p>
-  <h4 class="copy-h3">How does the XXX planner make sure my anti-inflammatory meal plan avoids processed sugars and refined grains?</h4>
+  <h3 class="copy-h3">How does the XXX planner make sure my anti-inflammatory meal plan avoids processed sugars and refined grains?</h3>
   <p>The planner automatically excludes pro-inflammatory ingredients like added sugars, high-fructose corn syrup, white flour, and other refined carbohydrates when building your meals. This helps ensure your plan stays aligned with anti-inflammatory guidelines without you having to check every ingredient manually.</p>
-  <h4 class="copy-h3">What are the health benefits of following an anti-inflammatory diet?</h4>
+  <h3 class="copy-h3">What are the health benefits of following an anti-inflammatory diet?</h3>
   <p>An anti-inflammatory diet is linked to a reduced risk of chronic conditions including heart disease, type 2 diabetes, and autoimmune conditions like rheumatoid arthritis and IBD. Many people also report improved energy levels, better mood, more stable blood pressure, and support for weight management.</p>
-  <h4 class="copy-h3">What specific foods should be strictly avoided on an anti-inflammatory diet?</h4>
+  <h3 class="copy-h3">What specific foods should be strictly avoided on an anti-inflammatory diet?</h3>
   <p>Foods to limit or avoid include processed foods, refined carbohydrates like white bread and pasta, added sugars, trans fats, fried foods, and vegetable oils high in omega-6 fatty acids like corn and soybean oil.</p>
-  <h4 class="copy-h3">Are there specific anti-inflammatory diet rules or guidelines to follow?</h4>
+  <h3 class="copy-h3">Are there specific anti-inflammatory diet rules or guidelines to follow?</h3>
   <p>There's no single prescribed approach, but the general principles are consistent: eat plenty of vegetables, fruits, whole grains, legumes, and healthy fats like olive oil and omega-3-rich fish, while limiting processed foods, refined sugars, and inflammatory fats. The focus is on whole, nutrient-dense foods rather than strict rules.</p>
 
   <div class="section-break"><span>✦</span></div>
 
   <p class="brief-label">Brief 4</p>
-  <h2>Runner's <em>meal plan</em></h2>
+  <h1 class="brief-title" id="brief-4">Runner's <em>meal plan</em></h1>
   <dl class="brief">
     <dt>Title</dt><dd>The Ultimate Meal Plan for Runners (Customizable)</dd>
     <dt>Meta description</dt><dd>Stop guessing your macros. Create a personalized meal plan for runners that adjusts to your training schedule. Try the free diet generator.</dd>
@@ -410,7 +434,7 @@ nav, body > nav { background: #ffffff !important; }
     <dt>Supporting keywords</dt><dd>runners diet plan · 7-day meal plan for runners · runner meal plan · meal plan for runners · meal plan for runners to lose weight · runners diet meal plan · diet plan for runners</dd>
   </dl>
 
-  <h3 class="copy-h2">About the Runner's Diet</h3>
+  <h2 class="copy-h2">About the Runner's Diet</h2>
   <p>A runner's diet is built around the demands of training, focused on maintaining energy levels, supporting performance, and speeding up recovery. A runner's diet prioritizes carbohydrate availability, so your body has the fuel it needs to perform and recover.</p>
   <p>Carbohydrates are the body's primary fuel source during running, so they make up a higher proportion of a runner's diet than most (typically 55–65% of total calories). Nutrient timing also plays an important role, easily digestible carbohydrates before a run provide immediate energy, while a combination of protein and complex carbohydrates within 45 minutes of finishing supports muscle repair and glycogen replenishment.</p>
   <p>Our automated runner diet meal plan helps simplify the process by building meals around your training schedule. It does this by:</p>
@@ -422,27 +446,27 @@ nav, body > nav { background: #ffffff !important; }
   </ul>
   <p class="placeholder">Link: Read Our Complete Runner's Diet Guide</p>
 
-  <h3 class="copy-h2">Results from Real Users</h3>
+  <h2 class="copy-h2">Results from Real Users</h2>
   <p class="placeholder">User testimonials section</p>
 
-  <h3 class="copy-h2">Running Diet Plan FAQ</h3>
-  <h4 class="copy-h3">How does XXX build a running diet plan?</h4>
+  <h2 class="copy-h2">Running Diet Plan FAQ</h2>
+  <h3 class="copy-h3">How does XXX build a running diet plan?</h3>
   <p>XXX creates your running meal plan based on your calorie and macro targets, which can reflect your training schedule, mileage, and goals. It helps balance carbs, protein, and fats to support energy, endurance, and recovery.</p>
-  <h4 class="copy-h3">Can XXX adjust calories for my 'Long Run' days?</h4>
+  <h3 class="copy-h3">Can XXX adjust calories for my 'Long Run' days?</h3>
   <p>Yes. You can create custom daily meal plans in your settings with different calorie and macro targets. This allows you to add or exclude calories, and even cycle your carbohydrates to match your training.</p>
-  <h4 class="copy-h3">Can my meal plan adapt to different training phases?</h4>
+  <h3 class="copy-h3">Can my meal plan adapt to different training phases?</h3>
   <p>Yes. XXX can adjust your meal plan as your training changes, increasing fuel during higher mileage periods and scaling back during taper or recovery, so your nutrition always matches your workload.</p>
-  <h4 class="copy-h3">Does the planner track net carbs or total carbs?</h4>
+  <h3 class="copy-h3">Does the planner track net carbs or total carbs?</h3>
   <p>We track both. However, for runners, total carbohydrates are often the more relevant metric for glycogen storage. You can toggle your display preferences in the account settings.</p>
-  <h4 class="copy-h3">Can I filter out foods that cause "Runner's Trot"?</h4>
+  <h3 class="copy-h3">Can I filter out foods that cause "Runner's Trot"?</h3>
   <p>Absolutely. You can exclude specific ingredients (like dairy, high-fibre beans, or artificial sweeteners) or entire food groups to make sure your running meals are safe for your stomach.</p>
-  <h4 class="copy-h3">How many grams of carbs should a runner eat per day?</h4>
+  <h3 class="copy-h3">How many grams of carbs should a runner eat per day?</h3>
   <p>Most endurance runners aim for 5 to 7 grams of carbohydrates per kilogram of body weight for moderate training (1 hour/day), scaling up to 6-10g/kg for heavy endurance training (2-4 hours/day).</p>
 
   <div class="section-break"><span>✦</span></div>
 
   <p class="brief-label">Brief 5</p>
-  <h2>Weight loss <em>meal plan</em></h2>
+  <h1 class="brief-title" id="brief-5">Weight loss <em>meal plan</em></h1>
   <dl class="brief">
     <dt>Title</dt><dd>Weight Loss Meal Plan | Custom Diet Plan To Lose Weight</dd>
     <dt>Meta description</dt><dd>Build a weight loss meal plan designed for your goals. Stay consistent with a diet plan to lose weight that's easy to follow and fully personalized.</dd>
@@ -450,7 +474,7 @@ nav, body > nav { background: #ffffff !important; }
     <dt>Supporting keywords</dt><dd>weight loss meal plan · diet plan for weight loss · 7-day diet plan for weight loss · free diet plan for weight loss · healthy meal plan for weight loss · healthy weight loss diet plan · healthy weight loss meal plan</dd>
   </dl>
 
-  <h3 class="copy-h2">About the Weight Loss Diet Plan</h3>
+  <h2 class="copy-h2">About the Weight Loss Diet Plan</h2>
   <p>A weight loss diet plan is designed to keep you in a calorie deficit (consuming fewer calories than you burn) while making sure you stay full and energized throughout the day. A sustainable weight loss meal plan focuses on nutrient-dense whole foods and emphasizes protein and fiber to manage hunger and preserve muscle.</p>
   <p>A consistent daily deficit of around 500 calories is generally considered the most effective and sustainable approach, producing steady, manageable weight loss over time. Alongside calories, tracking macronutrients (protein, carbohydrates, and fat) helps make sure your body is losing fat rather than muscle.</p>
   <p>Our weight loss meal plan generator handles the calculations and planning for you. Rather than following a static 7-day diet plan for weight loss that doesn't account for your food preferences or lifestyle, we build a personalized plan around your calorie targets and nutritional needs by:</p>
@@ -461,27 +485,27 @@ nav, body > nav { background: #ffffff !important; }
     <li>Adjusting instantly when you swap a meal or update your preferences</li>
   </ul>
 
-  <h3 class="copy-h2">Results from Real Users</h3>
+  <h2 class="copy-h2">Results from Real Users</h2>
   <p class="placeholder">User testimonials section</p>
 
-  <h3 class="copy-h2">Weight Loss Meal Plan FAQ</h3>
-  <h4 class="copy-h3">How does XXX create a meal plan for weight loss?</h4>
+  <h2 class="copy-h2">Weight Loss Meal Plan FAQ</h2>
+  <h3 class="copy-h3">How does XXX create a meal plan for weight loss?</h3>
   <p>XXX builds your meal plan for weight loss based on your height, weight, age, activity level, and goals. It calculates your calorie target and automatically generates meals that help you stay in a calorie deficit while keeping your nutrition balanced.</p>
-  <h4 class="copy-h3">Can I use XXX if I have specific allergies?</h4>
+  <h3 class="copy-h3">Can I use XXX if I have specific allergies?</h3>
   <p>Yes. When setting up your profile, you can exclude specific allergens (like nuts, gluten, or shellfish) or even individual ingredients you dislike (like cilantro or mushrooms). The planner will never suggest recipes containing those items.</p>
-  <h4 class="copy-h3">Can I adjust the calorie target if I'm exercising more?</h4>
+  <h3 class="copy-h3">Can I adjust the calorie target if I'm exercising more?</h3>
   <p>Absolutely. You can update your activity level or manually adjust your calorie and macro targets in the settings at any time. The meal plan will instantly regenerate recipes to match your new needs.</p>
-  <h4 class="copy-h3">How many calories should I eat to lose weight?</h4>
+  <h3 class="copy-h3">How many calories should I eat to lose weight?</h3>
   <p>This depends on your TDEE (Total Daily Energy Expenditure). A common recommendation is to eat 500 calories below your TDEE to lose about 1 lb per week. Our TDEE calculator handles this math for you automatically.</p>
-  <h4 class="copy-h3">Do I need to track calories on my own?</h4>
+  <h3 class="copy-h3">Do I need to track calories on my own?</h3>
   <p>No manual tracking is required. Your meals are planned to match your calorie target, so you can follow the plan and stay on track without logging everything yourself.</p>
-  <h4 class="copy-h3">Is meal planning necessary for weight loss?</h4>
+  <h3 class="copy-h3">Is meal planning necessary for weight loss?</h3>
   <p>While not strictly mandatory, meal planning is one of the most effective tools for weight loss. It eliminates decision fatigue, prevents impulse snacking, and ensures you hit your protein targets, which helps with satiety.</p>
 
   <div class="section-break"><span>✦</span></div>
 
   <p class="brief-label">Brief 6</p>
-  <h2>Low cholesterol <em>meal plan</em></h2>
+  <h1 class="brief-title" id="brief-6">Low cholesterol <em>meal plan</em></h1>
   <dl class="brief">
     <dt>Meta title</dt><dd>Low Cholesterol Meal Plan | Personalized Heart-Healthy Meals</dd>
     <dt>Meta description</dt><dd>Get a low cholesterol diet meal plan that fits your lifestyle. Get personalized meals designed to support heart health and balanced nutrition.</dd>
@@ -489,7 +513,7 @@ nav, body > nav { background: #ffffff !important; }
     <dt>Supporting keywords</dt><dd>low cholesterol diet plan · low cholesterol diet meal plan · diet for low cholesterol plan · 7 day low cholesterol meal plan · low cholesterol meal plan with grocery list</dd>
   </dl>
 
-  <h3 class="copy-h2">About the Low Cholesterol Diet</h3>
+  <h2 class="copy-h2">About the Low Cholesterol Diet</h2>
   <p>A low cholesterol diet is designed to reduce LDL (low-density lipoprotein) cholesterol levels in the blood. It works by reducing saturated fat, which prompts the liver to produce more cholesterol, and increasing soluble fiber, which binds to cholesterol in the gut and helps remove it from the body.</p>
   <p>Effective low cholesterol diet plans recommend limiting saturated fat to less than 6% of total daily calories and also prioritize 10–25 grams of soluble fiber per day from foods like oats, beans, and barley. The focus is not on cutting out all fat, but on swapping saturated fats like butter and fatty meats for unsaturated alternatives like olive oil, nuts, and oily fish, which actively support healthy cholesterol levels.</p>
   <p>Many people follow a low saturated fat meal plan after a diagnosis of high cholesterol or heart disease, or as a preventative measure to support long-term cardiovascular health.</p>
@@ -502,21 +526,21 @@ nav, body > nav { background: #ffffff !important; }
     <li>Generating grocery lists based on your weekly plan</li>
   </ul>
 
-  <h3 class="copy-h2">Results From Real Users</h3>
+  <h2 class="copy-h2">Results From Real Users</h2>
   <p class="placeholder">User testimonials section</p>
 
-  <h3 class="copy-h2">Low Cholesterol Diet Plan FAQ</h3>
-  <h4 class="copy-h3">How does a low cholesterol meal plan work?</h4>
+  <h2 class="copy-h2">Low Cholesterol Diet Plan FAQ</h2>
+  <h3 class="copy-h3">How does a low cholesterol meal plan work?</h3>
   <p>A low cholesterol meal plan focuses on reducing foods high in saturated fat and including more heart-healthy options like fiber-rich foods, lean proteins, and healthy fats. This helps support better cholesterol levels over time.</p>
-  <h4 class="copy-h3">How does XXX personalize my low cholesterol meal plan?</h4>
+  <h3 class="copy-h3">How does XXX personalize my low cholesterol meal plan?</h3>
   <p>Your plan is built using your calorie needs, goals, and food preferences. Meals are automatically generated to align with low cholesterol guidelines while still fitting your daily routine.</p>
-  <h4 class="copy-h3">Can I customize my low cholesterol meal plan?</h4>
+  <h3 class="copy-h3">Can I customize my low cholesterol meal plan?</h3>
   <p>Yes. You can adjust your calorie target, food preferences, and dietary restrictions. Your meal plan updates automatically to match your choices.</p>
-  <h4 class="copy-h3">Can I combine a low cholesterol plan with a low carb diet on XXX?</h4>
+  <h3 class="copy-h3">Can I combine a low cholesterol plan with a low carb diet on XXX?</h3>
   <p>Yes. This is a common conflict for users managing both weight and heart health. In the generator, you can select 'Low Cholesterol' as your primary diet type and then use the slider to reduce your carbohydrate target. The planner will find meals that satisfy both rules, prioritizing lean proteins and fibrous vegetables while avoiding the high saturated fats often found in standard 'keto' diets.</p>
-  <h4 class="copy-h3">Does the meal planner track soluble fiber specifically?</h4>
+  <h3 class="copy-h3">Does the meal planner track soluble fiber specifically?</h3>
   <p>We track total fiber automatically. While the database primarily lists 'Total Fiber,' our Low Cholesterol planner prioritizes ingredients that are high in soluble fiber, such as oats, barley, lentils, and apples, which help block cholesterol absorption in the gut and support healthy LDL levels.</p>
-  <h4 class="copy-h3">Can I set a strict limit for saturated fat (e.g., &lt;13g)?</h4>
+  <h3 class="copy-h3">Can I set a strict limit for saturated fat (e.g., &lt;13g)?</h3>
   <p>Absolutely. You can customize your nutrient targets in the 'Nutrition' settings. If you are following the strict AHA guideline of 6% of total calories (approx. 11-13g), you can hard-cap this nutrient, and the planner will regenerate your week, adhering to that limit.</p>
 
 </article>
@@ -586,6 +610,22 @@ nav, body > nav { background: #ffffff !important; }
       try { localStorage.setItem('psg-theme', next); } catch (e) {}
       paint();
     });
+  })();
+</script>
+<script>
+  (function () {
+    var links = document.querySelectorAll('.toc a');
+    var map = {};
+    links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+    var heads = Array.prototype.map.call(links, function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+    function update() {
+      var current = heads[0];
+      heads.forEach(function (h) { if (h.getBoundingClientRect().top < 140) current = h; });
+      links.forEach(function (a) { a.classList.remove('active'); });
+      if (current) map[current.id].classList.add('active');
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    update();
   })();
 </script>
 </body>
