@@ -241,6 +241,18 @@ nav, body > nav { background: #ffffff !important; }
 .progress, .theme-toggle { display: none !important; }
 .essay-body p.dropcap::first-letter { all: unset; }
 .essay-body h2, .essay-body h2 em { color: #1a1a1a !important; }
+
+/* left-hand contents menu */
+.essay-body h2 { scroll-margin-top: 5rem; }
+.toc { max-width: 660px; margin: 0 auto 2rem; padding: 0 2rem; }
+.toc-title { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 0.6rem; }
+.toc ol { list-style: none; border-left: 0.5px solid var(--rule); }
+.toc a { display: block; padding: 0.3rem 0 0.3rem 1rem; margin-left: -0.5px; border-left: 1px solid transparent; font-size: 0.85rem; line-height: 1.4; color: var(--ink-mid); text-decoration: none; }
+.toc a:hover { color: var(--ink); }
+.toc a.active { color: var(--ink); border-left-color: var(--ink); }
+@media (min-width: 1120px) {
+  .toc { position: fixed; top: 7rem; left: var(--gutter); width: 200px; max-height: calc(100vh - 9rem); overflow-y: auto; margin: 0; padding: 0; }
+}
 </style>
 </head>
 <body>
@@ -271,13 +283,31 @@ nav, body > nav { background: #ffffff !important; }
   </div>
 </header>
 
+<aside class="toc" aria-label="Contents">
+  <p class="toc-title">Contents</p>
+  <ol>
+    <li><a href="#brand-story">Brand story</a></li>
+    <li><a href="#simon-s-story">Simon’s story</a></li>
+    <li><a href="#positioning-statements">Positioning statements</a></li>
+    <li><a href="#the-problem">The problem</a></li>
+    <li><a href="#the-solution">The solution</a></li>
+    <li><a href="#values">Values</a></li>
+    <li><a href="#key-messaging-pillars">Key messaging pillars</a></li>
+    <li><a href="#the-customer">The customer</a></li>
+    <li><a href="#brand-voice">Brand voice</a></li>
+    <li><a href="#seo-keywords">SEO keywords</a></li>
+    <li><a href="#strategy">Strategy</a></li>
+    <li><a href="#key-messages-by-audience">Key messages by audience</a></li>
+  </ol>
+</aside>
+
 <article class="essay-body">
 
-  <h2>Brand <em>story</em></h2>
+  <h2 id="brand-story">Brand <em>story</em></h2>
   <p class="dropcap">Goldilocks offers speciality coffee with precisely calibrated amounts of caffeine. This way, you can enjoy a controlled boost all day without worrying about jitters, poor sleep, and the other dreaded symptoms of over-caffeination. We use speciality-grade beans and the Swiss Water Process for a delicious, chemical-free brew that gives you just the right amount of lift when you want it.</p>
   <p><strong>Uncompromising coffee.</strong></p>
 
-  <h2>Simon's <em>story</em></h2>
+  <h2 id="simon-s-story">Simon's <em>story</em></h2>
   <p>I grew up in Melbourne, Australia, one of the great coffee cities in the world. I loved the ritual, the taste, the smell of coffee. I loved having the excuse to sit somewhere and chat.</p>
   <p>Then, during business school, I drank five cups a day. I'd be wired at night, and shattered in the morning. Then I'd need another cup of coffee to get going again.</p>
   <p>When I finally, and reluctantly, quit caffeine, my sleep immediately got better. With this came a broader shift, away from the "down the coffee and grind" mindset and towards something more intentional, paying attention to my body, slowing down, and enjoying life.</p>
@@ -290,7 +320,7 @@ nav, body > nav { background: #ffffff !important; }
   <p>So I created Goldilocks. Coffee in 5 caffeine levels: 0 / 25 / 50 / 75 / 100.</p>
   <p>Your number is yours. It might change by the time of day, the season, or just how you're feeling. That's the whole point. Coffee that fits your life, not the other way around.</p>
 
-  <h2>Positioning <em>statements</em></h2>
+  <h2 id="positioning-statements">Positioning <em>statements</em></h2>
   <ul>
     <li>Goldilocks is for coffee lovers who want to hack their caffeine levels.</li>
     <li>Goldilocks is for coffee lovers who want to drink it on their own terms.</li>
@@ -303,7 +333,7 @@ nav, body > nav { background: #ffffff !important; }
     <li>Great coffee, with caffeine you control.</li>
   </ul>
 
-  <h2>The <em>problem</em></h2>
+  <h2 id="the-problem">The <em>problem</em></h2>
   <p>Drinking coffee results in:</p>
   <ul>
     <li>Restlessness, jitteriness</li>
@@ -326,13 +356,13 @@ nav, body > nav { background: #ffffff !important; }
     <li>Missing out on the social aspect of coffee</li>
   </ul>
 
-  <h2>The <em>solution</em></h2>
+  <h2 id="the-solution">The <em>solution</em></h2>
   <p>Goldilocks gives you the ability to enjoy high-quality coffee at any time of day, without sacrifice. It gives you the ability to calibrate the precise amount of caffeine intake to suit you.</p>
 
-  <h2><em>Values</em></h2>
+  <h2 id="values"><em>Values</em></h2>
   <p class="word-list">Quality · Craft · Precision · Autonomy/Freedom · Intentionality · Honesty · Simplicity · Optimisation</p>
 
-  <h2>Key messaging <em>pillars</em></h2>
+  <h2 id="key-messaging-pillars">Key messaging <em>pillars</em></h2>
   <h3>Precision</h3>
   <p>The differentiator. What differentiates other decaf/coffee companies from Goldilocks: coffee offered with 5 calibrated caffeine levels using a specific namable process. Precision is a truth and a brand value. Precision gives the customer command over their day and how they feel.</p>
   <h3>Craft</h3>
@@ -344,7 +374,7 @@ nav, body > nav { background: #ffffff !important; }
 
   <div class="section-break"><span>✦</span></div>
 
-  <h2>The <em>customer</em></h2>
+  <h2 id="the-customer">The <em>customer</em></h2>
 
   <h3>The calibrator</h3>
   <p>An optimiser. Mindful of performance. Biohacking adjacent.</p>
@@ -421,7 +451,7 @@ nav, body > nav { background: #ffffff !important; }
 
   <div class="section-break"><span>✦</span></div>
 
-  <h2>Brand <em>voice</em></h2>
+  <h2 id="brand-voice">Brand <em>voice</em></h2>
   <div class="table-wrap">
   <table class="voice">
     <thead><tr><th>Tone</th><th>Sounds like</th><th>Not</th></tr></thead>
@@ -446,13 +476,13 @@ nav, body > nav { background: #ffffff !important; }
     <li>Any language that sounds too salesy</li>
   </ul>
 
-  <h2>SEO <em>keywords</em></h2>
+  <h2 id="seo-keywords">SEO <em>keywords</em></h2>
   <p class="word-list small">decaf coffee beans · decaf coffee · does decaf coffee have caffeine · decaf bean coffee · best decaf coffee · decaf coffee pods · decaf ground coffee · best decaf coffee beans · best rated decaf coffee · best decaf coffee uk · decaf beans coffee · coffee decaf organic · how do they decaf coffee · swiss water process decaf coffee · caffeine and decaf coffee · can decaf coffee keep you awake · can i drink decaf coffee while pregnant · can you buy decaf coffee beans · decaf coffee ok during pregnancy · decaf coffee caffeine content · decaf coffee caffeine · decaf coffee beans 1kg · caffeine in a decaf coffee · best decaf coffee beans uk · benefits of drinking decaf coffee · bean coffee decaf · is there caffeine in decaf coffee · does decaf coffee dehydrate you · can you get decaf coffee beans · benefits of decaf coffee · swiss water decaf coffee · organic decaf coffee · how do they make decaf coffee · caffeine in decaf coffee · does decaf coffee contain caffeine · decaf iced coffee · decaf coffee benefits · what is decaf coffee · is decaf coffee bad for you · is decaf coffee good for you · how much caffeine in decaf coffee · swiss water method · swiss water method decaf coffee · swiss water method decaf · decaf coffee swiss water method</p>
 
-  <h2><em>Strategy</em></h2>
+  <h2 id="strategy"><em>Strategy</em></h2>
   <p>Focus on the precision side of things / the ability to control caffeine intake, because that is what makes Goldilocks unique. There is less competition this way than with the decaf coffee market.</p>
 
-  <h2>Key messages <em>by audience</em></h2>
+  <h2 id="key-messages-by-audience">Key messages <em>by audience</em></h2>
   <h3>The calibrator</h3>
   <p><strong>Principle:</strong> This person thinks in systems. They track sleep, monitor what they eat, and are already aware that caffeine affects their performance. They don't need to be convinced that caffeine has drawbacks. They DO need to know that Goldilocks gives them genuine control over exactly how much caffeine they consume and how it can improve their life. Lead with precision, use exact numbers, and be specific.</p>
   <blockquote>Most people have no idea how much caffeine is in their morning cup. Goldilocks does. Five levels, from 0 to 100mg, using specialty-grade beans and the Swiss Water Process. Each caffeine level is precisely measured so you can calibrate your intake to the time of day, your training, and your sleep. Find your optimal dose. Adjust when you need to. Experience better sleep and sharper mornings.<cite>Example</cite></blockquote>
@@ -528,6 +558,22 @@ nav, body > nav { background: #ffffff !important; }
       try { localStorage.setItem('psg-theme', next); } catch (e) {}
       paint();
     });
+  })();
+</script>
+<script>
+  (function () {
+    var links = document.querySelectorAll('.toc a');
+    var map = {};
+    links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+    var heads = Array.prototype.map.call(links, function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+    function update() {
+      var current = heads[0];
+      heads.forEach(function (h) { if (h.getBoundingClientRect().top < 140) current = h; });
+      links.forEach(function (a) { a.classList.remove('active'); });
+      if (current) map[current.id].classList.add('active');
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    update();
   })();
 </script>
 </body>
