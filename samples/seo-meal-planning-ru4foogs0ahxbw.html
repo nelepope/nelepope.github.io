@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem('psg-theme');document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
+<title>SEO landing pages for a meal planning app — Penelope Saint-George</title>
+<meta name="author" content="Saint-George">
+<meta name="theme-color" content="#fff9f5">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+@font-face { font-family: 'Solance Serif'; src: url('/fonts/solance-regular.woff2') format('woff2'), url('/fonts/solance-regular.woff') format('woff'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Solance Serif'; src: url('/fonts/solance-light-italic.woff2') format('woff2'), url('/fonts/solance-light-italic.woff') format('woff'); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Solance Serif'; src: url('/fonts/solance-light.woff2') format('woff2'), url('/fonts/solance-light.woff') format('woff'); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Solance Serif'; src: url('/fonts/solance-light-italic.woff2') format('woff2'), url('/fonts/solance-light-italic.woff') format('woff'); font-weight: 300; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Solance Light'; src: url('/fonts/solance-light.woff2') format('woff2'), url('/fonts/solance-light.woff') format('woff'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Solance Light'; src: url('/fonts/solance-light-italic.woff2') format('woff2'), url('/fonts/solance-light-italic.woff') format('woff'); font-weight: 400; font-style: italic; font-display: swap; }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --gutter: clamp(1.5rem, 5vw, 4rem);
+  --coral: #d44237;
+  --ink: #1a1814; --ink-mid: #5a5751; --ink-light: #9a9690;
+  --paper: #fff9f5; --paper-warm: #f3f0e8; --paper-deep: #ece9e0;
+  --rule: rgba(26,24,20,0.1); --accent: #9a9690; --headline: #2d6a35; --headline-deep: #1f4a27; --serif-light: 'Solance Light', Georgia, serif;
+  --serif: 'Solance Serif', Georgia, serif;
+  --sans: 'Jost', sans-serif;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+html { font-size: 16px; scroll-behavior: smooth; }
+body { background-color: var(--paper); color: var(--ink); font-family: var(--sans); font-weight: 300; line-height: 1.7; min-height: 100vh; }
+::selection { background: var(--headline); color: var(--paper); }
+nav { display: flex; justify-content: space-between; align-items: center; padding: 1.05rem var(--gutter); border-bottom: 0.5px solid var(--rule); position: sticky; top: 0; background: rgba(255,249,245,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); z-index: 100; transition: box-shadow 0.3s; }
+nav.scrolled { box-shadow: 0 1px 0 var(--rule), 0 8px 24px rgba(26,24,20,0.04); }
+.nav-name { font-family: var(--sans); font-size: 0.72rem; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; color: var(--headline); text-decoration: none; }
+.nav-name-short { display: none; }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; flex-wrap: wrap; justify-content: flex-end; row-gap: 0.35rem; }
+.nav-links a { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--headline); text-decoration: none; transition: color 0.2s; position: relative; }
+.nav-links a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 0.5px; background: var(--ink); transition: width 0.3s var(--ease-out); }
+.nav-links a:hover { color: var(--ink); }
+.nav-links a:hover::after { width: 100%; }
+.progress { position: fixed; top: 0; left: 0; height: 2px; background: var(--headline); width: 0%; z-index: 200; transition: width 0.1s linear; }
+.essay-header { max-width: 720px; margin: 0 auto; padding: 6rem 2rem 3rem; text-align: left; }
+.essay-meta { display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 2rem; }
+.essay-meta .tag { color: var(--headline); }
+.essay-meta span + span { position: relative; }
+.essay-meta span + span::before { content: '·'; position: absolute; left: -1rem; color: var(--ink-light); }
+.essay-title { font-family: var(--serif-light); font-style: italic; font-size: clamp(2.5rem, 5.5vw, 4.5rem); font-weight: 400; line-height: 1.1; color: var(--headline-deep); margin-bottom: 1.5rem; letter-spacing: -0.01em; }
+.essay-title em { font-style: inherit; color: inherit; }
+.essay-dek { font-family: var(--serif); font-style: italic; font-size: 1.35rem; font-weight: 300; color: var(--ink-mid); line-height: 1.45; max-width: 620px; }
+.essay-byline { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 0.5px solid var(--rule); display: flex; justify-content: space-between; align-items: center; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-light); }
+.essay-byline strong { color: var(--ink); font-weight: 400; letter-spacing: 0.14em; }
+.essay-body { max-width: 660px; margin: 0 auto; padding: 1rem 2rem 5rem; font-size: 1.075rem; line-height: 1.85; color: var(--ink); }
+.essay-body p { margin-bottom: 1.4em; font-weight: 300; }
+.essay-body p.dropcap::first-letter { font-family: var(--serif); font-weight: 300; font-size: 4.5em; float: left; line-height: 0.85; margin: 0.1em 0.12em 0 -0.04em; color: var(--headline); }
+.essay-body h2 { font-family: var(--serif-light); font-weight: 400; font-size: 1.85rem; line-height: 1.2; color: var(--ink); margin: 3.5rem 0 1.5rem; letter-spacing: -0.005em; }
+.essay-body h2 em { font-style: italic; color: var(--ink-mid); }
+.essay-body h3 { font-family: var(--sans); font-weight: 400; font-size: 0.72rem; line-height: 1.4; color: var(--headline); margin: 2.25rem 0 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; }
+.essay-lead-image { max-width: 640px; margin: 1.5rem auto 3.5rem; padding: 0 2rem; }
+.essay-lead-image img { width: 100%; display: block; background: var(--paper-deep); aspect-ratio: 3 / 4; object-fit: cover; }
+.essay-lead-image figcaption { margin-top: 0.85rem; font-family: var(--serif); font-style: italic; font-size: 0.88rem; color: var(--ink-light); text-align: center; }
+.essay-body blockquote { margin: 2.25rem 0; padding: 0.25rem 0 0.25rem 1.5rem; border-left: 1px solid var(--accent); font-family: var(--serif); font-style: italic; font-size: 1.35rem; line-height: 1.5; color: var(--ink-mid); font-weight: 300; }
+.essay-body blockquote cite { display: block; margin-top: 0.85rem; font-family: var(--sans); font-style: normal; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-light); }
+.essay-body a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--rule); transition: text-decoration-color 0.2s; }
+.essay-body a:hover { text-decoration-color: var(--ink); }
+.essay-body em { font-style: italic; }
+.essay-body strong { font-weight: 400; color: var(--ink); }
+.section-break { display: flex; align-items: center; justify-content: center; gap: 1.25rem; margin: 3rem 0; color: var(--ink-light); }
+.section-break::before, .section-break::after { content: ''; width: 40px; height: 0.5px; background: var(--rule); }
+.section-break span { font-family: var(--serif); font-size: 1rem; opacity: 0.6; letter-spacing: 0.2em; }
+.essay-end { max-width: 660px; margin: 0 auto; padding: 0 2rem 4rem; text-align: center; }
+.essay-end-glyph { font-family: var(--serif); font-size: 1.5rem; color: var(--ink-light); letter-spacing: 0.5em; margin-bottom: 3rem; }
+.essay-nav { border-top: 0.5px solid var(--rule); border-bottom: 0.5px solid var(--rule); display: grid; grid-template-columns: 1fr 1fr; margin: 0 auto; max-width: 660px; padding: 0 2rem; }
+.essay-nav a { padding: 2rem 0; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--headline); text-decoration: none; transition: color 0.2s, gap 0.3s var(--ease-out); display: inline-flex; align-items: center; gap: 0.65rem; }
+.essay-nav a:first-child { justify-content: flex-start; }
+.essay-nav a:last-child  { justify-content: flex-end; }
+.essay-nav a:hover { color: var(--ink); gap: 1rem; }
+footer { border-top: 0.5px solid var(--rule); padding: 2.25rem var(--gutter); display: flex; justify-content: space-between; align-items: center; }
+footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.08em; }
+.footer-links { display: flex; gap: 2.25rem; list-style: none; }
+.footer-links a { font-size: 0.63rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--headline); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--ink-mid); }
+@media (max-width: 980px) {
+  nav { padding: 1.25rem var(--gutter); }
+  .nav-links { gap: 1.2rem; }
+  .nav-links a { font-size: 0.62rem; letter-spacing: 0.12em; }
+  .essay-header { padding: 3.5rem var(--gutter) 2rem; }
+  .essay-meta { font-size: 0.58rem; gap: 0.6rem 1.25rem; margin-bottom: 1.5rem; }
+  .essay-meta span + span::before { left: -0.85rem; }
+  .essay-title { font-size: clamp(2rem, 8vw, 3rem); }
+  .essay-dek { font-size: 1.15rem; }
+  .essay-byline { font-size: 0.62rem; margin-top: 2rem; flex-wrap: wrap; gap: 0.5rem 1rem; }
+  .essay-body { padding: 1rem 1.5rem 3.5rem; font-size: 1.025rem; line-height: 1.8; }
+  .essay-body p.dropcap::first-letter { font-size: 4em; }
+  .essay-body h2 { font-size: 1.6rem; margin: 3rem 0 1.2rem; }
+  .essay-body h3 { font-size: 0.68rem; margin: 2rem 0 0.5rem; }
+  .essay-end { padding: 0 1.5rem 2.5rem; }
+  .essay-nav { padding: 0 1.5rem; }
+  .essay-nav a { padding: 1.5rem 0; font-size: 0.6rem; letter-spacing: 0.14em; }
+  footer { padding: 1.75rem var(--gutter); flex-direction: column; gap: 1.25rem; text-align: center; }
+  .footer-links { flex-wrap: wrap; justify-content: center; gap: 1rem 1.75rem; }
+}
+@media (max-width: 560px) {
+  nav { padding: 1rem var(--gutter); }
+  .nav-links { gap: 0.85rem; }
+  .nav-links a { font-size: 0.56rem; letter-spacing: 0.1em; }
+  .nav-name { font-size: 0.85rem; letter-spacing: 0.22em; }
+  .nav-name-full { display: none; }
+  .nav-name-short { display: inline; }
+  .essay-header { padding: 2.75rem 1.25rem 1.5rem; }
+  .essay-title { font-size: 2rem; line-height: 1.1; }
+  .essay-dek { font-size: 1.05rem; }
+  .essay-body { padding: 0.75rem 1.25rem 3rem; font-size: 0.95rem; line-height: 1.75; }
+  .essay-body p.dropcap::first-letter { font-size: 3.5em; }
+  .essay-body h2 { font-size: 1.4rem; margin: 2.5rem 0 1rem; }
+  .essay-body h3 { font-size: 0.64rem; }
+  .essay-end { padding: 0 1.25rem 2rem; }
+  .essay-nav { padding: 0 1.25rem; grid-template-columns: 1fr; }
+  .essay-nav a { padding: 1.25rem 0; }
+  .essay-nav a:last-child { justify-content: flex-start; border-top: 0.5px solid var(--rule); }
+}
+@media (hover: none), (pointer: coarse) {
+  body { cursor: auto; }
+}
+
+/* Mobile menu */
+.nav-toggle { display: none; }
+@media (max-width: 600px) {
+  #mainNav { position: sticky; top: 0; align-items: center; }
+  #mainNav .nav-name { white-space: nowrap; }
+  .nav-toggle { display: flex; flex-direction: column; justify-content: center; gap: 5px; width: 40px; height: 40px; margin-right: -8px; padding: 0 8px; background: none; border: 0; cursor: pointer; }
+  .nav-toggle span { display: block; height: 1px; background: var(--headline); transition: transform 0.3s var(--ease-out), opacity 0.2s; }
+  #mainNav.open .nav-toggle span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  #mainNav.open .nav-toggle span:nth-child(2) { opacity: 0; }
+  #mainNav.open .nav-toggle span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+  #mainNav .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; row-gap: 0; padding: 0.25rem var(--gutter) 0.75rem; background: var(--paper); border-bottom: 0.5px solid var(--rule); box-shadow: 0 12px 24px rgba(26,24,20,0.06); }
+  #mainNav.open .nav-links { display: flex; }
+  #mainNav .nav-links a { display: block; padding: 0.9rem 0; font-size: 0.78rem; letter-spacing: 0.16em; border-bottom: 0.5px solid var(--rule); }
+  #mainNav .nav-links li:last-child a { border-bottom: 0; }
+  #mainNav .nav-links a::after { display: none; }
+}
+
+  .nav-name img { display: block; height: 1.7rem; width: auto; }
+  .nav-links a.nav-audit { color: var(--coral); }
+  .nav-links a.nav-audit::after { background: var(--coral); }
+  @media (max-width: 560px) { .nav-name img { height: 1.45rem; } }
+
+/* DARK MODE */
+:root[data-theme="dark"] {
+  --ink: #f4f2f0;
+  --ink-mid: #bdbab6;
+  --ink-light: #8f8f8f;
+  --paper: #201f22;
+  --paper-warm: #262626;
+  --paper-deep: #2b2b2b;
+  --rule: rgba(255,255,255,0.16);
+  --accent: #8f8f8f;
+  --headline: #ffffff;
+  --headline-deep: #ffffff;
+  --sage: #aaaaaa;
+  --band: #424242;
+  --coral: #e08a79;
+}
+:root[data-theme="dark"] nav,
+:root[data-theme="dark"] body > nav { background: rgba(32,31,34,0.9); background-color: rgba(32,31,34,0.9); }
+:root[data-theme="dark"] .nav-name img { filter: brightness(0) invert(1); }
+/* the section headings read in coral against the dark page */
+:root[data-theme="dark"] .essay-body h2 { color: var(--coral); }
+:root[data-theme="dark"] .hero-o-star { color: var(--coral); }
+:root[data-theme="dark"] .booking .booking-col + .booking-col { border-left-color: var(--rule); }
+:root[data-theme="dark"] .skel-standout { border-top-color: rgba(224,138,121,0.4); border-bottom-color: rgba(224,138,121,0.4); }
+:root[data-theme="dark"] .u-pink { text-decoration-color: rgba(224,138,121,0.6); }
+:root[data-theme="dark"] input,
+:root[data-theme="dark"] select,
+:root[data-theme="dark"] textarea { background: transparent; color: var(--ink); }
+:root[data-theme="dark"] select option { background: #201f22; color: #f4f2f0; }
+
+.theme-toggle {
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.theme-toggle:hover { color: var(--headline); }
+
+@media (max-width: 760px) {
+  #mainNav .nav-links .theme-toggle,
+  nav .nav-links .theme-toggle { display: block; width: 100%; padding: 0.9rem 0; font-size: 0.78rem; letter-spacing: 0.16em; text-align: left; }
+}
+
+/* sample pages */
+.brief-label { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-light); margin: 0 0 -1rem !important; }
+.essay-body .brief-label + h2 { margin-top: 1.5rem; }
+.brief { background: var(--paper-warm); border-left: 1px solid var(--headline); padding: 1.25rem 1.5rem; margin: 0 0 2.5rem; font-size: 0.92rem; line-height: 1.6; }
+.brief dt { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--headline); margin-top: 0.9rem; font-weight: 400; }
+.brief dt:first-child { margin-top: 0; }
+.brief dd { margin: 0.15rem 0 0; }
+.sample-note { font-size: 0.9rem; color: var(--ink-mid); border-top: 0.5px solid var(--rule); border-bottom: 0.5px solid var(--rule); padding: 1rem 0; margin-bottom: 3rem; }
+.sample-note p { margin: 0 !important; }
+.essay-body .copy-h2 { font-family: var(--serif); font-weight: 400; font-size: 1.35rem; line-height: 1.3; color: var(--ink); text-transform: none; letter-spacing: 0; margin: 2.5rem 0 1rem; }
+.essay-body .copy-h3 { font-family: var(--sans); font-weight: 400; font-size: 1rem; line-height: 1.5; color: var(--ink); margin: 1.75rem 0 0.4rem; }
+.essay-body ul { margin: 0 0 1.4em 1.2em; }
+.essay-body li { margin-bottom: 0.35em; font-weight: 300; }
+.essay-body ul.stars { list-style: none; margin-left: 0; }
+.essay-body ul.stars li { padding-left: 1.4em; position: relative; }
+.essay-body ul.stars li::before { content: '★'; position: absolute; left: 0; color: var(--headline); font-size: 0.8em; top: 0.2em; }
+.placeholder { font-family: var(--serif); font-style: italic; color: var(--ink-light); }
+.placeholder::before { content: '['; } .placeholder::after { content: ']'; }
+.word-list { font-family: var(--serif); font-style: italic; font-size: 1.15rem; color: var(--ink-mid); }
+.word-list.small { font-family: var(--sans); font-style: normal; font-size: 0.85rem; line-height: 1.9; }
+.persona { margin: 1.5rem 0 2.5rem; padding-left: 1.25rem; border-left: 0.5px solid var(--rule); }
+.persona-name { font-family: var(--serif); font-style: italic; font-size: 1.25rem; color: var(--headline); margin-bottom: 0.75rem !important; }
+.table-wrap { overflow-x: auto; margin: 0 0 2rem; }
+table.voice { width: 100%; border-collapse: collapse; font-size: 0.9rem; line-height: 1.55; }
+table.voice th { text-align: left; font-weight: 400; font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--headline); padding: 0 0.75rem 0.6rem 0; border-bottom: 0.5px solid var(--rule); }
+table.voice td { vertical-align: top; padding: 0.85rem 0.75rem 0.85rem 0; border-bottom: 0.5px solid var(--rule); }
+table.voice td:first-child { font-family: var(--serif); font-style: italic; color: var(--ink); white-space: nowrap; }
+.sample-list a { color: var(--headline); }
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<nav id="mainNav">
+  <a href="/" class="nav-name" aria-label="Penelope Saint-George"><img src="/Pics/psg-monogram-green.png" alt="Penelope Saint-George"></a>
+  <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/writing.html">Writing</a></li>
+    <li><a href="/website-copywriting/">Services</a></li>
+    <li><a href="/about.html">About</a></li>
+    <li><a href="/index.html#contact">Contact</a></li>
+    <li><button type="button" class="theme-toggle" id="themeToggle">Light mode</button></li>
+  </ul>
+</nav>
+
+<header class="essay-header">
+  <p class="essay-meta">
+    <span class="tag">SEO content</span>
+    <span>US client</span>
+  </p>
+  <h1 class="essay-title">Meal plan<br><em>landing pages</em></h1>
+  <p class="essay-dek">Six keyword-led landing pages for a meal planning app, each written to an SEO brief.</p>
+  <div class="essay-byline">
+    <span>By <strong>Penelope Saint-George</strong></span>
+    <span>SEO content sample</span>
+  </div>
+</header>
+
+<article class="essay-body">
+
+  <div class="sample-note">
+    <p>The client's business name has been removed and replaced with XXX. The client was American, so the copy uses American spelling. Some content has been removed for brevity.</p>
+  </div>
+
+  <p class="brief-label">Brief 1</p>
+  <h2>Low FODMAP <em>meal plan</em></h2>
+  <dl class="brief">
+    <dt>Meta title</dt><dd>Low FODMAP Meal Plan | Personalized Plans for IBS Relief</dd>
+    <dt>Meta description</dt><dd>Generate personalized low FODMAP diet meal plans with XXX. Avoid trigger foods, simplify meal prep, and stay consistent with automated planning.</dd>
+    <dt>Main keywords</dt><dd>low fodmap meal plan · fodmap diet meal plan</dd>
+    <dt>Supporting keywords</dt><dd>low fodmap diet meal plan · 7-day low fodmap meal plan · fodmap meal plan · low fodmap meal plans · fodmap elimination diet meal plan · ibs meal plan · low fodmap diet meal plan for beginners</dd>
+  </dl>
+
+  <h3 class="copy-h2">About the Low-FODMAP Diet</h3>
+  <p>A low-FODMAP diet eliminates hard-to-digest carbohydrates that can trigger digestive symptoms in people with sensitive stomachs. FODMAPs (fermentable oligosaccharides, disaccharides, monosaccharides, and polyols) are a group of carbohydrates found in foods like wheat, onion, garlic, dairy, legumes, and certain fruits. Because these carbohydrates are poorly absorbed in the small intestine, they can end up fermenting in the large intestine, causing bloating, pain, gas, diarrhea, and constipation.</p>
+  <p>Many people follow a low-FODMAP diet to manage irritable bowel syndrome (IBS) or other digestive conditions. The diet typically begins with an elimination phase (2–6 weeks) to reduce symptoms, followed by a structured reintroduction phase to identify which foods you can tolerate.</p>
+  <p>Our automated meal planner makes following a low-FODMAP diet simpler by:</p>
+  <ul class="stars">
+    <li>Eliminating high-FODMAP ingredients like legumes, dairy, and certain fruits</li>
+    <li>Generating meal plans tailored to your calorie targets</li>
+    <li>Building grocery lists free from high-FODMAP foods</li>
+    <li>Supporting both the elimination and reintroduction phases with separate meal plans and shopping lists</li>
+  </ul>
+
+  <h3 class="copy-h2">Results From Real Users</h3>
+  <p class="placeholder">User testimonials section</p>
+
+  <h3 class="copy-h2">Low-FODMAP Plan FAQ</h3>
+  <h4 class="copy-h3">How does XXX keep my low-FODMAP plan within elimination phase guidelines?</h4>
+  <p>The planner automatically excludes all known high-FODMAP ingredients and focuses on foods that are safe for the elimination phase. You can also add your own exclusions if there are specific ingredients you want to avoid or are allergic to.</p>
+  <h4 class="copy-h3">Does the automated grocery list account for hidden FODMAPs in common ingredients?</h4>
+  <p>Yes. The planner prioritizes whole, unprocessed foods and lists all recipe ingredients clearly, which helps reduce exposure to hidden FODMAPs. For packaged items, we recommend choosing single-ingredient foods or products with verified low-FODMAP labels where possible.</p>
+  <h4 class="copy-h3">Is it possible to generate budget-friendly low-FODMAP meal plans with XXX?</h4>
+  <p>Yes. You can steer the planner toward more affordable options by prioritizing budget-friendly protein sources, seasonal vegetables, and low-FODMAP staples like rice and quinoa. The planner builds your meals and grocery lists around whatever preferences you set.</p>
+  <h4 class="copy-h3">What does FODMAP stand for?</h4>
+  <p>FODMAP stands for fermentable oligosaccharides, disaccharides, monosaccharides, and polyols. These carbohydrates are poorly absorbed in the small intestine. When they reach the large intestine, gut bacteria ferment them, producing gas and drawing in excess water. This can cause bloating, abdominal pain, diarrhea, and constipation, particularly in people with IBS or a sensitive gut.</p>
+  <h4 class="copy-h3">How long should I follow the low-FODMAP elimination phase?</h4>
+  <p>The elimination phase typically lasts between two and six weeks. The goal is to remove high-FODMAP foods long enough to see whether your symptoms improve. It's not intended as a permanent way of eating. If you don't notice improvement within that window, it's recommended that you speak to a doctor or dietitian.</p>
+  <h4 class="copy-h3">Are there any risks associated with following a low-FODMAP diet long-term?</h4>
+  <p>The low-FODMAP diet is designed as a short-term tool, not a permanent diet. Many high-FODMAP foods are also prebiotics that support healthy gut bacteria, so long-term restriction can reduce fiber intake and gut microbiome diversity. For that reason, it's best followed under the guidance of a dietitian, with a plan to reintroduce foods after the elimination phase.</p>
+  <h4 class="copy-h3">What are examples of common high-FODMAP foods I should avoid?</h4>
+  <p>Common high-FODMAP foods to avoid include wheat, rye, onion, and garlic (oligosaccharides); milk, yogurt, and soft cheeses containing lactose (disaccharides); apples, pears, mango, honey, and high-fructose corn syrup (excess fructose); and avocado, mushrooms, cauliflower, stone fruits, and sugar-free sweeteners containing sorbitol or mannitol (polyols).</p>
+
+  <h3 class="copy-h2">Take Your Plan Anywhere</h3>
+  <h3 class="copy-h2">Browse Other Diet Plans</h3>
+
+  <div class="section-break"><span>✦</span></div>
+
+  <p class="brief-label">Brief 2</p>
+  <h2>Carnivore <em>meal plan</em></h2>
+  <dl class="brief">
+    <dt>Meta title</dt><dd>Carnivore Meal Plan Generator: Zero Carb Menus in Seconds</dd>
+    <dt>Meta description</dt><dd>Looking for a strict carnivore diet plan? Our smart generator builds a unique menu of beef, eggs, and fish tailored to your calorie needs. Try it for free.</dd>
+    <dt>Main keyword</dt><dd>carnivore meal plan</dd>
+    <dt>Supporting keywords</dt><dd>carnivore diet meal plan · carnivore diet 7-day meal plan · zero carb diet meal plan · all meat diet menu · carnivore diet food list · carnivore diet menu · high protein no carb meal plan</dd>
+  </dl>
+
+  <h3 class="copy-h2">About the Carnivore Diet</h3>
+  <p>The carnivore diet limits foods exclusively to animal products: meat, fish, eggs, and some dairy products. All plant-based foods are removed, including vegetables, fruits, grains, nuts, and seeds.</p>
+  <p>The rule is simple: if it didn't walk, swim, or fly, then it's not on the menu. The goal is to reach a state of ketosis while eliminating potential anti-nutrients (like oxalates and lectins) found in plants that may cause inflammation or autoimmune issues in sensitive individuals.</p>
+  <p>Our planner builds carnivore-friendly meals by:</p>
+  <ul class="stars">
+    <li>Excluding all plant-based ingredients, including vegetables, grains, and fruit</li>
+    <li>Prioritizing ruminant meats like beef, lamb, and bison alongside fish and eggs</li>
+    <li>Building meals that hit your calorie and fat-to-protein targets</li>
+    <li>Generating grocery lists based on your meal plan</li>
+  </ul>
+
+  <h3 class="copy-h2">Results From Real Users</h3>
+  <p class="placeholder">User testimonials section</p>
+
+  <h3 class="copy-h2">Carnivore Meal Plan FAQ</h3>
+  <h4 class="copy-h3">Can XXX track zero-carb macros accurately?</h4>
+  <p>Yes. When you select the Carnivore diet, our planner prioritizes protein and fat while keeping carbohydrates near zero. You can adjust your specific macro percentages (e.g., higher fat for ketosis) in the user settings.</p>
+  <h4 class="copy-h3">How do I exclude dairy or pork from my carnivore plan?</h4>
+  <p>In your food preferences, simply check the 'exclusion' boxes for dairy, pork, or any other specific animal product. The generator will instantly rebuild your meal plan using only the allowed protein sources, such as beef and fish.</p>
+  <h4 class="copy-h3">Does the generator support OMAD (One Meal A Day) for the Carnivore Diet?</h4>
+  <p>Absolutely. You can set your meal frequency to '1 meal' in the planner settings. The system will generate a single, nutrient-dense feast that meets your entire daily calorie goal.</p>
+  <h4 class="copy-h3">What can you eat on a carnivore diet?</h4>
+  <p>The diet consists of ruminant meats (beef, lamb, bison), pork, poultry, fish, eggs, and animal fats (tallow, lard, butter). Some variations allow for hard cheeses and heavy cream, while strict versions use only beef, salt, and water.</p>
+  <h4 class="copy-h3">Is coffee allowed on the carnivore diet?</h4>
+  <p>Strict purists avoid coffee due to it being a plant extract. However, many people modify the diet to include black coffee or tea. XXX allows you to include or exclude drinks based on your personal strictness.</p>
+
+  <h3 class="copy-h2">Take Your Plan Anywhere</h3>
+  <h3 class="copy-h2">Browse Other Diet Plans</h3>
+
+  <div class="section-break"><span>✦</span></div>
+
+  <p class="brief-label">Brief 3</p>
+  <h2>Anti-inflammatory <em>meal plan</em></h2>
+  <dl class="brief">
+    <dt>Meta title</dt><dd>Anti-Inflammatory Diet Meal Plan | Custom Plans &amp; Recipes</dd>
+    <dt>Meta description</dt><dd>Create automated weekly anti-inflammatory meal plans that fit your lifestyle. Plan meals, avoid inflammatory foods, and stay consistent with ease.</dd>
+    <dt>Main keyword</dt><dd>anti inflammatory diet meal plan</dd>
+    <dt>Supporting keywords</dt><dd>anti inflammatory meal plan · anti inflammatory diet plan · anti-inflammatory diet meal plan · simple anti inflammatory meal plan · free anti inflammatory meal plan · anti-inflammatory meal plan · anti inflammatory diet menu</dd>
+  </dl>
+
+  <h3 class="copy-h2">About the Anti-Inflammatory Diet</h3>
+  <p>An anti-inflammatory diet focuses on foods that help reduce chronic inflammation, which is linked to conditions like heart disease, type 2 diabetes, and autoimmune disorders. It's a flexible approach to eating that emphasizes whole, nutrient-dense foods and limits processed and refined foods.</p>
+  <p>Meals are built around vegetables, fruits, whole grains, legumes, and healthy fats like olive oil and avocado, alongside lean proteins and omega-3-rich fish like salmon and mackerel. Foods high in added sugar, refined carbohydrates, trans fats, and certain vegetable oils are limited or avoided.</p>
+  <p>Many people follow an anti-inflammatory diet to manage a specific condition (like rheumatoid arthritis or inflammatory bowel disease), while others adopt it as a long-term approach to supporting overall health and well-being.</p>
+  <p>Our anti-inflammatory meal planner helps simplify the process by automatically building meals that follow anti-inflammatory guidelines. It does this by:</p>
+  <ul class="stars">
+    <li>Excluding pro-inflammatory ingredients like added sugars, refined grains, and processed foods</li>
+    <li>Prioritizing vegetables, fruits, whole grains, and omega-3-rich proteins</li>
+    <li>Including anti-inflammatory staples like olive oil, nuts, seeds, and legumes</li>
+    <li>Building balanced meals that fit your calorie and nutrition goals</li>
+  </ul>
+
+  <h3 class="copy-h2">Results From Real Users</h3>
+  <p class="placeholder">User testimonials section</p>
+
+  <h3 class="copy-h2">Anti-Inflammatory Meal Plan FAQs</h3>
+  <h4 class="copy-h3">Can I customize my anti-inflammatory meal plan to include specific anti-inflammatory superfoods daily?</h4>
+  <p>Yes. You can set ingredient preferences to make sure specific foods appear in your plan regularly, such as omega-3-rich fish like salmon, or anti-inflammatory spices like turmeric and ginger. The planner builds your meals around whatever preferences you set.</p>
+  <h4 class="copy-h3">Does XXX create anti-inflammatory grocery lists that are budget-friendly?</h4>
+  <p>Yes. Your grocery list is built directly from your meal plan, which helps reduce waste by providing exact ingredient quantities. You can also swap ingredients for more affordable alternatives (like frozen vegetables) without compromising the anti-inflammatory focus of your plan.</p>
+  <h4 class="copy-h3">How does the XXX planner make sure my anti-inflammatory meal plan avoids processed sugars and refined grains?</h4>
+  <p>The planner automatically excludes pro-inflammatory ingredients like added sugars, high-fructose corn syrup, white flour, and other refined carbohydrates when building your meals. This helps ensure your plan stays aligned with anti-inflammatory guidelines without you having to check every ingredient manually.</p>
+  <h4 class="copy-h3">What are the health benefits of following an anti-inflammatory diet?</h4>
+  <p>An anti-inflammatory diet is linked to a reduced risk of chronic conditions including heart disease, type 2 diabetes, and autoimmune conditions like rheumatoid arthritis and IBD. Many people also report improved energy levels, better mood, more stable blood pressure, and support for weight management.</p>
+  <h4 class="copy-h3">What specific foods should be strictly avoided on an anti-inflammatory diet?</h4>
+  <p>Foods to limit or avoid include processed foods, refined carbohydrates like white bread and pasta, added sugars, trans fats, fried foods, and vegetable oils high in omega-6 fatty acids like corn and soybean oil.</p>
+  <h4 class="copy-h3">Are there specific anti-inflammatory diet rules or guidelines to follow?</h4>
+  <p>There's no single prescribed approach, but the general principles are consistent: eat plenty of vegetables, fruits, whole grains, legumes, and healthy fats like olive oil and omega-3-rich fish, while limiting processed foods, refined sugars, and inflammatory fats. The focus is on whole, nutrient-dense foods rather than strict rules.</p>
+
+  <div class="section-break"><span>✦</span></div>
+
+  <p class="brief-label">Brief 4</p>
+  <h2>Runner's <em>meal plan</em></h2>
+  <dl class="brief">
+    <dt>Title</dt><dd>The Ultimate Meal Plan for Runners (Customizable)</dd>
+    <dt>Meta description</dt><dd>Stop guessing your macros. Create a personalized meal plan for runners that adjusts to your training schedule. Try the free diet generator.</dd>
+    <dt>Main keyword</dt><dd>runners meal plan</dd>
+    <dt>Supporting keywords</dt><dd>runners diet plan · 7-day meal plan for runners · runner meal plan · meal plan for runners · meal plan for runners to lose weight · runners diet meal plan · diet plan for runners</dd>
+  </dl>
+
+  <h3 class="copy-h2">About the Runner's Diet</h3>
+  <p>A runner's diet is built around the demands of training, focused on maintaining energy levels, supporting performance, and speeding up recovery. A runner's diet prioritizes carbohydrate availability, so your body has the fuel it needs to perform and recover.</p>
+  <p>Carbohydrates are the body's primary fuel source during running, so they make up a higher proportion of a runner's diet than most (typically 55–65% of total calories). Nutrient timing also plays an important role, easily digestible carbohydrates before a run provide immediate energy, while a combination of protein and complex carbohydrates within 45 minutes of finishing supports muscle repair and glycogen replenishment.</p>
+  <p>Our automated runner diet meal plan helps simplify the process by building meals around your training schedule. It does this by:</p>
+  <ul class="stars">
+    <li>Adjusting daily calorie targets based on your training volume and goals</li>
+    <li>Prioritizing carbohydrate-rich meals on high-mileage days and scaling back on rest days</li>
+    <li>Supporting recovery with protein and complex carbohydrates after workouts</li>
+    <li>Generating grocery lists based on your weekly meal plan</li>
+  </ul>
+  <p class="placeholder">Link: Read Our Complete Runner's Diet Guide</p>
+
+  <h3 class="copy-h2">Results from Real Users</h3>
+  <p class="placeholder">User testimonials section</p>
+
+  <h3 class="copy-h2">Running Diet Plan FAQ</h3>
+  <h4 class="copy-h3">How does XXX build a running diet plan?</h4>
+  <p>XXX creates your running meal plan based on your calorie and macro targets, which can reflect your training schedule, mileage, and goals. It helps balance carbs, protein, and fats to support energy, endurance, and recovery.</p>
+  <h4 class="copy-h3">Can XXX adjust calories for my 'Long Run' days?</h4>
+  <p>Yes. You can create custom daily meal plans in your settings with different calorie and macro targets. This allows you to add or exclude calories, and even cycle your carbohydrates to match your training.</p>
+  <h4 class="copy-h3">Can my meal plan adapt to different training phases?</h4>
+  <p>Yes. XXX can adjust your meal plan as your training changes, increasing fuel during higher mileage periods and scaling back during taper or recovery, so your nutrition always matches your workload.</p>
+  <h4 class="copy-h3">Does the planner track net carbs or total carbs?</h4>
+  <p>We track both. However, for runners, total carbohydrates are often the more relevant metric for glycogen storage. You can toggle your display preferences in the account settings.</p>
+  <h4 class="copy-h3">Can I filter out foods that cause "Runner's Trot"?</h4>
+  <p>Absolutely. You can exclude specific ingredients (like dairy, high-fibre beans, or artificial sweeteners) or entire food groups to make sure your running meals are safe for your stomach.</p>
+  <h4 class="copy-h3">How many grams of carbs should a runner eat per day?</h4>
+  <p>Most endurance runners aim for 5 to 7 grams of carbohydrates per kilogram of body weight for moderate training (1 hour/day), scaling up to 6-10g/kg for heavy endurance training (2-4 hours/day).</p>
+
+  <div class="section-break"><span>✦</span></div>
+
+  <p class="brief-label">Brief 5</p>
+  <h2>Weight loss <em>meal plan</em></h2>
+  <dl class="brief">
+    <dt>Title</dt><dd>Weight Loss Meal Plan | Custom Diet Plan To Lose Weight</dd>
+    <dt>Meta description</dt><dd>Build a weight loss meal plan designed for your goals. Stay consistent with a diet plan to lose weight that's easy to follow and fully personalized.</dd>
+    <dt>Main keyword</dt><dd>meal plan for weight loss</dd>
+    <dt>Supporting keywords</dt><dd>weight loss meal plan · diet plan for weight loss · 7-day diet plan for weight loss · free diet plan for weight loss · healthy meal plan for weight loss · healthy weight loss diet plan · healthy weight loss meal plan</dd>
+  </dl>
+
+  <h3 class="copy-h2">About the Weight Loss Diet Plan</h3>
+  <p>A weight loss diet plan is designed to keep you in a calorie deficit (consuming fewer calories than you burn) while making sure you stay full and energized throughout the day. A sustainable weight loss meal plan focuses on nutrient-dense whole foods and emphasizes protein and fiber to manage hunger and preserve muscle.</p>
+  <p>A consistent daily deficit of around 500 calories is generally considered the most effective and sustainable approach, producing steady, manageable weight loss over time. Alongside calories, tracking macronutrients (protein, carbohydrates, and fat) helps make sure your body is losing fat rather than muscle.</p>
+  <p>Our weight loss meal plan generator handles the calculations and planning for you. Rather than following a static 7-day diet plan for weight loss that doesn't account for your food preferences or lifestyle, we build a personalized plan around your calorie targets and nutritional needs by:</p>
+  <ul class="stars">
+    <li>Calculating your daily calorie and macro targets based on your goals and activity level</li>
+    <li>Building healthy meal plans for weight loss around whole, nutrient-dense ingredients</li>
+    <li>Supporting healthy meal prep for weight loss with an automated weekly grocery list</li>
+    <li>Adjusting instantly when you swap a meal or update your preferences</li>
+  </ul>
+
+  <h3 class="copy-h2">Results from Real Users</h3>
+  <p class="placeholder">User testimonials section</p>
+
+  <h3 class="copy-h2">Weight Loss Meal Plan FAQ</h3>
+  <h4 class="copy-h3">How does XXX create a meal plan for weight loss?</h4>
+  <p>XXX builds your meal plan for weight loss based on your height, weight, age, activity level, and goals. It calculates your calorie target and automatically generates meals that help you stay in a calorie deficit while keeping your nutrition balanced.</p>
+  <h4 class="copy-h3">Can I use XXX if I have specific allergies?</h4>
+  <p>Yes. When setting up your profile, you can exclude specific allergens (like nuts, gluten, or shellfish) or even individual ingredients you dislike (like cilantro or mushrooms). The planner will never suggest recipes containing those items.</p>
+  <h4 class="copy-h3">Can I adjust the calorie target if I'm exercising more?</h4>
+  <p>Absolutely. You can update your activity level or manually adjust your calorie and macro targets in the settings at any time. The meal plan will instantly regenerate recipes to match your new needs.</p>
+  <h4 class="copy-h3">How many calories should I eat to lose weight?</h4>
+  <p>This depends on your TDEE (Total Daily Energy Expenditure). A common recommendation is to eat 500 calories below your TDEE to lose about 1 lb per week. Our TDEE calculator handles this math for you automatically.</p>
+  <h4 class="copy-h3">Do I need to track calories on my own?</h4>
+  <p>No manual tracking is required. Your meals are planned to match your calorie target, so you can follow the plan and stay on track without logging everything yourself.</p>
+  <h4 class="copy-h3">Is meal planning necessary for weight loss?</h4>
+  <p>While not strictly mandatory, meal planning is one of the most effective tools for weight loss. It eliminates decision fatigue, prevents impulse snacking, and ensures you hit your protein targets, which helps with satiety.</p>
+
+  <div class="section-break"><span>✦</span></div>
+
+  <p class="brief-label">Brief 6</p>
+  <h2>Low cholesterol <em>meal plan</em></h2>
+  <dl class="brief">
+    <dt>Meta title</dt><dd>Low Cholesterol Meal Plan | Personalized Heart-Healthy Meals</dd>
+    <dt>Meta description</dt><dd>Get a low cholesterol diet meal plan that fits your lifestyle. Get personalized meals designed to support heart health and balanced nutrition.</dd>
+    <dt>Main keyword</dt><dd>low cholesterol meal plan</dd>
+    <dt>Supporting keywords</dt><dd>low cholesterol diet plan · low cholesterol diet meal plan · diet for low cholesterol plan · 7 day low cholesterol meal plan · low cholesterol meal plan with grocery list</dd>
+  </dl>
+
+  <h3 class="copy-h2">About the Low Cholesterol Diet</h3>
+  <p>A low cholesterol diet is designed to reduce LDL (low-density lipoprotein) cholesterol levels in the blood. It works by reducing saturated fat, which prompts the liver to produce more cholesterol, and increasing soluble fiber, which binds to cholesterol in the gut and helps remove it from the body.</p>
+  <p>Effective low cholesterol diet plans recommend limiting saturated fat to less than 6% of total daily calories and also prioritize 10–25 grams of soluble fiber per day from foods like oats, beans, and barley. The focus is not on cutting out all fat, but on swapping saturated fats like butter and fatty meats for unsaturated alternatives like olive oil, nuts, and oily fish, which actively support healthy cholesterol levels.</p>
+  <p>Many people follow a low saturated fat meal plan after a diagnosis of high cholesterol or heart disease, or as a preventative measure to support long-term cardiovascular health.</p>
+  <p>Our low cholesterol meal planner takes the complexity out of heart-healthy eating by:</p>
+  <ul class="stars">
+    <li>Limiting saturated fat in line with American Heart Association guidelines</li>
+    <li>Prioritizing foods to lower LDL naturally, including oats, legumes, and unsaturated fats</li>
+    <li>Excluding trans fats and processed meats by default</li>
+    <li>Building a 7-day cholesterol lowering menu tailored to your calorie and nutrition goals</li>
+    <li>Generating grocery lists based on your weekly plan</li>
+  </ul>
+
+  <h3 class="copy-h2">Results From Real Users</h3>
+  <p class="placeholder">User testimonials section</p>
+
+  <h3 class="copy-h2">Low Cholesterol Diet Plan FAQ</h3>
+  <h4 class="copy-h3">How does a low cholesterol meal plan work?</h4>
+  <p>A low cholesterol meal plan focuses on reducing foods high in saturated fat and including more heart-healthy options like fiber-rich foods, lean proteins, and healthy fats. This helps support better cholesterol levels over time.</p>
+  <h4 class="copy-h3">How does XXX personalize my low cholesterol meal plan?</h4>
+  <p>Your plan is built using your calorie needs, goals, and food preferences. Meals are automatically generated to align with low cholesterol guidelines while still fitting your daily routine.</p>
+  <h4 class="copy-h3">Can I customize my low cholesterol meal plan?</h4>
+  <p>Yes. You can adjust your calorie target, food preferences, and dietary restrictions. Your meal plan updates automatically to match your choices.</p>
+  <h4 class="copy-h3">Can I combine a low cholesterol plan with a low carb diet on XXX?</h4>
+  <p>Yes. This is a common conflict for users managing both weight and heart health. In the generator, you can select 'Low Cholesterol' as your primary diet type and then use the slider to reduce your carbohydrate target. The planner will find meals that satisfy both rules, prioritizing lean proteins and fibrous vegetables while avoiding the high saturated fats often found in standard 'keto' diets.</p>
+  <h4 class="copy-h3">Does the meal planner track soluble fiber specifically?</h4>
+  <p>We track total fiber automatically. While the database primarily lists 'Total Fiber,' our Low Cholesterol planner prioritizes ingredients that are high in soluble fiber, such as oats, barley, lentils, and apples, which help block cholesterol absorption in the gut and support healthy LDL levels.</p>
+  <h4 class="copy-h3">Can I set a strict limit for saturated fat (e.g., &lt;13g)?</h4>
+  <p>Absolutely. You can customize your nutrient targets in the 'Nutrition' settings. If you are following the strict AHA guideline of 6% of total calories (approx. 11-13g), you can hard-cap this nutrient, and the planner will regenerate your week, adhering to that limit.</p>
+
+</article>
+
+<div class="essay-end">
+  <p class="essay-end-glyph">✦ ✦ ✦</p>
+</div>
+
+<nav class="essay-nav">
+  <a href="writing-mrdthsig7t5ef4io.html">← All samples</a>
+  <a href="/index.html#contact">Get in touch →</a>
+</nav>
+
+<footer>
+  <p>&copy; 2026 Penelope Saint-George</p>
+  <ul class="footer-links">
+    <li><a href="https://nelepope.substack.com" target="_blank" rel="noopener">Substack</a></li>
+    <li><a href="https://linkedin.com/in/penelope-richmond" target="_blank" rel="noopener">LinkedIn</a></li>
+    <li><a href="/index.html#contact">Contact</a></li>
+    <li><a href="/privacy.html">Privacy</a></li>
+  </ul>
+</footer>
+
+<script>
+  const nav = document.getElementById('mainNav');
+  const progress = document.getElementById('progress');
+  function onScroll() {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    progress.style.width = max > 0 ? (window.scrollY / max * 100) + '%' : '0%';
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>
+
+<script>
+  (() => {
+    const nav = document.getElementById('mainNav');
+    const toggle = nav.querySelector('.nav-toggle');
+    const setOpen = open => {
+      nav.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    };
+    toggle.addEventListener('click', () => setOpen(!nav.classList.contains('open')));
+    nav.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+    document.addEventListener('click', e => { if (!nav.contains(e.target)) setOpen(false); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
+  })();
+</script>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('themeToggle');
+    var meta = document.querySelector('meta[name="theme-color"]');
+    function paint() {
+      var dark = root.getAttribute('data-theme') === 'dark';
+      if (btn) btn.textContent = dark ? 'Light mode' : 'Dark mode';
+      if (meta) meta.setAttribute('content', dark ? '#201f22' : '#fff9f5');
+    }
+    paint();
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('psg-theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+</body>
+</html>
