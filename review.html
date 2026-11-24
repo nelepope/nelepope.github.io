@@ -676,7 +676,7 @@ body.editing { padding-bottom: 7rem; }
         links.forEach(a => {
           const target = document.getElementById(a.getAttribute('href').slice(1));
           const gone = !target || !!target.closest('[hidden]');
-          a.parentElement.hidden = gone;
+          if (a.parentElement.hidden !== gone) a.parentElement.hidden = gone;
           a.classList.remove('active');
           if (!gone && (!current || target.getBoundingClientRect().top < 160)) current = a;
         });
