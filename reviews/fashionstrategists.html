@@ -915,13 +915,24 @@ body.editing { padding-bottom: 7rem; }
       let last = 0;
       for (const match of text.matchAll(/(?:https?:\/\/|www\.)[^\s<>"]+/gi)) {
         const url = match[0].replace(/[).,;:!?'\u2019\u201d]+$/, '');
-        el.append(text.slice(last, match.index));
+        withItalics(el, text.slice(last, match.index));
         const link = Object.assign(document.createElement('a'), { href: /^www\./i.test(url) ? 'https://' + url : url, textContent: url, target: '_blank', rel: 'noopener' });
         el.append(link);
         last = match.index + url.length;
       }
-      el.append(text.slice(last));
+      withItalics(el, text.slice(last));
       return el;
+    }
+
+    // Words wrapped in underscores, like _Ginkgo_, show in italics.
+    function withItalics(el, text) {
+      let last = 0;
+      for (const match of text.matchAll(/(?<![\w_])_([^_\n]*[^_\s])_(?![\w_])/g)) {
+        el.append(text.slice(last, match.index));
+        el.append(Object.assign(document.createElement('em'), { textContent: match[1] }));
+        last = match.index + match[0].length;
+      }
+      el.append(text.slice(last));
     }
 
     // THE BOARD: screenshot with a mark on each element the audit talks about,
