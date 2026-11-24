@@ -368,7 +368,7 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 .audit-note.strength .audit-note-num { font-style: normal; color: var(--strength); }
 .audit-note p { font-size: 0.86rem; line-height: 1.6; }
 .audit-note p + p { margin-top: 0.4rem; }
-.audit-note .audit-quote { margin-bottom: 0; font-size: 0.92rem; }
+.audit-note .audit-quote { margin-bottom: 0; }
 .audit-arrows { position: absolute; top: 0; left: 0; pointer-events: none; overflow: visible; }
 .audit-arrows path { fill: none; stroke-width: 1.25; opacity: 0.7; transition: opacity 0.2s, stroke-width 0.2s; }
 .audit-arrows path.active { opacity: 1; stroke-width: 2; }
@@ -401,10 +401,11 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 .audit-issues .audit-item::before { content: counter(audit); color: var(--coral); }
 .audit-strengths .audit-item::before { content: '\2726'; font-style: normal; font-size: 1rem; line-height: 1.9; }
 .audit-item h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.3rem, 2.2vw, 1.5rem); line-height: 1.25; color: var(--headline); margin-bottom: 0.6rem; }
-.audit-quote { font-family: var(--serif); font-style: italic; font-weight: 300; color: var(--ink-mid); margin-bottom: 0.6rem; }
+/* Solance has a much smaller x-height than Jost, so font-size-adjust brings the quote up to
+   the same visual size as the comment beside it. */
+.audit-quote { font-family: var(--serif); font-style: italic; font-weight: 300; font-size-adjust: 0.46; color: var(--ink-mid); margin-bottom: 0.6rem; }
 .audit-item p { font-size: 0.98rem; line-height: 1.75; }
 .audit-item p + p { margin-top: 0.5rem; }
-.audit-fix { color: var(--headline); }
 .audit-small-fixes .audit-item { padding-left: 0; }
 /* Snapshots: each issue or strength beside the part of the page it's about. */
 .audit-issues, .audit-strengths { max-width: none; }
@@ -779,6 +780,7 @@ body.editing { padding-bottom: 7rem; }
       review.issues ??= [];
       review.strengths ??= [];
       review.smallFixes ??= []; // Reviews saved before version 2 have none.
+      foldFixes(review.issues);
       const pageUrl = new URL(result.homePage);
       const host = pageUrl.hostname;
       const path = pageUrl.pathname === '/' && !pageUrl.search ? '' : pageUrl.pathname + pageUrl.search;
@@ -807,7 +809,6 @@ body.editing { padding-bottom: 7rem; }
       if (shot.complete && shot.naturalWidth) layoutBoard();
       renderItems(document.getElementById('auditIssues'), review.issues, item => [
         ['p', item.problem],
-        ['p', item.fix, 'audit-fix'],
       ], 'issues', snapshot);
       renderItems(document.getElementById('auditStrengths'), review.strengths, item => [['p', item.why]], 'strengths', snapshot);
       // Typos and missing punctuation.
@@ -872,8 +873,8 @@ body.editing { padding-bottom: 7rem; }
         }
         title.append(document.createTextNode(item.title));
         note.append(title);
-        const quote = item.quote ? [['“' + item.quote + '”', 'audit-quote']] : [];
-        const lines = [...quote, ...(item.kind === 'issue' ? [[item.problem], [item.fix, 'audit-fix']] : item.kind === 'fix' ? [[item.note]] : [[item.why]])];
+        const quote = item.quote ? [[item.quote, 'audit-quote']] : [];
+        const lines = [...quote, ...(item.kind === 'issue' ? [[item.problem]] : item.kind === 'fix' ? [[item.note]] : [[item.why]])];
         for (const [text, className] of lines) {
           for (const line of paragraphs(text)) {
             const el = document.createElement('p');
@@ -1045,7 +1046,7 @@ body.editing { padding-bottom: 7rem; }
     // Edits are kept in this browser as a draft until then, so a refresh loses nothing.
     let editing = null;
     const EDIT_FIELDS = {
-      issues: { name: 'Issue', fields: [['title', 'Headline'], ['quote', 'Quote from their page'], ['problem', 'What’s wrong', 7], ['fix', 'The fix (optional)', 4]] },
+      issues: { name: 'Issue', fields: [['title', 'Headline'], ['quote', 'Quote from their page'], ['problem', 'What’s wrong', 7]] },
       strengths: { name: 'Strength', fields: [['title', 'Headline'], ['quote', 'Quote from their page'], ['why', 'Why it works', 7]] },
       smallFixes: { name: 'Grammar fix', fields: [['quote', 'Quote from their page'], ['note', 'The fix', 3]] },
       main: { name: 'Main comment', fields: [['text', 'Opening', 6], ['points', 'Bullet points (one per line)', 4], ['after', 'After the bullets', 3]] },
@@ -1141,6 +1142,16 @@ body.editing { padding-bottom: 7rem; }
       review.issues = parts.issues ?? [];
       review.strengths = parts.strengths ?? [];
       review.smallFixes = parts.smallFixes ?? [];
+      foldFixes(review.issues);
+    }
+
+    // Issues used to have a separate fix under what's wrong. It now ends what's wrong,
+    // so older reviews and drafts still show it.
+    function foldFixes(issues) {
+      for (const issue of issues) {
+        if (issue.fix?.trim()) issue.problem = [issue.problem, issue.fix].filter(text => text?.trim()).join('\n');
+        delete issue.fix;
+      }
     }
 
     function setEditStatus(text, linkText, onLink) {
@@ -1244,7 +1255,7 @@ body.editing { padding-bottom: 7rem; }
         return openEditor({ list: 'main' });
       }
       const blank = {
-        issues: { title: 'New issue', quote: '', problem: '', fix: '' },
+        issues: { title: 'New issue', quote: '', problem: '' },
         strengths: { title: 'New strength', quote: '', why: '' },
         smallFixes: { quote: '', note: '' },
       }[list];
@@ -1366,7 +1377,8 @@ body.editing { padding-bottom: 7rem; }
       let savedAs = name;
       try {
         if (window.showSaveFilePicker) {
-          const handle = await window.showSaveFilePicker({ suggestedName: name, types: [{ description: 'Web page', accept: { 'text/html': ['.html'] } }] });
+          // The id makes the browser reopen the folder last saved to (pen-outreach/Reviews).
+          const handle = await window.showSaveFilePicker({ id: 'review-pages', startIn: 'documents', suggestedName: name, types: [{ description: 'Web page', accept: { 'text/html': ['.html'] } }] });
           const writable = await handle.createWritable();
           await writable.write(html);
           await writable.close();
@@ -1690,7 +1702,7 @@ body.editing { padding-bottom: 7rem; }
           li.append(figure);
         }
         const parts = item.title ? [['h3', item.title]] : [];
-        if (item.quote) parts.push(['p', '\u201c' + item.quote + '\u201d', 'audit-quote']);
+        if (item.quote) parts.push(['p', item.quote, 'audit-quote']);
         for (const [tag, text, className] of [...parts, ...body(item)]) {
           for (const line of tag === 'p' ? paragraphs(text) : [text]) {
             const el = document.createElement(tag);
