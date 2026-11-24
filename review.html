@@ -396,7 +396,7 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 .audit-heading { font-family: var(--serif); font-weight: 400; font-size: clamp(1.5rem, 3vw, 2rem); color: var(--headline); margin: 3rem 0 1.25rem; line-height: 1.2; }
 .audit-list { list-style: none; max-width: 760px; counter-reset: audit; }
 .audit-item { position: relative; padding: 1.4rem 0 1.4rem 2.6rem; border-top: 0.5px solid var(--rule); }
-.audit-item::before { position: absolute; left: 0; top: 1.4rem; font-family: var(--serif); font-style: italic; font-size: 1.35rem; line-height: 1.2; color: var(--headline); }
+.audit-item::before { position: absolute; left: 0; top: 1.25rem; font-family: var(--serif); font-style: italic; font-size: 2.1rem; line-height: 1.1; color: var(--headline); }
 .audit-issues .audit-item { counter-increment: audit; }
 .audit-issues .audit-item::before { content: counter(audit); color: var(--coral); }
 .audit-strengths .audit-item::before { content: '\2726'; font-style: normal; font-size: 1rem; line-height: 1.9; }
@@ -446,7 +446,8 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 @media (min-width: 1100px) {
   .audit-results { max-width: calc(1280px + 13rem); }
   .audit-layout { display: grid; grid-template-columns: 10rem minmax(0, 1fr); gap: 3rem; align-items: start; }
-  .audit-toc { display: block; position: sticky; top: 7rem; margin-top: 3rem; }
+  /* On screens wider than the review, the menu moves out into the margin, level with the logo. */
+  .audit-toc { display: block; position: sticky; top: 7rem; margin-top: 3rem; margin-left: min(0px, calc((1280px + 13rem - 100vw) / 2)); }
   .editing .audit-layout { display: block; }
   .editing .audit-toc { display: none; }
 }
@@ -555,6 +556,7 @@ body.editing { padding-bottom: 7rem; }
 }
 
 /* links inside body copy: coral and underlined, never the browser's blue/purple */
+.audit-item-text a, .audit-note a, .audit-main a,
 .skel-body a,
 .service-list a,
 .about-body a,
@@ -565,10 +567,12 @@ body.editing { padding-bottom: 7rem; }
   text-decoration-thickness: 1px;
   transition: opacity 0.2s;
 }
+.audit-item-text a:visited, .audit-note a:visited, .audit-main a:visited,
 .skel-body a:visited,
 .service-list a:visited,
 .about-body a:visited,
 .skel-intro a:visited { color: var(--coral); }
+.audit-item-text a:hover, .audit-note a:hover, .audit-main a:hover,
 .skel-body a:hover,
 .service-list a:hover,
 .about-body a:hover,
@@ -823,18 +827,33 @@ body.editing { padding-bottom: 7rem; }
       box.replaceChildren();
       box.hidden = !main;
       if (!main) return;
-      for (const line of paragraphs(main.text)) box.append(Object.assign(document.createElement('p'), { textContent: line }));
+      for (const line of paragraphs(main.text)) box.append(withLinks(document.createElement('p'), line));
       if (main.points?.length) {
         const ul = document.createElement('ul');
-        for (const point of main.points) ul.append(Object.assign(document.createElement('li'), { textContent: point }));
+        for (const point of main.points) ul.append(withLinks(document.createElement('li'), point));
         box.append(ul);
       }
-      for (const line of paragraphs(main.after)) box.append(Object.assign(document.createElement('p'), { textContent: line }));
+      for (const line of paragraphs(main.after)) box.append(withLinks(document.createElement('p'), line));
     }
 
     // Text with line breaks becomes one paragraph per line.
     function paragraphs(text) {
       return String(text ?? '').split('\n').map(line => line.trim()).filter(Boolean);
+    }
+
+    // Writes text into el, with any web address in it as a link that opens in a new tab.
+    // A full stop or bracket straight after an address is kept out of the link.
+    function withLinks(el, text) {
+      let last = 0;
+      for (const match of text.matchAll(/(?:https?:\/\/|www\.)[^\s<>"]+/gi)) {
+        const url = match[0].replace(/[).,;:!?'\u2019\u201d]+$/, '');
+        el.append(text.slice(last, match.index));
+        const link = Object.assign(document.createElement('a'), { href: /^www\./i.test(url) ? 'https://' + url : url, textContent: url, target: '_blank', rel: 'noopener' });
+        el.append(link);
+        last = match.index + url.length;
+      }
+      el.append(text.slice(last));
+      return el;
     }
 
     // THE BOARD: screenshot with a mark on each element the audit talks about,
@@ -878,7 +897,7 @@ body.editing { padding-bottom: 7rem; }
         for (const [text, className] of lines) {
           for (const line of paragraphs(text)) {
             const el = document.createElement('p');
-            el.textContent = line;
+            withLinks(el, line);
             if (className) el.className = className;
             note.append(el);
           }
@@ -1706,7 +1725,7 @@ body.editing { padding-bottom: 7rem; }
         for (const [tag, text, className] of [...parts, ...body(item)]) {
           for (const line of tag === 'p' ? paragraphs(text) : [text]) {
             const el = document.createElement(tag);
-            el.textContent = line;
+            withLinks(el, line);
             if (className) el.className = className;
             textBox.append(el);
           }
