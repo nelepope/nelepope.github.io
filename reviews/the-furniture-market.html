@@ -426,6 +426,30 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 .audit-cta-carets--out { transform: scaleX(-1); }
 .audit-cta:hover .audit-cta-carets--in, .audit-cta:focus-visible .audit-cta-carets--in { transform: translateX(0.22em); }
 .audit-cta:hover .audit-cta-carets--out, .audit-cta:focus-visible .audit-cta-carets--out { transform: scaleX(-1) translateX(0.22em); }
+/* The button opens a booking panel (Calendly and a message form, as on the website copywriting page). */
+button.audit-cta { background: none; border: none; padding: 0; font-family: inherit; cursor: pointer; }
+.audit-cta[aria-expanded="true"] .audit-cta-carets--in { transform: rotate(90deg); }
+.audit-cta[aria-expanded="true"] .audit-cta-carets--out { transform: scaleX(-1) rotate(90deg); }
+.audit-booking { margin-top: 2.5rem; display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: start; text-align: left; }
+.audit-booking[hidden] { display: none; }
+.audit-booking .service-cta { font-family: var(--serif-light); font-style: italic; font-weight: 400; font-size: clamp(1.3rem, 2.4vw, 1.75rem); color: var(--headline); line-height: 1.3; }
+.audit-booking .skel-contact-heading { text-align: left; font-size: clamp(1.3rem, 2.4vw, 1.75rem); margin-bottom: 1.5rem; }
+.audit-booking .calendly-inline-widget { margin-top: 1.25rem; }
+.audit-booking .form-submit { align-self: flex-start; }
+@media (min-width: 900px) {
+  .audit-booking { grid-template-columns: 1fr 1fr; }
+  .audit-booking .booking-col + .booking-col { border-left: 1px solid rgba(45,106,53,0.25); padding-left: 3rem; }
+  .audit-booking .contact-form { height: 700px; }
+  .audit-booking .contact-form .form-group:last-of-type { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+  .audit-booking .contact-form textarea { flex: 1; min-height: 0; }
+}
+@media (max-width: 899px) {
+  .audit-booking .booking-col + .booking-col { border-top: 1px solid rgba(45,106,53,0.25); padding-top: 2.5rem; }
+}
+:root[data-theme="dark"] .audit-booking .booking-col + .booking-col { border-color: var(--rule); }
+.audit-more { display: inline-flex; align-items: center; gap: 0.75rem; margin-top: 2.5rem; padding: 0.95rem 1.6rem; border: 0.5px solid var(--headline); font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--headline); text-decoration: none; transition: background 0.25s, color 0.25s, gap 0.3s var(--ease-out); }
+.audit-more::after { content: '\2192'; font-size: 1rem; font-weight: 300; }
+.audit-more:hover, .audit-more:focus-visible { background: var(--headline); color: var(--paper); gap: 1.1rem; }
 @media (max-width: 980px) { .audit-results { padding: 2.5rem var(--gutter); } }
 /* Left-hand menu beside the review on wide screens, so a reader can jump between sections. */
 .audit-toc { display: none; }
@@ -692,10 +716,53 @@ body.editing { padding-bottom: 7rem; }
     <svg class="audit-arrows" id="auditArrows" aria-hidden="true"></svg>
   </div>
 
-  <!-- Where the button goes: change the href here to repoint it. -->
-  <p class="audit-cta-wrap">
-    <a class="audit-cta" href="../website-copywriting/"><span class="audit-cta-carets audit-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span><span>Get Pen to spruce this up</span><span class="audit-cta-carets audit-cta-carets--out" aria-hidden="true"><svg viewBox="0 0 8 16" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span></a>
-  </p>
+  <!-- The button opens Calendly and a message form; the link below goes to the service page. -->
+  <div class="audit-cta-wrap">
+    <button type="button" class="audit-cta" id="auditCta" aria-expanded="false" aria-controls="auditBooking"><span class="audit-cta-carets audit-cta-carets--in" aria-hidden="true"><svg viewBox="0 0 8 16" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span><span>Get Pen to spruce this up</span><span class="audit-cta-carets audit-cta-carets--out" aria-hidden="true"><svg viewBox="0 0 8 16" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg><svg viewBox="0 0 8 16" focusable="false" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 2.4 L6.4 8 L2.4 13.6"/></svg></span></button>
+    <div class="audit-booking" id="auditBooking" hidden>
+      <div class="booking-col">
+        <p class="service-cta">Interested? Let's have a chat!</p>
+        <div class="calendly-inline-widget" data-url="https://calendly.com/penelopesaintgeorge/30min" style="min-width:320px;height:700px;"></div>
+      </div>
+      <div class="booking-col">
+        <p class="skel-contact-heading">or send me a message</p>
+        <form class="contact-form" action="https://formspree.io/f/xkjrpbyl" method="POST">
+          <input type="hidden" name="_subject" value="Enquiry from a website review">
+          <input type="hidden" name="review" id="ctaReview" value="">
+          <div class="form-group">
+            <label for="cta-name">Name</label>
+            <input type="text" id="cta-name" name="name" placeholder="Your name" required>
+          </div>
+          <div class="form-group">
+            <label for="cta-email">Email</label>
+            <input type="email" id="cta-email" name="email" placeholder="your@email.com" required>
+          </div>
+          <div class="form-group">
+            <label for="cta-message">Message</label>
+            <textarea id="cta-message" name="message" placeholder="Tell me about your project"></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send enquiry</button>
+        </form>
+      </div>
+    </div>
+    <p><a class="audit-more" href="../website-copywriting/">Read more about website copywriting</a></p>
+  </div>
+  <script>
+    // Open and close the booking panel. Calendly's script loads the first time it opens.
+    (() => {
+      const button = document.getElementById('auditCta');
+      const panel = document.getElementById('auditBooking');
+      document.getElementById('ctaReview').value = location.href.split('?')[0];
+      button.addEventListener('click', () => {
+        const open = panel.hidden;
+        panel.hidden = !open;
+        button.setAttribute('aria-expanded', String(open));
+        if (open && !document.getElementById('calendlyScript')) {
+          document.head.append(Object.assign(document.createElement('script'), { id: 'calendlyScript', src: 'https://assets.calendly.com/assets/external/widget.js', async: true }));
+        }
+      });
+    })();
+  </script>
 </section>
 
 <footer>
