@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script>(function(){try{var t=localStorage.getItem('psg-theme');document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();</script>
+<script>(function(){try{var t=localStorage.getItem('psg-theme');document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 <title>Website review — Penelope Saint-George</title>
 <meta name="description" content="Pop in any page of your website and get a review of its copy: what's holding it back from turning visitors into customers.">
 <meta name="author" content="Saint-George">
@@ -340,6 +340,11 @@ body > footer p { font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.
 .audit-privacy { margin-top: -0.75rem; font-size: 0.78rem; line-height: 1.6; color: var(--ink-light); }
 .audit-error { min-height: 1.5em; font-size: 0.85rem; color: var(--coral); text-align: center; }
 .form-submit:disabled { opacity: 0.4; cursor: default; }
+/* While the review runs: the button stays readable and pulses gently instead of just dimming. */
+.form-submit.is-busy { opacity: 1; animation: audit-busy 1.6s ease-in-out infinite; }
+.form-submit.is-busy::after { display: none; }
+@keyframes audit-busy { 50% { opacity: 0.55; } }
+@media (prefers-reduced-motion: reduce) { .form-submit.is-busy { animation: none; opacity: 0.7; } }
 .audit-status { text-align: center; font-family: var(--serif-light); font-style: italic; font-size: clamp(1.1rem, 2vw, 1.35rem); color: var(--headline); }
 .audit-results { max-width: 1100px; margin: 0 auto; padding: 3.5rem var(--gutter); }
 .audit-results[hidden], .audit-status[hidden], .audit-form[hidden] { display: none; }
@@ -1825,7 +1830,12 @@ body.editing { padding-bottom: 7rem; }
       }
 
       submit.disabled = true;
+      submit.classList.add('is-busy');
+      const submitLabel = submit.textContent;
+      submit.textContent = 'Reviewing your page…';
       results.hidden = true;
+      status.textContent = 'Hang on a moment – this can take up to a minute.';
+      status.hidden = false;
 
       try {
         const response = await fetch(AUDIT_SERVICE, {
@@ -1846,6 +1856,9 @@ body.editing { padding-bottom: 7rem; }
       } catch {
         error.textContent = 'Something went wrong. Please try again in a minute.';
       } finally {
+        status.hidden = true;
+        submit.textContent = submitLabel;
+        submit.classList.remove('is-busy');
         submit.disabled = false;
       }
     });
