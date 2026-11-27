@@ -602,6 +602,14 @@ body.editing { padding-bottom: 7rem; }
 .service-list a:hover,
 .about-body a:hover,
 .skel-intro a:hover { opacity: 0.7; }
+/* Phones: 16px field text stops iPhones zooming in on tap; buttons and links get a comfortable tap height. */
+@media (max-width: 760px) {
+  .form-group input, .form-group textarea, .edit-field input, .edit-field textarea { font-size: 16px; }
+  .form-submit { min-height: 44px; }
+  .audit-cta { min-height: 44px; }
+  .footer-links a { display: inline-flex; align-items: center; min-height: 44px; }
+  .audit-optin label, .audit-optin { min-height: 44px; }
+}
 </style>
 </head>
 <body>
