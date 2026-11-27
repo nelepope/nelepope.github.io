@@ -884,9 +884,8 @@ body.editing { padding-bottom: 7rem; }
         items: [
           ...review.issues.map((item, index) => ({ ...item, kind: 'issue', label: String(index + 1), list: 'issues', index })),
           ...review.strengths.map((item, index) => ({ ...item, kind: 'strength', label: '\u2726', list: 'strengths', index })),
-          ...review.smallFixes.map((item, index) => ({ ...item, title: 'Grammar fix', kind: 'fix', label: '\u270e', list: 'smallFixes', index }))
-            .filter(item => item.box),
-        ],
+          ...review.smallFixes.map((item, index) => ({ ...item, title: 'Grammar fix', kind: 'fix', label: '\u270e', list: 'smallFixes', index })),
+        ].filter(item => item.box && !item.noImage),
       };
       renderMain(review.mainComment);
       renderBoard();
@@ -1682,22 +1681,36 @@ body.editing { padding-bottom: 7rem; }
       const own = Object.assign(document.createElement('button'), { type: 'button', textContent: item.image ? 'Use a different image' : 'Use my own image' });
       own.addEventListener('click', () => pickImage(async file => {
         item.image = (await imageToDataUrl(file, 1400)).dataUrl;
+        delete item.noImage;
         changed();
         openEditor(editing.selected);
       }));
       row.append(own);
-      if (item.image) {
+      if (item.image || item.noImage) {
         const back = Object.assign(document.createElement('button'), { type: 'button', textContent: 'Back to the screenshot crop' });
         back.addEventListener('click', () => {
           delete item.image;
+          delete item.noImage;
           changed();
           openEditor(editing.selected);
         });
         row.append(back);
       }
+      if (!item.noImage) {
+        const none = Object.assign(document.createElement('button'), { type: 'button', textContent: 'No image' });
+        none.addEventListener('click', () => {
+          delete item.image;
+          item.noImage = true;
+          changed();
+          openEditor(editing.selected);
+        });
+        row.append(none);
+      }
       const hint = document.createElement('span');
       hint.className = 'edit-hint';
-      hint.textContent = item.image
+      hint.textContent = item.noImage
+        ? 'No image: this one shows as text only.'
+        : item.image
         ? 'Showing your own image. The box on the full screenshot is no longer used for this one.'
         : 'Showing a crop of the screenshot around this one\u2019s box. Drag the box on the full screenshot to change it.';
       wrap.append(row, hint);
@@ -1764,6 +1777,7 @@ body.editing { padding-bottom: 7rem; }
     function snapshot(item, { pad = 60, minWidth = 640, ratio = 0.4, underline = false } = {}) {
       const b = item.box;
       const { width: W, height: H, dataUrl } = review.screenshot;
+      if (item.noImage) return null;
       if (item.image) {
         const figure = document.createElement('figure');
         figure.className = 'audit-snap audit-snap-own';
